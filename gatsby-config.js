@@ -2,17 +2,18 @@ module.exports = {
   siteMetadata: {
     title: `Andrew Gilliland`,
     description: `Andrew Gilliland's personal blog.`,
-    author: `@gatsbyjs`,
+    author: `Andrew Gilliland`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        name: `articles`,
+        path: `${__dirname}/src/articles`,
       },
     },
+    `gatsby-transformer-remark`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

@@ -3,15 +3,19 @@ import PropTypes from "prop-types"
 import React, { useState } from "react"
 
 const Header = ({ siteTitle }) => {
-  const [isOpen, setOpen] = useState(true)
+  const [isOpen, setOpen] = useState(false)
 
   function toggle() {
     setOpen(!isOpen)
   }
 
+  function toggleKeyPress() {
+    setOpen(!isOpen)
+  }
+
   return (
     <header className="bg-blue-grey-050 border-t-4 border-solid border-magenta-700 px-4 py-3">
-      <div className="flex justify-around items-center">
+      <div className="max-w-6xl mx-auto my-0 flex justify-around items-center">
         <div className="w-5 h-5 bg-magenta-700 rounded-full"></div>
         <div className="flex justify-around items-center">
           <h1>
@@ -31,6 +35,7 @@ const Header = ({ siteTitle }) => {
         </div>
         <div
           onClick={toggle}
+          onKeyPress={toggleKeyPress}
           className="w-5 h-5 bg-blue-grey-200 rounded-full"
         ></div>
       </div>

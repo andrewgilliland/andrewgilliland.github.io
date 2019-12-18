@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto my-0">
+      <div className="">
         <Header siteTitle={data.site.siteMetadata.title} />
         <main>{children}</main>
         <Footer />
