@@ -15,9 +15,9 @@ const IndexPage = () => (
       <p className="text-lg text-magenta-800">Thanks for stopping by!</p>
     </section>
 
-    <section className="bg-blue-grey-100 py-10">
-      <div className=" mx-auto bg-blue-grey-100 max-w-3xl border-2 border-solid border-blue-grey-300 rounded">
-        <h2 className="px-5 text-3xl bg-blue-grey-100">Articles</h2>
+    <section className="bg-blue-grey-100 py-10 px-5">
+      <div className=" mx-auto bg-blue-grey-100 max-w-3xl border-t-2 border-solid border-magenta-400">
+        <h2 className="font-mono px-5 text-3xl bg-blue-grey-100">Articles</h2>
 
         <div className="p-5 bg-blue-grey-050 border-b-2 border-solid border-blue-grey-300 flex justify-between">
           <div className="flex">
