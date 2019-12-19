@@ -1,6 +1,9 @@
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        brand: "'Roboto', sans-serif",
+      },
       maxWidth: {
         "20em": "20em",
         "25em": "25em",

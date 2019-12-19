@@ -7,9 +7,18 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <div>
-        <h1>{post.frontmatter.title}</h1>
-        <div className="text-blue-grey-900" dangerouslySetInnerHTML={{__html: post.html}} />
+      <div className="mx-8 flex flex-col items-center">
+        <div>
+          <h1 className="mt-10 font-brand text-blue-grey-800 text-3xl sm:text-4xl">
+            {post.frontmatter.title}
+          </h1>
+          <h2 className="text-blue-grey-600">{post.frontmatter.date}</h2>
+
+          <div
+            className="my-10 font-serif leading-relaxed text-blue-grey-600 max-w-35em sm:text-lg"
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+        </div>
       </div>
     </Layout>
   )
@@ -21,6 +30,7 @@ export const query = graphql`
       html
       frontmatter {
         title
+        date
       }
     }
   }
