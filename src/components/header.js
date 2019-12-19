@@ -14,8 +14,8 @@ const Header = ({ siteTitle }) => {
   }
 
   return (
-    <header className="bg-blue-grey-050 border-t-4 border-solid border-magenta-700 px-4 py-3">
-      <div className="max-w-6xl mx-auto my-0 flex justify-around items-center">
+    <header className="bg-blue-grey-050 border-t-8 border-solid border-magenta-700 px-4 py-3">
+      <div className="max-w-3xl mx-auto my-0 flex justify-around items-center">
         <div className="w-5 h-5 bg-magenta-700 rounded-full"></div>
         <div className="flex justify-around items-center">
           <h1>
@@ -29,9 +29,11 @@ const Header = ({ siteTitle }) => {
           <div className="ml-3 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900 hidden sm:block">
             Articles
           </div>
-          <div className="ml-3 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900 hidden sm:block">
-            About
-          </div>
+          <Link to="/about">
+            <div className="ml-3 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900 hidden sm:block">
+              About
+            </div>
+          </Link>
         </div>
         <div
           onClick={toggle}
@@ -43,9 +45,11 @@ const Header = ({ siteTitle }) => {
         <div className="mt-2 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900">
           Articles
         </div>
-        <div className="mt-2 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900">
-          About
-        </div>
+        <Link to="/about">
+          <div className="mt-2 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900">
+            About
+          </div>
+        </Link>
       </div>
     </header>
   )

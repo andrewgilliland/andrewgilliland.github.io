@@ -1,6 +1,12 @@
 module.exports = {
   theme: {
     extend: {
+      maxWidth: {
+        "20em": "20em",
+        "25em": "25em",
+        "30em": "30em",
+        "35em": "35em",
+      },
       colors: {
         // Primary
         "magenta-050": "#F5E1F7",
