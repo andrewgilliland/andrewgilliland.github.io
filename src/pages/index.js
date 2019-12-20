@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Article from "../components/Article"
+import Container from "../components/Container"
 
 import { MdEmail } from "react-icons/md"
 import { FaGithub, FaTwitter } from "react-icons/fa"
@@ -29,68 +30,70 @@ const IndexPage = ({ data }) => (
     </section>
 
     <section className="-mt-16 bg-blue-grey-200 py-16 px-5">
-      <div className=" mx-auto bg-blue-grey-100 max-w-3xl border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
-        <h2 className="font-brand px-5 text-3xl bg-blue-grey-100 tracking-tight">
-          Articles
-        </h2>
+      <Container>
+        <div className="bg-blue-grey-100 border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
+          <h2 className="font-brand px-5 text-3xl bg-blue-grey-100 tracking-tight">
+            Articles
+          </h2>
 
-        {data.allMarkdownRemark.edges.map(({ node }) => (
-          <Article
-            key={node.id}
-            title={node.frontmatter.title}
-            date={node.frontmatter.date}
-            slug={node.fields.slug}
-          />
-        ))}
-      </div>
-
-      <div className="mt-10 mx-auto bg-blue-grey-100 max-w-3xl border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
-        <h2 className="font-brand px-5 text-3xl bg-blue-grey-100 tracking-tight">
-          Some Projects
-        </h2>
-        <div className="bg-blue-grey-050">
-          <div>Project 1</div>
-          <div>Project 2</div>
-          <div>Project 3</div>
+          {data.allMarkdownRemark.edges.map(({ node }) => (
+            <Article
+              key={node.id}
+              title={node.frontmatter.title}
+              date={node.frontmatter.date}
+              slug={node.fields.slug}
+            />
+          ))}
         </div>
-      </div>
 
-      <div className="mt-10 mx-auto bg-blue-grey-100 max-w-3xl border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
-        <h2 className="font-brand px-5 text-3xl bg-blue-grey-100 tracking-tight">
-          Get In Touch
-        </h2>
-        <div className="bg-blue-grey-050">
-          <div className="py-3 flex items-center">
-            <MdEmail className="ml-5 text-magenta-700" size="40" />
-            <address>
+        <div className="mt-10 bg-blue-grey-100 border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
+          <h2 className="font-brand px-5 text-3xl bg-blue-grey-100 tracking-tight">
+            Some Projects
+          </h2>
+          <div className="bg-blue-grey-050">
+            <div>Project 1</div>
+            <div>Project 2</div>
+            <div>Project 3</div>
+          </div>
+        </div>
+
+        <div className="mt-10 bg-blue-grey-100 border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
+          <h2 className="font-brand px-5 text-3xl bg-blue-grey-100 tracking-tight">
+            Get In Touch
+          </h2>
+          <div className="bg-blue-grey-050">
+            <div className="py-3 flex items-center">
+              <MdEmail className="ml-5 text-magenta-700" size="40" />
+              <address>
+                <a
+                  className="ml-3 text-magenta-500 font-bold hover:text-magenta-200 not-italic"
+                  href="mailto:andrewpgilliland@gmail.com"
+                >
+                  andrewpgilliland@gmail.com
+                </a>
+              </address>
+            </div>
+            <div className="py-3 flex items-center">
+              <FaGithub className="ml-5 text-magenta-700" size="40" />
               <a
-                className="ml-3 text-magenta-500 font-bold hover:text-magenta-200 not-italic"
-                href="mailto:andrewpgilliland@gmail.com"
+                className="ml-3 text-magenta-500 font-bold hover:text-magenta-200"
+                href="https://github.com/andrewgilliland"
               >
-                andrewpgilliland@gmail.com
+                andrewgilliland
               </a>
-            </address>
-          </div>
-          <div className="py-3 flex items-center">
-            <FaGithub className="ml-5 text-magenta-700" size="40" />
-            <a
-              className="ml-3 text-magenta-500 font-bold hover:text-magenta-200"
-              href="https://github.com/andrewgilliland"
-            >
-              andrewgilliland
-            </a>
-          </div>
-          <div className="py-3 flex items-center">
-            <FaTwitter className="ml-5 text-magenta-700" size="40" />
-            <a
-              className="ml-3 text-magenta-500 font-bold hover:text-magenta-200"
-              href="https://twitter.com/gilliland_andy"
-            >
-              @gilliland_andy
-            </a>
+            </div>
+            <div className="py-3 flex items-center">
+              <FaTwitter className="ml-5 text-magenta-700" size="40" />
+              <a
+                className="ml-3 text-magenta-500 font-bold hover:text-magenta-200"
+                href="https://twitter.com/gilliland_andy"
+              >
+                @gilliland_andy
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
 
     <section className="bg-blue-grey-050"></section>
