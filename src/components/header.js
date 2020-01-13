@@ -35,11 +35,29 @@ const Header = ({ siteTitle }) => {
             </div>
           </Link>
         </div>
+        <div className="w-5 h-5 bg-blue-grey-200 rounded-full hidden sm:block"></div>
         <div
           onClick={toggle}
           onKeyPress={toggleKeyPress}
-          className="w-5 h-5 bg-blue-grey-200 rounded-full"
-        ></div>
+          className="w-5 h-5 bg-blue-grey-200 rounded-full flex justify-center items-center sm:hidden"
+        >
+          <svg
+            class="h-4 w-4 fill-current text-magenta-500"
+            viewBox="0 0 24 24"
+          >
+            {isOpen ? (
+              <path
+                fill-rule="evenodd"
+                d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
+              />
+            ) : (
+              <path
+                fill-rule="evenodd"
+                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+              />
+            )}
+          </svg>
+        </div>
       </div>
       <div className={isOpen ? "flex flex-col items-center" : "hidden"}>
         <div className="mt-2 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900">

@@ -10,7 +10,6 @@ const AboutPage = () => (
   <Layout>
     <SEO title="About" />
     <div className="bg-blue-grey-050 py-10 sm:flex flex-col items-center">
-
       <div className="max-w-lg mx-5 mt-10 shadow-lg rounded-lg">
         <div className="p-5 flex justify-between items-center bg-magenta-500 rounded-t-lg">
           <h1 className="font-brand font-medium text-2xl text-blue-grey-050 self-end">
@@ -23,12 +22,33 @@ const AboutPage = () => (
           />
         </div>
         <p className="font-serif leading-relaxed p-5 text-blue-grey-600 sm:text-lg">
-          Hi, I'm Andrew! I'm a web developer from Pensacola, Florida. Lorem
-          ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis dicta
-          officia vero ipsam saepe dolore qui voluptate, dignissimos corrupti
-          est ullam fugiat commodi debitis enim adipisci. Sit provident facere
-          ex dolorem et atque exercitationem hic fugit, aspernatur doloribus ad
-          praesentium iure earum debitis dolores magnam incidunt.
+          Hi, I'm Andrew! I'm a web developer from Pensacola, Florida. I love
+          learning anything and everything about web development and design and
+          enjoy sharing what I learn along the way.
+        </p>
+        <p className="font-serif leading-relaxed p-5 text-blue-grey-600 sm:text-lg">
+          This website was built with {" "}
+          <a
+            href="https://www.gatsbyjs.org/"
+            className="font-sans text-magenta-500 font-semibold hover:underline"
+          >
+            Gatsby
+          </a>
+          , styled with {" "}
+          <a
+            href="https://tailwindcss.com/"
+            className="font-sans text-magenta-500 font-semibold hover:underline"
+          >
+            Tailwind CSS
+          </a>
+          , and hosted by {" "}
+          <a
+            href="https://www.netlify.com/"
+            className="font-sans text-magenta-500 font-semibold hover:underline"
+          >
+            Netlify
+          </a>
+          .
         </p>
       </div>
 
@@ -43,7 +63,7 @@ const AboutPage = () => (
         </div>
         <div className="p-5">
           <p className="text-blue-grey-700 font-semibold">
-            Here is a list of technologies I work with.
+            Here is an evergrowing list of technologies I work with.
           </p>
           <div>
             <h3 className="mt-5 text-magenta-500 font-semibold">JavaScript</h3>
@@ -70,7 +90,7 @@ const AboutPage = () => (
               <li>Sass</li>
               <li>Bootstrap</li>
               <li>Materialize</li>
-              <li>Tailwind</li>
+              <li>Tailwind CSS</li>
             </ul>
           </div>
           <h3 className="mt-5 text-magenta-500 font-semibold">HTML5</h3>

@@ -7,14 +7,20 @@ import Article from "../components/Article"
 import Container from "../components/Container"
 
 import { MdEmail } from "react-icons/md"
-import { FaGithub, FaTwitter } from "react-icons/fa"
+import { FaGithub, FaTwitter, FaReact, FaNodeJs } from "react-icons/fa"
 
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
 
     <section className="py-10 flex flex-col justify-around items-center bg-blue-grey-050">
-      <h1 className="font-brand font-medium text-5xl tracking-tight text-blue-grey-900 uppercase">
+      <h1
+        className="font-medium text-5xl tracking-tight text-blue-grey-900 uppercase"
+        style={{
+          textShadow: `1px 1px 0px #AD4BB8, 2px 2px 0px #BB61C7, 3px 3px 0px #CE80D9, 4px 4px 0px #ECBDF2, 5px 5px 0px #F5E1F7`,
+        }}
+      >
+        <span style={{ width: "5px", backgroundColor: "#AD4BB8" }}> </span>
         Bienvenidos
       </h1>
       <div className="mt-10 mx-8 p-3 bg-magenta-050 rounded-lg shadow-lg text-center leading-loose">
@@ -23,8 +29,8 @@ const IndexPage = ({ data }) => (
         </p>
         <p className="max-w-20em text-magenta-800 italic">
           I'm Andrew, I am a freelance web developer. On this site I am sharing
-          some articles about JavaScript, Reactjs, Node.js and web development.
-          Check them out while you are here!
+          some articles about JavaScript, CSS, React, Node.js and web
+          development. Check them out while you are here!
         </p>
       </div>
     </section>
@@ -32,7 +38,7 @@ const IndexPage = ({ data }) => (
     <section className="-mt-16 bg-blue-grey-200 py-16 px-5">
       <Container>
         <div className="bg-blue-grey-100 border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
-          <h2 className="font-brand px-5 text-3xl bg-blue-grey-100 tracking-tight">
+          <h2 className="px-5 text-3xl bg-blue-grey-100 tracking-tight">
             Articles
           </h2>
 
@@ -47,18 +53,85 @@ const IndexPage = ({ data }) => (
         </div>
 
         <div className="mt-10 bg-blue-grey-100 border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
-          <h2 className="font-brand px-5 text-3xl bg-blue-grey-100 tracking-tight">
+          <h2 className="px-5 text-3xl bg-blue-grey-100 tracking-tight">
             Some Projects
           </h2>
           <div className="bg-blue-grey-050">
-            <div>Project 1</div>
-            <div>Project 2</div>
-            <div>Project 3</div>
+            <a href="https://natours-andrew.herokuapp.com/">
+              <div className="p-5 bg-blue-grey-050 flex justify-between items-center hover:bg-magenta-050 hover:border-2 hover:border-solid hover:border-magenta-100">
+                <div className="flex">
+                  <FaNodeJs className="text-magenta-700" size="35" />
+                  <div className="ml-3">
+                    <h3 className="text-blue-grey-900 font-semibold">
+                      Natours
+                    </h3>
+                    <p className="text-blue-grey-600">
+                      Natours is a full stack application that allows users to view and book tours. The primary technologies used are Node.js, Express, and MongoDB.
+                      This was built along with the Udemy Course{" "}
+                      <a
+                        href="https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/"
+                        className="font-sans text-magenta-500 font-semibold hover:underline"
+                      >
+                        Node.js, Express, MongoDB & More: The Complete Bootcamp
+                      </a>{" "}
+                      by Jonas Schmedtmann.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a href="">
+              <div className="p-5 bg-blue-grey-050 flex justify-between items-center hover:bg-magenta-050 hover:border-2 hover:border-solid hover:border-magenta-100">
+                <div className="flex">
+                  <FaReact className="text-magenta-700" size="35" />
+                  <div className="ml-3">
+                    <h3 className="text-blue-grey-900 font-semibold">
+                      React Colors
+                    </h3>
+                    <p className="text-blue-grey-600">
+                      React colors is a front end application that allows you to create, display and
+                      update and delete color palettes. The primary technology
+                      used is React with Create React App. This was built along
+                      with the Udemy Course{" "}
+                      <a
+                        href="https://www.udemy.com/course/modern-react-bootcamp/"
+                        className="font-sans text-magenta-500 font-semibold hover:underline"
+                      >
+                        The Modern React Bootcamp
+                      </a>{" "}
+                      by Colt Steele.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a href="https://desolate-hollows-99733.herokuapp.com/">
+              <div className="p-5 bg-blue-grey-050 flex justify-between items-center hover:bg-magenta-050 hover:border-2 hover:border-solid hover:border-magenta-100">
+                <div className="flex">
+                  <FaNodeJs className="text-magenta-700" size="35" />
+                  <div className="ml-3">
+                    <h3 className="text-blue-grey-900 font-semibold">
+                      YelpCamp
+                    </h3>
+                    <p className="text-blue-grey-600">
+                      YelpCamp is a full stack application that allows users to create, view, update and review campgrounds. The primary technologies used are Bootstrap, Node.js, Express, and MongoDB. This was built along with the Udemy Course{" "}
+                      <a
+                        href="https://www.udemy.com/course/the-web-developer-bootcamp/"
+                        className="font-sans text-magenta-500 font-semibold hover:underline"
+                      >
+                        The Web Developer Bootcamp
+                      </a>{" "}
+                      by Colt Steele.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
 
         <div className="mt-10 bg-blue-grey-100 border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
-          <h2 className="font-brand px-5 text-3xl bg-blue-grey-100 tracking-tight">
+          <h2 className="px-5 text-3xl bg-blue-grey-100 tracking-tight">
             Get In Touch
           </h2>
           <div className="bg-blue-grey-050">
