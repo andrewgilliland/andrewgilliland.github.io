@@ -7,7 +7,7 @@ import Article from "../components/Article"
 import Container from "../components/Container"
 
 import { MdEmail } from "react-icons/md"
-import { FaGithub, FaTwitter, FaReact, FaNodeJs } from "react-icons/fa"
+import { FaGithub, FaTwitter } from "react-icons/fa"
 
 const IndexPage = ({ data }) => (
   <Layout>
@@ -60,7 +60,6 @@ const IndexPage = ({ data }) => (
             <a href="https://natours-andrew.herokuapp.com/">
               <div className="p-5 bg-blue-grey-050 flex justify-between items-center hover:bg-magenta-050 hover:border-2 hover:border-solid hover:border-magenta-100">
                 <div className="flex">
-                  <FaNodeJs className="text-magenta-700" size="35" />
                   <div className="ml-3">
                     <h3 className="text-blue-grey-900 font-semibold">
                       Natours
@@ -83,7 +82,6 @@ const IndexPage = ({ data }) => (
             <a href="">
               <div className="p-5 bg-blue-grey-050 flex justify-between items-center hover:bg-magenta-050 hover:border-2 hover:border-solid hover:border-magenta-100">
                 <div className="flex">
-                  <FaReact className="text-magenta-700" size="35" />
                   <div className="ml-3">
                     <h3 className="text-blue-grey-900 font-semibold">
                       React Colors
@@ -108,7 +106,6 @@ const IndexPage = ({ data }) => (
             <a href="https://desolate-hollows-99733.herokuapp.com/">
               <div className="p-5 bg-blue-grey-050 flex justify-between items-center hover:bg-magenta-050 hover:border-2 hover:border-solid hover:border-magenta-100">
                 <div className="flex">
-                  <FaNodeJs className="text-magenta-700" size="35" />
                   <div className="ml-3">
                     <h3 className="text-blue-grey-900 font-semibold">
                       YelpCamp

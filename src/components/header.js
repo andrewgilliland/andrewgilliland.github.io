@@ -16,7 +16,7 @@ const Header = ({ siteTitle }) => {
   return (
     <header className="bg-blue-grey-050 border-t-8 border-solid border-magenta-700 px-4 py-3">
       <div className="max-w-3xl mx-auto my-0 flex justify-around items-center">
-        <div className="w-5 h-5 bg-magenta-700 rounded-full"></div>
+        <div className="w-8 h-8 bg-magenta-700 rounded-full"></div>
         <div className="flex justify-around items-center">
           <h1>
             <Link
@@ -26,33 +26,35 @@ const Header = ({ siteTitle }) => {
               {siteTitle}
             </Link>
           </h1>
-          <div className="ml-3 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900 hidden sm:block">
-            Articles
-          </div>
+          <Link to="/articles">
+            <div className="ml-3 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900 hidden sm:block">
+              Articles
+            </div>
+          </Link>
           <Link to="/about">
             <div className="ml-3 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900 hidden sm:block">
               About
             </div>
           </Link>
         </div>
-        <div className="w-5 h-5 bg-blue-grey-200 rounded-full hidden sm:block"></div>
+        <div className="w-8 h-8 bg-blue-grey-200 rounded-full hidden sm:block"></div>
         <div
           onClick={toggle}
           onKeyPress={toggleKeyPress}
-          className="w-5 h-5 bg-blue-grey-200 rounded-full flex justify-center items-center sm:hidden"
+          className="w-8 h-8 bg-blue-grey-200 rounded-full flex justify-center items-center sm:hidden"
         >
           <svg
-            class="h-4 w-4 fill-current text-magenta-500"
+            className="h-6 w-6 fill-current text-magenta-500"
             viewBox="0 0 24 24"
           >
             {isOpen ? (
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd" 
                 d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
               />
             ) : (
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
               />
             )}
@@ -60,9 +62,11 @@ const Header = ({ siteTitle }) => {
         </div>
       </div>
       <div className={isOpen ? "flex flex-col items-center" : "hidden"}>
-        <div className="mt-2 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900">
-          Articles
-        </div>
+        <Link to="/articles">
+          <div className="mt-2 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900">
+            Articles
+          </div>
+        </Link>
         <Link to="/about">
           <div className="mt-2 font-semibold text-blue-grey-200 px-3 py-1 bg-blue-grey-600 rounded-full hover:bg-blue-grey-400 hover:text-blue-grey-900">
             About
