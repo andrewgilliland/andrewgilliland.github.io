@@ -3,11 +3,11 @@ title: "Creating a Web Server in Node.js"
 date: "2020-01-13"
 ---
 
-In this article I'm going to explain building a basic web server in Node.js. First, you are going to need to have Node installed on your computer. Link <a href="https://nodejs.org/en/" class="font-sans text-magenta-500 font-semibold hover:underline">here</a> if you do not. You will also need a text editor as well. I highly recommend <a href="https://code.visualstudio.com/" class="font-sans text-magenta-500 font-semibold hover:underline">VS Code</a>.
+In this article I'm going to explain how to build a simple web server in Node.js. First, you are going to need to have Node installed on your computer. Link <a href="https://nodejs.org/en/" class="font-sans text-magenta-500 font-semibold hover:underline">here</a> if you do not. You will also need a text editor as well. I highly recommend <a href="https://code.visualstudio.com/" class="font-sans text-magenta-500 font-semibold hover:underline">VS Code</a>.
 
 <div class="mt-4">
 
-Let's get started. Create an index.js file in your directory. Then include the node 'http' module.
+Let's get started. Create an index.js file in your project directory. Then include the node 'http' module.
 
 </div>
 
