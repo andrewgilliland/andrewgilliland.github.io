@@ -1,9 +1,9 @@
 ---
 title: "Creating a Web Server in Node.js"
-date: "2020-01-13"
+date: "2020-01-21"
 ---
 
-In this article I'm going to explain how to build a simple web server in Node.js. First, you are going to need to have Node installed on your computer. Link <a href="https://nodejs.org/en/" class="font-sans text-magenta-500 font-semibold hover:underline">here</a> if you do not. You will also need a text editor as well. I highly recommend <a href="https://code.visualstudio.com/" class="font-sans text-magenta-500 font-semibold hover:underline">VS Code</a>.
+In this article I'm going to explain how to build a web server in Node.js. First, you are going to need to have Node installed on your computer. Link <a href="https://nodejs.org/en/" class="font-sans text-magenta-500 font-semibold hover:underline">here</a> if you do not. You will also need a text editor as well. I highly recommend <a href="https://code.visualstudio.com/" class="font-sans text-magenta-500 font-semibold hover:underline">VS Code</a>.
 
 <div class="mt-4">
 
@@ -22,23 +22,22 @@ Let's get started. Create an index.js file in your project directory. Then inclu
 
 <div class="mt-8">
 
-There are two main steps to build a server:
+There are two main steps to build a server: create the server and then start the server. To create the server, we use the `createServer` method on the http object. The `createServer` method accepts a callback function. This function will be called every time a request hits the server.
 
-- First we create the server.
-- Then we start the server.
+</div>
 
-To create the server, we use the `createServer` method on the http object.
-
-The `createServer` method accepts a callback function. This function will be called every time a request hits the server.
+<div class="mt-8">
 
 This callback function gets access to two important variables.
+The request variable - `req` and the response variable - `res`.
 
-- The request variable - `req`.
-- The response variable - `res`.
+</div>
+
+<div class="mt-8">
 
 In the callback function we will send a response back to the client. We will do that with the `res` object and it's method `.end`.
 
-</div>
+
 
 <div class="text-blue-grey-050 text-sm font-sans bg-blue-grey-900 mt-4 rounded border-b-1">
 <h3 class="p-4 border-b border-blue-grey-700">index.js</h3>

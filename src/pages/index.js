@@ -57,16 +57,21 @@ const IndexPage = ({ data }) => (
             Some Projects
           </h2>
           <div className="bg-blue-grey-050">
-            <a href="https://natours-andrew.herokuapp.com/">
-              <div className="p-5 bg-blue-grey-050 flex justify-between items-center hover:bg-magenta-050 hover:border-2 hover:border-solid hover:border-magenta-100">
+           
+              <div className="p-5 bg-blue-grey-050 flex justify-between items-center pt-10">
                 <div className="flex">
                   <div className="ml-3">
-                    <h3 className="text-blue-grey-900 font-semibold">
+                    <a
+                      className="text-magenta-500 border-2 border-magenta-200 px-4 py-2 rounded-lg font-semibold hover:bg-magenta-050 focus:bg-magenta-050"
+                      href="https://natours-andrew.herokuapp.com/"
+                    >
                       Natours
-                    </h3>
-                    <p className="text-blue-grey-600">
-                      Natours is a full stack application that allows users to view and book tours. The primary technologies used are Node.js, Express, and MongoDB.
-                      This was built along with the Udemy Course{" "}
+                    </a>
+                    <p className="text-blue-grey-600 mt-6">
+                      Natours is a full stack application that allows users to
+                      view and book tours. The primary technologies used are
+                      Node.js, Express, and MongoDB. This was built along with
+                      the Udemy Course{" "}
                       <a
                         href="https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/"
                         className="font-sans text-magenta-500 font-semibold hover:underline"
@@ -78,52 +83,56 @@ const IndexPage = ({ data }) => (
                   </div>
                 </div>
               </div>
-            </a>
-            <a href="">
-              <div className="p-5 bg-blue-grey-050 flex justify-between items-center hover:bg-magenta-050 hover:border-2 hover:border-solid hover:border-magenta-100">
-                <div className="flex">
-                  <div className="ml-3">
-                    <h3 className="text-blue-grey-900 font-semibold">
-                      React Colors
-                    </h3>
-                    <p className="text-blue-grey-600">
-                      React colors is a front end application that allows you to create, display and
-                      update and delete color palettes. The primary technology
-                      used is React with Create React App. This was built along
-                      with the Udemy Course{" "}
-                      <a
-                        href="https://www.udemy.com/course/modern-react-bootcamp/"
-                        className="font-sans text-magenta-500 font-semibold hover:underline"
-                      >
-                        The Modern React Bootcamp
-                      </a>{" "}
-                      by Colt Steele.
-                    </p>
-                  </div>
+            
+
+            <div className="p-5 bg-blue-grey-050 flex justify-between items-center">
+              <div className="flex">
+                <div className="ml-3">
+                  <button className="text-magenta-500 border-2 border-magenta-200 px-4 py-2 rounded-lg font-semibold hover:bg-magenta-050 focus:bg-magenta-050">
+                    React Colors
+                  </button>
+                  <p className="text-blue-grey-600 mt-4">
+                    React colors is a front end application that allows you to
+                    create, display and update and delete color palettes. The
+                    primary technology used is React with Create React App. This
+                    was built along with the Udemy Course{" "}
+                    <a
+                      href="https://www.udemy.com/course/modern-react-bootcamp/"
+                      className="font-sans text-magenta-500 font-semibold hover:underline"
+                    >
+                      The Modern React Bootcamp
+                    </a>{" "}
+                    by Colt Steele.
+                  </p>
                 </div>
               </div>
-            </a>
-            <a href="https://desolate-hollows-99733.herokuapp.com/">
-              <div className="p-5 bg-blue-grey-050 flex justify-between items-center hover:bg-magenta-050 hover:border-2 hover:border-solid hover:border-magenta-100">
-                <div className="flex">
-                  <div className="ml-3">
-                    <h3 className="text-blue-grey-900 font-semibold">
-                      YelpCamp
-                    </h3>
-                    <p className="text-blue-grey-600">
-                      YelpCamp is a full stack application that allows users to create, view, update and review campgrounds. The primary technologies used are Bootstrap, Node.js, Express, and MongoDB. This was built along with the Udemy Course{" "}
-                      <a
-                        href="https://www.udemy.com/course/the-web-developer-bootcamp/"
-                        className="font-sans text-magenta-500 font-semibold hover:underline"
-                      >
-                        The Web Developer Bootcamp
-                      </a>{" "}
-                      by Colt Steele.
-                    </p>
-                  </div>
+            </div>
+
+            <div className="p-5 bg-blue-grey-050 flex justify-between items-center">
+              <div className="flex">
+                <div className="ml-3">
+                  <a
+                    className="text-magenta-500 border-2 border-magenta-200 px-4 py-2 rounded-lg font-semibold hover:bg-magenta-050 focus:bg-magenta-050"
+                    href="https://desolate-hollows-99733.herokuapp.com/"
+                  >
+                    YelpCamp
+                  </a>
+                  <p className="text-blue-grey-600 mt-4">
+                    YelpCamp is a full stack application that allows users to
+                    create, view, update and review campgrounds. The primary
+                    technologies used are Bootstrap, Node.js, Express, and
+                    MongoDB. This was built along with the Udemy Course{" "}
+                    <a
+                      href="https://www.udemy.com/course/the-web-developer-bootcamp/"
+                      className="font-sans text-magenta-500 font-semibold hover:underline"
+                    >
+                      The Web Developer Bootcamp
+                    </a>{" "}
+                    by Colt Steele.
+                  </p>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
         </div>
 
@@ -181,7 +190,7 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date(formatString: "DD MMMM, YYYY")
+            date(formatString: "MMMM DD, YYYY")
           }
           fields {
             slug
