@@ -140,31 +140,31 @@ const IndexPage = ({ data }) => (
           <h2 className="px-5 text-3xl bg-blue-grey-100 tracking-tight">
             Get In Touch
           </h2>
-          <div className="bg-blue-grey-050">
-            <div className="py-3 flex items-center">
+          <div className="bg-blue-grey-050 px-2 py-4">
+            <div className="py-3 flex flex-col sm:flex-row items-center">
               <MdEmail className="ml-5 text-magenta-700" size="40" />
               <address>
                 <a
-                  className="ml-3 text-magenta-500 font-bold hover:text-magenta-200 not-italic"
+                  className="sm:ml-3 text-magenta-500 font-bold hover:text-magenta-200 not-italic"
                   href="mailto:andrewpgilliland@gmail.com"
                 >
                   andrewpgilliland@gmail.com
                 </a>
               </address>
             </div>
-            <div className="py-3 flex items-center">
+            <div className="py-3 flex flex-col sm:flex-row items-center">
               <FaGithub className="ml-5 text-magenta-700" size="40" />
               <a
-                className="ml-3 text-magenta-500 font-bold hover:text-magenta-200"
+                className="sm:ml-3 text-magenta-500 font-bold hover:text-magenta-200"
                 href="https://github.com/andrewgilliland"
               >
                 andrewgilliland
               </a>
             </div>
-            <div className="py-3 flex items-center">
+            <div className="py-3 flex flex-col sm:flex-row items-center">
               <FaTwitter className="ml-5 text-magenta-700" size="40" />
               <a
-                className="ml-3 text-magenta-500 font-bold hover:text-magenta-200"
+                className="sm:ml-3 text-magenta-500 font-bold hover:text-magenta-200"
                 href="https://twitter.com/gilliland_andy"
               >
                 @gilliland_andy
