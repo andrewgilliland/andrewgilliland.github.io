@@ -1,9 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { MDXRenderer } from "gatsby-plugin-mdx"
+
 import Layout from "../components/layout"
 
 export default ({ data }) => {
-  const post = data.markdownRemark
+  const post = data.mdx
 
   return (
     <Layout>
@@ -16,8 +18,10 @@ export default ({ data }) => {
 
           <article
             className="my-10 font-serif leading-relaxed text-blue-grey-600 text-sm sm:text-lg"
-            dangerouslySetInnerHTML={{ __html: post.html }}
-          />
+            // dangerouslySetInnerHTML={{ __html: post.html }}
+          >
+            <MDXRenderer>{post.body}</MDXRenderer>
+          </article>
         </div>
       </div>
     </Layout>
@@ -26,8 +30,8 @@ export default ({ data }) => {
 
 export const query = graphql`
   query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
+    mdx(fields: { slug: { eq: $slug } }) {
+      body
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

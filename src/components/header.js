@@ -38,30 +38,29 @@ const Header = ({ siteTitle }) => {
           </Link>
         </div>
         <div className="w-8 h-8 bg-blue-grey-200 rounded-full hidden sm:block"></div>
-        <div className="w-8 h-8 bg-blue-grey-200 rounded-full flex justify-center items-center sm:hidden hover:bg-magenta-100">
-          <button
-            onClick={toggle}
-            onKeyPress={toggleKeyPress}
-            className="focus:outline-none"
+
+        <button
+          onClick={toggle}
+          onKeyPress={toggleKeyPress}
+          className="w-8 h-8 bg-blue-grey-200 rounded-full flex justify-center items-center sm:hidden hover:bg-magenta-100 focuw-8 h-8 bg-blue-grey-200 rounded-full flex justify-center items-center sm:hidden hover:bg-magenta-100 focus:outline-none focus:bg-magenta-100"
+        >
+          <svg
+            className="h-6 w-6 fill-current text-magenta-500"
+            viewBox="0 0 24 24"
           >
-            <svg
-              className="h-6 w-6 fill-current text-magenta-500"
-              viewBox="0 0 24 24"
-            >
-              {isOpen ? (
-                <path
-                  fillRule="evenodd"
-                  d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
-                />
-              ) : (
-                <path
-                  fillRule="evenodd"
-                  d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                />
-              )}
-            </svg>
-          </button>
-        </div>
+            {isOpen ? (
+              <path
+                fillRule="evenodd"
+                d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
+              />
+            ) : (
+              <path
+                fillRule="evenodd"
+                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+              />
+            )}
+          </svg>
+        </button>
       </div>
       <div className={isOpen ? "flex flex-col items-center" : "hidden"}>
         <Link to="/articles">

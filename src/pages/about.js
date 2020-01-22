@@ -27,21 +27,21 @@ const AboutPage = () => (
           enjoy sharing what I learn along the way.
         </p>
         <p className="font-serif leading-relaxed p-5 text-blue-grey-600 sm:text-lg">
-          This website was built with {" "}
+          This website was built with{" "}
           <a
             href="https://www.gatsbyjs.org/"
             className="font-sans text-magenta-500 font-semibold hover:underline"
           >
             Gatsby
           </a>
-          , styled with {" "}
+          , styled with{" "}
           <a
             href="https://tailwindcss.com/"
             className="font-sans text-magenta-500 font-semibold hover:underline"
           >
             Tailwind CSS
           </a>
-          , and hosted by {" "}
+          , and hosted by{" "}
           <a
             href="https://www.netlify.com/"
             className="font-sans text-magenta-500 font-semibold hover:underline"

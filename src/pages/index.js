@@ -42,7 +42,7 @@ const IndexPage = ({ data }) => (
             Articles
           </h2>
 
-          {data.allMarkdownRemark.edges.map(({ node }) => (
+          {data.allMdx.edges.map(({ node }) => (
             <Article
               key={node.id}
               title={node.frontmatter.title}
@@ -57,33 +57,31 @@ const IndexPage = ({ data }) => (
             Some Projects
           </h2>
           <div className="bg-blue-grey-050">
-           
-              <div className="p-5 bg-blue-grey-050 flex justify-between items-center pt-10">
-                <div className="flex">
-                  <div className="ml-3">
+            <div className="p-5 bg-blue-grey-050 flex justify-between items-center pt-10">
+              <div className="flex">
+                <div className="ml-3">
+                  <a
+                    className="text-magenta-500 border-2 border-magenta-200 px-4 py-2 rounded-lg font-semibold hover:bg-magenta-050 focus:bg-magenta-050"
+                    href="https://natours-andrew.herokuapp.com/"
+                  >
+                    Natours
+                  </a>
+                  <p className="text-blue-grey-600 mt-6">
+                    Natours is a full stack application that allows users to
+                    view and book tours. The primary technologies used are
+                    Node.js, Express, and MongoDB. This was built along with the
+                    Udemy Course{" "}
                     <a
-                      className="text-magenta-500 border-2 border-magenta-200 px-4 py-2 rounded-lg font-semibold hover:bg-magenta-050 focus:bg-magenta-050"
-                      href="https://natours-andrew.herokuapp.com/"
+                      href="https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/"
+                      className="font-sans text-magenta-500 font-semibold hover:underline"
                     >
-                      Natours
-                    </a>
-                    <p className="text-blue-grey-600 mt-6">
-                      Natours is a full stack application that allows users to
-                      view and book tours. The primary technologies used are
-                      Node.js, Express, and MongoDB. This was built along with
-                      the Udemy Course{" "}
-                      <a
-                        href="https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/"
-                        className="font-sans text-magenta-500 font-semibold hover:underline"
-                      >
-                        Node.js, Express, MongoDB & More: The Complete Bootcamp
-                      </a>{" "}
-                      by Jonas Schmedtmann.
-                    </p>
-                  </div>
+                      Node.js, Express, MongoDB & More: The Complete Bootcamp
+                    </a>{" "}
+                    by Jonas Schmedtmann.
+                  </p>
                 </div>
               </div>
-            
+            </div>
 
             <div className="p-5 bg-blue-grey-050 flex justify-between items-center">
               <div className="flex">
@@ -183,7 +181,7 @@ export default IndexPage
 
 export const query = graphql`
   query {
-    allMarkdownRemark {
+    allMdx {
       totalCount
       edges {
         node {

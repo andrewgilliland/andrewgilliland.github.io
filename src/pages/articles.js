@@ -15,7 +15,7 @@ const ArticlesPage = ({ data }) => (
           <h2 className="px-5 text-3xl bg-blue-grey-100 tracking-tight">
             Articles
           </h2>
-          {data.allMarkdownRemark.edges.map(({ node }) => (
+          {data.allMdx.edges.map(({ node }) => (
             <Article
               key={node.id}
               title={node.frontmatter.title}
@@ -26,6 +26,8 @@ const ArticlesPage = ({ data }) => (
         </div>
       </Container>
     </section>
+
+    
   </Layout>
 )
 
@@ -33,7 +35,7 @@ export default ArticlesPage
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       totalCount
       edges {
         node {
