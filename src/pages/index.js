@@ -52,7 +52,7 @@ const IndexPage = ({ data }) => (
           ))}
         </div>
 
-        <div className="mt-10 bg-blue-grey-100 border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
+        {/* <div className="mt-10 bg-blue-grey-100 border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
           <h2 className="px-5 text-3xl bg-blue-grey-100 tracking-tight">
             Some Projects
           </h2>
@@ -132,7 +132,7 @@ const IndexPage = ({ data }) => (
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="mt-10 bg-blue-grey-100 border-t-4 border-solid border-magenta-400 shadow-lg rounded-b-lg overflow-hidden">
           <h2 className="px-5 text-3xl bg-blue-grey-100 tracking-tight">
@@ -146,7 +146,7 @@ const IndexPage = ({ data }) => (
                   className="sm:ml-3 text-magenta-500 font-bold hover:text-magenta-200 not-italic"
                   href="mailto:andrewpgilliland@gmail.com"
                 >
-                  andrewpgilliland@gmail.com
+                  Email
                 </a>
               </address>
             </div>
