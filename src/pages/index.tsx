@@ -11,8 +11,8 @@ type HomeProps = {
 
 export default function Home({ posts }: HomeProps) {
   return (
-    <div className={`flex min-h-screen flex-col justify-between p-24 `}>
-      <div className="w-full">
+    <div className="">
+      <div>
         <h1 className="text-gray-100 text-4xl">Home</h1>
 
         {/* <section>

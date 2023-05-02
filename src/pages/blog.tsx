@@ -11,12 +11,12 @@ type HomeProps = {
 
 const Blog = ({ posts }: HomeProps) => {
   return (
-    <div className={`flex min-h-screen flex-col justify-between p-24 `}>
+    <div className={``}>
       <div className="w-full">
         <h1 className="text-gray-100 text-4xl">Blog</h1>
 
-        <section>
-          <div className="border border-yellow-400 p-10">
+        <section className="mx-10 mt-10">
+          <div className="border border-yellow-300 p-10">
             {posts.map((post, index) => (
               <PostCard key={index} post={post} index={index} />
             ))}

@@ -12,10 +12,14 @@ const notoSans = Noto_Sans({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${notoSans.variable} font-sans`}>
+    <div className={`${notoSans.variable} font-sans`}>
       <Header />
-      <Component {...pageProps} />
+      <main
+        className={`flex flex-col min-h-screen border border-cyan-300 max-w-screen-lg mx-auto container pt-10`}
+      >
+        <Component {...pageProps} />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
