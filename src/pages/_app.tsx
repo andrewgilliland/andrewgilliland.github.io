@@ -1,7 +1,8 @@
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import Header from "@/components/Header";
 import { Noto_Sans } from "next/font/google";
+import "@/styles/globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <main className={`${notoSans.variable} font-sans`}>
       <Header />
       <Component {...pageProps} />
+      <Footer />
     </main>
   );
 }

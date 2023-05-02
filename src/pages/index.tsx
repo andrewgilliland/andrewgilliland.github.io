@@ -2,46 +2,27 @@ import Image from "next/image";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-
-type Post = {
-  slug: string;
-  frontmatter: {
-    title: string;
-    date: string;
-    exceprt: string;
-  };
-};
+import PostCard from "@/components/PostCard";
+import { Post } from "../../types";
 
 type HomeProps = {
   posts: Post[];
 };
 
 export default function Home({ posts }: HomeProps) {
-  console.log("posts: ", posts);
-
   return (
     <div className={`flex min-h-screen flex-col justify-between p-24 `}>
       <div className="w-full">
         <h1 className="text-gray-100 text-4xl">Hola</h1>
 
         <section>
-          <div className="">
-            {posts.map(({ slug, frontmatter }, index) => {
-              return (
-                <div
-                  className={`border border-pink-400 p-2 ${index && "mt-4"}`}
-                >
-                  <div>
-                    <h3 className="text-gray-50">{frontmatter.title}</h3>
-                    <div>
-                      <p>{frontmatter.date}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="border border-yellow-400 p-10">
+            {posts.map((post, index) => (
+              <PostCard key={index} post={post} index={index} />
+            ))}
           </div>
         </section>
+
         {/* <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing&nbsp;
           <code className="font-mono font-bold">src/pages/index.tsx</code>
@@ -154,18 +135,20 @@ export async function getStaticProps() {
   const files = fs.readdirSync(path.join("posts"));
 
   const posts = files.map((filename) => {
-    const markDownWithMeta = fs.readFileSync(
+    const markdownWithMeta = fs.readFileSync(
       path.join("posts", filename),
       "utf-8"
     );
 
-    const { data: frontmatter } = matter(markDownWithMeta);
+    const { data: frontmatter } = matter(markdownWithMeta);
 
     return {
       slug: filename.replace(".md", ""),
       frontmatter,
     };
   });
+
+  //
 
   return {
     props: {
