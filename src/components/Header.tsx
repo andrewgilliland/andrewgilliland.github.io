@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="flex justify-between items-center border-2 border-pink-300 m-4 px-[10%] py-6">
+      <div className="flex justify-between items-center border-b-2 border-white-300 px-[10%] py-6">
         <div className="flex items-center">
           <Link href="/">
             <h1 className="text-xl text-pink-100 hover:scale-105 transition">

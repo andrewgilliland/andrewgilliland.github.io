@@ -8,7 +8,7 @@ const PostPage = ({ frontmatter: { title, date }, slug, content }) => {
   console.log(content);
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="">
       <Link href="/">Go Back</Link>
       <div className="mt-12">
         <h1 className="text-3xl">{title}</h1>
