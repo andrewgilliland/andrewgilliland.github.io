@@ -2,8 +2,9 @@ import Image from "next/image";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import PostCard from "@/components/PostCard";
+
 import PrimaryButton from "@/components/PrimaryButton";
+import BrowswerWindow from "@/components/BrowserWindow";
 import { Post } from "../../types";
 
 type HomeProps = {
@@ -14,7 +15,7 @@ export default function Home({ posts }: HomeProps) {
   return (
     <div className="">
       <div>
-        <section className="flex flex-col border-b-2 border-white">
+        <section className="flex flex-col border-b-2 border-white md:flex-row">
           <div className="flex-1 bg-pink-400 border-b-2 md:border-r-2 border-white p-16">
             <h1 className="text-gray-900 text-4xl">Home</h1>
             <p className="text-gray-900 text-xl mt-12">
@@ -25,7 +26,7 @@ export default function Home({ posts }: HomeProps) {
 
             <PrimaryButton href="/blog" className="mt-12" text="Click me" />
           </div>
-          <div className="flex-1 bg-yellow-400 p-16 justify-center align-center">
+          <div className="flex-1 bg-yellow-400 p-16 flex flex-col justify-center items-center">
             <div className="relative">
               <div className="absolute bg-black h-64 w-64 rounded-full left-1 bottom-1"></div>
               <div className="bg-white h-64 w-64 rounded-full"></div>
@@ -33,11 +34,13 @@ export default function Home({ posts }: HomeProps) {
             <p className="text-gray-900 text-xl mt-8">Some text about stuff</p>
           </div>
         </section>
-        <section className="bg-cyan-400 border-b-2">
+        <section className="flex flex-col justify-center items-center bg-cyan-400 border-b-2 p-16">
           <h2 className="text-gray-900 text-2xl py-24 px-12">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint soluta
             velit.
           </h2>
+
+          <BrowswerWindow />
         </section>
       </div>
     </div>

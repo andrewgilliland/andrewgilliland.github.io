@@ -16,7 +16,7 @@ const Blog = ({ posts }: HomeProps) => {
         <h1 className="text-gray-100 text-4xl">Blog</h1>
 
         <section className="mx-10 mt-10">
-          <div className="border border-yellow-300 p-10">
+          <div className="grid grid-cols-2 gap-4">
             {posts.map((post, index) => (
               <PostCard key={index} post={post} index={index} />
             ))}
