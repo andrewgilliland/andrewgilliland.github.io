@@ -16,15 +16,21 @@ const BrowserWindow = () => {
       <div className="absolute bg-white h-32 w-48 border-2 border-black rounded">
         <div className="border-b-2 border-black p-1">
           <div className="group flex">
-            <div className="bg-red-500 h-2 w-2 rounded-full">
-              <XMarkIcon className="text-red-900 opacity-0 transition group-hover:opacity-100" />
-            </div>
-            <div className="bg-yellow-500 h-2 w-2 rounded-full ml-0.5">
-              <MinusSmallIcon className="text-yellow-900 opacity-0 transition group-hover:opacity-100" />
-            </div>
-            <div className="bg-green-500 h-2 w-2 rounded-full ml-0.5">
-              <ChevronUpDownIcon className="text-green-900 opacity-0 transition group-hover:opacity-100" />
-            </div>
+            {[
+              { color: "red", Icon: XMarkIcon },
+              { color: "yellow", Icon: MinusSmallIcon },
+              { color: "green", Icon: ChevronUpDownIcon },
+            ].map(({ color, Icon }, index) => (
+              <div
+                className={`bg-${color}-500 h-2 w-2 rounded-full ${
+                  index && "ml-0.5"
+                }`}
+              >
+                <Icon
+                  className={`text-${color}-900 opacity-0 transition group-hover:opacity-100`}
+                />
+              </div>
+            ))}
           </div>
         </div>
         <div className=" px-5 py-2">
@@ -35,9 +41,13 @@ const BrowserWindow = () => {
             </div>
           </div>
           <div className="flex mt-2 space-x-2">
-            <BrowserWindowCard color="red" Icon={BeakerIcon} />
-            <BrowserWindowCard color="green" Icon={BoltIcon} />
-            <BrowserWindowCard color="yellow" Icon={FireIcon} />
+            {[
+              { color: "red", Icon: BeakerIcon },
+              { color: "green", Icon: BeakerIcon },
+              { color: "yellow", Icon: BeakerIcon },
+            ].map(({ color, Icon }, index) => (
+              <BrowserWindowCard key={index} color={color} Icon={Icon} />
+            ))}
           </div>
         </div>
       </div>
