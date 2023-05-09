@@ -42,9 +42,9 @@ const BrowserWindow = () => {
           </div>
           <div className="flex mt-2 space-x-2">
             {[
-              { color: "red", Icon: BeakerIcon },
+              { color: "red", Icon: FireIcon },
               { color: "green", Icon: BeakerIcon },
-              { color: "yellow", Icon: BeakerIcon },
+              { color: "yellow", Icon: BoltIcon },
             ].map(({ color, Icon }, index) => (
               <BrowserWindowCard key={index} color={color} Icon={Icon} />
             ))}
