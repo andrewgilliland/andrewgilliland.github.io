@@ -11,18 +11,15 @@ type HomeProps = {
 
 const Blog = ({ posts }: HomeProps) => {
   return (
-    <div className={``}>
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-gray-100 text-4xl">Blog</h1>
-
-        <section className="mx-10 mt-10">
-          <div className="grid grid-cols-2 gap-4">
-            {posts.map((post, index) => (
-              <PostCard key={index} post={post} index={index} />
-            ))}
-          </div>
-        </section>
-      </div>
+    <div className="max-w-3xl w-full mx-auto mt-24">
+      <h1 className="text-gray-100 text-4xl">Blog</h1>
+      <section className="mt-10">
+        <div className="grid grid-cols-2 gap-8">
+          {posts.map((post, index) => (
+            <PostCard key={index} post={post} index={index} />
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

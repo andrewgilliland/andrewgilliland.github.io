@@ -13,20 +13,15 @@ export default function Header() {
       <div className="flex justify-between items-center border-b-2 border-white-300 px-[10%] py-6">
         <div className="flex items-center">
           <Link href="/">
-            <h1 className="text-xl text-pink-100 hover:scale-105 transition">
-              Andrew Gilliland
-            </h1>
+            <h1 className="text-xl text-pink-100">Andrew Gilliland</h1>
           </Link>
         </div>
-        <div className="flex">
-          <div className="h-10 w-12 bg-cyan-300 rounded-l-md" />
-          <div className="h-10 w-12 bg-pink-300" />
-          <div className="h-10 w-12 bg-yellow-300 rounded-r-md" />
-        </div>
+
         <div className="flex">
           {pages.map(({ href, title }, index) => (
-            <Link className="mr-4" key={index} href={href}>
-              <div className="hover:scale-110 transition">{title}</div>
+            <Link className="group mr-4" key={index} href={href}>
+              <div className="">{title}</div>
+              <div className=" bg-pink-300 h-px w-[0%] group-hover:w-full transition-all" />
             </Link>
           ))}
         </div>

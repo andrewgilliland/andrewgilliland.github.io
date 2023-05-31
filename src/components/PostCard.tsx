@@ -1,14 +1,6 @@
 import Link from "next/link";
 import { Post } from "../../types";
-import {
-  XMarkIcon,
-  MinusSmallIcon,
-  ChevronUpDownIcon,
-  UserIcon,
-  BeakerIcon,
-  BoltIcon,
-  FireIcon,
-} from "@heroicons/react/20/solid";
+import { FireIcon } from "@heroicons/react/20/solid";
 
 type PostCardProps = {
   post: Post;
@@ -24,14 +16,17 @@ const PostCard = ({ post, index }: PostCardProps) => {
       <div
         className={`bg-black border-2 border-white rounded transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
       >
+        {/* Needed for programmatically generated classes */}
+        <div className="bg-emerald-300 text-pink-200 text-emerald-200 text-cyan-200 text-yellow-200" />
         <div className="flex flex-wrap border-b-2 border-white w-full h-48">
           {[
             { color: "pink" },
             { color: "cyan" },
             { color: "emerald" },
             { color: "yellow" },
-          ].map(({ color }) => (
+          ].map(({ color }, index) => (
             <div
+              key={index}
               className={`flex justify-center items-center bg-${color}-300 h-1/2 w-1/2`}
             >
               <FireIcon className={`text-${color}-200 h-12 w-12`} />
@@ -40,11 +35,13 @@ const PostCard = ({ post, index }: PostCardProps) => {
         </div>
         <div className="mt-6 px-4 pb-4">
           <div>
-            <p>{frontmatter.date}</p>
-            <h3 className="text-gray-50">{frontmatter.title}</h3>
-            <p>{frontmatter.excerpt}</p>
+            <p className="text-gray-300 text-sm">{frontmatter.date}</p>
+            <h3 className="font-semibold text-gray-100 text-lg">
+              {frontmatter.title}
+            </h3>
+            <p className="text-gray-300 text-sm">{frontmatter.excerpt}</p>
           </div>
-          <div>Read More</div>
+          <div className="text-gray-300 text-sm">Read More</div>
         </div>
       </div>
     </Link>
