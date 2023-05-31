@@ -12,7 +12,7 @@ type HomeProps = {
 const Blog = ({ posts }: HomeProps) => {
   return (
     <div className={``}>
-      <div className="w-full">
+      <div className="max-w-3xl mx-auto">
         <h1 className="text-gray-100 text-4xl">Blog</h1>
 
         <section className="mx-10 mt-10">

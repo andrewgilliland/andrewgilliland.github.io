@@ -3,7 +3,7 @@ export type Post = {
   frontmatter: {
     title: string;
     date: string;
-    exceprt: string;
+    excerpt: string;
     draft: boolean;
   };
 };

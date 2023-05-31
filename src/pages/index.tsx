@@ -28,8 +28,8 @@ export default function Home({ posts }: HomeProps) {
           </div>
           <div className="flex-1 bg-yellow-400 p-16 flex flex-col justify-center items-center">
             <div className="relative">
-              <div className="absolute bg-black h-64 w-64 rounded-full left-1 bottom-1"></div>
-              <div className="bg-white h-64 w-64 rounded-full"></div>
+              <div className="absolute bg-white h-64 w-64 rounded-full right-1 bottom-1"></div>
+              <div className="bg-black h-64 w-64 rounded-full"></div>
             </div>
             <p className="text-gray-900 text-xl mt-8">Some text about stuff</p>
           </div>
