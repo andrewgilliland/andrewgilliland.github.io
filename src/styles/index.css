@@ -25,3 +25,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.header-title {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
