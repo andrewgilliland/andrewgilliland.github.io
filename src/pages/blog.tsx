@@ -11,8 +11,8 @@ type HomeProps = {
 
 const Blog = ({ posts }: HomeProps) => {
   return (
-    <div className="max-w-3xl w-full mx-auto mt-24">
-      <h1 className="text-gray-100 text-4xl">Blog</h1>
+    <div className="max-w-3xl w-full mx-auto mt-14">
+      <h1 className="font-bold text-gray-100 text-4xl stroke-white">Blog</h1>
       <section className="mt-10">
         <div className="grid grid-cols-2 gap-8">
           {posts.map((post, index) => (

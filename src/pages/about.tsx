@@ -2,10 +2,8 @@ import Image from "next/image";
 
 const About = () => {
   return (
-    <div className={``}>
-      <div className="w-full">
-        <h1 className="text-gray-100 text-4xl">About</h1>
-      </div>
+    <div className="max-w-3xl w-full mx-auto mt-14">
+      <h1 className="font-bold text-gray-100 text-4xl stroke-white">About</h1>
     </div>
   );
 };

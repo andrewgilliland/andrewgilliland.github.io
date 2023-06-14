@@ -19,9 +19,9 @@ export default function Header() {
         <div className="flex items-center">
           <Link href="/">
             <h1
-              className="text-3xl header-title"
+              className="font-bold text-3xl header-title"
               style={{
-                background: `linear-gradient( to bottom right, ${pink300}, ${pink300} 30%, ${emerald300} 30%, ${emerald300} 50%, ${yellow300} 50%, ${yellow300} 70%, ${cyan300} 70%, ${cyan300})`,
+                backgroundImage: `linear-gradient( to bottom right, ${pink300}, ${pink300} 30%, ${emerald300} 30%, ${emerald300} 50%, ${yellow300} 50%, ${yellow300} 70%, ${cyan300} 70%, ${cyan300})`,
               }}
             >
               Andrew Gilliland
