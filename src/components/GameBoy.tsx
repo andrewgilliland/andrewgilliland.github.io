@@ -60,7 +60,10 @@ const GameBoy = () => {
           </div>
           <div className="absolute flex justify-between w-[75px] h-[40px] bottom-[15px] right-[5px] -rotate-[28deg] px-1">
             {[...Array(6)].map((_, i) => (
-              <div className="border border-gray-700 h-[32px] w-[6px] rounded-full" />
+              <div
+                key={i}
+                className="border border-gray-700 h-[32px] w-[6px] rounded-full"
+              />
             ))}
           </div>
         </div>
