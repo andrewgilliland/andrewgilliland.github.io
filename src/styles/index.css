@@ -41,3 +41,8 @@ body {
   -webkit-text-stroke: 1px white;
   -webkit-text-fill-color: black;
 }
+
+.stroke-blue-500 {
+  -webkit-text-stroke: 1px rgb(59, 130, 246);
+  -webkit-text-fill-color: black;
+}
