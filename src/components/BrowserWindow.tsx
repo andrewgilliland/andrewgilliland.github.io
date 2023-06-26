@@ -24,6 +24,7 @@ const BrowserWindow = () => {
               { color: "green", Icon: ChevronUpDownIcon },
             ].map(({ color, Icon }, index) => (
               <div
+                key={index}
                 className={`bg-${color}-500 h-2 w-2 rounded-full ${
                   index && "ml-0.5"
                 }`}
