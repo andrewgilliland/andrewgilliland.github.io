@@ -5,6 +5,8 @@ import path from "path";
 import PrimaryButton from "@/components/PrimaryButton";
 import BrowswerWindow from "@/components/BrowserWindow";
 import { Post } from "../../types";
+import Block from "@/components/Block";
+import { useEffect, useState } from "react";
 
 type HomeProps = {
   posts: Post[];
@@ -12,7 +14,7 @@ type HomeProps = {
 
 export default function Home({ posts }: HomeProps) {
   return (
-    <div className="">
+    <div className="relative" onMouseEnter={() => console.log("mouse enter")}>
       <div>
         <section className="flex flex-col border-b-2 border-white md:flex-row">
           <div className="flex-1 bg-pink-300 border-b-2 md:border-b-0 md:border-r-2 border-white p-16">
@@ -28,9 +30,11 @@ export default function Home({ posts }: HomeProps) {
             <PrimaryButton href="/blog" className="mt-12" text="Read More" />
           </div>
           <div className="flex-1 bg-yellow-300 p-16 flex flex-col justify-center items-center">
-            <div className="relative">
-              <div className="absolute bg-white h-64 w-64 rounded-full right-1 bottom-1"></div>
-              <div className="bg-black h-64 w-64 rounded-full"></div>
+            <div className="grid grid-rows-2 grid-flow-col gap-4">
+              <Block color="yellow" />
+              <Block color="pink" />
+              <Block color="cyan" />
+              <Block color="emerald" />
             </div>
             <p className="text-gray-900 text-xl mt-8">Some text about stuff</p>
           </div>
