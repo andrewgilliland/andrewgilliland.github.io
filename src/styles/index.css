@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --move: 100px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,4 +46,26 @@ body {
 .stroke-blue-500 {
   -webkit-text-stroke: 1px rgb(59, 130, 246);
   -webkit-text-fill-color: black;
+}
+
+.translateTrack {
+  animation: ease 10s infinite running translateTrack;
+}
+
+@keyframes translateTrack {
+  0% {
+    transform: translate3d(0, 0px, 0);
+  }
+  25% {
+    transform: translate3d(var(--move), 0px, 0);
+  }
+  50% {
+    transform: translate3d(var(--move), var(--move), 0);
+  }
+  75% {
+    transform: translate3d(0px, var(--move), 0);
+  }
+  100% {
+    transform: translate3d(0px, 0px, 0);
+  }
 }
