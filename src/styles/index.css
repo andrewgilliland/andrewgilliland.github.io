@@ -69,3 +69,25 @@ body {
     transform: translate3d(0px, 0px, 0);
   }
 }
+
+.translateTrackNext {
+  animation: ease 10s infinite running translateTrackNext;
+}
+
+@keyframes translateTrackNext {
+  0% {
+    transform: translate3d(0, 0px, 0);
+  }
+  25% {
+    transform: translate3d(0, var(--move), 0);
+  }
+  50% {
+    transform: translate3d(calc(var(--move) * -1), var(--move), 0);
+  }
+  75% {
+    transform: translate3d(calc(var(--move) * -1), 0px, 0);
+  }
+  100% {
+    transform: translate3d(0px, 0px, 0);
+  }
+}

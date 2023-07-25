@@ -39,17 +39,17 @@ export default function Home({ posts }: HomeProps) {
             <div className="relative grid grid-rows-2 grid-flow-col gap-6">
               <div className="absolute h-28 w-28 border-2 border-black rounded-full left-0 right-0 top-0 bottom-0 ml-auto mr-auto mt-auto mb-auto" />
               <Block
-                className="translateTrack"
+                // className="translateTrack"
                 color="yellow"
                 Icon={PowerIcon}
               />
               <Block
-                // className="translateTrack"
+                // className="translateTrackNext"
                 color="pink"
                 Icon={ChartBarIcon}
               />
               <Block
-                //  className="translateTrack"
+                // className="translateTrackNext"
                 color="cyan"
                 Icon={MoonIcon}
               />
