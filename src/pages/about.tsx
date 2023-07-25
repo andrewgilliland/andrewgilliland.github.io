@@ -1,4 +1,5 @@
 import GameBoy from "@/components/GameBoy";
+import SvgIcon from "@/components/SvgIcon";
 
 const About = () => {
   return (
@@ -7,7 +8,7 @@ const About = () => {
         About
       </h1>
 
-      {/* <GameBoy /> */}
+      <SvgIcon name="swift" />
     </div>
   );
 };
