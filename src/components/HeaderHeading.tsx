@@ -1,10 +1,11 @@
 import Link from "next/link";
+import colors from "tailwindcss/colors";
 
 const HeadHeading = () => {
-  const pink300 = "#f9a8d4";
-  const emerald300 = "#6ee7b7";
-  const cyan300 = "#67e8f9";
-  const yellow300 = "#fde047";
+  const pink300 = colors.pink["300"];
+  const emerald300 = colors.emerald["300"];
+  const cyan300 = colors.cyan["300"];
+  const yellow300 = colors.yellow["300"];
 
   return (
     <Link href="/">

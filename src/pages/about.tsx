@@ -7,11 +7,6 @@ const About = () => {
       <h1 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
         About
       </h1>
-
-      {/* <SvgIcon name="swift" className="fill-pink-300 h-12 w-12" />
-      <SvgIcon name="javascript" className="fill-yellow-300 h-12 w-12" />
-      <SvgIcon name="css" className="fill-emerald-300 h-12 w-12" />
-      <SvgIcon name="react" className="fill-cyan-300 h-12 w-12" /> */}
     </div>
   );
 };
