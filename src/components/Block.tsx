@@ -10,7 +10,7 @@ const Block = ({ className, color, Icon }: BlockProps) => {
       <div
         className={`absolute flex justify-center items-center bg-${color}-100 h-16 w-16 rounded-lg right-1 bottom-1`}
       >
-        <Icon className={`h-10 w-10 text-${color}-300`} />
+        {Icon}
       </div>
       <div className="bg-black h-16 w-16 rounded-lg" />
     </div>
