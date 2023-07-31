@@ -8,7 +8,10 @@ const About = () => {
         About
       </h1>
 
-      <SvgIcon name="swift" />
+      {/* <SvgIcon name="swift" className="fill-pink-300 h-12 w-12" />
+      <SvgIcon name="javascript" className="fill-yellow-300 h-12 w-12" />
+      <SvgIcon name="css" className="fill-emerald-300 h-12 w-12" />
+      <SvgIcon name="react" className="fill-cyan-300 h-12 w-12" /> */}
     </div>
   );
 };
