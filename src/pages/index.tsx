@@ -1,19 +1,14 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import {
-  FireIcon,
-  ChartBarIcon,
-  MoonIcon,
-  PuzzlePieceIcon,
-  PowerIcon,
-} from "@heroicons/react/20/solid";
+import Image from "next/image";
 
 import PrimaryButton from "@/components/PrimaryButton";
 import BrowswerWindow from "@/components/BrowserWindow";
 import { Post } from "../../types";
 import Block from "@/components/Block";
 import SvgIcon from "@/components/SvgIcon";
+import Phone from "@/components/Phone";
 
 type HomeProps = {
   posts: Post[];
@@ -89,7 +84,20 @@ export default function Home({ posts }: HomeProps) {
             velit.
           </h2>
 
-          <BrowswerWindow />
+          <div className="flex gap-12">
+            <Phone />
+
+            {/* <Image
+              src="/iphone-14-pro.svg"
+              width={65}
+              height={150}
+              alt="iPhone 14 Pro"
+            />
+
+            <div className="border-2 border-black bg-gray-500 w-10 h-32 rounded-lg"></div> */}
+
+            <BrowswerWindow />
+          </div>
         </section>
       </div>
     </div>
