@@ -27,6 +27,14 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.language-javascript {
+  @apply text-cyan-300;
+}
+
+.language-swift {
+  @apply text-red-300;
+}
+
 .header-title {
   color: transparent;
   background-clip: text;

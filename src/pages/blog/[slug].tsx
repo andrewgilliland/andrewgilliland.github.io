@@ -16,10 +16,10 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
     <div className=" px-4 md:w-[40em] mx-auto mt-12">
       <div className="">
         <Link
-          className="flex items-center text-gray-400 hover:text-gray-200 w-fit"
+          className="flex items-center text-gray-400 hover:text-gray-200 w-fit hover:scale-105 transition-all"
           href="/blog"
         >
-          <ArrowLeftCircleIcon className="h-6 w-6 " />
+          <ArrowLeftCircleIcon className="h-6 w-6" />
           <div className="ml-1">Go Back</div>
         </Link>
         <h1 className="text-4xl md:text-5xl lg:text-7xl mt-8">{title}</h1>
@@ -34,7 +34,7 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
       </div>
 
       <div
-        className="mt-16 post max-w-2xl"
+        className="prose prose-h2:text-yellow-300 prose-h3:text-gray-300 prose-p:text-gray-200 prose-ul:text-gray-200 prose-pre:border-2 prose-pre:border-gray-400 mt-16 max-w-2xl"
         dangerouslySetInnerHTML={{ __html: marked(content) }}
       />
     </div>

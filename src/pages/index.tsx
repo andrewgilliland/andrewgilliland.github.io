@@ -71,15 +71,14 @@ export default function Home({ posts }: HomeProps) {
                     />
                   ),
                 },
-              ].map(({ color, icon }, index) => {
-                return (
-                  <Block
-                    // className="translateTrack"
-                    color={color}
-                    Icon={icon}
-                  />
-                );
-              })}
+              ].map(({ color, icon }, index) => (
+                <Block
+                  key={index}
+                  // className="translateTrack"
+                  color={color}
+                  Icon={icon}
+                />
+              ))}
             </div>
             <p className="text-gray-900 text-xl mt-8">Some text about stuff</p>
           </div>
