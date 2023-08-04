@@ -56,11 +56,11 @@ body {
   -webkit-text-fill-color: black;
 }
 
-.rotate-infinite {
+.animate-rotate {
   animation: rotate 5s infinite linear;
 }
 
-.rotate-infinite-reverse {
+.animate-rotate-reverse {
   animation: rotate-reverse 5s infinite linear;
 }
 

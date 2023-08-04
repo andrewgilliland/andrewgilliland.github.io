@@ -5,7 +5,7 @@ type BlockProps = {
 };
 
 const Block = ({ className, color, Icon }: BlockProps) => (
-  <div className={`relative ${className} rotate-infinite-reverse`}>
+  <div className={`relative ${className} animate-rotate-reverse`}>
     <div
       className={`absolute flex justify-center items-center bg-${color}-100 h-16 w-16 rounded-lg right-1 bottom-1`}
     >
