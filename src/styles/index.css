@@ -56,46 +56,28 @@ body {
   -webkit-text-fill-color: black;
 }
 
-.translateTrack {
-  animation: ease 10s infinite running translateTrack;
+.animate-rotate {
+  animation: rotate 5s infinite linear;
 }
 
-@keyframes translateTrack {
-  0% {
-    transform: translate3d(0, 0px, 0);
+.animate-rotate-reverse {
+  animation: rotate-reverse 5s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
   }
-  25% {
-    transform: translate3d(var(--move), 0px, 0);
-  }
-  50% {
-    transform: translate3d(var(--move), var(--move), 0);
-  }
-  75% {
-    transform: translate3d(0px, var(--move), 0);
-  }
-  100% {
-    transform: translate3d(0px, 0px, 0);
+  to {
+    transform: rotate(360deg);
   }
 }
 
-.translateTrackNext {
-  animation: ease 10s infinite running translateTrackNext;
-}
-
-@keyframes translateTrackNext {
-  0% {
-    transform: translate3d(0, 0px, 0);
+@keyframes rotate-reverse {
+  from {
+    transform: rotate(0deg);
   }
-  25% {
-    transform: translate3d(0, var(--move), 0);
-  }
-  50% {
-    transform: translate3d(calc(var(--move) * -1), var(--move), 0);
-  }
-  75% {
-    transform: translate3d(calc(var(--move) * -1), 0px, 0);
-  }
-  100% {
-    transform: translate3d(0px, 0px, 0);
+  to {
+    transform: rotate(-360deg);
   }
 }
