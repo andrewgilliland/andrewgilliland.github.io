@@ -19,63 +19,69 @@ export default function Home({ posts }: HomeProps) {
     <div className="relative" onMouseEnter={() => console.log("mouse enter")}>
       <div>
         <section className="flex flex-col border-b-2 border-white md:flex-row">
-          <div className="flex-1 bg-pink-300 border-b-2 md:border-b-0 md:border-r-2 border-white p-16">
-            <h1 className="font-bold text-gray-100 text-4xl stroke-black">
-              Welcome
-            </h1>
-            <p className="text-gray-900 text-xl mt-12">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-              libero rerum, magnam quasi autem aliquam dolorem temporibus
-              consectetur maiores vel.
-            </p>
+          <div className="flex-1 bg-pink-300 border-b-2 md:border-b-0 md:border-r-2 border-white p-[6.5vw]">
+            <div className="max-w-xl mx-auto">
+              <h1 className="font-bold text-gray-100 text-6xl lg:text-[5.625rem] stroke-black">
+                Welcome
+              </h1>
+              <p className="text-gray-900 text-xl mt-12">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+                libero rerum, magnam quasi autem aliquam dolorem temporibus
+                consectetur maiores vel.
+              </p>
 
-            <PrimaryButton href="/blog" className="mt-12" text="Read More" />
-          </div>
-          <div className="flex-1 bg-yellow-300 p-16 flex flex-col justify-center items-center">
-            <div className="relative grid grid-rows-2 grid-flow-col gap-6">
-              <div className="absolute h-28 w-28 border-2 border-black rounded-full left-0 right-0 top-0 bottom-0 ml-auto mr-auto mt-auto mb-auto" />
-
-              {[
-                {
-                  color: "yellow",
-                  icon: (
-                    <SvgIcon
-                      name="javascript"
-                      className="fill-yellow-300 h-10 w-10"
-                    />
-                  ),
-                },
-                {
-                  color: "cyan",
-                  icon: (
-                    <SvgIcon name="react" className="fill-cyan-300 h-10 w-10" />
-                  ),
-                },
-                {
-                  color: "pink",
-                  icon: (
-                    <SvgIcon name="swift" className="fill-pink-300 h-10 w-10" />
-                  ),
-                },
-                {
-                  color: "emerald",
-                  icon: (
-                    <SvgIcon
-                      name="css"
-                      className="fill-emerald-300 h-10 w-10"
-                    />
-                  ),
-                },
-              ].map(({ color, icon }, index) => (
-                <Block
-                  key={index}
-                  // className="translateTrack"
-                  color={color}
-                  Icon={icon}
-                />
-              ))}
+              <PrimaryButton href="/blog" className="mt-12" text="Read More" />
             </div>
-            <p className="text-gray-900 text-xl mt-8">Some text about stuff</p>
+          </div>
+          <div className="flex-1 bg-yellow-300 p-16 flex justify-center items-center">
+            <div className="flex flex-col justify-center items-center">
+              <div className="relative grid grid-rows-2 grid-flow-col gap-6 group transform hover:rotate-180 transition duration-1000">
+                <div className="absolute h-28 w-28 border-2 border-black rounded-full left-0 right-0 top-0 bottom-0 ml-auto mr-auto mt-auto mb-auto " />
+                {[
+                  {
+                    color: "yellow",
+                    icon: (
+                      <SvgIcon
+                        name="javascript"
+                        className="fill-yellow-300 h-10 w-10"
+                      />
+                    ),
+                  },
+                  {
+                    color: "cyan",
+                    icon: (
+                      <SvgIcon
+                        name="react"
+                        className="fill-cyan-300 h-10 w-10"
+                      />
+                    ),
+                  },
+                  {
+                    color: "pink",
+                    icon: (
+                      <SvgIcon
+                        name="swift"
+                        className="fill-pink-300 h-10 w-10"
+                      />
+                    ),
+                  },
+                  {
+                    color: "emerald",
+                    icon: (
+                      <SvgIcon
+                        name="css"
+                        className="fill-emerald-300 h-10 w-10"
+                      />
+                    ),
+                  },
+                ].map(({ color, icon }, index) => (
+                  <Block key={index} color={color} Icon={icon} />
+                ))}
+              </div>
+              <p className="text-gray-900 text-xl mt-8">
+                Some text about stuff
+              </p>
+            </div>
           </div>
         </section>
         <section className="flex flex-col justify-center items-center bg-cyan-300 border-b-2 p-16">
@@ -86,16 +92,6 @@ export default function Home({ posts }: HomeProps) {
 
           <div className="flex gap-12">
             <Phone />
-
-            {/* <Image
-              src="/iphone-14-pro.svg"
-              width={65}
-              height={150}
-              alt="iPhone 14 Pro"
-            />
-
-            <div className="border-2 border-black bg-gray-500 w-10 h-32 rounded-lg"></div> */}
-
             <BrowswerWindow />
           </div>
         </section>

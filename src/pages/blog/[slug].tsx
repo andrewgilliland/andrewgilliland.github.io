@@ -12,6 +12,11 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
   const cyan300 = colors.cyan["300"];
   const yellow300 = colors.yellow["300"];
 
+  // const allIds = document.querySelectorAll("[id]");
+  // const idArray = Array.from(allIds).map((element) => element.id);
+
+  // console.log(idArray);
+
   return (
     <div className=" px-4 md:w-[40em] mx-auto mt-12">
       <div className="">
@@ -32,6 +37,8 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
           }}
         />
       </div>
+
+      <div className="fixed right-[15%] h-32 w-32 border-2 border-white rounded-md"></div>
 
       <div
         className="prose prose-h2:text-yellow-300 prose-h3:text-gray-300 prose-p:text-gray-200 prose-ul:text-gray-200 prose-pre:border-2 prose-pre:border-gray-400 mt-16 max-w-2xl"

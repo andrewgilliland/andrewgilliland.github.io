@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Bars3Icon, XCircleIcon } from "@heroicons/react/20/solid";
 
 import HeaderHeading from "./HeaderHeading";
+import Container from "./Container";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,17 +49,21 @@ export default function Header() {
         <div />
       </div>
 
-      <div className="hidden md:flex justify-between items-center border-b-2 border-white-300 px-[10%] py-6">
-        <HeaderHeading />
+      <div className="border-b-2 border-white px-[10%] py-6">
+        <Container>
+          <div className="hidden md:flex justify-between items-center ">
+            <HeaderHeading />
 
-        <div className="flex">
-          {pages.map(({ href, title }, index) => (
-            <Link className="group mr-4" key={index} href={href}>
-              <div className="">{title}</div>
-              <div className="bg-pink-300 h-px w-[0%] group-hover:w-full transition-all" />
-            </Link>
-          ))}
-        </div>
+            <div className="flex">
+              {pages.map(({ href, title }, index) => (
+                <Link className="group mr-4" key={index} href={href}>
+                  <div className="">{title}</div>
+                  <div className="bg-pink-300 h-px w-[0%] group-hover:w-full transition-all" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </Container>
       </div>
     </>
   );
