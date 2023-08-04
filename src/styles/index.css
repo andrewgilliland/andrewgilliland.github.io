@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --move: 100px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,6 +25,14 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.language-javascript {
+  @apply text-cyan-300;
+}
+
+.language-swift {
+  @apply text-red-300;
 }
 
 .header-title {
@@ -45,4 +54,48 @@ body {
 .stroke-blue-500 {
   -webkit-text-stroke: 1px rgb(59, 130, 246);
   -webkit-text-fill-color: black;
+}
+
+.translateTrack {
+  animation: ease 10s infinite running translateTrack;
+}
+
+@keyframes translateTrack {
+  0% {
+    transform: translate3d(0, 0px, 0);
+  }
+  25% {
+    transform: translate3d(var(--move), 0px, 0);
+  }
+  50% {
+    transform: translate3d(var(--move), var(--move), 0);
+  }
+  75% {
+    transform: translate3d(0px, var(--move), 0);
+  }
+  100% {
+    transform: translate3d(0px, 0px, 0);
+  }
+}
+
+.translateTrackNext {
+  animation: ease 10s infinite running translateTrackNext;
+}
+
+@keyframes translateTrackNext {
+  0% {
+    transform: translate3d(0, 0px, 0);
+  }
+  25% {
+    transform: translate3d(0, var(--move), 0);
+  }
+  50% {
+    transform: translate3d(calc(var(--move) * -1), var(--move), 0);
+  }
+  75% {
+    transform: translate3d(calc(var(--move) * -1), 0px, 0);
+  }
+  100% {
+    transform: translate3d(0px, 0px, 0);
+  }
 }

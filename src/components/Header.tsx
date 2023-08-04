@@ -1,42 +1,69 @@
 import Link from "next/link";
-import React from "react";
+import { useState } from "react";
+import { Bars3Icon, XCircleIcon } from "@heroicons/react/20/solid";
+
+import HeaderHeading from "./HeaderHeading";
+import Container from "./Container";
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const pages = [
     { href: "/", title: "Home" },
     { href: "/blog", title: "Blog" },
     { href: "/about", title: "About" },
   ];
 
-  const pink300 = "#f9a8d4";
-  const emerald300 = "#6ee7b7";
-  const cyan300 = "#67e8f9";
-  const yellow300 = "#fde047";
-
   return (
     <>
-      <div className="flex justify-between items-center border-b-2 border-white-300 px-[10%] py-6">
-        <div className="flex items-center">
-          <Link href="/">
-            <h1
-              className="font-bold text-3xl header-title"
-              style={{
-                backgroundImage: `linear-gradient( to bottom right, ${pink300}, ${pink300} 30%, ${emerald300} 30%, ${emerald300} 50%, ${yellow300} 50%, ${yellow300} 70%, ${cyan300} 70%, ${cyan300})`,
-              }}
-            >
-              Andrew Gilliland
-            </h1>
-          </Link>
-        </div>
+      <div className="flex md:hidden justify-between items-center border-b-2 border-white-300 px-[10%] py-6">
+        <HeaderHeading />
 
-        <div className="flex">
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <Bars3Icon className="text-pink-300 h-8 w-8" />
+        </button>
+      </div>
+
+      <div
+        className={`${
+          isMenuOpen ? "top-[50%]" : "top-[100%]"
+        } md:hidden fixed z-10 left-0 bottom-0 right-0 flex-col items-center bg-black border-2 border-white-300 px-[10%] py-6 transition-all duration-300`}
+      >
+        <div className="flex flex-col items-end">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <XCircleIcon className="text-pink-300 h-10 w-10" />
+          </button>
+        </div>
+        <div className="flex flex-col justify-center items-center  mt-16">
           {pages.map(({ href, title }, index) => (
-            <Link className="group mr-4" key={index} href={href}>
-              <div className="">{title}</div>
-              <div className=" bg-pink-300 h-px w-[0%] group-hover:w-full transition-all" />
+            <Link
+              className={`group ${index ? "mt-6" : ""}`}
+              key={index}
+              href={href}
+            >
+              <div className="text-3xl">{title}</div>
+              <div className="bg-pink-300 h-px w-[0%] group-hover:w-full transition-all" />
             </Link>
           ))}
         </div>
+        <div />
+      </div>
+
+      <div className="border-b-2 border-white px-[10%] py-6">
+        <Container>
+          <div className="hidden md:flex justify-between items-center ">
+            <HeaderHeading />
+
+            <div className="flex">
+              {pages.map(({ href, title }, index) => (
+                <Link className="group mr-4" key={index} href={href}>
+                  <div className="">{title}</div>
+                  <div className="bg-pink-300 h-px w-[0%] group-hover:w-full transition-all" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </Container>
       </div>
     </>
   );

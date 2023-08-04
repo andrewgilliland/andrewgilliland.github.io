@@ -14,10 +14,8 @@ const PostCard = ({ post, index }: PostCardProps) => {
     <Link href={`/blog/${slug}`} className="group relative">
       <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0"></div>
       <div
-        className={`bg-black border-2 border-white rounded transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
+        className={`bg-black border-2 border-white rounded h-full transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
       >
-        {/* Needed for programmatically generated classes */}
-        <div className="bg-emerald-300 text-pink-200 text-emerald-200 text-cyan-200 text-yellow-200" />
         <div className="flex flex-wrap border-b-2 border-white w-full h-48">
           {[
             { color: "pink" },
