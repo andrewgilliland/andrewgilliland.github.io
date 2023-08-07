@@ -9,6 +9,7 @@ import {
 const Phone = () => {
   return (
     <div className="relative border-2 border-black bg-gradient-to-b from-blue-500 to-gray-200 w-[64px] h-[132px] rounded-[12px] opacity-100 top-0 transition-all">
+      {/* <div className="absolute w-[64px] h-[132px] bg-black rounded-[12px]" /> */}
       <div className="absolute left-5 top-0.5 bg-black w-5 h-1.5 rounded-full">
         <div className="absolute left-[75%] top-[33%] bg-white w-0.5 h-0.5 rounded-full" />
       </div>
