@@ -4,6 +4,7 @@ import path from "path";
 
 import PrimaryButton from "@/components/PrimaryButton";
 import BrowswerWindow from "@/components/BrowserWindow";
+import AppWindow from "@/components/AppWindow";
 import { Post } from "../../types";
 import Phone from "@/components/Phone";
 import Blocks from "@/components/Blocks";
@@ -40,15 +41,37 @@ export default function Home({ posts }: HomeProps) {
             </div>
           </div>
         </section>
-        <section className="flex flex-col justify-center items-center bg-cyan-300 border-b-2 p-16">
-          <h2 className="text-gray-900 text-2xl py-24 px-12">
+        <section className="flex flex-col justify-center items-center bg-cyan-300 border-b-2 p-[6.5vw]">
+          <h2 className="text-gray-900 text-2xl">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint soluta
             velit.
           </h2>
 
-          <div className="flex gap-12">
-            <Phone />
-            <BrowswerWindow />
+          <div className="grid grid-cols-2 gap-12 max-w-3xl mt-12">
+            {[
+              {
+                Component: Phone,
+                text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex iste earum eos ipsam voluptates quae totam dolorem at blanditiis.",
+              },
+              {
+                Component: BrowswerWindow,
+                text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex iste earum eos ipsam voluptates quae totam dolorem at blanditiis.",
+              },
+              {
+                Component: AppWindow,
+                text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex iste earum eos ipsam voluptates quae totam dolorem at blanditiis.",
+              },
+            ].map(({ Component, text }, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col justify-center items-center"
+                >
+                  <Component />
+                  <p className="text-gray-900 mt-8">{text}</p>
+                </div>
+              );
+            })}
           </div>
         </section>
       </div>
