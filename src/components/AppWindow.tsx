@@ -3,7 +3,7 @@ import {
   Square2StackIcon,
   Cog6ToothIcon,
 } from "@heroicons/react/20/solid";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const AppWindow = () => {
   const [windowsOpen, setWindowsOpen] = useState({
@@ -11,10 +11,6 @@ const AppWindow = () => {
     app: false,
     settings: false,
   });
-
-  useEffect(() => {
-    console.log("useEffect: ", windowsOpen);
-  }, [windowsOpen]);
 
   return (
     <div className="relative h-32 w-48">
