@@ -6,13 +6,15 @@ import {
 import { useEffect, useState } from "react";
 
 const AppWindow = () => {
-  const openWindows = { paint: false, app: false, settings: false };
-  const [paintIsOpen, setPaintIsOpen] = useState(false);
-  const [windowOpen, setWindowOpen] = useState(openWindows);
+  const [windowsOpen, setWindowsOpen] = useState({
+    paint: false,
+    app: false,
+    settings: false,
+  });
 
   useEffect(() => {
-    console.log(windowOpen);
-  }, [openWindows]);
+    console.log("useEffect: ", windowsOpen);
+  }, [windowsOpen]);
 
   return (
     <div className="relative h-32 w-48">
@@ -27,8 +29,10 @@ const AppWindow = () => {
             ].map(({ color, Icon, window }, index) => (
               <div
                 onClick={() => {
-                  setWindowOpen(openWindows[!windowOpen[window] && window]);
-                  setPaintIsOpen(!paintIsOpen);
+                  setWindowsOpen({
+                    ...windowsOpen,
+                    [window]: !windowsOpen[window],
+                  });
                 }}
                 key={index}
                 className="h-3 w-3 rounded-full cursor-pointer"
@@ -38,17 +42,52 @@ const AppWindow = () => {
             ))}
           </div>
         </div>
-        <div className="p-4">
+        <div className="relative p-4">
           <div
-            className={`border-2
-            border-black bg-white rounded 
-            w-full 
+            className={`absolute 
+            border-2
+            border-black 
+            bg-cyan-300
+            rounded 
+            w-24 
             h-16
             transition-transform
             transform
-            scale-${paintIsOpen ? "100" : "0"}
+            origin-top
+            scale-${windowsOpen["paint"] ? "100" : "0"}
             `}
-          ></div>
+          />
+          <div
+            className={`absolute
+            left-10
+            top-6
+            border-2
+            border-black 
+            bg-yellow-300 
+            rounded 
+            w-24 
+            h-16
+            transition-transform
+            transform
+            scale-${windowsOpen["app"] ? "100" : "0"}
+            `}
+          />
+          <div
+            className={`absolute
+            left-20
+            top-8
+            border-2
+            border-black 
+            bg-emerald-300 
+            rounded 
+            w-24 
+            h-16
+            transition-transform
+            transform
+            origin-bottom
+            scale-${windowsOpen["settings"] ? "100" : "0"}
+            `}
+          />
         </div>
       </div>
       {/* <div className="h-16 w-full scale-0 scale-100"></div> */}
