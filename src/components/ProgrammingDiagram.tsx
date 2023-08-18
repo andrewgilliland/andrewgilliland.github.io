@@ -7,21 +7,35 @@ const ProgrammingDiagram = () => {
 
   return (
     <div className="mt-48">
-      <div className="flex justify-around mb-12">
-        <label className="flex">
+      <div className="flex  rounded-md mb-12">
+        <label
+          className={`${
+            isTraditionalProgramming
+              ? "bg-emerald-300 text-emerald-700 border-2 border-emerald-600"
+              : "border-t-2 border-l-2 border-b-2 border-white"
+          } flex-1 flex justify-center rounded-l-md p-2`}
+        >
           <input
+            className="hidden"
             type="radio"
             name="programming-type"
             value="traiditional-programming"
-            checked={selectOption === "traditional-programming"}
+            checked={isTraditionalProgramming}
             onChange={() => {
               setSelectOption("traditional-programming");
             }}
           />
-          <div className="ml-4">Traditional Programming</div>
+          <div className="font-semibold ml-4">Traditional Programming</div>
         </label>
-        <label className="flex">
+        <label
+          className={`${
+            !isTraditionalProgramming
+              ? "bg-emerald-300 text-emerald-700 border-emerald-600 border-l-2"
+              : ""
+          } flex-1 flex justify-center border-t-2 border-b-2 border-r-2 rounded-r-md p-2`}
+        >
           <input
+            className="hidden"
             type="radio"
             name="programming-type"
             value="machine-learning"
@@ -30,7 +44,7 @@ const ProgrammingDiagram = () => {
               setSelectOption("machine-learning");
             }}
           />
-          <div className="ml-4">Machine Learning</div>
+          <div className="font-semibold ml-4">Machine Learning</div>
         </label>
       </div>
 
