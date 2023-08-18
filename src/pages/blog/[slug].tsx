@@ -22,11 +22,12 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
     const elements = [];
 
     for (const element of childElements) {
-      if (element.id) {
+      const typedElement = element as HTMLElement;
+      if (typedElement.id) {
         elements.push({
-          id: element.id,
-          text: element.textContent,
-          tag: element.tagName,
+          id: typedElement.id,
+          text: typedElement.textContent,
+          tag: typedElement.tagName,
         });
       }
     }
@@ -58,7 +59,7 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
       <BlogOutline headingElements={headingElements} title={title} />
 
       <div
-        className="prose prose-h2:text-yellow-300 prose-h3:text-gray-300 prose-p:text-gray-200 prose-ul:text-gray-200 prose-pre:border-2 prose-pre:border-gray-400 mt-16 max-w-2xl"
+        className="prose prose-h2:text-yellow-300 prose-h3:text-gray-300 prose-h4:text-gray-300 prose-h4:ml-4 prose-h5:text-gray-500 prose-p:text-gray-200 prose-ul:text-gray-200 prose-pre:border-2 prose-pre:border-gray-400 mt-16 max-w-2xl"
         dangerouslySetInnerHTML={{ __html: marked(content) }}
       />
     </div>
