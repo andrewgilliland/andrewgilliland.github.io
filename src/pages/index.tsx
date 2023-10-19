@@ -4,6 +4,7 @@ import path from "path";
 
 import PrimaryButton from "@/components/PrimaryButton";
 import BrowswerWindow from "@/components/BrowserWindow";
+import AppWindow from "@/components/AppWindow";
 import { Post } from "../../types";
 import Phone from "@/components/Phone";
 import Blocks from "@/components/Blocks";
@@ -14,7 +15,7 @@ type HomeProps = {
 
 export default function Home({ posts }: HomeProps) {
   return (
-    <div className="relative" onMouseEnter={() => console.log("mouse enter")}>
+    <div className="relative">
       <div>
         <section className="flex flex-col border-b-2 border-white md:flex-row">
           <div className="flex-1 bg-pink-300 border-b-2 md:border-b-0 md:border-r-2 border-white p-[6.5vw]">
@@ -40,15 +41,36 @@ export default function Home({ posts }: HomeProps) {
             </div>
           </div>
         </section>
-        <section className="flex flex-col justify-center items-center bg-cyan-300 border-b-2 p-16">
-          <h2 className="text-gray-900 text-2xl py-24 px-12">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint soluta
-            velit.
+        <section className="flex flex-col justify-center items-center bg-cyan-300 border-b-2 p-[6.5vw]">
+          <h2 className="text-gray-900 text-2xl font-bold max-w-lg text-center">
+            Look at this cool section heading. There&apos;s more info here!
           </h2>
 
-          <div className="flex gap-12">
-            <Phone />
-            <BrowswerWindow />
+          <div className="grid grid-cols-2 gap-12 max-w-3xl mt-12">
+            {[
+              {
+                Component: Phone,
+                text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex iste earum eos ipsam voluptates quae totam dolorem at blanditiis.",
+              },
+              {
+                Component: BrowswerWindow,
+                text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex iste earum eos ipsam voluptates quae totam dolorem at blanditiis.",
+              },
+              {
+                Component: AppWindow,
+                text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex iste earum eos ipsam voluptates quae totam dolorem at blanditiis.",
+              },
+            ].map(({ Component, text }, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col justify-center items-center"
+                >
+                  <Component />
+                  <p className="text-gray-900 mt-8">{text}</p>
+                </div>
+              );
+            })}
           </div>
         </section>
       </div>

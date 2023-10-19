@@ -12,7 +12,7 @@ import BrowserWindowCard from "@/components/BrowserWindowCard";
 const BrowserWindow = () => {
   return (
     <div className="relative h-32 w-48">
-      <div className="absolute bg-black h-32 w-48 border-2 border-black rounded transform translate-x-1 translate-y-1"></div>
+      <div className="absolute bg-black h-32 w-48 border-2 border-black rounded transform translate-x-1 translate-y-1" />
       <div className="absolute bg-white h-32 w-48 border-2 border-black rounded">
         <div className="border-b-2 border-black p-1">
           <div className="group flex">

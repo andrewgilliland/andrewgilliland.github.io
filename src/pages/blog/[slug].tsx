@@ -5,6 +5,9 @@ import Link from "next/link";
 import { marked } from "marked";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 import colors from "tailwindcss/colors";
+import { useEffect, useState } from "react";
+import BlogOutline from "@/components/BlogOutline";
+import { HeadingElement } from "../../../types";
 
 const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
   const pink300 = colors.pink["300"];
@@ -12,10 +15,25 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
   const cyan300 = colors.cyan["300"];
   const yellow300 = colors.yellow["300"];
 
-  // const allIds = document.querySelectorAll("[id]");
-  // const idArray = Array.from(allIds).map((element) => element.id);
+  const [headingElements, setHeadingElements] = useState<HeadingElement[]>([]);
 
-  // console.log(idArray);
+  useEffect(() => {
+    const childElements = document.querySelector(".prose").children;
+    const elements = [];
+
+    for (const element of childElements) {
+      const typedElement = element as HTMLElement;
+      if (typedElement.id) {
+        elements.push({
+          id: typedElement.id,
+          text: typedElement.textContent,
+          tag: typedElement.tagName,
+        });
+      }
+    }
+
+    setHeadingElements(elements);
+  }, []);
 
   return (
     <div className=" px-4 md:w-[40em] mx-auto mt-12">
@@ -38,10 +56,10 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
         />
       </div>
 
-      <div className="fixed right-[15%] h-32 w-32 border-2 border-white rounded-md"></div>
+      <BlogOutline headingElements={headingElements} title={title} />
 
       <div
-        className="prose prose-h2:text-yellow-300 prose-h3:text-gray-300 prose-p:text-gray-200 prose-ul:text-gray-200 prose-pre:border-2 prose-pre:border-gray-400 mt-16 max-w-2xl"
+        className="prose prose-h2:text-yellow-300 prose-h3:text-gray-300 prose-h4:text-gray-300 prose-h4:ml-4 prose-h5:text-gray-500 prose-p:text-gray-200 prose-ul:text-gray-200 prose-pre:border-2 prose-pre:border-gray-400 mt-16 max-w-2xl"
         dangerouslySetInnerHTML={{ __html: marked(content) }}
       />
     </div>

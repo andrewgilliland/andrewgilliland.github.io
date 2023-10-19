@@ -7,3 +7,11 @@ export type Post = {
     draft: boolean;
   };
 };
+
+export type HeadingElement = {
+  id: string;
+  text: string;
+  tag: string;
+};
+
+export type Page = { href: string; title: string };
