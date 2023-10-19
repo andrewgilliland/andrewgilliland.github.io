@@ -13,3 +13,5 @@ export type HeadingElement = {
   text: string;
   tag: string;
 };
+
+export type Page = { href: string; title: string };
