@@ -8,12 +8,12 @@ const About = () => {
       </h1>
       <div className="mt-10">
         <p className="max-w-[30em] m-auto">
-          Hi👋, I&apos;m Andrew. I'm a mobile developer living Bloomington,
+          Hi👋, I&apos;m Andrew. I&apos;m a mobile developer living Bloomington,
           Illinois. I am passionate about constantly learning and using new
           mobile and web technologies. I currently work mainly with React Native
           and Swift to build mobile applications, but always enjoy implementing
           new technologies. In my spare time, I enjoy learning about fitness and
-          nutrition, woodworking and a music aficionado.
+          nutrition, woodworking and am a music aficionado.
         </p>
       </div>
     </div>
