@@ -43,7 +43,7 @@ export default function Home({ posts }: HomeProps) {
         </section>
         <section className="flex flex-col justify-center items-center bg-cyan-300 border-b-2 p-[6.5vw]">
           <h2 className="text-gray-900 text-2xl font-bold max-w-lg text-center">
-            Look at this cool section heading. There's more info here!
+            Look at this cool section heading. There&apos;s more info here!
           </h2>
 
           <div className="grid grid-cols-2 gap-12 max-w-3xl mt-12">
