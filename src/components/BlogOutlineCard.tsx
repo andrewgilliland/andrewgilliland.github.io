@@ -32,3 +32,5 @@ const BlogOutlineCard = ({ headingElements, title }: BlogOutlineProps) => {
 };
 
 export default BlogOutlineCard;
+
+// zzgmRY2wGtV5bzJ9
