@@ -7,7 +7,7 @@ type BlogOutlineProps = {
 
 const BlogOutlineCard = ({ headingElements, title }: BlogOutlineProps) => {
   return (
-    <div className="fixed top-[50%] right-[5%] bg-black border-2 border-white rounded-md p-4">
+    <div className="hidden md:block fixed top-[50%] right-[5%] bg-black border-2 border-white rounded-md p-4">
       <div className="font-bold underline">{title}</div>
       {headingElements.map(({ id, text, tag }, index: number) => {
         return (
@@ -32,5 +32,3 @@ const BlogOutlineCard = ({ headingElements, title }: BlogOutlineProps) => {
 };
 
 export default BlogOutlineCard;
-
-// zzgmRY2wGtV5bzJ9

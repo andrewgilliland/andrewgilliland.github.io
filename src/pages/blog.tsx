@@ -3,9 +3,6 @@ import matter from "gray-matter";
 import path from "path";
 import PostCard from "@/components/PostCard";
 import { Post } from "../../types";
-import Diagram from "@/components/Diagram";
-import { useState } from "react";
-import ProgrammingDiagram from "@/components/ProgrammingDiagram";
 
 type HomeProps = {
   posts: Post[];
@@ -23,9 +20,6 @@ const Blog = ({ posts }: HomeProps) => {
             <PostCard key={index} post={post} index={index} />
           ))}
         </div>
-      </section>
-      <section className="mt-48">
-        <ProgrammingDiagram />
       </section>
     </div>
   );
