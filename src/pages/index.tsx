@@ -46,7 +46,7 @@ export default function Home({ posts }: HomeProps) {
 
           <div className="bg-black w-full md:w-1/2 mt-16 border-2 border-white rounded p-6">
             {posts.map((post, index) => (
-              <div className={`${index && "mt-4"}`}>
+              <div key={index} className={`${index && "mt-4"}`}>
                 <BlogCard post={post} index={index} />
               </div>
             ))}
