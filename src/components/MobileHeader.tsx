@@ -23,8 +23,8 @@ const MobileHeader = ({ pages }: MobileHeaderProps) => {
 
       <div
         className={`${
-          isMenuOpen ? "top-[50%]" : "top-[100%]"
-        } md:hidden fixed z-10 left-0 bottom-0 right-0 flex-col items-center bg-black border-2 border-white-300 px-[10%] py-6 transition-all duration-300`}
+          isMenuOpen ? "block" : "hidden"
+        } md:hidden fixed z-10 top-0 left-0 bottom-[50%] right-0 flex-col items-center bg-black border-2 border-white-300 px-[10%] py-6 transition-all duration-300`}
       >
         <div className="flex flex-col items-end">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
