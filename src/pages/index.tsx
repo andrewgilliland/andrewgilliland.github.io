@@ -8,6 +8,7 @@ import AppWindow from "@/components/AppWindow";
 import { Post } from "../../types";
 import Phone from "@/components/Phone";
 import Blocks from "@/components/Blocks";
+import BlogCard from "@/components/BlogCard";
 
 type HomeProps = {
   posts: Post[];
@@ -46,76 +47,11 @@ export default function Home({ posts }: HomeProps) {
             Look at this cool section heading. There&apos;s more info here!
           </h2>
 
-          <div className="bg-black w-1/2 mt-16 border-2 border-white rounded p-6">
-            {posts.map(({ frontmatter }, index) => {
-              const { title, date, excerpt, draft } = frontmatter;
-
-              return (
-                <div
-                  className={`flex flex-row border-2 border-white bg-black rounded p-4 ${
-                    index && "mt-4"
-                  }`}
-                >
-                  <div className="h-28 w-40 bg-gray-800 rounded p-3">
-                    <div className="bg-black rounded h-full w-full p-3">
-                      <div className="flex flex-row">
-                        <div className="bg-pink-400 rounded-md h-1.5 w-6" />
-                        <div className="bg-gray-600 rounded-md h-1.5 w-6 ml-1" />
-                      </div>
-                      <div className="flex flex-row mt-2">
-                        <div className="bg-pink-400 rounded-md h-1.5 w-5" />
-                        <div className="bg-cyan-400 rounded-md h-1.5 w-10 ml-1" />
-                        <div className="bg-yellow-400 rounded-md h-1.5 w-7 ml-1" />
-                      </div>
-                      <div className="flex flex-row mt-2 ml-2">
-                        <div className="bg-pink-400 rounded-md h-1.5 w-5" />
-                        <div className="bg-cyan-400 rounded-md h-1.5 w-10 ml-1" />
-                        <div className="bg-yellow-400 rounded-md h-1.5 w-7 ml-1" />
-                      </div>
-                      <div className="flex flex-row mt-2 ml-2">
-                        <div className="bg-pink-400 rounded-md h-1.5 w-5" />
-                        <div className="bg-cyan-400 rounded-md h-1.5 w-10 ml-1" />
-                        <div className="bg-yellow-400 rounded-md h-1.5 w-7 ml-1" />
-                      </div>
-                      <div className="flex flex-row mt-2 ml-2">
-                        <div className="bg-pink-400 rounded-md h-1.5 w-5" />
-                        <div className="bg-cyan-400 rounded-md h-1.5 w-10 ml-1" />
-                        <div className="bg-yellow-400 rounded-md h-1.5 w-7 ml-1" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ml-8">{title}</div>
-                </div>
-              );
-            })}
+          <div className="bg-black w-full md:w-1/2 mt-16 border-2 border-white rounded p-6">
+            {posts.map(({ frontmatter }, index) => (
+              <BlogCard frontmatter={frontmatter} index={index} />
+            ))}
           </div>
-          {/* <div className="grid grid-cols-2 gap-12 max-w-3xl mt-12"> */}
-          {/* {[
-              {
-                Component: Phone,
-                text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex iste earum eos ipsam voluptates quae totam dolorem at blanditiis.",
-              },
-              {
-                Component: BrowswerWindow,
-                text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex iste earum eos ipsam voluptates quae totam dolorem at blanditiis.",
-              },
-              {
-                Component: AppWindow,
-                text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ex iste earum eos ipsam voluptates quae totam dolorem at blanditiis.",
-              },
-            ].map(({ Component, text }, index) => {
-              return (
-                <div
-                  key={index}
-                  className="flex flex-col justify-center items-center"
-                >
-                  <Component />
-                  <p className="text-gray-900 mt-8">{text}</p>
-                </div>
-              );
-            })} */}
-
-          {/* </div> */}
         </section>
       </div>
     </div>

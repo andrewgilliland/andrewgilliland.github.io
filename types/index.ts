@@ -1,11 +1,13 @@
+export type Frontmatter = {
+  title: string;
+  date: string;
+  excerpt: string;
+  draft: boolean;
+};
+
 export type Post = {
   slug: string;
-  frontmatter: {
-    title: string;
-    date: string;
-    excerpt: string;
-    draft: boolean;
-  };
+  frontmatter: Frontmatter;
 };
 
 export type HeadingElement = {
