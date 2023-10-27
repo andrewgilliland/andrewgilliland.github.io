@@ -3,10 +3,7 @@ import matter from "gray-matter";
 import path from "path";
 
 import PrimaryButton from "@/components/PrimaryButton";
-import BrowswerWindow from "@/components/BrowserWindow";
-import AppWindow from "@/components/AppWindow";
 import { Post } from "../../types";
-import Phone from "@/components/Phone";
 import Blocks from "@/components/Blocks";
 import BlogCard from "@/components/BlogCard";
 
@@ -48,8 +45,10 @@ export default function Home({ posts }: HomeProps) {
           </h2>
 
           <div className="bg-black w-full md:w-1/2 mt-16 border-2 border-white rounded p-6">
-            {posts.map(({ frontmatter }, index) => (
-              <BlogCard frontmatter={frontmatter} index={index} />
+            {posts.map((post, index) => (
+              <div className={`${index && "mt-4"}`}>
+                <BlogCard post={post} index={index} />
+              </div>
             ))}
           </div>
         </section>

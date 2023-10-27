@@ -12,7 +12,7 @@ const PostCard = ({ post, index }: PostCardProps) => {
 
   return (
     <Link href={`/blog/${slug}`} className="group relative">
-      <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0"></div>
+      <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0" />
       <div
         className={`bg-black border-2 border-white rounded h-full transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
       >
