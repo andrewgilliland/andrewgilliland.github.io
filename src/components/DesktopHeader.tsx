@@ -17,7 +17,7 @@ const DesktopHeader = ({ pages }: DesktopHeaderProps) => {
           <div className="flex">
             {pages.map(({ href, title }, index: number) => (
               <Link className="group mr-4" key={index} href={href}>
-                <div className="">{title}</div>
+                <div className="text-white">{title}</div>
                 <div className="bg-pink-300 h-px w-[0%] group-hover:w-full transition-all" />
               </Link>
             ))}

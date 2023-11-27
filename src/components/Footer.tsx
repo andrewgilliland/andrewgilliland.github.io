@@ -4,9 +4,9 @@ import TwitterIcon from "./svg/TwitterIcon";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col justify-center items-center px-[10%] py-8">
+    <footer className="flex flex-col lg:flex-row justify-center lg:justify-between items-center px-[10%] py-8">
       <div>ⓒ {new Date().getFullYear()} Andrew Gilliland</div>
-      <div className="flex items-center gap-10 mt-6">
+      <div className="flex items-center gap-10 mt-6 lg:mt-0">
         <a href="https://github.com/andrewgilliland">
           <GitHubIcon className="fill-gray-300 h-5 w-5 transform transition hover:scale-110" />
         </a>
