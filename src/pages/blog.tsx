@@ -14,7 +14,7 @@ const Blog = ({ posts }: HomeProps) => {
       <h1 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
         Blog
       </h1>
-      <section className="mt-10 mx-8 md:mx-0">
+      <section className="mt-10 mx-8 md:mx-0 mb-24">
         <div className="grid md:grid-cols-2 gap-8">
           {posts.map((post, index) => (
             <PostCard key={index} post={post} index={index} />
