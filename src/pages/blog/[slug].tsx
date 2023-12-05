@@ -56,10 +56,10 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
         />
       </div>
 
-      <BlogOutlineCard headingElements={headingElements} title={title} />
+      {/* <BlogOutlineCard headingElements={headingElements} title={title} /> */}
 
       <div
-        className="prose prose-h2:text-yellow-300 prose-h3:text-gray-300 prose-h4:text-gray-300 prose-h4:ml-4 prose-h5:text-gray-500 prose-p:text-gray-200 prose-ul:text-gray-200 prose-pre:border-2 prose-pre:border-gray-400 mt-16 max-w-2xl"
+        className="prose prose-h2:text-yellow-300 prose-h3:text-gray-300 prose-h4:text-gray-300 prose-h4:ml-4 prose-h5:text-gray-500 prose-p:text-gray-200 prose-ul:text-gray-200 prose-pre:border-2 prose-pre:border-gray-400 prose-code:bg-gray-800 prose-code:text-white prose-a:text-cyan-300 prose-a:no-underline mt-16 max-w-2xl"
         dangerouslySetInnerHTML={{ __html: marked(content) }}
       />
     </div>
