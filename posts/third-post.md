@@ -1,6 +1,6 @@
 ---
 title: "Third Post"
-date: "June 28 2023"
+date: "1999-01-02"
 excerpt: "This is the excerpt"
 draft: true
 ---

@@ -4,7 +4,7 @@ import {
   currentDay,
   currentTime,
   currentMinutes,
-} from "../utils/date";
+} from "../lib/utils/date";
 
 const Phone = () => {
   return (

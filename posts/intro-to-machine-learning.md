@@ -1,6 +1,6 @@
 ---
 title: "Intro to Machine Learning"
-date: "June 23 2023"
+date: "2023-01-25"
 excerpt: ""
 draft: true
 ---

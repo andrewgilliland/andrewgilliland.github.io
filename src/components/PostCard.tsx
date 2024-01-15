@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Post } from "../../types";
+import { Post } from "../types";
 import { FireIcon } from "@heroicons/react/20/solid";
 
 type PostCardProps = {
@@ -8,11 +8,19 @@ type PostCardProps = {
 };
 
 const PostCard = ({ post, index }: PostCardProps) => {
-  const { slug, frontmatter } = post;
+  const {
+    slug,
+    frontmatter: { date, title, excerpt },
+  } = post;
+  const formattedDate = new Date(date).toLocaleDateString("en-us", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <Link href={`/blog/${slug}`} className="group relative">
-      <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0"></div>
+      <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0" />
       <div
         className={`bg-black border-2 border-white rounded h-full transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
       >
@@ -33,11 +41,9 @@ const PostCard = ({ post, index }: PostCardProps) => {
         </div>
         <div className="mt-6 px-4 pb-4">
           <div>
-            <p className="text-gray-300 text-sm">{frontmatter.date}</p>
-            <h3 className="font-semibold text-gray-100 text-lg">
-              {frontmatter.title}
-            </h3>
-            <p className="text-gray-300 text-sm">{frontmatter.excerpt}</p>
+            <p className="text-gray-300 text-sm">{formattedDate}</p>
+            <h3 className="font-semibold text-gray-100 text-lg">{title}</h3>
+            <p className="text-gray-300 text-sm">{excerpt}</p>
           </div>
           <div className="text-gray-300 text-sm">Read More</div>
         </div>

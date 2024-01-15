@@ -2,10 +2,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import PostCard from "@/components/PostCard";
-import { Post } from "../../types";
-import Diagram from "@/components/Diagram";
-import { useState } from "react";
-import ProgrammingDiagram from "@/components/ProgrammingDiagram";
+import { Post } from "../types";
 
 type HomeProps = {
   posts: Post[];
@@ -17,15 +14,12 @@ const Blog = ({ posts }: HomeProps) => {
       <h1 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
         Blog
       </h1>
-      <section className="mt-10 mx-8 md:mx-0">
+      <section className="mt-10 mx-8 md:mx-0 mb-24">
         <div className="grid md:grid-cols-2 gap-8">
           {posts.map((post, index) => (
             <PostCard key={index} post={post} index={index} />
           ))}
         </div>
-      </section>
-      <section className="mt-48">
-        <ProgrammingDiagram />
       </section>
     </div>
   );
@@ -39,8 +33,8 @@ export async function getStaticProps() {
       path.join("posts", filename),
       "utf-8"
     );
-
     const { data: frontmatter } = matter(markdownWithMeta);
+    frontmatter.date = new Date(frontmatter.date);
 
     return {
       slug: filename.replace(".md", ""),
@@ -48,11 +42,13 @@ export async function getStaticProps() {
     };
   });
 
-  // Sort posts by date
+  posts.sort(
+    (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
+  );
 
   return {
     props: {
-      posts,
+      posts: JSON.parse(JSON.stringify(posts)),
     },
   };
 }
