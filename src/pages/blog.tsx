@@ -33,8 +33,8 @@ export async function getStaticProps() {
       path.join("posts", filename),
       "utf-8"
     );
-
     const { data: frontmatter } = matter(markdownWithMeta);
+    frontmatter.date = new Date(frontmatter.date);
 
     return {
       slug: filename.replace(".md", ""),
@@ -42,11 +42,13 @@ export async function getStaticProps() {
     };
   });
 
-  // Sort posts by date
+  posts.sort(
+    (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
+  );
 
   return {
     props: {
-      posts,
+      posts: JSON.parse(JSON.stringify(posts)),
     },
   };
 }

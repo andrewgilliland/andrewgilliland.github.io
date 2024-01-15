@@ -8,9 +8,16 @@ type BlogCardProps = {
 };
 
 const BlogCard = ({ post, index }: BlogCardProps) => {
-  const { slug, frontmatter } = post;
-  const { title, date, excerpt, draft } = frontmatter;
+  const {
+    slug,
+    frontmatter: { title, date, excerpt },
+  } = post;
 
+  const formattedDate = new Date(date).toLocaleDateString("en-us", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   return (
     <Link href={`/blog/${slug}`} className={`group relative`}>
       <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0" />
@@ -22,7 +29,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
         </div>
         <div className="mt-4 lg:mt-0 lg:ml-8">
           <div className="font-semibold">{title}</div>
-          <div className="text-gray-400">{date}</div>
+          <div className="text-gray-400">{formattedDate}</div>
           <div className="text-sm">{excerpt}</div>
         </div>
       </div>

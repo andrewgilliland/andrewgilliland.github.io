@@ -1,6 +1,6 @@
 ---
 title: "From React to SwiftUI"
-date: "June 23 2023"
+date: "2023-06-23"
 excerpt: "Some basic concepts to transfer from React knowledge to building SwiftUI apps"
 draft: true
 ---

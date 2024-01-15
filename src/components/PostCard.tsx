@@ -8,7 +8,15 @@ type PostCardProps = {
 };
 
 const PostCard = ({ post, index }: PostCardProps) => {
-  const { slug, frontmatter } = post;
+  const {
+    slug,
+    frontmatter: { date, title, excerpt },
+  } = post;
+  const formattedDate = new Date(date).toLocaleDateString("en-us", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <Link href={`/blog/${slug}`} className="group relative">
@@ -33,11 +41,9 @@ const PostCard = ({ post, index }: PostCardProps) => {
         </div>
         <div className="mt-6 px-4 pb-4">
           <div>
-            <p className="text-gray-300 text-sm">{frontmatter.date}</p>
-            <h3 className="font-semibold text-gray-100 text-lg">
-              {frontmatter.title}
-            </h3>
-            <p className="text-gray-300 text-sm">{frontmatter.excerpt}</p>
+            <p className="text-gray-300 text-sm">{formattedDate}</p>
+            <h3 className="font-semibold text-gray-100 text-lg">{title}</h3>
+            <p className="text-gray-300 text-sm">{excerpt}</p>
           </div>
           <div className="text-gray-300 text-sm">Read More</div>
         </div>

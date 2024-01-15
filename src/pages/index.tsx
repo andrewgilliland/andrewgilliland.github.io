@@ -23,12 +23,12 @@ export default function Home({ posts }: HomeProps) {
           <div className="flex-1 bg-pink-300 border-b-2 md:border-b-0 md:border-r-2 border-white p-[6.5vw]">
             <div className="max-w-xl mx-auto">
               <h1 className="font-bold text-gray-100 text-6xl stroke-black">
-                Howdy, I'm Andrew!
+                Howdy, I&apos;m Andrew!
               </h1>
               <p className="text-black text-xl mt-12">
-                I'm a Community taught Full-stack Mobile and Web Developer. This
-                site is to share what I am learning and hopefully help others
-                along the way.
+                I&apos;m a Community taught Full-stack Mobile and Web Developer.
+                This site is to share what I am learning and hopefully help
+                others along the way.
               </p>
 
               <PrimaryButton href="/blog" className="mt-12" text="Read More" />
@@ -38,7 +38,7 @@ export default function Home({ posts }: HomeProps) {
             <div className="flex flex-col justify-center items-center">
               <Blocks />
               <p className="text-black text-xl mt-8">
-                Here's some stuff I enjoy learning about:
+                Here&apos;s some stuff I enjoy learning about:
               </p>
               <ul className="text-black text-xl mt-4 list-disc">
                 <li>JavaScript</li>
@@ -70,14 +70,13 @@ export default function Home({ posts }: HomeProps) {
 
 export async function getStaticProps() {
   const files = fs.readdirSync(path.join("posts"));
-
   const posts = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
       path.join("posts", filename),
       "utf-8"
     );
-
     const { data: frontmatter } = matter(markdownWithMeta);
+    frontmatter.date = new Date(frontmatter.date);
 
     return {
       slug: filename.replace(".md", ""),
@@ -85,11 +84,13 @@ export async function getStaticProps() {
     };
   });
 
-  // Sort posts by date
+  posts.sort(
+    (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
+  );
 
   return {
     props: {
-      posts,
+      posts: JSON.parse(JSON.stringify(posts)),
     },
   };
 }
