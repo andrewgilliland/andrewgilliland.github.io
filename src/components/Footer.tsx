@@ -1,4 +1,4 @@
-import { socialLinks } from "../utils/social";
+import { socialLinks } from "../lib/utils/social";
 
 const Footer = () => (
   <footer className="flex flex-col lg:flex-row justify-center lg:justify-between items-center px-[10%] py-8">

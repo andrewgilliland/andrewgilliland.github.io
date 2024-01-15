@@ -2,7 +2,7 @@ import { useState } from "react";
 import HeaderHeading from "./HeaderHeading";
 import { Bars3Icon, XCircleIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
-import { Page } from "../../types";
+import { Page } from "../types";
 
 type MobileHeaderProps = {
   pages: Page[];

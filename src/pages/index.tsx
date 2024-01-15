@@ -3,7 +3,7 @@ import matter from "gray-matter";
 import path from "path";
 
 import PrimaryButton from "@/components/PrimaryButton";
-import { Post } from "../../types";
+import { Post } from "../types";
 import Blocks from "@/components/Blocks";
 import BlogCard from "@/components/BlogCard";
 

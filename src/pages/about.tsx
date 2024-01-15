@@ -1,4 +1,4 @@
-import { socialLinks } from "../utils/social";
+import { socialLinks } from "../lib/utils/social";
 
 const About = () => (
   <div className="max-w-3xl w-full mx-auto mt-14 px-8">

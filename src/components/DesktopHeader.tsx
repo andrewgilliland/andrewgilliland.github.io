@@ -1,4 +1,4 @@
-import { Page } from "../../types";
+import { Page } from "../types";
 import Container from "./Container";
 import HeaderHeading from "./HeaderHeading";
 import Link from "next/link";
