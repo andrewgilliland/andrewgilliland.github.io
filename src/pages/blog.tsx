@@ -2,7 +2,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import PostCard from "@/components/PostCard";
-import { Post } from "../types";
+import { Post } from "@/types";
 
 type HomeProps = {
   posts: Post[];

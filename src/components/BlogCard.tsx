@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Post } from "../types";
+import { Post } from "@/types";
 import CodeBlock from "./CodeBlock";
 
 type BlogCardProps = {

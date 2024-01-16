@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { useEffect, useState } from "react";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
-import { HeadingElement } from "../../types";
+import { HeadingElement } from "@/types";
 import ColorDivider from "@/components/ColorDivider";
 import BackButton from "@/components/BackButton";
 
