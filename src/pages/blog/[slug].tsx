@@ -35,19 +35,14 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
   }, []);
 
   return (
-    <div className=" px-4 md:w-[40em] mx-auto mt-12">
+    <div className="px-[10%] md:p-0 md:w-[40em] mx-auto mt-12">
       <div className="">
         <Link
-          className="group flex items-center text-gray-400 hover:text-gray-200 w-fit transition-all"
+          className="group flex items-center text-gray-400 hover:text-gray-200 w-fit transition-colors"
           href="/blog"
         >
           <svg
-            className="transform rotate-180 mr-1 stroke-2 top-0"
-            style={{
-              position: "relative",
-              fill: "none",
-              stroke: "currentColor",
-            }}
+            className="transform rotate-180 mr-1 stroke-2 stroke-current fill-none"
             width="10"
             height="10"
             viewBox="0 0 10 10"
@@ -59,7 +54,7 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
                 d="M0 5h7"
               ></path>
               <path
-                className="transition transform group-hover:translate-x-1"
+                className="transition group-hover:translate-x-[3px]"
                 d="M1 1l4 4-4 4"
               ></path>
             </g>
