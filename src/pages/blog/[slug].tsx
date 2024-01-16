@@ -3,7 +3,6 @@ import path from "path";
 import matter from "gray-matter";
 import Link from "next/link";
 import { marked } from "marked";
-import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
 import { HeadingElement } from "../../types";
@@ -39,10 +38,32 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
     <div className=" px-4 md:w-[40em] mx-auto mt-12">
       <div className="">
         <Link
-          className="flex items-center text-gray-400 hover:text-gray-200 w-fit hover:scale-105 transition-all"
+          className="group flex items-center text-gray-400 hover:text-gray-200 w-fit transition-all"
           href="/blog"
         >
-          <ArrowLeftCircleIcon className="h-6 w-6" />
+          <svg
+            className="transform rotate-180 mr-1 stroke-2 top-0"
+            style={{
+              position: "relative",
+              fill: "none",
+              stroke: "currentColor",
+            }}
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+            aria-hidden="true"
+          >
+            <g fillRule="evenodd">
+              <path
+                className="transition opacity-0 group-hover:opacity-100"
+                d="M0 5h7"
+              ></path>
+              <path
+                className="transition transform group-hover:translate-x-1"
+                d="M1 1l4 4-4 4"
+              ></path>
+            </g>
+          </svg>
           <div className="ml-1">Go Back</div>
         </Link>
         <h1 className="text-4xl md:text-5xl lg:text-7xl mt-8">{title}</h1>
