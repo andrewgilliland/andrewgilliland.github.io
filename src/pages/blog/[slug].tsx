@@ -4,18 +4,18 @@ import matter from "gray-matter";
 import Link from "next/link";
 import { marked } from "marked";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
-import colors from "tailwindcss/colors";
 import { useEffect, useState } from "react";
-import BlogOutlineCard from "@/components/BlogOutlineCard";
+// import BlogOutlineCard from "@/components/BlogOutlineCard";
 import { HeadingElement } from "../../types";
+import ColorDivider from "@/components/ColorDivider";
 
 const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
-  const pink300 = colors.pink["300"];
-  const emerald300 = colors.emerald["300"];
-  const cyan300 = colors.cyan["300"];
-  const yellow300 = colors.yellow["300"];
-
   const [headingElements, setHeadingElements] = useState<HeadingElement[]>([]);
+  const formattedDate = new Date(date).toLocaleDateString("en-us", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   useEffect(() => {
     const childElements = document.querySelector(".prose").children;
@@ -47,16 +47,11 @@ const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
         </Link>
         <h1 className="text-4xl md:text-5xl lg:text-7xl mt-8">{title}</h1>
         <div className="text-gray-200 text-xl mt-2">{excerpt}</div>
-        <div className="text-sm text-gray-400 mt-2">Last Updated: {date}</div>
-        <div
-          className="w-full h-2 rounded-full mt-8"
-          style={{
-            backgroundImage: `linear-gradient( -10deg, ${pink300}, ${pink300} 30%, ${emerald300} 30%, ${emerald300} 50%, ${yellow300} 50%, ${yellow300} 70%, ${cyan300} 70%, ${cyan300})`,
-          }}
-        />
+        <div className="text-sm text-gray-400 mt-2">
+          Last Updated: {formattedDate}
+        </div>
+        <ColorDivider />
       </div>
-
-      {/* <BlogOutlineCard headingElements={headingElements} title={title} /> */}
 
       <div
         className="prose prose-h2:text-yellow-300 prose-h3:text-gray-300 prose-h4:text-gray-300 prose-h4:ml-4 prose-h5:text-gray-500 prose-p:text-gray-200 prose-ul:text-gray-200 prose-pre:border-2 prose-pre:border-gray-400 prose-code:bg-gray-800 prose-code:text-white prose-a:text-cyan-300 prose-a:no-underline prose-a:font-semibold mt-16 max-w-2xl"
@@ -91,7 +86,7 @@ export async function getStaticProps({ params: { slug } }) {
 
   return {
     props: {
-      frontmatter,
+      frontmatter: JSON.parse(JSON.stringify(frontmatter)),
       slug,
       content,
     },
