@@ -6,9 +6,12 @@ import { Post } from "@/types";
 
 type HomeProps = {
   posts: Post[];
+  directories: string[];
 };
 
-const Blog = ({ posts }: HomeProps) => {
+const Blog = ({ posts, directories }: HomeProps) => {
+  console.log("directories: ", directories);
+
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
       <h1 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
@@ -26,7 +29,24 @@ const Blog = ({ posts }: HomeProps) => {
 };
 
 export async function getStaticProps() {
-  const files = fs.readdirSync(path.join("posts"));
+  const directories = fs
+    .readdirSync("./posts", { withFileTypes: true })
+    .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
+    .filter((dirent) => dirent !== null);
+
+  const files = fs
+    .readdirSync("./posts", { withFileTypes: true })
+    .map((dirent) => (dirent.isFile() ? dirent.name : null))
+    .filter((dirent) => dirent !== null);
+
+  // Todo: Get five most recent posts based on stats.mtime
+  // fs.stat(filePath, (err, stats) => {
+  //   if (err) {
+  //     console.error('An error occurred:', err);
+  //   } else {
+  //     console.log('File last modified time:', stats.mtime);
+  //   }
+  // });
 
   const posts = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
@@ -49,6 +69,7 @@ export async function getStaticProps() {
   return {
     props: {
       posts: JSON.parse(JSON.stringify(posts)),
+      directories: JSON.parse(JSON.stringify(directories)),
     },
   };
 }
