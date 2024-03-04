@@ -14,10 +14,24 @@ const Blog = ({ posts, directories }: HomeProps) => {
 
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
-      <h1 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
-        Blog
-      </h1>
       <section className="mt-10 mx-8 md:mx-0 mb-24">
+        <div className="grid md:grid-cols-2 gap-8">
+          {directories.map((directory, index) => {
+            return (
+              <div
+                key={index}
+                className="bg-black border-2 border-white rounded p-4"
+              >
+                <div className="font-bold text-gray-100">{directory}</div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+      <section className="mt-10 mx-8 md:mx-0 mb-24">
+        <h2 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
+          Recent Posts
+        </h2>
         <div className="grid md:grid-cols-2 gap-8">
           {posts.map((post, index) => (
             <PostCard key={index} post={post} index={index} />
