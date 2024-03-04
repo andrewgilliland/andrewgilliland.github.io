@@ -7,7 +7,7 @@ type PostCardProps = {
   index: number;
 };
 
-const PostCard = ({ post, index }: PostCardProps) => {
+const PostCard = ({ post }: PostCardProps) => {
   const {
     slug,
     frontmatter: { date, title, excerpt },
