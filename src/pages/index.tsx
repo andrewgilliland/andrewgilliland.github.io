@@ -69,28 +69,29 @@ export default function Home({ posts }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  const files = fs.readdirSync(path.join("posts"));
-  const posts = files.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(
-      path.join("posts", filename),
-      "utf-8"
-    );
-    const { data: frontmatter } = matter(markdownWithMeta);
-    frontmatter.date = new Date(frontmatter.date);
+  // const files = fs.readdirSync(path.join("posts"));
+  // const posts = files.map((filename) => {
+  //   const markdownWithMeta = fs.readFileSync(
+  //     path.join("posts", filename),
+  //     "utf-8"
+  //   );
+  //   const { data: frontmatter } = matter(markdownWithMeta);
+  //   frontmatter.date = new Date(frontmatter.date);
 
-    return {
-      slug: filename.replace(".md", ""),
-      frontmatter,
-    };
-  });
+  //   return {
+  //     slug: filename.replace(".md", ""),
+  //     frontmatter,
+  //   };
+  // });
 
-  posts.sort(
-    (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
-  );
+  // posts.sort(
+  //   (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
+  // );
 
   return {
     props: {
-      posts: JSON.parse(JSON.stringify(posts)),
+      // posts: JSON.parse(JSON.stringify(posts)),
+      posts: [],
     },
   };
 }

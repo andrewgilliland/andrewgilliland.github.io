@@ -5,13 +5,13 @@ import PostCard from "@/components/PostCard";
 import { Post } from "@/types";
 import { FolderIcon } from "@heroicons/react/24/outline";
 
-type HomeProps = {
+type BlogProps = {
   posts: Post[];
   mostRecentPosts: { name: string; lastUpdated: Date }[];
   directories: string[];
 };
 
-const Blog = ({ posts, mostRecentPosts, directories }: HomeProps) => {
+const Blog = ({ posts, mostRecentPosts, directories }: BlogProps) => {
   console.log("most recent posts: ", mostRecentPosts);
 
   return (
