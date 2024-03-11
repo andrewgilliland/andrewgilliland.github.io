@@ -2,13 +2,39 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
 import { HeadingElement } from "@/types";
 import ColorDivider from "@/components/ColorDivider";
 import BackButton from "@/components/BackButton";
 
-const PostPage = ({ frontmatter: { title, excerpt, date }, slug, content }) => {
+type RoutePageProps = {
+  slug: string;
+  topics?: string[];
+  notes?: string[];
+  note?: {
+    frontmatter: {
+      title: string;
+      excerpt: string;
+      date: string;
+    };
+    content: string;
+  };
+};
+
+const RoutePage: FC<RoutePageProps> = ({ slug, note }) => {
+  return (
+    <div>
+      {note ? (
+        <PostPage frontmatter={note.frontmatter} content={note.content} />
+      ) : (
+        <div>{`Route Page: ${slug}`}</div>
+      )}
+    </div>
+  );
+};
+
+const PostPage = ({ frontmatter: { title, excerpt, date }, content }) => {
   const [headingElements, setHeadingElements] = useState<HeadingElement[]>([]);
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
@@ -70,20 +96,50 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const markdownWithMeta = fs.readFileSync(
-    path.join("posts", `${slug}.md`),
-    "utf-8"
-  );
+  const directories = fs
+    .readdirSync("./posts", { withFileTypes: true })
+    .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
+    .filter((dirent) => dirent !== null);
 
-  const { data: frontmatter, content } = matter(markdownWithMeta);
+  const files = fs
+    .readdirSync("./posts", { withFileTypes: true })
+    .map((dirent) => (dirent.isFile() ? dirent.name : null))
+    .filter((dirent) => dirent !== null);
 
-  return {
-    props: {
+  console.log("slug: ", slug);
+  console.log("files: ", files);
+
+  const isNote = files.includes(`${slug}.md`);
+  console.log("isNote: ", isNote);
+
+  // if Post
+
+  if (isNote) {
+    const markdownWithMeta = fs.readFileSync(
+      path.join("posts", `${slug}.md`),
+      "utf-8"
+    );
+    const { data: frontmatter, content } = matter(markdownWithMeta);
+
+    const note = {
       frontmatter: JSON.parse(JSON.stringify(frontmatter)),
-      slug,
       content,
-    },
-  };
+    };
+
+    return {
+      props: {
+        slug,
+        note,
+      },
+    };
+  } else {
+    // else Directory
+    return {
+      props: {
+        slug,
+      },
+    };
+  }
 }
 
-export default PostPage;
+export default RoutePage;

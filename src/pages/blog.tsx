@@ -3,7 +3,6 @@ import matter from "gray-matter";
 import path from "path";
 import PostCard from "@/components/PostCard";
 import { Post } from "@/types";
-import { FolderIcon } from "@heroicons/react/24/outline";
 import TopicCard from "@/components/TopicCard";
 
 type BlogProps = {
@@ -12,9 +11,7 @@ type BlogProps = {
   topics: string[];
 };
 
-const Blog = ({ posts, mostRecentPosts, topics }: BlogProps) => {
-  console.log("most recent posts: ", mostRecentPosts);
-
+const Blog = ({ posts, topics }: BlogProps) => {
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
       <section className="mt-10 mx-8 md:mx-0 mb-24">
@@ -52,10 +49,10 @@ export async function getStaticProps() {
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
     .filter((dirent) => dirent !== null);
 
-  // Todo: Get five most recent posts based on stats.mtime
-  // Get all files in the posts directory (including subdirectories)
-  // Get the url path for each file
-  // Sort by stats.mtime
+  // Todo: Get five most recent posts based on stats.mtime (last updated date)
+  // 1. Get all files in the posts directory (including subdirectories)
+  // 2. Get the url path for each file
+  // 3. Sort by stats.mtime
 
   const mostRecentPosts = fs
     .readdirSync("./posts", { withFileTypes: true })
