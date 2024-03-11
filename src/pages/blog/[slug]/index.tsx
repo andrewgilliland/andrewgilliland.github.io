@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { FC, useEffect, useState } from "react";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
-import { HeadingElement } from "@/types";
+import { HeadingElement, Note } from "@/types";
 import ColorDivider from "@/components/ColorDivider";
 import BackButton from "@/components/BackButton";
 
@@ -12,29 +12,26 @@ type RoutePageProps = {
   slug: string;
   topics?: string[];
   notes?: string[];
-  note?: {
-    frontmatter: {
-      title: string;
-      excerpt: string;
-      date: string;
-    };
-    content: string;
-  };
+  note?: Note;
 };
 
-const RoutePage: FC<RoutePageProps> = ({ slug, note }) => {
+const RoutePage: FC<RoutePageProps> = ({ slug, note, topics, notes }) => {
+  console.log("topics: ", topics);
+  console.log("notes: ", notes);
+
   return (
     <div>
-      {note ? (
-        <PostPage frontmatter={note.frontmatter} content={note.content} />
-      ) : (
-        <div>{`Route Page: ${slug}`}</div>
-      )}
+      {note ? <NotePage note={note} /> : <div>{`Route Page: ${slug}`}</div>}
     </div>
   );
 };
 
-const PostPage = ({ frontmatter: { title, excerpt, date }, content }) => {
+const NotePage = ({
+  note: {
+    frontmatter: { title, excerpt, date },
+    content,
+  },
+}) => {
   const [headingElements, setHeadingElements] = useState<HeadingElement[]>([]);
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
@@ -106,13 +103,7 @@ export async function getStaticProps({ params: { slug } }) {
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
     .filter((dirent) => dirent !== null);
 
-  console.log("slug: ", slug);
-  console.log("files: ", files);
-
   const isNote = files.includes(`${slug}.md`);
-  console.log("isNote: ", isNote);
-
-  // if Post
 
   if (isNote) {
     const markdownWithMeta = fs.readFileSync(
@@ -133,10 +124,11 @@ export async function getStaticProps({ params: { slug } }) {
       },
     };
   } else {
-    // else Directory
     return {
       props: {
         slug,
+        topics: directories,
+        notes: files,
       },
     };
   }

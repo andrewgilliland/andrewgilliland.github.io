@@ -10,6 +10,15 @@ export type Post = {
   frontmatter: Frontmatter;
 };
 
+export type Note = {
+  frontmatter: {
+    title: string;
+    excerpt: string;
+    date: string;
+  };
+  content: string;
+};
+
 export type HeadingElement = {
   id: string;
   text: string;
