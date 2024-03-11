@@ -7,7 +7,7 @@ import { FC, useEffect, useState } from "react";
 import { HeadingElement, Note, Post } from "@/types";
 import ColorDivider from "@/components/ColorDivider";
 import BackButton from "@/components/BackButton";
-import BlogPage from "@/pages/blog";
+import NotesPage from "@/pages/notes";
 
 type RoutePageProps = {
   slug: string;
@@ -25,7 +25,7 @@ const RoutePage: FC<RoutePageProps> = ({ slug, note, topics, notes }) => {
       {note ? (
         <NotePage note={note} />
       ) : (
-        <BlogPage topics={topics} posts={notes} />
+        <NotesPage topics={topics} posts={notes} />
       )}
     </div>
   );

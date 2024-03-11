@@ -30,7 +30,7 @@ export default function Home({ posts }: HomeProps) {
                 This site is to share what I am learning and hopefully help
                 others along the way.
               </p>
-              <PrimaryButton href="/blog" className="mt-12" text="Read More" />
+              <PrimaryButton href="/notes" className="mt-12" text="Read More" />
             </div>
           </div>
           <div className="flex-1 bg-yellow-300 p-16 flex justify-center items-center">

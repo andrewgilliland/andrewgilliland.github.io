@@ -6,13 +6,13 @@ import { Post } from "@/types";
 import TopicCard from "@/components/TopicCard";
 import { FC } from "react";
 
-type BlogPageProps = {
+type NotesPageProps = {
   posts: Post[];
   mostRecentPosts?: { name: string; lastUpdated: Date }[];
   topics: string[];
 };
 
-const BlogPage: FC<BlogPageProps> = ({ posts, topics }) => {
+const NotesPage: FC<NotesPageProps> = ({ posts, topics }) => {
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
       <section className="mt-10 mx-8 md:mx-0 mb-24">
@@ -98,4 +98,4 @@ export async function getStaticProps() {
   };
 }
 
-export default BlogPage;
+export default NotesPage;
