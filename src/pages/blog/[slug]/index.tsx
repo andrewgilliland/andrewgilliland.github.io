@@ -4,14 +4,15 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { FC, useEffect, useState } from "react";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
-import { HeadingElement, Note } from "@/types";
+import { HeadingElement, Note, Post } from "@/types";
 import ColorDivider from "@/components/ColorDivider";
 import BackButton from "@/components/BackButton";
+import BlogPage from "@/pages/blog";
 
 type RoutePageProps = {
   slug: string;
   topics?: string[];
-  notes?: string[];
+  notes?: Post[];
   note?: Note;
 };
 
@@ -21,7 +22,11 @@ const RoutePage: FC<RoutePageProps> = ({ slug, note, topics, notes }) => {
 
   return (
     <div>
-      {note ? <NotePage note={note} /> : <div>{`Route Page: ${slug}`}</div>}
+      {note ? (
+        <NotePage note={note} />
+      ) : (
+        <BlogPage topics={topics} posts={notes} />
+      )}
     </div>
   );
 };
@@ -59,7 +64,7 @@ const NotePage = ({
 
   return (
     <div className="px-[10%] md:p-0 md:w-[40em] mx-auto mt-12">
-      <div className="">
+      <div>
         <BackButton />
         <h1 className="text-4xl md:text-5xl lg:text-7xl mt-8">{title}</h1>
         <div className="text-gray-200 text-xl mt-2">{excerpt}</div>
@@ -93,11 +98,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const directories = fs
-    .readdirSync("./posts", { withFileTypes: true })
-    .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
-    .filter((dirent) => dirent !== null);
-
   const files = fs
     .readdirSync("./posts", { withFileTypes: true })
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
@@ -124,11 +124,35 @@ export async function getStaticProps({ params: { slug } }) {
       },
     };
   } else {
+    const subtopics = fs
+      .readdirSync(`./posts/${slug}`, { withFileTypes: true })
+      .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
+      .filter((dirent) => dirent !== null);
+
+    const subfiles = fs
+      .readdirSync(`./posts/${slug}`, { withFileTypes: true })
+      .map((dirent) => (dirent.isFile() ? dirent.name : null))
+      .filter((dirent) => dirent !== null);
+
+    const notes = subfiles.map((filename) => {
+      const markdownWithMeta = fs.readFileSync(
+        path.join(`posts/${slug}`, filename),
+        "utf-8"
+      );
+      const { data: frontmatter } = matter(markdownWithMeta);
+      frontmatter.date = new Date(frontmatter.date);
+
+      return {
+        slug: filename.replace(".md", ""),
+        frontmatter,
+      };
+    });
+
     return {
       props: {
         slug,
-        topics: directories,
-        notes: files,
+        topics: subtopics,
+        notes: JSON.parse(JSON.stringify(notes)),
       },
     };
   }

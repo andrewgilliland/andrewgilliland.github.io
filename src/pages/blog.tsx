@@ -4,14 +4,15 @@ import path from "path";
 import PostCard from "@/components/PostCard";
 import { Post } from "@/types";
 import TopicCard from "@/components/TopicCard";
+import { FC } from "react";
 
-type BlogProps = {
+type BlogPageProps = {
   posts: Post[];
-  mostRecentPosts: { name: string; lastUpdated: Date }[];
+  mostRecentPosts?: { name: string; lastUpdated: Date }[];
   topics: string[];
 };
 
-const Blog = ({ posts, topics }: BlogProps) => {
+const BlogPage: FC<BlogPageProps> = ({ posts, topics }) => {
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
       <section className="mt-10 mx-8 md:mx-0 mb-24">
@@ -26,7 +27,7 @@ const Blog = ({ posts, topics }: BlogProps) => {
       </section>
       <section className="mt-10 mx-8 md:mx-0 mb-24">
         <h2 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
-          Recent Posts
+          Recent Notes
         </h2>
         <div className="grid md:grid-cols-2 gap-8 mt-6">
           {posts.map((post, index) => (
@@ -39,6 +40,8 @@ const Blog = ({ posts, topics }: BlogProps) => {
 };
 
 export async function getStaticProps() {
+  console.log("Blog GetStaticProps: ");
+
   const directories = fs
     .readdirSync("./posts", { withFileTypes: true })
     .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
@@ -95,4 +98,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Blog;
+export default BlogPage;
