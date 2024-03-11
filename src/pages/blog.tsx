@@ -4,31 +4,26 @@ import path from "path";
 import PostCard from "@/components/PostCard";
 import { Post } from "@/types";
 import { FolderIcon } from "@heroicons/react/24/outline";
+import TopicCard from "@/components/TopicCard";
 
 type BlogProps = {
   posts: Post[];
   mostRecentPosts: { name: string; lastUpdated: Date }[];
-  directories: string[];
+  topics: string[];
 };
 
-const Blog = ({ posts, mostRecentPosts, directories }: BlogProps) => {
+const Blog = ({ posts, mostRecentPosts, topics }: BlogProps) => {
   console.log("most recent posts: ", mostRecentPosts);
 
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
       <section className="mt-10 mx-8 md:mx-0 mb-24">
         <h2 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
-          Folders
+          Topics
         </h2>
         <div className="grid md:grid-cols-2 gap-8 mt-6">
-          {directories.map((directory, index) => (
-            <div
-              key={index}
-              className="flex justify-between bg-black border-2 border-white rounded p-4"
-            >
-              <div className="font-bold text-gray-100">{directory}</div>
-              <FolderIcon className="h-6 w-6" />
-            </div>
+          {topics.map((topic, index) => (
+            <TopicCard key={index} topic={topic} />
           ))}
         </div>
       </section>
@@ -98,7 +93,7 @@ export async function getStaticProps() {
     props: {
       posts: JSON.parse(JSON.stringify(posts)),
       mostRecentPosts: JSON.parse(JSON.stringify(mostRecentPosts)),
-      directories: JSON.parse(JSON.stringify(directories)),
+      topics: JSON.parse(JSON.stringify(directories)),
     },
   };
 }
