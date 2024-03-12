@@ -10,6 +10,8 @@ export type Post = {
   frontmatter: Frontmatter;
 };
 
+export type Topic = { name: string; path: string };
+
 export type Note = {
   frontmatter: {
     title: string;

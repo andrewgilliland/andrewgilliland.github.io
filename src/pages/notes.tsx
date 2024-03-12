@@ -2,14 +2,14 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import PostCard from "@/components/PostCard";
-import { Post } from "@/types";
+import { Post, Topic } from "@/types";
 import TopicCard from "@/components/TopicCard";
 import { FC } from "react";
 
 type NotesPageProps = {
   posts: Post[];
   mostRecentPosts?: { name: string; lastUpdated: Date }[];
-  topics: string[];
+  topics: Topic[];
 };
 
 const NotesPage: FC<NotesPageProps> = ({ posts, topics }) => {
@@ -40,12 +40,14 @@ const NotesPage: FC<NotesPageProps> = ({ posts, topics }) => {
 };
 
 export async function getStaticProps() {
-  console.log("Blog GetStaticProps: ");
-
-  const directories = fs
+  const topics = fs
     .readdirSync("./posts", { withFileTypes: true })
     .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
-    .filter((dirent) => dirent !== null);
+    .filter((dirent) => dirent !== null)
+    .map((topic) => ({
+      name: topic,
+      path: `/notes/${topic}`,
+    }));
 
   const files = fs
     .readdirSync("./posts", { withFileTypes: true })
@@ -93,7 +95,7 @@ export async function getStaticProps() {
     props: {
       posts: JSON.parse(JSON.stringify(posts)),
       mostRecentPosts: JSON.parse(JSON.stringify(mostRecentPosts)),
-      topics: JSON.parse(JSON.stringify(directories)),
+      topics: topics,
     },
   };
 }

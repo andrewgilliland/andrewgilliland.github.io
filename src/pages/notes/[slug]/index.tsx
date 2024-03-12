@@ -4,30 +4,27 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { FC, useEffect, useState } from "react";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
-import { HeadingElement, Note, Post } from "@/types";
+import { HeadingElement, Note, Post, Topic } from "@/types";
 import ColorDivider from "@/components/ColorDivider";
 import BackButton from "@/components/BackButton";
 import NotesPage from "@/pages/notes";
 
 type RoutePageProps = {
   slug: string;
-  topics?: string[];
+  topics?: Topic[];
   notes?: Post[];
   note?: Note;
 };
 
-const RoutePage: FC<RoutePageProps> = ({ slug, note, topics, notes }) => {
-  console.log("topics: ", topics);
-  console.log("notes: ", notes);
-
+const RoutePage: FC<RoutePageProps> = ({ note, topics, notes }) => {
   return (
-    <div>
+    <>
       {note ? (
         <NotePage note={note} />
       ) : (
         <NotesPage topics={topics} posts={notes} />
       )}
-    </div>
+    </>
   );
 };
 
@@ -124,17 +121,21 @@ export async function getStaticProps({ params: { slug } }) {
       },
     };
   } else {
-    const subtopics = fs
+    const topics = fs
       .readdirSync(`./posts/${slug}`, { withFileTypes: true })
       .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
-      .filter((dirent) => dirent !== null);
+      .filter((dirent) => dirent !== null)
+      .map((topic) => ({
+        name: topic.replace(/-/g, " "),
+        path: `/notes/${slug}/${topic}`,
+      }));
 
-    const subfiles = fs
+    const files = fs
       .readdirSync(`./posts/${slug}`, { withFileTypes: true })
       .map((dirent) => (dirent.isFile() ? dirent.name : null))
       .filter((dirent) => dirent !== null);
 
-    const notes = subfiles.map((filename) => {
+    const notes = files.map((filename) => {
       const markdownWithMeta = fs.readFileSync(
         path.join(`posts/${slug}`, filename),
         "utf-8"
@@ -143,7 +144,7 @@ export async function getStaticProps({ params: { slug } }) {
       frontmatter.date = new Date(frontmatter.date);
 
       return {
-        slug: filename.replace(".md", ""),
+        slug: `${slug}/${filename.replace(".md", "")}`,
         frontmatter,
       };
     });
@@ -151,7 +152,7 @@ export async function getStaticProps({ params: { slug } }) {
     return {
       props: {
         slug,
-        topics: subtopics,
+        topics: topics,
         notes: JSON.parse(JSON.stringify(notes)),
       },
     };
