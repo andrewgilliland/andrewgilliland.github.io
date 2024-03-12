@@ -1,40 +1,44 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import PostCard from "@/components/PostCard";
-import { Post, Topic } from "@/types";
+import NoteCard from "@/components/NoteCard";
+import { Note, Topic } from "@/types";
 import TopicCard from "@/components/TopicCard";
 import { FC } from "react";
 
 type NotesPageProps = {
-  posts: Post[];
-  mostRecentPosts?: { name: string; lastUpdated: Date }[];
+  notes: Note[];
   topics: Topic[];
+  mostRecentPosts?: { name: string; lastUpdated: Date }[];
 };
 
-const NotesPage: FC<NotesPageProps> = ({ posts, topics }) => {
+const NotesPage: FC<NotesPageProps> = ({ notes, topics }) => {
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
-      <section className="mt-10 mx-8 md:mx-0 mb-24">
-        <h2 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
-          Topics
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8 mt-6">
-          {topics.map((topic, index) => (
-            <TopicCard key={index} topic={topic} />
-          ))}
-        </div>
-      </section>
-      <section className="mt-10 mx-8 md:mx-0 mb-24">
-        <h2 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
-          Recent Notes
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8 mt-6">
-          {posts.map((post, index) => (
-            <PostCard key={index} post={post} index={index} />
-          ))}
-        </div>
-      </section>
+      {topics.length > 0 && (
+        <section className="mt-10 mx-8 md:mx-0 mb-24">
+          <h2 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
+            Topics
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 mt-6">
+            {topics.map((topic, index) => (
+              <TopicCard key={index} topic={topic} />
+            ))}
+          </div>
+        </section>
+      )}
+      {notes.length > 0 && (
+        <section className="mt-10 mx-8 md:mx-0 mb-24">
+          <h2 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
+            Recent Notes
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 mt-6">
+            {notes.map((note, index) => (
+              <NoteCard key={index} note={note} index={index} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 };
@@ -73,7 +77,7 @@ export async function getStaticProps() {
     .sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime())
     .slice(0, 5);
 
-  const posts = files.map((filename) => {
+  const notes = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
       path.join("posts", filename),
       "utf-8"
@@ -82,20 +86,20 @@ export async function getStaticProps() {
     frontmatter.date = new Date(frontmatter.date);
 
     return {
-      slug: filename.replace(".md", ""),
+      path: filename.replace(".md", ""),
       frontmatter,
     };
   });
 
-  posts.sort(
+  notes.sort(
     (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
   );
 
   return {
     props: {
-      posts: JSON.parse(JSON.stringify(posts)),
-      mostRecentPosts: JSON.parse(JSON.stringify(mostRecentPosts)),
+      notes: JSON.parse(JSON.stringify(notes)),
       topics: topics,
+      mostRecentPosts: JSON.parse(JSON.stringify(mostRecentPosts)),
     },
   };
 }

@@ -6,20 +6,17 @@ export type Frontmatter = {
 };
 
 export type Post = {
-  slug: string;
+  path: string;
   frontmatter: Frontmatter;
 };
 
-export type Topic = { name: string; path: string };
-
 export type Note = {
-  frontmatter: {
-    title: string;
-    excerpt: string;
-    date: string;
-  };
+  path: string;
+  frontmatter: Frontmatter;
   content: string;
 };
+
+export type Topic = { name: string; path: string };
 
 export type HeadingElement = {
   id: string;
