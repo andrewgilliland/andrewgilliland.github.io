@@ -39,10 +39,15 @@ body {
   @apply text-red-300;
 }
 
-.header-title {
+.header-heading {
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
+}
+
+.header-heading:hover {
+  animation: spring-bounce 900ms ease forwards;
+  will-change: transform;
 }
 
 .stroke-black {
@@ -83,5 +88,26 @@ body {
   }
   to {
     transform: rotate(-360deg);
+  }
+}
+
+@keyframes spring-bounce {
+  0% {
+    transform: scale3d(0.96, 0.96, 1);
+  }
+  20% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+  40% {
+    transform: scale3d(0.98, 0.98, 1);
+  }
+  60% {
+    transform: scale3d(1.05, 1.05, 1);
+  }
+  80% {
+    transform: scale3d(1.01, 1.01, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
   }
 }
