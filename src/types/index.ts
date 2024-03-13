@@ -16,7 +16,7 @@ export type Note = {
   content: string;
 };
 
-export type Topic = { name: string; path: string };
+export type Topic = { name: string; path: string; color?: string };
 
 export type HeadingElement = {
   id: string;

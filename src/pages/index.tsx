@@ -16,7 +16,7 @@ type HomeProps = {
 // https://gumroad.com/
 // https://salehmubashar.com/
 
-export default function Home({ posts }: HomeProps) {
+export default function HomePage({ posts }: HomeProps) {
   return (
     <div className="relative">
       <div>
@@ -67,7 +67,7 @@ export default function Home({ posts }: HomeProps) {
         </section>
         <section className="flex flex-col justify-center items-center bg-black border-b-2 p-[6.5vw]">
           <h2 className="text-center font-bold text-black text-4xl stroke-white">
-            Most Recent Notes
+            Recent Notes
           </h2>
 
           <div className="bg-yellow-300 w-full md:w-1/2 mt-16 border-2 border-white rounded p-6">
