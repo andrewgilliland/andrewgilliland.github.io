@@ -4,7 +4,7 @@ import path from "path";
 
 import PrimaryButton from "@/components/PrimaryButton";
 import { Post } from "@/types";
-import Blocks from "@/components/Blocks";
+import AnimatedBlocks from "@/components/AnimatedBlocks";
 import BlogCard from "@/components/BlogCard";
 
 type HomeProps = {
@@ -35,7 +35,7 @@ export default function Home({ posts }: HomeProps) {
           </div>
           <div className="flex-1 bg-yellow-300 p-16 flex justify-center items-center">
             <div className="flex flex-col justify-center items-center">
-              <Blocks />
+              <AnimatedBlocks />
               <p className="text-black text-xl mt-8">
                 Here&apos;s some stuff I enjoy learning about:
               </p>
