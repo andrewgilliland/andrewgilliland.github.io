@@ -12,8 +12,6 @@ const TopicCard: FC<TopicCardProps> = ({ topic }) => {
   const lineColor = color ? "black" : "white";
   const bgColor = color ? "white" : "black";
 
-  console.log("tint: ", lineColor);
-
   return (
     <Link href={path} className={`group relative`}>
       <div

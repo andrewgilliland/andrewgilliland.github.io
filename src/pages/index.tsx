@@ -7,6 +7,7 @@ import { Post } from "@/types";
 import { FolderIcon } from "@heroicons/react/24/outline";
 import BlogCard from "@/components/BlogCard";
 import Link from "next/link";
+import ColorDivider from "@/components/ColorDivider";
 
 type HomeProps = {
   posts: Post[];
@@ -27,7 +28,7 @@ export default function HomePage({ posts }: HomeProps) {
                 Howdy, I&apos;m Andrew!
               </h1>
               <p className="text-black text-xl mt-12">
-                I&apos;m a Community taught Full-stack Mobile and Web Developer.
+                I&apos;m a Community taught Full Stack Mobile and Web Developer.
                 This site is to share what I am learning and hopefully help
                 others along the way.
               </p>
@@ -65,7 +66,7 @@ export default function HomePage({ posts }: HomeProps) {
             </div>
           </div>
         </section>
-        <section className="flex flex-col justify-center items-center bg-black border-b-2 p-[6.5vw]">
+        <section className="flex flex-col justify-center items-center bg-black border-b-2 border-white p-[6.5vw]">
           <h2 className="text-center font-bold text-black text-4xl stroke-white">
             Recent Notes
           </h2>
@@ -78,6 +79,7 @@ export default function HomePage({ posts }: HomeProps) {
             ))}
           </div>
         </section>
+        <ColorDivider className="w-full h-6" />
       </div>
     </div>
   );
