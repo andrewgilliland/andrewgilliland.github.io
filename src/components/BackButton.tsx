@@ -3,7 +3,7 @@ import Link from "next/link";
 const BackButton = () => (
   <Link
     className="group flex items-center text-gray-400 hover:text-gray-200 w-fit transition-colors"
-    href="/blog"
+    href="/notes"
   >
     <svg
       className="transform rotate-180 mr-1 stroke-2 stroke-current fill-none"
