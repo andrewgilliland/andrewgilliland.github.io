@@ -1,7 +1,7 @@
 import { socialLinks } from "../lib/utils/social";
 
 const Footer = () => (
-  <footer className="flex flex-col lg:flex-row justify-center lg:justify-between items-center px-[10%] py-8">
+  <footer className="flex flex-col lg:flex-row justify-center lg:justify-between items-center border-t-2 border-white px-[10%] py-8">
     <div>ⓒ {new Date().getFullYear()} Andrew Gilliland</div>
     <div className="flex items-center gap-10 mt-6 lg:mt-0">
       {socialLinks.map(({ Icon, href }, index) => (
