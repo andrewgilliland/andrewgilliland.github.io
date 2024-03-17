@@ -16,27 +16,79 @@ type CreateMapParams = {
   height: number;
 };
 
+// D3 Types
+
+type Coordinates = [number, number];
+
+type GeometryType = "Polygon" | "MultiPolygon";
+
+type Geomtry = {
+  type: GeometryType;
+  coordinates: Coordinates[][];
+};
+
+type Feature = {
+  type: "Feature";
+  geometry: Geomtry;
+  properties: {
+    name: string;
+  };
+};
+
+type GeoJSON = {
+  type: "FeatureCollection";
+  features: Feature[];
+};
+
 // https://observablehq.com/@d3/zoom-to-bounding-box?intent=fork
 
 const Map: FC<MapProps> = ({ width, height }) => {
   const ref = useRef();
 
   const createIllinoisMap = ({ width, height }: CreateMapParams) => {
-    const projection = d3.geoMercator().fitSize([width, height], illinois);
+    const marginX = 20;
+    const marginY = 20;
 
-    const path = d3.geoPath().projection(projection);
+    const bloomington = {
+      name: "Bloomington",
+      coordinates: [-88.9937, 40.4842] as Coordinates,
+    };
 
-    const svg = d3.select(ref.current).append("svg");
+    const projection = d3.geoMercator().fitExtent(
+      [
+        [marginX, marginY],
+        [width - marginX, height - marginY],
+      ],
+      illinois
+    );
+
+    const pathGenerator = d3.geoPath().projection(projection);
+    const svg = d3.select(ref.current);
 
     svg
       .append("path")
       .datum(illinois)
-      .attr("d", path)
+      .attr("title", "Illinois")
+      .attr("d", pathGenerator)
       .attr("fill", "none")
       .attr("stroke", "#FFF")
       .attr("stroke-width", 1)
       .attr("width", width)
       .attr("height", height);
+
+    svg
+      .append("circle")
+      .attr("cx", projection(bloomington.coordinates)[0])
+      .attr("cy", projection(bloomington.coordinates)[1])
+      .attr("r", 5)
+      .attr("fill", pink300);
+
+    // svg
+    //   .append("text")
+    //   .text(bloomington.name)
+    //   .attr("fill", "#FFF")
+    //   .attr("x", projection(bloomington.coordinates)[0])
+    //   .attr("y", projection(bloomington.coordinates)[1]);
   };
 
   const createUsaMap = ({ width, height }: CreateMapParams) => {
@@ -47,7 +99,6 @@ const Map: FC<MapProps> = ({ width, height }) => {
 
     const svg = d3
       .select(ref.current)
-      .append("svg")
       .attr("viewBox", [0, 0, 960, 600])
       .attr("width", width)
       .attr("height", height)

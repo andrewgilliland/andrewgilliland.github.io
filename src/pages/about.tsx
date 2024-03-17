@@ -1,12 +1,7 @@
 import { socialLinks } from "@/lib/utils/social";
-import { useEffect } from "react";
 import { ClientMap } from "@/components/d3/Map";
 
 const About = () => {
-  useEffect(() => {
-    // createMap({ width: 600, height: 600, data: us });
-  }, []);
-
   return (
     <div className="max-w-3xl w-full mx-auto mt-14 px-8">
       <h1 className="font-bold text-gray-100 text-4xl stroke-white md:mx-0">
