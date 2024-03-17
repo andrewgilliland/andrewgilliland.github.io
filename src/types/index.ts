@@ -5,10 +5,10 @@ export type Frontmatter = {
   draft: boolean;
 };
 
-export type Post = {
-  path: string;
-  frontmatter: Frontmatter;
-};
+// export type Post = {
+//   path: string;
+//   frontmatter: Frontmatter;
+// };
 
 export type Note = {
   path: string;

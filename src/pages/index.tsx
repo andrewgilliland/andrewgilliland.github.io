@@ -3,21 +3,32 @@ import matter from "gray-matter";
 import path from "path";
 
 import PrimaryButton from "@/components/PrimaryButton";
-import { Post } from "@/types";
-import { FolderIcon } from "@heroicons/react/24/outline";
+// import { Post } from "@/types";
 import BlogCard from "@/components/BlogCard";
-import Link from "next/link";
 import ColorDivider from "@/components/ColorDivider";
+import TopicCard from "@/components/TopicCard";
+import Link from "next/link";
 
 type HomeProps = {
-  posts: Post[];
+  // posts: Post[];
+  notes: string[];
 };
 
 // https://howdy.com/
 // https://gumroad.com/
 // https://salehmubashar.com/
 
-export default function HomePage({ posts }: HomeProps) {
+export default function HomePage({ notes }: HomeProps) {
+  const topics = [
+    {
+      name: "JavaScript",
+      path: "/notes/javascript",
+      color: "yellow",
+    },
+    { name: "CSS", path: "/notes/css", color: "cyan" },
+    { name: "Swift", path: "/notes/swift", color: "red" },
+  ];
+
   return (
     <div className="relative">
       <div>
@@ -41,25 +52,18 @@ export default function HomePage({ posts }: HomeProps) {
                 Some topics to explore:
               </h2>
               <div className="grid gap-4 mt-6 w-60">
-                {[
-                  {
-                    name: "JavaScript",
-                    path: "/notes/javascript",
-                    color: "yellow",
-                  },
-                  { name: "CSS", path: "/notes/css", color: "cyan" },
-                  { name: "Swift", path: "/notes/swift", color: "red" },
-                ].map(({ name, path, color }, index) => {
+                {topics.map((topic, index) => {
                   return (
-                    <Link key={index} href={path} className={`group relative`}>
-                      <div className="absolute bg-white border-2 border-black rounded w-full h-full bottom-0" />
-                      <div
-                        className={`flex justify-between bg-${color}-400 border-2 border-black rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
-                      >
-                        <div className="font-bold text-black">{name}</div>
-                        <FolderIcon className="h-6 w-6 stroke-black fill-white" />
-                      </div>
-                    </Link>
+                    <TopicCard topic={topic} key={index} />
+                    // <Link key={index} href={path} className={`group relative`}>
+                    //   <div className="absolute bg-white border-2 border-black rounded w-full h-full bottom-0" />
+                    //   <div
+                    //     className={`flex justify-between bg-${color}-400 border-2 border-black rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
+                    //   >
+                    //     <div className="font-bold text-black">{name}</div>
+                    //     <FolderIcon className="h-6 w-6 stroke-black fill-white" />
+                    //   </div>
+                    // </Link>
                   );
                 })}
               </div>
@@ -72,11 +76,15 @@ export default function HomePage({ posts }: HomeProps) {
           </h2>
 
           <div className="bg-yellow-300 w-full md:w-1/2 mt-16 border-2 border-white rounded p-6">
-            {posts.map((post, index) => (
-              <div key={index} className={`${index && "mt-4"}`}>
-                <BlogCard post={post} index={index} />
-              </div>
-            ))}
+            <div className="flex flex-col">
+              {notes.map((post, index) => (
+                <Link
+                  key={index}
+                  className={`${index && "mt-4"} font-bold text-black`}
+                  href={`${post}`}
+                >{`Note ${index + 1}`}</Link>
+              ))}
+            </div>
           </div>
         </section>
         <ColorDivider className="w-full h-6" />
@@ -86,6 +94,34 @@ export default function HomePage({ posts }: HomeProps) {
 }
 
 export async function getStaticProps() {
+  function getFiles(rootDirectory: string) {
+    let entries = fs.readdirSync(rootDirectory, { withFileTypes: true });
+
+    let files = entries
+      .filter((entry) => !entry.isDirectory())
+      .map((entry) => path.join(rootDirectory, entry.name))
+      .map((entry) => entry.replace("post", "note").replace(/\.md$/, "")); // maps to an array of file paths
+
+    let directories = entries.filter((entry) => entry.isDirectory());
+
+    for (let directory of directories) {
+      let subdirPaths = getFiles(path.join(`${rootDirectory}`, directory.name));
+
+      files = files.concat(subdirPaths); // adds the file paths from the subdirectories
+    }
+
+    return files;
+    // return
+    // {
+    //  path: notes/javascript/d3/create-a-map-with-d3
+    //  frontmatter: { date, title, excerpt }
+    // }
+  }
+
+  let filePaths = getFiles("./posts");
+
+  console.log("filePaths", filePaths);
+
   // const files = fs.readdirSync(path.join("posts"));
   // const posts = files.map((filename) => {
   //   const markdownWithMeta = fs.readFileSync(
@@ -109,6 +145,7 @@ export async function getStaticProps() {
     props: {
       // posts: JSON.parse(JSON.stringify(posts)),
       posts: [],
+      notes: filePaths,
     },
   };
 }
