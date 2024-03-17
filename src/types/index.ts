@@ -25,3 +25,10 @@ export type HeadingElement = {
 };
 
 export type Page = { href: string; title: string };
+
+export type RoutePageProps = {
+  note?: Note;
+  topic?: string;
+  notes?: Note[];
+  topics?: Topic[];
+};

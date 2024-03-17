@@ -2,27 +2,8 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { FC } from "react";
-import { Note, Post, Topic } from "@/types";
-import NotesPage from "@/pages/notes";
-import NotePage from "@/components/NotePage";
-
-type RoutePageProps = {
-  topics?: Topic[];
-  notes?: Note[];
-  note?: Note;
-};
-
-const RoutePage: FC<RoutePageProps> = ({ note, topics, notes }) => {
-  return (
-    <>
-      {note ? (
-        <NotePage note={note} />
-      ) : (
-        <NotesPage topics={topics} notes={notes} />
-      )}
-    </>
-  );
-};
+import { RoutePageProps } from "@/types";
+import Route from "@/components/Route";
 
 export async function getStaticPaths() {
   const files = fs.readdirSync(path.join("posts"));
@@ -95,11 +76,14 @@ export async function getStaticProps({ params: { slug } }) {
 
     return {
       props: {
+        topic: slug,
         topics: topics,
         notes: JSON.parse(JSON.stringify(notes)),
       },
     };
   }
 }
+
+const RoutePage: FC<RoutePageProps> = (props) => <Route {...props} />;
 
 export default RoutePage;

@@ -22,7 +22,7 @@ const TopicCard: FC<TopicCardProps> = ({ topic }) => {
           color ? "color-400" : "black"
         } border-2 border-${lineColor} rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
       >
-        <div className={`font-bold text-${lineColor}`}>{name}</div>
+        <div className={`capitalize font-bold text-${lineColor}`}>{name}</div>
         <FolderIcon className={`h-6 w-6 stroke-${lineColor} fill-${bgColor}`} />
       </div>
     </Link>

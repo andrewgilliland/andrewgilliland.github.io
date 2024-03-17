@@ -7,18 +7,19 @@ import TopicCard from "@/components/TopicCard";
 import { FC } from "react";
 
 type NotesPageProps = {
+  topic?: string;
   notes: Note[];
   topics: Topic[];
-  mostRecentPosts?: { name: string; lastUpdated: Date }[];
+  // mostRecentPosts?: { name: string; lastUpdated: Date }[];
 };
 
-const NotesPage: FC<NotesPageProps> = ({ notes, topics }) => {
+const NotesPage: FC<NotesPageProps> = ({ topic, notes, topics }) => {
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
       {topics.length > 0 && (
         <section className="mt-10 mx-8 md:mx-0 mb-24">
-          <h2 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
-            Topics
+          <h2 className="capitalize font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
+            {`${topic ? `${topic} ` : ""}Topics`}
           </h2>
           <div className="grid md:grid-cols-2 gap-8 mt-6">
             {topics.map((topic, index) => (
@@ -29,8 +30,8 @@ const NotesPage: FC<NotesPageProps> = ({ notes, topics }) => {
       )}
       {notes.length > 0 && (
         <section className="mt-10 mx-8 md:mx-0 mb-24">
-          <h2 className="font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
-            Recent Notes
+          <h2 className="capitalize font-bold text-gray-100 text-4xl stroke-white mx-8 md:mx-0">
+            {`${topic ? `${topic} ` : ""}Notes`}
           </h2>
           <div className="grid md:grid-cols-2 gap-8 mt-6">
             {notes.map((note, index) => (
