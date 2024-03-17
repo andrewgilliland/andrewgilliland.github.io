@@ -1,16 +1,17 @@
+import { FC } from "react";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { FC } from "react";
-import { RoutePageProps } from "@/types";
 import Route from "@/components/Route";
+import { RoutePageProps } from "@/types";
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join("posts"));
+  // Options can be either a directory or a file
+  const options = fs.readdirSync(path.join("posts"));
 
-  const paths = files.map((filename) => ({
+  const paths = options.map((option) => ({
     params: {
-      slug: filename.replace(".md", ""),
+      slug: option.replace(".md", ""),
     },
   }));
 
@@ -84,6 +85,6 @@ export async function getStaticProps({ params: { slug } }) {
   }
 }
 
-const RoutePage: FC<RoutePageProps> = (props) => <Route {...props} />;
+const NotesRouteOnePage: FC<RoutePageProps> = (props) => <Route {...props} />;
 
-export default RoutePage;
+export default NotesRouteOnePage;

@@ -10,7 +10,6 @@ type NotesPageProps = {
   topic?: string;
   notes: Note[];
   topics: Topic[];
-  // mostRecentPosts?: { name: string; lastUpdated: Date }[];
 };
 
 const NotesPage: FC<NotesPageProps> = ({ topic, notes, topics }) => {
@@ -59,24 +58,19 @@ export async function getStaticProps() {
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
     .filter((dirent) => dirent !== null);
 
-  // Todo: Get five most recent posts based on stats.mtime (last updated date)
-  // 1. Get all files in the posts directory (including subdirectories)
-  // 2. Get the url path for each file
-  // 3. Sort by stats.mtime
-
-  const mostRecentPosts = fs
-    .readdirSync("./posts", { withFileTypes: true })
-    .map((dirent) =>
-      dirent.isFile()
-        ? {
-            name: dirent.name,
-            lastUpdated: fs.statSync(path.join("./posts", dirent.name)).mtime,
-          }
-        : null
-    )
-    .filter((file) => file !== null)
-    .sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime())
-    .slice(0, 5);
+  // const mostRecentPosts = fs
+  //   .readdirSync("./posts", { withFileTypes: true })
+  //   .map((dirent) =>
+  //     dirent.isFile()
+  //       ? {
+  //           name: dirent.name,
+  //           lastUpdated: fs.statSync(path.join("./posts", dirent.name)).mtime,
+  //         }
+  //       : null
+  //   )
+  //   .filter((file) => file !== null)
+  //   .sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime())
+  //   .slice(0, 5);
 
   const notes = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
@@ -100,7 +94,6 @@ export async function getStaticProps() {
     props: {
       notes: JSON.parse(JSON.stringify(notes)),
       topics: topics,
-      mostRecentPosts: JSON.parse(JSON.stringify(mostRecentPosts)),
     },
   };
 }

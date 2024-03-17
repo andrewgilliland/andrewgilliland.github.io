@@ -36,14 +36,21 @@ export async function getStaticProps({ params: { slug, slugTwo } }) {
   const isNote = files.includes(`${slugTwo}.md`);
 
   if (isNote) {
-    console.log("isNote: ", isNote);
+    const markdownWithMeta = fs.readFileSync(
+      path.join("posts", slug, `${slugTwo}.md`),
+      "utf-8"
+    );
 
-    // Todo: Implement getStaticProps for note
+    const { data: frontmatter, content } = matter(markdownWithMeta);
+
+    const note = {
+      frontmatter: JSON.parse(JSON.stringify(frontmatter)),
+      content,
+    };
 
     return {
       props: {
-        topics: [],
-        notes: JSON.parse(JSON.stringify([])),
+        note,
       },
     };
   } else {
@@ -76,6 +83,6 @@ export async function getStaticProps({ params: { slug, slugTwo } }) {
   }
 }
 
-const RouteTwoPage: FC<RoutePageProps> = (props) => <Route {...props} />;
+const NotesRouteTwoPage: FC<RoutePageProps> = (props) => <Route {...props} />;
 
-export default RouteTwoPage;
+export default NotesRouteTwoPage;
