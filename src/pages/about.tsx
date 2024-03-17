@@ -4,12 +4,12 @@ import { ClientMap } from "@/components/d3/Map";
 const About = () => {
   return (
     <div className="max-w-3xl w-full mx-auto mt-14 px-8">
-      <h1 className="font-bold text-gray-100 text-4xl stroke-white md:mx-0">
+      <h1 className="font-bold text-gray-100 text-3xl md:text-4xl stroke-white md:mx-0">
         About
       </h1>
 
       <p className="text-xl mx-auto mt-10">
-        Hi👋, I&apos;m Andrew. I&apos;m a mobile developer living Bloomington,
+        Hi, I&apos;m Andrew. I&apos;m a mobile developer living Bloomington,
         Illinois. I am passionate about constantly learning and using new mobile
         and web technologies. I currently work mainly with React Native and
         Swift to build mobile applications, but always enjoy implementing new
