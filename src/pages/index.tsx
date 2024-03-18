@@ -3,15 +3,15 @@ import matter from "gray-matter";
 import path from "path";
 
 import PrimaryButton from "@/components/PrimaryButton";
-// import { Post } from "@/types";
-import BlogCard from "@/components/BlogCard";
 import ColorDivider from "@/components/ColorDivider";
 import TopicCard from "@/components/TopicCard";
 import Link from "next/link";
+import { Note } from "@/types";
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
 
 type HomeProps = {
   // posts: Post[];
-  notes: string[];
+  notes: Note[];
 };
 
 // https://howdy.com/
@@ -28,6 +28,8 @@ export default function HomePage({ notes }: HomeProps) {
     { name: "CSS", path: "/notes/css", color: "cyan" },
     { name: "Swift", path: "/notes/swift", color: "red" },
   ];
+
+  console.log("notes: ", notes);
 
   return (
     <div className="relative">
@@ -77,12 +79,15 @@ export default function HomePage({ notes }: HomeProps) {
 
           <div className="bg-yellow-300 w-full md:w-1/2 mt-16 border-2 border-white rounded p-6">
             <div className="flex flex-col">
-              {notes.map((post, index) => (
-                <Link
-                  key={index}
-                  className={`${index && "mt-4"} font-bold text-black`}
-                  href={`${post}`}
-                >{`Note ${index + 1}`}</Link>
+              {notes.map(({ path, frontmatter }, index) => (
+                <Link key={index} className={`${index && "mt-4"}`} href={path}>
+                  <div className="flex justify-between bg-black border-2 border-white rounded p-4">
+                    <h4 className="font-bold text-white">
+                      {frontmatter.title}
+                    </h4>
+                    <PencilSquareIcon className="h-6 w-6 stroke-white min-w-max" />
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -94,48 +99,40 @@ export default function HomePage({ notes }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  function getFiles(rootDirectory: string) {
+  function getFilesPaths(rootDirectory: string) {
     let entries = fs.readdirSync(rootDirectory, { withFileTypes: true });
 
     let files = entries
       .filter((entry) => !entry.isDirectory())
-      .map((entry) => path.join(rootDirectory, entry.name))
-      .map((entry) => entry.replace("post", "note").replace(/\.md$/, "")); // maps to an array of file paths
+      .map((entry) => path.join(rootDirectory, entry.name)); // maps to an array of file paths
 
     let directories = entries.filter((entry) => entry.isDirectory());
 
     for (let directory of directories) {
-      let subdirPaths = getFiles(path.join(`${rootDirectory}`, directory.name));
+      let subdirPaths = getFilesPaths(
+        path.join(`${rootDirectory}`, directory.name)
+      );
 
       files = files.concat(subdirPaths); // adds the file paths from the subdirectories
     }
 
     return files;
-    // return
-    // {
-    //  path: notes/javascript/d3/create-a-map-with-d3
-    //  frontmatter: { date, title, excerpt }
-    // }
   }
 
-  let filePaths = getFiles("./posts");
+  let filePaths = getFilesPaths("./posts");
 
-  console.log("filePaths", filePaths);
+  const notes = filePaths.map((filePath) => {
+    const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
+    const { data: frontmatter } = matter(markdownWithMeta);
+    frontmatter.date = new Date(frontmatter.date);
 
-  // const files = fs.readdirSync(path.join("posts"));
-  // const posts = files.map((filename) => {
-  //   const markdownWithMeta = fs.readFileSync(
-  //     path.join("posts", filename),
-  //     "utf-8"
-  //   );
-  //   const { data: frontmatter } = matter(markdownWithMeta);
-  //   frontmatter.date = new Date(frontmatter.date);
+    const note = {
+      path: filePath.replace(/\.md$/, "").replace(/^posts\//, "notes/"),
+      frontmatter,
+    };
 
-  //   return {
-  //     slug: filename.replace(".md", ""),
-  //     frontmatter,
-  //   };
-  // });
+    return note;
+  });
 
   // posts.sort(
   //   (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
@@ -145,7 +142,7 @@ export async function getStaticProps() {
     props: {
       // posts: JSON.parse(JSON.stringify(posts)),
       posts: [],
-      notes: filePaths,
+      notes: JSON.parse(JSON.stringify(notes)),
     },
   };
 }
