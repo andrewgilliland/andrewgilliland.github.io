@@ -13,13 +13,13 @@ const TopicCard: FC<TopicCardProps> = ({ topic }) => {
   const bgColor = color ? "white" : "black";
 
   return (
-    <Link href={path} className={`group relative`}>
+    <Link href={path} className="group relative">
       <div
         className={`absolute bg-${bgColor} border-2 border-${lineColor} rounded w-full h-full bottom-0`}
       />
       <div
         className={`flex justify-between bg-${
-          color ? "color-400" : "black"
+          color ? `${color}-400` : "black"
         } border-2 border-${lineColor} rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
       >
         <div className={`capitalize font-bold text-${lineColor}`}>{name}</div>
