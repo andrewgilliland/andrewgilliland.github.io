@@ -7,7 +7,7 @@ draft: true
 
 You committed a file or files to git and pushed it up to GitHub. Not you. But yes, you. Let's fix that.
 
-1. Start by updating your `gitignore` file and put the file or directory you want to ignore.
+1. Start by updating your `.gitignore` file and put the file or directory you want to ignore.
 
 ```
 ## You don't need to commit this!!!
