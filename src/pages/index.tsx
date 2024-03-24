@@ -28,8 +28,6 @@ export default function HomePage({ notes }: HomeProps) {
     { name: "Swift", path: "/notes/swift", color: "red" },
   ];
 
-  console.log("notes: ", notes);
-
   return (
     <div className="relative">
       <div>
