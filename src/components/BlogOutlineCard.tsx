@@ -1,4 +1,4 @@
-import { HeadingElement } from "../types";
+import { HeadingElement } from "@/types";
 
 type BlogOutlineProps = {
   headingElements: HeadingElement[];

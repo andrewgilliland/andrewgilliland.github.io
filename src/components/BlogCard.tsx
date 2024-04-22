@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Post } from "../types";
+import { Post } from "@/types";
 import CodeBlock from "./CodeBlock";
 
 type BlogCardProps = {
@@ -12,12 +12,12 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
     slug,
     frontmatter: { title, date, excerpt },
   } = post;
-
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+
   return (
     <Link href={`/blog/${slug}`} className={`group relative`}>
       <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0" />

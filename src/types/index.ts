@@ -5,10 +5,18 @@ export type Frontmatter = {
   draft: boolean;
 };
 
-export type Post = {
-  slug: string;
+// export type Post = {
+//   path: string;
+//   frontmatter: Frontmatter;
+// };
+
+export type Note = {
+  path: string;
   frontmatter: Frontmatter;
+  content: string;
 };
+
+export type Topic = { name: string; path: string; color?: string };
 
 export type HeadingElement = {
   id: string;
@@ -17,3 +25,10 @@ export type HeadingElement = {
 };
 
 export type Page = { href: string; title: string };
+
+export type RoutePageProps = {
+  note?: Note;
+  topic?: string;
+  notes?: Note[];
+  topics?: Topic[];
+};

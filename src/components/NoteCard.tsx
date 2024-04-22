@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { Post } from "../types";
+import { Note } from "@/types";
 import { FireIcon } from "@heroicons/react/20/solid";
 
-type PostCardProps = {
-  post: Post;
+type NoteCardProps = {
+  note: Note;
   index: number;
 };
 
-const PostCard = ({ post, index }: PostCardProps) => {
+const NoteCard = ({ note }: NoteCardProps) => {
   const {
-    slug,
+    path,
     frontmatter: { date, title, excerpt },
-  } = post;
+  } = note;
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
     month: "long",
@@ -19,7 +19,7 @@ const PostCard = ({ post, index }: PostCardProps) => {
   });
 
   return (
-    <Link href={`/blog/${slug}`} className="group relative">
+    <Link href={`/notes/${path}`} className="group relative">
       <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0" />
       <div
         className={`bg-black border-2 border-white rounded h-full transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
@@ -52,4 +52,4 @@ const PostCard = ({ post, index }: PostCardProps) => {
   );
 };
 
-export default PostCard;
+export default NoteCard;
