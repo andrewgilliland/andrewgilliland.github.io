@@ -3,6 +3,7 @@ import { marked } from "marked";
 import BackButton from "./BackButton";
 import ColorDivider from "./ColorDivider";
 import { HeadingElement, Note } from "@/types";
+import { useRouter } from "next/router";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
 
 type NotePageProps = {
@@ -15,6 +16,7 @@ const NotePage: FC<NotePageProps> = ({
     content,
   },
 }) => {
+  const router = useRouter();
   const [headingElements, setHeadingElements] = useState<HeadingElement[]>([]);
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
@@ -43,7 +45,7 @@ const NotePage: FC<NotePageProps> = ({
   return (
     <div className="px-[10%] md:p-0 md:w-[40em] mx-auto mt-12">
       <div>
-        <BackButton />
+        <BackButton back={router.back} />
         <h1 className="text-4xl md:text-5xl lg:text-7xl mt-8">{title}</h1>
         <div className="text-gray-200 text-xl mt-2">{excerpt}</div>
         <div className="text-sm text-gray-400 mt-2">
