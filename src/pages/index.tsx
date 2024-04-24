@@ -8,6 +8,7 @@ import TopicCard from "@/components/TopicCard";
 import Link from "next/link";
 import { Note } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 type HomeProps = {
   notes: Note[];
@@ -47,9 +48,17 @@ export default function HomePage({ notes }: HomeProps) {
           </div>
           <div className="flex-1 bg-emerald-300 p-16 flex justify-center items-center">
             <div className="flex flex-col justify-center items-center">
-              <h2 className="font-bold text-black text-2xl mt-8">
-                Some topics to explore:
-              </h2>
+              <div className="flex items-center gap-4">
+                <h2 className="font-bold text-black text-2xl">
+                  Some topics to explore:
+                </h2>
+                <Image
+                  src="/black-mage-1.png"
+                  width={50}
+                  height={50}
+                  alt="Black Mage"
+                />
+              </div>
               <div className="grid gap-4 mt-6 w-60">
                 {topics.map((topic, index) => (
                   <TopicCard topic={topic} key={index} />
