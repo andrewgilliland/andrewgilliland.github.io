@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { Post } from "@/types";
 import CodeBlock from "./CodeBlock";
+import { Note } from "@/types";
 
 type BlogCardProps = {
-  post: Post;
+  slug: string;
+  note: Note;
   index: number;
 };
 
-const BlogCard = ({ post, index }: BlogCardProps) => {
+const BlogCard = ({ slug, note, index }: BlogCardProps) => {
   const {
-    slug,
     frontmatter: { title, date, excerpt },
-  } = post;
+  } = note;
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
     month: "long",
