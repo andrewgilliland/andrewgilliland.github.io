@@ -8,6 +8,8 @@ import TopicCard from "@/components/TopicCard";
 import Link from "next/link";
 import { Note } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 type HomeProps = {
   notes: Note[];
@@ -28,6 +30,19 @@ export default function HomePage({ notes }: HomeProps) {
     { name: "Swift", path: "/notes/swift", color: "red" },
   ];
 
+  const [currentValue, setCurrentValue] = useState("front");
+  const values = ["front", "back", "side"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const index = (values.indexOf(currentValue) + 1) % values.length;
+
+      setCurrentValue(values[index]);
+    }, 300);
+
+    return () => clearInterval(interval); // This is important to clear the interval when the component unmounts
+  }, [currentValue]);
+
   return (
     <div className="relative">
       <div>
@@ -47,9 +62,18 @@ export default function HomePage({ notes }: HomeProps) {
           </div>
           <div className="flex-1 bg-emerald-300 p-16 flex justify-center items-center">
             <div className="flex flex-col justify-center items-center">
-              <h2 className="font-bold text-black text-2xl mt-8">
-                Some topics to explore:
-              </h2>
+              <div className="flex items-center gap-4">
+                <h2 className="font-bold text-black text-2xl">
+                  Some topics to explore:
+                </h2>
+                <Image
+                  src="/black-mage-1.png"
+                  className="w-auto"
+                  width={50}
+                  height={50}
+                  alt="Black Mage"
+                />
+              </div>
               <div className="grid gap-4 mt-6 w-60">
                 {topics.map((topic, index) => (
                   <TopicCard topic={topic} key={index} />
@@ -85,7 +109,31 @@ export default function HomePage({ notes }: HomeProps) {
               ))}
             </div>
           </div>
+          <div className="flex justify-center items-center mt-12 gap-10">
+            <Image
+              className="animate-bounce"
+              src={`/moogle-${currentValue}-1.png`}
+              width={50}
+              height={50}
+              alt="Moogle"
+            />
+            <Image
+              className="animate-bounce"
+              src="/moogle-back-1.png"
+              width={50}
+              height={50}
+              alt="Black Mage"
+            />
+            <Image
+              className="animate-bounce"
+              src="/moogle-side-1.png"
+              width={50}
+              height={50}
+              alt="Black Mage"
+            />
+          </div>
         </section>
+
         <ColorDivider className="w-full h-6" />
       </div>
     </div>

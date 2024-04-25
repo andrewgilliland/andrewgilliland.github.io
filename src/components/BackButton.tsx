@@ -1,9 +1,13 @@
-import Link from "next/link";
+import { FC } from "react";
 
-const BackButton = () => (
-  <Link
+type BackButtonProps = {
+  back: () => void;
+};
+
+const BackButton: FC<BackButtonProps> = ({ back }) => (
+  <button
     className="group flex items-center text-gray-400 hover:text-gray-200 w-fit transition-colors"
-    href="/notes"
+    onClick={back}
   >
     <svg
       className="transform rotate-180 mr-1 stroke-2 stroke-current fill-none"
@@ -24,7 +28,7 @@ const BackButton = () => (
       </g>
     </svg>
     <div className="ml-1">Go Back</div>
-  </Link>
+  </button>
 );
 
 export default BackButton;
