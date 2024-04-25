@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Note } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 type HomeProps = {
   notes: Note[];
@@ -28,6 +29,19 @@ export default function HomePage({ notes }: HomeProps) {
     { name: "CSS", path: "/notes/css", color: "cyan" },
     { name: "Swift", path: "/notes/swift", color: "red" },
   ];
+
+  const [currentValue, setCurrentValue] = useState("front");
+  const values = ["front", "back", "side"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const index = (values.indexOf(currentValue) + 1) % values.length;
+
+      setCurrentValue(values[index]);
+    }, 300);
+
+    return () => clearInterval(interval); // This is important to clear the interval when the component unmounts
+  }, [currentValue]);
 
   return (
     <div className="relative">
@@ -54,6 +68,7 @@ export default function HomePage({ notes }: HomeProps) {
                 </h2>
                 <Image
                   src="/black-mage-1.png"
+                  className="w-auto"
                   width={50}
                   height={50}
                   alt="Black Mage"
@@ -94,7 +109,31 @@ export default function HomePage({ notes }: HomeProps) {
               ))}
             </div>
           </div>
+          <div className="flex justify-center items-center mt-12 gap-10">
+            <Image
+              className="animate-bounce"
+              src={`/moogle-${currentValue}-1.png`}
+              width={50}
+              height={50}
+              alt="Moogle"
+            />
+            <Image
+              className="animate-bounce"
+              src="/moogle-back-1.png"
+              width={50}
+              height={50}
+              alt="Black Mage"
+            />
+            <Image
+              className="animate-bounce"
+              src="/moogle-side-1.png"
+              width={50}
+              height={50}
+              alt="Black Mage"
+            />
+          </div>
         </section>
+
         <ColorDivider className="w-full h-6" />
       </div>
     </div>
