@@ -10,6 +10,7 @@ import { Note } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import BlackMage from "@/components/svg/BlackMage";
 
 type HomeProps = {
   notes: Note[];
@@ -31,17 +32,21 @@ export default function HomePage({ notes }: HomeProps) {
   ];
 
   const [currentValue, setCurrentValue] = useState("front");
-  const values = ["front", "back", "side"];
+  const [color, setColor] = useState("yellow");
 
   useEffect(() => {
+    const values = ["front", "back", "side"];
+    const colors = ["red", "green", "blue"];
     const interval = setInterval(() => {
       const index = (values.indexOf(currentValue) + 1) % values.length;
+      const colorIndex = (colors.indexOf(color) + 1) % colors.length;
 
       setCurrentValue(values[index]);
-    }, 300);
+      setColor(colors[colorIndex]);
+    }, 700);
 
     return () => clearInterval(interval); // This is important to clear the interval when the component unmounts
-  }, [currentValue]);
+  }, [currentValue, color]);
 
   return (
     <div className="relative">
@@ -66,13 +71,7 @@ export default function HomePage({ notes }: HomeProps) {
                 <h2 className="font-bold text-black text-2xl">
                   Some topics to explore:
                 </h2>
-                <Image
-                  src="/black-mage-1.png"
-                  className="w-auto"
-                  width={50}
-                  height={50}
-                  alt="Black Mage"
-                />
+                <BlackMage color={color} />
               </div>
               <div className="grid gap-4 mt-6 w-60">
                 {topics.map((topic, index) => (
@@ -112,7 +111,7 @@ export default function HomePage({ notes }: HomeProps) {
           <div className="flex justify-center items-center mt-12 gap-10">
             <Image
               className="animate-bounce"
-              src={`/moogle-${currentValue}-1.png`}
+              src={`/moogle-front-1.png`}
               width={50}
               height={50}
               alt="Moogle"
