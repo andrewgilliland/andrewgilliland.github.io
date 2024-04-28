@@ -7,6 +7,7 @@ import Fighter from "@/components/svg/pixel-art/Fighter";
 import WhiteMage from "@/components/svg/pixel-art/WhiteMage";
 import Thief from "@/components/svg/pixel-art/Thief";
 import Monk from "@/components/svg/pixel-art/Monk";
+import Garland from "@/components/svg/pixel-art/Garland";
 
 const AboutPage = () => {
   return (
@@ -63,13 +64,16 @@ const AboutPage = () => {
           </p>
           <div className="mt-8">
             <h3 className="font-semibold text-2xl">Final Fantasy</h3>
-            <div className="flex items-end gap-4 mt-4">
-              <Fighter />
-              <BlackMage />
-              <WhiteMage />
-              <Thief />
-              <RedMage />
-              <Monk />
+            <div className="flex justify-between gap-4 mt-4">
+              <Garland />
+              <div>
+                <Fighter />
+                <BlackMage />
+                <WhiteMage />
+                <Thief />
+                <RedMage />
+                <Monk />
+              </div>
             </div>
           </div>
         </div>
