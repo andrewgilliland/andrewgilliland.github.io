@@ -1,8 +1,12 @@
 import Image from "next/image";
 import { socialLinks } from "@/lib/utils/social";
 import ExternalLink from "@/components/ExternalLink";
-import BlackMage from "@/components/svg/BlackMage";
-import RedMage from "@/components/svg/RedMage";
+import BlackMage from "@/components/svg/pixel-art/BlackMage";
+import RedMage from "@/components/svg/pixel-art/RedMage";
+import Fighter from "@/components/svg/pixel-art/Fighter";
+import WhiteMage from "@/components/svg/pixel-art/WhiteMage";
+import Thief from "@/components/svg/pixel-art/Thief";
+import Monk from "@/components/svg/pixel-art/Monk";
 
 const AboutPage = () => {
   return (
@@ -59,9 +63,13 @@ const AboutPage = () => {
           </p>
           <div className="mt-8">
             <h3 className="font-semibold text-2xl">Final Fantasy</h3>
-            <div className="flex gap-4 mt-4">
+            <div className="flex items-end gap-4 mt-4">
+              <Fighter />
               <BlackMage />
+              <WhiteMage />
+              <Thief />
               <RedMage />
+              <Monk />
             </div>
           </div>
         </div>
