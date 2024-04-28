@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { socialLinks } from "@/lib/utils/social";
 import ExternalLink from "@/components/ExternalLink";
+import BlackMage from "@/components/svg/BlackMage";
+import RedMage from "@/components/svg/RedMage";
 
 const AboutPage = () => {
   return (
@@ -39,6 +41,29 @@ const AboutPage = () => {
           <div className="bg-black border-2 border-white rounded-lg col-span-1 row-span-1"></div>
           <div className="bg-black border-2 border-white rounded-lg col-span-1 row-span-1"></div>
           <div className="bg-black border-2 border-white rounded-lg col-span-1 row-span-1"></div>
+        </div>
+      </section>
+
+      <section className="font-pixel text-white border-2 border-white mt-12 p-10">
+        <h2 id="pixel-art" className="font-semibold text-3xl">
+          Pixel Art
+        </h2>
+        <div>
+          <p className="mt-4 text-lg">
+            I have always been a fan of pixel art and have recently started
+            creating my own. I have been using Figma to create my art and have
+            been learning the ins and outs of creating pixel art. I have been
+            creating a lot of Final Fantasy inspired art and have been enjoying
+            the process. I am always looking for new ideas and inspiration for
+            my art.
+          </p>
+          <div className="mt-8">
+            <h3 className="font-semibold text-2xl">Final Fantasy</h3>
+            <div className="flex gap-4 mt-4">
+              <BlackMage />
+              <RedMage />
+            </div>
+          </div>
         </div>
       </section>
 

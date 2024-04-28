@@ -2,10 +2,10 @@ import { FC } from "react";
 import colors from "tailwindcss/colors";
 
 type BlackMageProps = {
-  color: string;
+  color?: string;
 };
 
-const BlackMage: FC<BlackMageProps> = ({ color }) => {
+const BlackMage: FC<BlackMageProps> = ({ color = "blue" }) => {
   const robe = colors.blue[600];
   const secondary = colors.amber[300];
   const hat = {
@@ -21,6 +21,7 @@ const BlackMage: FC<BlackMageProps> = ({ color }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <title>Black Mage</title>
       <g>
         <g>
           <rect x="150" width="10" height="10" fill="black" />

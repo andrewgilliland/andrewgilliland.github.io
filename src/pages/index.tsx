@@ -8,10 +8,8 @@ import TopicCard from "@/components/TopicCard";
 import Link from "next/link";
 import { Note } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
+
 import { useEffect, useState } from "react";
-import BlackMage from "@/components/svg/BlackMage";
-import RedMage from "@/components/svg/RedMage";
 
 type HomeProps = {
   notes: Note[];
@@ -69,11 +67,9 @@ export default function HomePage({ notes }: HomeProps) {
           <div className="flex-1 bg-emerald-300 p-16 flex justify-center items-center">
             <div className="flex flex-col justify-center items-center">
               <div className="flex items-center gap-4">
-                <RedMage className="scale-x-[-1]" />
                 <h2 className="font-bold text-black text-2xl">
                   Some topics to explore:
                 </h2>
-                <BlackMage color={color} />
               </div>
               <div className="grid gap-4 mt-6 w-60">
                 {topics.map((topic, index) => (
@@ -110,30 +106,7 @@ export default function HomePage({ notes }: HomeProps) {
               ))}
             </div>
           </div>
-          <div className="flex justify-center items-center mt-12 gap-10">
-            {/* <Image
-              className="animate-bounce"
-              src={`/moogle-front-1.png`}
-              width={50}
-              height={50}
-              alt="Moogle"
-            />
-            <Image
-              className="animate-bounce"
-              src="/moogle-back-1.png"
-              width={50}
-              height={50}
-              alt="Black Mage"
-            />
-            <Image
-              className="animate-bounce"
-              src="/moogle-side-1.png"
-              width={50}
-              height={50}
-              alt="Black Mage"
-            /> */}
-            {/* <h2 className="font-pixel text-white">Pixel Art</h2> */}
-          </div>
+          <div className="flex justify-center items-center mt-12 gap-10"></div>
         </section>
 
         <ColorDivider className="w-full h-6" />
