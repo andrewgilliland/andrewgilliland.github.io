@@ -17,6 +17,17 @@
   }
 }
 
+::-moz-selection {
+  /* Code for Firefox */
+  color: theme("colors.white");
+  background: theme("colors.pink.600");
+}
+
+::selection {
+  color: theme("colors.white");
+  background: theme("colors.pink.600");
+}
+
 html {
   scroll-behavior: smooth;
 }
