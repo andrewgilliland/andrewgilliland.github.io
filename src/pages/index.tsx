@@ -11,6 +11,7 @@ import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import BlackMage from "@/components/svg/BlackMage";
+import RedMage from "@/components/svg/RedMage";
 
 type HomeProps = {
   notes: Note[];
@@ -68,6 +69,7 @@ export default function HomePage({ notes }: HomeProps) {
           <div className="flex-1 bg-emerald-300 p-16 flex justify-center items-center">
             <div className="flex flex-col justify-center items-center">
               <div className="flex items-center gap-4">
+                <RedMage className="scale-x-[-1]" />
                 <h2 className="font-bold text-black text-2xl">
                   Some topics to explore:
                 </h2>
