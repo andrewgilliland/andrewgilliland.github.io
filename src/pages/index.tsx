@@ -111,7 +111,7 @@ export default function HomePage({ notes }: HomeProps) {
             </div>
           </div>
           <div className="flex justify-center items-center mt-12 gap-10">
-            <Image
+            {/* <Image
               className="animate-bounce"
               src={`/moogle-front-1.png`}
               width={50}
@@ -131,7 +131,8 @@ export default function HomePage({ notes }: HomeProps) {
               width={50}
               height={50}
               alt="Black Mage"
-            />
+            /> */}
+            {/* <h2 className="font-pixel text-white">Pixel Art</h2> */}
           </div>
         </section>
 
