@@ -1,8 +1,8 @@
 const Garland = () => {
   return (
     <svg
-      width="180"
-      height="160"
+      width="144"
+      height="128"
       viewBox="0 0 360 320"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

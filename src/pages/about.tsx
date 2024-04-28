@@ -43,13 +43,23 @@ const AboutPage = () => {
               music aficionado.
             </p>
           </div>
-          <div className="bg-black border-2 border-white rounded-lg col-span-1 row-span-1"></div>
-          <div className="bg-black border-2 border-white rounded-lg col-span-1 row-span-1"></div>
-          <div className="bg-black border-2 border-white rounded-lg col-span-1 row-span-1"></div>
+          {socialLinks.map(({ title, href }, index) => (
+            <div
+              key={index}
+              className="flex justify-center items-center bg-black border-2 border-white rounded-lg col-span-1 row-span-1"
+            >
+              <a className={`group`} href={href}>
+                <div className="font-semibold text-cyan-300 text-xl">
+                  {title}
+                </div>
+                <div className="bg-cyan-300 h-0.5 w-[0%] rounded-full group-hover:w-full transition-all" />
+              </a>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className="font-pixel text-white border-2 border-white mt-12 p-10">
+      <section className="font-pixel text-white border-2 border-white my-20 p-10">
         <h2 id="pixel-art" className="font-semibold text-3xl">
           Pixel Art
         </h2>
@@ -78,15 +88,6 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-
-      <div className="flex flex-col items-start mt-10">
-        {socialLinks.map(({ title, href }, index) => (
-          <a key={index} className={`group ${index ? "mt-6" : ""}`} href={href}>
-            <div className="font-semibold text-cyan-300 text-xl">{title}</div>
-            <div className="bg-cyan-300 h-0.5 w-[0%] rounded-full group-hover:w-full transition-all" />
-          </a>
-        ))}
-      </div>
     </div>
   );
 };
