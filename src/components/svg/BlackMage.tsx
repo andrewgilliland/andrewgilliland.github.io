@@ -6,7 +6,7 @@ type BlackMageProps = {
 };
 
 const BlackMage: FC<BlackMageProps> = ({ color }) => {
-  const robe = colors[color][600];
+  const robe = colors.blue[600];
   const secondary = colors.amber[300];
   const hat = {
     dark: colors.amber[900],
