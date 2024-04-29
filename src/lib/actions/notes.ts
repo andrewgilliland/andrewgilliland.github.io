@@ -44,10 +44,61 @@ const getNotes = async (): Promise<{ notes: Note[] }> => {
   // );
 
   return {
-    // posts: JSON.parse(JSON.stringify(posts)),
-
-    notes: JSON.parse(JSON.stringify(notes)),
+    notes: notes,
   };
 };
 
-export { getNotes };
+const getNotesAndTopics = async () => {
+  const topics = fs
+    .readdirSync("./posts", { withFileTypes: true })
+    .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
+    .filter((dirent) => dirent !== null)
+    .map((topic) => ({
+      name: topic!,
+      path: `/notes/${topic}`,
+    }));
+
+  const files = fs
+    .readdirSync("./posts", { withFileTypes: true })
+    .map((dirent) => (dirent.isFile() ? dirent.name : null))
+    .filter((dirent) => dirent !== null);
+
+  // const mostRecentPosts = fs
+  //   .readdirSync("./posts", { withFileTypes: true })
+  //   .map((dirent) =>
+  //     dirent.isFile()
+  //       ? {
+  //           name: dirent.name,
+  //           lastUpdated: fs.statSync(path.join("./posts", dirent.name)).mtime,
+  //         }
+  //       : null
+  //   )
+  //   .filter((file) => file !== null)
+  //   .sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime())
+  //   .slice(0, 5);
+
+  const notes = files.map((filename) => {
+    const markdownWithMeta = fs.readFileSync(
+      path.join("posts", filename!),
+      "utf-8"
+    );
+    const { data: frontmatter } = matter(markdownWithMeta);
+    frontmatter.date = new Date(frontmatter.date);
+
+    return {
+      path: filename?.replace(".md", ""),
+      frontmatter,
+    };
+  });
+
+  notes.sort(
+    (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
+  );
+
+  return {
+    notes: notes,
+    topics: topics,
+  };
+};
+
+export { getNotes, getNotesAndTopics };
