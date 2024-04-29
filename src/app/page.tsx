@@ -1,15 +1,12 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
-
 import PrimaryButton from "@/components/PrimaryButton";
 import ColorDivider from "@/components/ColorDivider";
 import TopicCard from "@/components/TopicCard";
 import Link from "next/link";
 import { Note } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import { getNotes } from "@/lib/actions/notes";
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 type HomeProps = {
   notes: Note[];
@@ -19,7 +16,9 @@ type HomeProps = {
 // https://gumroad.com/
 // https://salehmubashar.com/
 
-export default function HomePage({ notes }: HomeProps) {
+export default async function HomePage() {
+  const { notes } = await getNotes();
+
   const topics = [
     {
       name: "JavaScript",
@@ -30,22 +29,22 @@ export default function HomePage({ notes }: HomeProps) {
     { name: "Swift", path: "/notes/swift", color: "red" },
   ];
 
-  const [currentValue, setCurrentValue] = useState("front");
-  const [color, setColor] = useState("yellow");
+  //   const [currentValue, setCurrentValue] = useState("front");
+  //   const [color, setColor] = useState("yellow");
 
-  useEffect(() => {
-    const values = ["front", "back", "side"];
-    const colors = ["red", "green", "blue"];
-    const interval = setInterval(() => {
-      const index = (values.indexOf(currentValue) + 1) % values.length;
-      const colorIndex = (colors.indexOf(color) + 1) % colors.length;
+  //   useEffect(() => {
+  //     const values = ["front", "back", "side"];
+  //     const colors = ["red", "green", "blue"];
+  //     const interval = setInterval(() => {
+  //       const index = (values.indexOf(currentValue) + 1) % values.length;
+  //       const colorIndex = (colors.indexOf(color) + 1) % colors.length;
 
-      setCurrentValue(values[index]);
-      setColor(colors[colorIndex]);
-    }, 700);
+  //       setCurrentValue(values[index]);
+  //       setColor(colors[colorIndex]);
+  //     }, 700);
 
-    return () => clearInterval(interval); // This is important to clear the interval when the component unmounts
-  }, [currentValue, color]);
+  //     return () => clearInterval(interval); // This is important to clear the interval when the component unmounts
+  //   }, [currentValue, color]);
 
   return (
     <div className="relative">
@@ -115,51 +114,51 @@ export default function HomePage({ notes }: HomeProps) {
   );
 }
 
-export async function getStaticProps() {
-  function getFilesPaths(rootDirectory: string) {
-    let entries = fs.readdirSync(rootDirectory, { withFileTypes: true });
+// export async function getStaticProps() {
+//   function getFilesPaths(rootDirectory: string) {
+//     let entries = fs.readdirSync(rootDirectory, { withFileTypes: true });
 
-    let files = entries
-      .filter((entry) => !entry.isDirectory())
-      .map((entry) => path.join(rootDirectory, entry.name)); // maps to an array of file paths
+//     let files = entries
+//       .filter((entry) => !entry.isDirectory())
+//       .map((entry) => path.join(rootDirectory, entry.name)); // maps to an array of file paths
 
-    let directories = entries.filter((entry) => entry.isDirectory());
+//     let directories = entries.filter((entry) => entry.isDirectory());
 
-    for (let directory of directories) {
-      let subdirPaths = getFilesPaths(
-        path.join(`${rootDirectory}`, directory.name)
-      );
+//     for (let directory of directories) {
+//       let subdirPaths = getFilesPaths(
+//         path.join(`${rootDirectory}`, directory.name)
+//       );
 
-      files = files.concat(subdirPaths); // adds the file paths from the subdirectories
-    }
+//       files = files.concat(subdirPaths); // adds the file paths from the subdirectories
+//     }
 
-    return files;
-  }
+//     return files;
+//   }
 
-  let filePaths = getFilesPaths("./posts");
+//   let filePaths = getFilesPaths("./posts");
 
-  const notes = filePaths.map((filePath) => {
-    const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
-    const { data: frontmatter } = matter(markdownWithMeta);
-    frontmatter.date = new Date(frontmatter.date);
+//   const notes = filePaths.map((filePath) => {
+//     const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
+//     const { data: frontmatter } = matter(markdownWithMeta);
+//     frontmatter.date = new Date(frontmatter.date);
 
-    const note = {
-      path: filePath.replace(/\.md$/, "").replace(/^posts\//, "notes/"),
-      frontmatter,
-    };
+//     const note = {
+//       path: filePath.replace(/\.md$/, "").replace(/^posts\//, "notes/"),
+//       frontmatter,
+//     };
 
-    return note;
-  });
+//     return note;
+//   });
 
-  // posts.sort(
-  //   (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
-  // );
+//   // posts.sort(
+//   //   (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
+//   // );
 
-  return {
-    props: {
-      // posts: JSON.parse(JSON.stringify(posts)),
-      posts: [],
-      notes: JSON.parse(JSON.stringify(notes)),
-    },
-  };
-}
+//   return {
+//     props: {
+//       // posts: JSON.parse(JSON.stringify(posts)),
+//       posts: [],
+//       notes: JSON.parse(JSON.stringify(notes)),
+//     },
+//   };
+// }

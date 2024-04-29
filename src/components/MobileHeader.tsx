@@ -1,9 +1,10 @@
+"use client";
 import { useEffect, useState } from "react";
 import HeaderHeading from "./HeaderHeading";
 import { Bars3Icon, XCircleIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { Page } from "@/types";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type MobileHeaderProps = {
   pages: Page[];
