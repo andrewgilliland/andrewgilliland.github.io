@@ -9,6 +9,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["var(--font-noto-sans)"],
+        brand: ["var(--font-space-grotesk)"],
+        pixel: ["var(--font-pixelify-sans)"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
