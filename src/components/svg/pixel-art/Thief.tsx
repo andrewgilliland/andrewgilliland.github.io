@@ -8,7 +8,7 @@ const Thief = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <title>Thief</title>
-      <g clip-path="url(#clip0_64_1007)">
+      <g >
         <rect x="20" width="10" height="10" fill="black" />
         <rect x="30" width="10" height="10" fill="black" />
         <rect x="40" width="10" height="10" fill="black" />
