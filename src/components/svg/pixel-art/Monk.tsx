@@ -8,7 +8,7 @@ const Monk = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <title>Monk</title>
-      <g clip-path="url(#clip0_66_1384)">
+      <g>
         <rect x="50" width="10" height="10" fill="black" />
         <rect x="50" y="10" width="10" height="10" fill="black" />
         <rect x="40" y="10" width="10" height="10" fill="black" />

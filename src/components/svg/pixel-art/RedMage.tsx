@@ -15,7 +15,7 @@ const RedMage: FC<RedMageProps> = ({ className }) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <title>Red Mage</title>
-      <g clip-path="url(#clip0_48_3)">
+      <g>
         <rect x="160" y="250" width="10" height="10" fill="black" />
         <rect x="170" y="240" width="10" height="10" fill="black" />
         <rect x="170" y="230" width="10" height="10" fill="black" />
