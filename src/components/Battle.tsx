@@ -17,6 +17,29 @@ export type BattleState =
   | "dead";
 
 const Battle = () => {
+  const battleState = {
+    ready: "ready",
+    attack: "attack",
+    cast: "cast",
+    defend: "defend",
+    hurt: "hurt",
+    dead: "dead",
+  };
+
+  const initialBattleStore = {
+    characters: [
+      "fighter",
+      "blackMage",
+      "whiteMage",
+      "thief",
+      "redMage",
+      "monk",
+    ],
+    activeCharacter: "fighter",
+    battleState: battleState.ready,
+    enemy: { name: "Garland", health: 1000 },
+  };
+
   const [blackMage, setBlackMage] = useState<BattleState>("ready");
 
   const cast = () => {
@@ -32,7 +55,9 @@ const Battle = () => {
       <h3 className="font-semibold text-2xl">Final Fantasy</h3>
       <div className="flex justify-between gap-4 mt-4">
         <div className="flex flex-col justify-between border-4 border-white rounded p-1 w-full">
-          <Garland />
+          <div className="p-4">
+            <Garland />
+          </div>
           <div className="flex gap-1">
             <div className="flex flex-col justify-between border-4 border-white rounded p-2 w-full">
               <div>Garland</div>
@@ -40,7 +65,12 @@ const Battle = () => {
             <div className="border-4 border-white rounded">
               <button
                 onClick={() => {
-                  // !Todo: Implement attack function
+                  // Todo: Implement attack function
+                  // !This needs fixed
+                  // This is a comment
+                  // * This is a note
+                  // ? What is this
+
                   console.log("Attacking");
                 }}
                 className="bg-black text-white px-4 py-1"
@@ -55,7 +85,9 @@ const Battle = () => {
         </div>
         <div className="border-4 border-white rounded py-4 pl-24 pr-4">
           <Fighter />
-          <BlackMage state={blackMage} />
+          <div className="transition hover:-translate-x-10 ">
+            <BlackMage state={blackMage} />
+          </div>
           <WhiteMage />
           <Thief />
           <RedMage />

@@ -1,91 +1,84 @@
 import Image from "next/image";
 import { socialLinks } from "@/lib/utils/social";
 import ExternalLink from "@/components/ExternalLink";
-import BlackMage from "@/components/svg/pixel-art/BlackMage";
-import RedMage from "@/components/svg/pixel-art/RedMage";
-import Fighter from "@/components/svg/pixel-art/Fighter";
-import WhiteMage from "@/components/svg/pixel-art/WhiteMage";
-import Thief from "@/components/svg/pixel-art/Thief";
-import Monk from "@/components/svg/pixel-art/Monk";
-import Garland from "@/components/svg/pixel-art/Garland";
 
 const AboutPage = () => {
   return (
-    <div className="max-w-3xl w-full mx-auto mt-14 px-8">
-      <h1 className="font-bold text-gray-100 text-3xl md:text-4xl stroke-white md:mx-0">
+    <div className="max-w-3xl w-full mx-auto px-8 py-14 bg-emerald-300">
+      <h1 className="font-bold text-white text-3xl md:text-4xl stroke-black md:mx-0">
         About
       </h1>
 
       <section className="mt-10">
-        <div className="grid grid-cols-3 grid-rows-3 bg-emerald-300 border-2 border-white rounded-lg gap-6 p-6">
-          <div className="flex flex-col items-center  bg-black border-2 border-white rounded-lg col-span-1 row-span-2 p-4">
-            <Image
-              src="/andy-2.jpg"
-              width={200}
-              height={200}
-              alt="Andrew Gilliland"
-              className="border-2 border-white rounded-lg mb-2"
-            />
-
-            <ExternalLink
-              href="https://andrewgilliland.notion.site/Resume-e726ff3b64e841de86ce23de5a4ef0af?pvs=4"
-              text="Resume"
-            />
-          </div>
-          <div className="bg-black border-2 border-white rounded-lg col-span-2 row-span-2 p-4">
-            <p className="text-lg">
-              Hi, I&apos;m Andrew. I&apos;m a mobile developer living
-              Bloomington, Illinois. I am passionate about constantly learning
-              and using new mobile and web technologies. I currently work mainly
-              with React Native and Swift to build mobile applications, but
-              always enjoy implementing new technologies. In my spare time, I
-              enjoy learning about fitness and nutrition, woodworking and am a
-              music aficionado.
-            </p>
-          </div>
-          {socialLinks.map(({ title, href }, index) => (
-            <div
-              key={index}
-              className="flex justify-center items-center bg-black border-2 border-white rounded-lg col-span-1 row-span-1"
-            >
-              <a className={`group`} href={href}>
-                <div className="font-semibold text-cyan-300 text-xl">
-                  {title}
+        <div className="grid grid-cols-4 grid-rows-3 gap-6">
+          <div className="relative col-span-2 row-span-1">
+            <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
+            <div className="relative bg-cyan-300 border-2 border-black rounded-lg p-4">
+              <div className="flex gap-4">
+                <Image
+                  src="/andy-2.jpg"
+                  width={200}
+                  height={200}
+                  alt="Andrew Gilliland"
+                  className="bg-black rounded-lg h-32 w-32 object-contain"
+                />
+                <div className="text-white text-sm flex flex-col justify-between">
+                  <div className="text-center bg-black rounded-lg min-w-max px-4 py-4">
+                    Full Stack Developer
+                  </div>
+                  <div className="text-center bg-black rounded-lg px-4 py-4">
+                    Bloomington, IL
+                  </div>
                 </div>
-                <div className="bg-cyan-300 h-0.5 w-[0%] rounded-full group-hover:w-full transition-all" />
-              </a>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="font-pixel text-white border-2 border-white my-20 p-10">
-        <h2 id="pixel-art" className="font-semibold text-3xl">
-          Pixel Art
-        </h2>
-        <div>
-          <p className="mt-4 text-lg">
-            I have always been a fan of pixel art and have recently started
-            creating my own. I have been using Figma to create my art and have
-            been learning the ins and outs of creating pixel art. I have been
-            creating a lot of Final Fantasy inspired art and have been enjoying
-            the process. I am always looking for new ideas and inspiration for
-            my art.
-          </p>
-          <div className="mt-8">
-            <h3 className="font-semibold text-2xl">Final Fantasy</h3>
-            <div className="flex justify-between gap-4 mt-4">
-              <Garland />
-              <div>
-                <Fighter />
-                <BlackMage />
-                <WhiteMage />
-                <Thief />
-                <RedMage />
-                <Monk />
               </div>
             </div>
           </div>
+
+          <div className="relative col-span-1 row-span-1">
+            <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
+            <div className="relative flex border-2 border-black rounded-lg w-full h-full">
+              <div className="bg-yellow-300 rounded-l-lg h-full w-1/4" />
+              <div className="bg-cyan-300 h-full w-1/4" />
+              <div className="bg-pink-300 h-full w-1/4" />
+              <div className="bg-emerald-300 rounded-r-lg h-full w-1/4" />
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
+            <div className="relative flex justify-center items-center bg-pink-300 border-2 border-black rounded-lg h-full">
+              <ExternalLink
+                href="https://andrewgilliland.notion.site/Resume-e726ff3b64e841de86ce23de5a4ef0af?pvs=4"
+                text="Resume"
+              />
+            </div>
+          </div>
+
+          <div className="relative col-span-2 row-span-2">
+            <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
+            <div className="relative bg-yellow-300 border-2 border-black rounded-lg p-4 h-full">
+              <p className="font-semibold text-black text-lg">
+                I am passionate about constantly learning and using new mobile
+                and web technologies. I currently work mainly with React Native
+                and Swift to build mobile applications, but always enjoy
+                implementing new technologies. In my spare time, I enjoy
+                learning about fitness and nutrition, woodworking and am a music
+                aficionado.
+              </p>
+            </div>
+          </div>
+
+          {socialLinks.map(({ title, Icon, href }, index) => (
+            <div
+              key={index}
+              className="flex flex-col justify-center items-center bg-black border-2 border-white rounded-lg col-span-1 row-span-1"
+            >
+              <a className={`group bg-black rounded-lg px-4 py-2`} href={href}>
+                <div className="font-semibold text-white text-lg">{title}</div>
+                <div className="bg-white h-0.5 w-[0%] rounded-full group-hover:w-full transition-all" />
+              </a>
+            </div>
+          ))}
         </div>
       </section>
     </div>

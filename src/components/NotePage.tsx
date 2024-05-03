@@ -17,30 +17,30 @@ const NotePage: FC<NotePageProps> = ({
   },
 }) => {
   const router = useRouter();
-  const [headingElements, setHeadingElements] = useState<HeadingElement[]>([]);
+  // const [headingElements, setHeadingElements] = useState<HeadingElement[]>([]);
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
 
-  useEffect(() => {
-    const childElements = document.querySelector(".prose").children;
-    const elements = [];
+  // useEffect(() => {
+  //   const childElements = document.querySelector(".prose").children;
+  //   const elements = [];
 
-    for (const element of childElements) {
-      const typedElement = element as HTMLElement;
-      if (typedElement.id) {
-        elements.push({
-          id: typedElement.id,
-          text: typedElement.textContent,
-          tag: typedElement.tagName,
-        });
-      }
-    }
+  //   for (const element of childElements) {
+  //     const typedElement = element as HTMLElement;
+  //     if (typedElement.id) {
+  //       elements.push({
+  //         id: typedElement.id,
+  //         text: typedElement.textContent,
+  //         tag: typedElement.tagName,
+  //       });
+  //     }
+  //   }
 
-    setHeadingElements(elements);
-  }, []);
+  //   setHeadingElements(elements);
+  // }, []);
 
   return (
     <div className="px-[10%] md:p-0 md:w-[40em] mx-auto mt-12">

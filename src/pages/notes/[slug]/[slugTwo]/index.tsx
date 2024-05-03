@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { RoutePageProps } from "@/types";
-import Route from "@/components/Route";
+import NoteRoute from "@/components/NoteRoute";
 
 export async function getStaticPaths() {
   const folders = fs
@@ -83,6 +83,8 @@ export async function getStaticProps({ params: { slug, slugTwo } }) {
   }
 }
 
-const NotesRouteTwoPage: FC<RoutePageProps> = (props) => <Route {...props} />;
+const NotesRouteTwoPage: FC<RoutePageProps> = (props) => (
+  <NoteRoute {...props} />
+);
 
 export default NotesRouteTwoPage;
