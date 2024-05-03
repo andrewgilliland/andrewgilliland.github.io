@@ -13,22 +13,44 @@ const AboutPage = () => {
         <div className="grid grid-cols-4 grid-rows-3 gap-6">
           <div className="relative col-span-2 row-span-1">
             <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
-            <div className="relative flex justify-between items-center bg-cyan-300 border-2 border-black rounded-lg p-4">
-              <Image
-                src="/andy-2.jpg"
-                width={200}
-                height={200}
-                alt="Andrew Gilliland"
-                className="bg-black rounded-lg mb-2 h-32 w-32 object-contain"
-              />
-              <div className="text-sm flex flex-col gap-4">
-                <div className="text-center bg-black rounded-lg px-4 py-2">
-                  Full Stack Developer
-                </div>
-                <div className="text-center bg-black rounded-lg px-4 py-2">
-                  Bloomington, IL
+            <div className="relative bg-cyan-300 border-2 border-black rounded-lg p-4">
+              <div className="flex gap-4">
+                <Image
+                  src="/andy-2.jpg"
+                  width={200}
+                  height={200}
+                  alt="Andrew Gilliland"
+                  className="bg-black rounded-lg h-32 w-32 object-contain"
+                />
+                <div className="text-white text-sm flex flex-col justify-between">
+                  <div className="text-center bg-black rounded-lg min-w-max px-4 py-4">
+                    Full Stack Developer
+                  </div>
+                  <div className="text-center bg-black rounded-lg px-4 py-4">
+                    Bloomington, IL
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className="relative col-span-1 row-span-1">
+            <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
+            <div className="relative flex border-2 border-black rounded-lg w-full h-full">
+              <div className="bg-yellow-300 rounded-l-lg h-full w-1/4" />
+              <div className="bg-cyan-300 h-full w-1/4" />
+              <div className="bg-pink-300 h-full w-1/4" />
+              <div className="bg-emerald-300 rounded-r-lg h-full w-1/4" />
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
+            <div className="relative flex justify-center items-center bg-pink-300 border-2 border-black rounded-lg h-full">
+              <ExternalLink
+                href="https://andrewgilliland.notion.site/Resume-e726ff3b64e841de86ce23de5a4ef0af?pvs=4"
+                text="Resume"
+              />
             </div>
           </div>
 
@@ -45,17 +67,7 @@ const AboutPage = () => {
               </p>
             </div>
           </div>
-          <div className="flex justify-center items-center bg-pink-300 border-2 border-black rounded-lg">
-            <ExternalLink
-              href="https://andrewgilliland.notion.site/Resume-e726ff3b64e841de86ce23de5a4ef0af?pvs=4"
-              text="Resume"
-            />
-          </div>
-          <div className="flex bg-emerald-300 border-2 border-black rounded-lg w-full h-full col-span-1 row-span-1">
-            <div className="bg-yellow-300 rounded-l-lg h-full w-1/4" />
-            <div className="bg-cyan-300 h-full w-1/4" />
-            <div className="bg-pink-300 h-full w-1/4" />
-          </div>
+
           {socialLinks.map(({ title, Icon, href }, index) => (
             <div
               key={index}
