@@ -1,3 +1,5 @@
+import NotePage from "@/components/NotePage";
+import NoteRoute from "@/components/NoteRoute";
 import NotesPageBody from "@/components/NotesPageBody";
 import { getNotesFromSlug } from "@/lib/actions/notes";
 import { NextPage } from "next";
@@ -11,11 +13,9 @@ type NotesRouteOnePageProps = {
 const NotesRouteOnePage: NextPage<NotesRouteOnePageProps> = async ({
   params: { slug },
 }) => {
-  console.log("params: ", slug);
+  const { note, topic, notes, topics } = await getNotesFromSlug(slug);
 
-  const { topic, notes, topics } = await getNotesFromSlug(slug);
-
-  return <NotesPageBody topic={topic} notes={notes} topics={topics} />;
+  return <NoteRoute note={note} topic={topic} topics={topics} notes={notes} />;
 };
 
 export default NotesRouteOnePage;
