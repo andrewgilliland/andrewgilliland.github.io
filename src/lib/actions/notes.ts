@@ -124,9 +124,7 @@ const getNotesFromSlug = async (slug: string) => {
     };
 
     return {
-      props: {
-        note,
-      },
+      note,
     };
   } else {
     const topics = fs
