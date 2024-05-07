@@ -107,8 +107,6 @@ const getNotesFromSlug = async (slug: string) => {
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
     .filter((dirent) => dirent !== null);
 
-  console.log(files);
-
   const isNote = files.includes(`${slug}.md`);
 
   if (isNote) {
@@ -185,9 +183,7 @@ const getNotesFromSlugTwo = async (slug, slugTwo) => {
     };
 
     return {
-      props: {
-        note,
-      },
+      note,
     };
   } else {
     const files = fs
