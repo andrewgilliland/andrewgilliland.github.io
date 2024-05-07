@@ -107,7 +107,7 @@ const getNotesFromSlug = async (slugOne: string) => {
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
     .filter((dirent) => dirent !== null);
 
-  const isNote = files.includes(`${slugOne}.md`);
+  const isNote = files.includes(`${slugOne}.md` || `${slugOne}.mdx`);
 
   if (isNote) {
     const markdownWithMeta = fs.readFileSync(
@@ -148,7 +148,7 @@ const getNotesFromSlug = async (slugOne: string) => {
       frontmatter.date = new Date(frontmatter.date);
 
       return {
-        path: `${slugOne}/${filename?.replace(".md", "")}`,
+        path: `${slugOne}/${filename?.replace(".mdx", "")}`,
         frontmatter,
       };
     });
@@ -167,11 +167,11 @@ const getNotesFromSlugTwo = async (slugOne: string, slugTwo: string) => {
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
     .filter((dirent) => dirent !== null);
 
-  const isNote = files.includes(`${slugTwo}.md`);
+  const isNote = files.includes(`${slugTwo}.mdx`);
 
   if (isNote) {
     const markdownWithMeta = fs.readFileSync(
-      path.join("posts", slugOne, `${slugTwo}.md`),
+      path.join("posts", slugOne, `${slugTwo}.mdx`),
       "utf-8"
     );
 
@@ -200,10 +200,12 @@ const getNotesFromSlugTwo = async (slugOne: string, slugTwo: string) => {
       frontmatter.date = new Date(frontmatter.date);
 
       return {
-        path: `${slugOne}/${slugTwo}/${filename.replace(".md", "")}`,
+        path: `${slugOne}/${slugTwo}/${filename.replace(".mdx", "")}`,
         frontmatter,
       };
     });
+
+    console.log("notes: ", notes);
 
     return {
       topic: slugTwo,

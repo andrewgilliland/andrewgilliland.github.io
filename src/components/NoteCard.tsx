@@ -18,6 +18,8 @@ const NoteCard = ({ note }: NoteCardProps) => {
     day: "numeric",
   });
 
+  console.log("NoteCard: path: ", path);
+
   return (
     <Link href={`/notes/${path}`} className="group relative">
       <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0" />
