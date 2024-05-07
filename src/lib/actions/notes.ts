@@ -101,17 +101,17 @@ const getNotesAndTopics = async () => {
   };
 };
 
-const getNotesFromSlug = async (slug: string) => {
+const getNotesFromSlug = async (slugOne: string) => {
   const files = fs
     .readdirSync(`./posts`, { withFileTypes: true })
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
     .filter((dirent) => dirent !== null);
 
-  const isNote = files.includes(`${slug}.md`);
+  const isNote = files.includes(`${slugOne}.md`);
 
   if (isNote) {
     const markdownWithMeta = fs.readFileSync(
-      path.join("posts", `${slug}.md`),
+      path.join("posts", `${slugOne}.md`),
       "utf-8"
     );
     const { data: frontmatter, content } = matter(markdownWithMeta);
@@ -126,44 +126,44 @@ const getNotesFromSlug = async (slug: string) => {
     };
   } else {
     const topics = fs
-      .readdirSync(`./posts/${slug}`, { withFileTypes: true })
+      .readdirSync(`./posts/${slugOne}`, { withFileTypes: true })
       .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
       .filter((dirent) => dirent !== null)
       .map((topic) => ({
         name: topic?.replace(/-/g, " "),
-        path: `/notes/${slug}/${topic}`,
+        path: `/notes/${slugOne}/${topic}`,
       }));
 
     const files = fs
-      .readdirSync(`./posts/${slug}`, { withFileTypes: true })
+      .readdirSync(`./posts/${slugOne}`, { withFileTypes: true })
       .map((dirent) => (dirent.isFile() ? dirent.name : null))
       .filter((dirent) => dirent !== null);
 
     const notes = files.map((filename) => {
       const markdownWithMeta = fs.readFileSync(
-        path.join(`posts/${slug}`, filename!),
+        path.join(`posts/${slugOne}`, filename!),
         "utf-8"
       );
       const { data: frontmatter } = matter(markdownWithMeta);
       frontmatter.date = new Date(frontmatter.date);
 
       return {
-        path: `${slug}/${filename?.replace(".md", "")}`,
+        path: `${slugOne}/${filename?.replace(".md", "")}`,
         frontmatter,
       };
     });
 
     return {
-      topic: slug,
+      topic: slugOne,
       topics: topics,
       notes: JSON.parse(JSON.stringify(notes)),
     };
   }
 };
 
-const getNotesFromSlugTwo = async (slug, slugTwo) => {
+const getNotesFromSlugTwo = async (slugOne: string, slugTwo: string) => {
   const files = fs
-    .readdirSync(`./posts/${slug}`, { withFileTypes: true })
+    .readdirSync(`./posts/${slugOne}`, { withFileTypes: true })
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
     .filter((dirent) => dirent !== null);
 
@@ -171,7 +171,7 @@ const getNotesFromSlugTwo = async (slug, slugTwo) => {
 
   if (isNote) {
     const markdownWithMeta = fs.readFileSync(
-      path.join("posts", slug, `${slugTwo}.md`),
+      path.join("posts", slugOne, `${slugTwo}.md`),
       "utf-8"
     );
 
@@ -187,20 +187,20 @@ const getNotesFromSlugTwo = async (slug, slugTwo) => {
     };
   } else {
     const files = fs
-      .readdirSync(`./posts/${slug}/${slugTwo}`, { withFileTypes: true })
+      .readdirSync(`./posts/${slugOne}/${slugTwo}`, { withFileTypes: true })
       .map((dirent) => (dirent.isFile() ? dirent.name : null))
       .filter((dirent) => dirent !== null);
 
     const notes = files.map((filename) => {
       const markdownWithMeta = fs.readFileSync(
-        path.join(`posts/${slug}/${slugTwo}`, filename),
+        path.join(`posts/${slugOne}/${slugTwo}`, filename),
         "utf-8"
       );
       const { data: frontmatter } = matter(markdownWithMeta);
       frontmatter.date = new Date(frontmatter.date);
 
       return {
-        path: `${slug}/${slugTwo}/${filename.replace(".md", "")}`,
+        path: `${slugOne}/${slugTwo}/${filename.replace(".md", "")}`,
         frontmatter,
       };
     });

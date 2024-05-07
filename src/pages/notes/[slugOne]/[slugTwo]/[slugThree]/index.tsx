@@ -23,7 +23,7 @@ export async function getStaticPaths() {
       );
       return files.map((filename) => ({
         params: {
-          slug: directoryOne,
+          slugOne: directoryOne,
           slugTwo: directoryTwo,
           slugThree: filename.replace(".md", ""),
         },
@@ -37,9 +37,11 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params: { slug, slugTwo, slugThree } }) {
+export async function getStaticProps({
+  params: { slugOne, slugTwo, slugThree },
+}) {
   const files = fs
-    .readdirSync(`./posts/${slug}/${slugTwo}`, { withFileTypes: true })
+    .readdirSync(`./posts/${slugOne}/${slugTwo}`, { withFileTypes: true })
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
     .filter((dirent) => dirent !== null);
 
@@ -47,7 +49,7 @@ export async function getStaticProps({ params: { slug, slugTwo, slugThree } }) {
 
   if (isNote) {
     const markdownWithMeta = fs.readFileSync(
-      path.join("posts", slug, slugTwo, `${slugThree}.md`),
+      path.join("posts", slugOne, slugTwo, `${slugThree}.md`),
       "utf-8"
     );
 
