@@ -1,14 +1,18 @@
 import NoteRoute from "@/components/NoteRoute";
-import { getNotesFromSlug } from "@/lib/actions/notes";
+import { getNotesFromSlugTwo } from "@/lib/actions/notes";
 
 type NotesRouteOnePageProps = {
   params: {
     slug: string;
+    slugTwo: string;
   };
 };
 
-const NotesRouteOnePage = async ({ params: { slug } }) => {
-  const { note, topic, notes, topics } = await getNotesFromSlug(slug);
+const NotesRouteOnePage = async ({ params: { slug, slugTwo } }) => {
+  const { note, topic, notes, topics } = await getNotesFromSlugTwo(
+    slug,
+    slugTwo
+  );
 
   return <NoteRoute note={note} topic={topic} topics={topics} notes={notes} />;
 };
@@ -19,18 +23,24 @@ export default NotesRouteOnePage;
 // import fs from "fs";
 // import path from "path";
 // import matter from "gray-matter";
-// import Route from "@/components/Route";
 // import { RoutePageProps } from "@/types";
+// import NoteRoute from "@/components/NoteRoute";
 
 // export async function getStaticPaths() {
-//   // Options can be either a directory or a file
-//   const options = fs.readdirSync(path.join("posts"));
+//   const folders = fs
+//     .readdirSync("./posts", { withFileTypes: true })
+//     .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
+//     .filter((dirent) => dirent !== null);
 
-//   const paths = options.map((option) => ({
-//     params: {
-//       slug: option.replace(".md", ""),
-//     },
-//   }));
+//   const paths = folders.flatMap((folder) => {
+//     const files = fs.readdirSync(path.join("posts", folder));
+//     return files.map((filename) => ({
+//       params: {
+//         slug: folder,
+//         slugTwo: filename.replace(".md", ""),
+//       },
+//     }));
+//   });
 
 //   return {
 //     paths,
@@ -38,19 +48,20 @@ export default NotesRouteOnePage;
 //   };
 // }
 
-// export async function getStaticProps({ params: { slug } }) {
+// export async function getStaticProps({ params: { slug, slugTwo } }) {
 //   const files = fs
-//     .readdirSync("./posts", { withFileTypes: true })
+//     .readdirSync(`./posts/${slug}`, { withFileTypes: true })
 //     .map((dirent) => (dirent.isFile() ? dirent.name : null))
 //     .filter((dirent) => dirent !== null);
 
-//   const isNote = files.includes(`${slug}.md`);
+//   const isNote = files.includes(`${slugTwo}.md`);
 
 //   if (isNote) {
 //     const markdownWithMeta = fs.readFileSync(
-//       path.join("posts", `${slug}.md`),
+//       path.join("posts", slug, `${slugTwo}.md`),
 //       "utf-8"
 //     );
+
 //     const { data: frontmatter, content } = matter(markdownWithMeta);
 
 //     const note = {
@@ -64,45 +75,37 @@ export default NotesRouteOnePage;
 //       },
 //     };
 //   } else {
-//     const topics = fs
-//       .readdirSync(`./posts/${slug}`, { withFileTypes: true })
-//       .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
-//       .filter((dirent) => dirent !== null)
-//       .map((topic) => ({
-//         name: topic.replace(/-/g, " "),
-//         path: `/notes/${slug}/${topic}`,
-//       }));
-
 //     const files = fs
-//       .readdirSync(`./posts/${slug}`, { withFileTypes: true })
+//       .readdirSync(`./posts/${slug}/${slugTwo}`, { withFileTypes: true })
 //       .map((dirent) => (dirent.isFile() ? dirent.name : null))
 //       .filter((dirent) => dirent !== null);
 
 //     const notes = files.map((filename) => {
 //       const markdownWithMeta = fs.readFileSync(
-//         path.join(`posts/${slug}`, filename),
+//         path.join(`posts/${slug}/${slugTwo}`, filename),
 //         "utf-8"
 //       );
 //       const { data: frontmatter } = matter(markdownWithMeta);
 //       frontmatter.date = new Date(frontmatter.date);
 
 //       return {
-//         path: `${slug}/${filename.replace(".md", "")}`,
+//         path: `${slug}/${slugTwo}/${filename.replace(".md", "")}`,
 //         frontmatter,
 //       };
 //     });
 
 //     return {
 //       props: {
-//         topic: slug,
-//         topics: topics,
+//         topic: slugTwo,
+//         topics: [],
 //         notes: JSON.parse(JSON.stringify(notes)),
 //       },
 //     };
 //   }
 // }
 
-// const NotesRouteOnePage: FC<RoutePageProps> = (props) => <Route {...props} />;
+// const NotesRouteTwoPage: FC<RoutePageProps> = (props) => (
+//   <NoteRoute {...props} />
+// );
 
-// export default NotesRouteOnePage;
-// Compare this snippet from src/app/notes/%5Bslug%5D/page.tsx:
+// export default NotesRouteTwoPage;
