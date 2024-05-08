@@ -27,7 +27,7 @@ const NotesPageBody: FC<NotesPageBodyProps> = ({ topics, topic, notes }) => {
       {notes.length > 0 && (
         <section className="mt-10 mx-8 md:mx-0 mb-24">
           <h2 className="capitalize font-bold text-gray-100 text-3xl md:text-4xl stroke-white">
-            {`${topic ? `${topic} ` : ""}Notes`}
+            Notes
           </h2>
           <div className="grid md:grid-cols-2 gap-8 mt-6">
             {notes.map((note, index) => (
