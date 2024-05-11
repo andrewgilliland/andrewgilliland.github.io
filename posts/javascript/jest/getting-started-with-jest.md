@@ -32,3 +32,7 @@ test("Adds 1 + 2 to equal 3", () => {
   expect(sum(1, 2)).toBe(3);
 });
 ```
+
+## Resources
+
+[Jest Docs](https://jestjs.io/docs/getting-started)
