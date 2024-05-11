@@ -50,6 +50,14 @@ const Battle = () => {
     }, 2000);
   };
 
+  const defend = () => {
+    console.log("Defending");
+    setBlackMage("defend");
+    setTimeout(() => {
+      setBlackMage("ready");
+    }, 2000);
+  };
+
   return (
     <div className="mt-8">
       <h3 className="font-semibold text-2xl">Final Fantasy</h3>
@@ -79,6 +87,12 @@ const Battle = () => {
               </button>
               <button onClick={cast} className="bg-black text-white px-4 py-1">
                 Cast
+              </button>
+              <button
+                onClick={defend}
+                className="bg-black text-white px-4 py-1"
+              >
+                Defend
               </button>
             </div>
           </div>
