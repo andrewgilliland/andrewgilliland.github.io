@@ -1,0 +1,34 @@
+---
+title: "Getting Started with Jest"
+date: "2024-05-10"
+excerpt: ""
+draft: true
+---
+
+Install the jest package as dev dependency:
+
+`npm install --save-dev jest`
+
+In the `package.json`, under the `scripts` key, change the value for the `test` key to `jest`:
+
+```
+"scripts": {
+    "test": "jest"
+  },
+```
+
+To make a test file, use the naming convention `index.test.js` if you were writing tests for `index.js`.
+
+In the `index.test.js` file, writing tests will use the convention:
+
+```
+test("test description", testFunction)
+```
+
+Here's an example of a test for a function `sum`:
+
+```
+test("Adds 1 + 2 to equal 3", () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
