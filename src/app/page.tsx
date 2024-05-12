@@ -5,8 +5,9 @@ import Link from "next/link";
 import { Note } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { getNotes } from "@/lib/actions/notes";
-
-// import { useEffect, useState } from "react";
+import DeepThought from "@/components/DeepThought";
+import { getGithubRepoFileContents } from "@/lib/actions/github";
+import { getRandomElement } from "@/lib/utils/array";
 
 type HomeProps = {
   notes: Note[];
@@ -19,6 +20,14 @@ type HomeProps = {
 export default async function HomePage() {
   const { notes } = await getNotes();
 
+  const deepThoughts = await getGithubRepoFileContents({
+    username: "andrewgilliland",
+    repoName: "JSON",
+    fileName: "deep-thoughts.json",
+  });
+
+  const deepThought = getRandomElement(deepThoughts);
+
   const topics = [
     {
       name: "JavaScript",
@@ -28,23 +37,6 @@ export default async function HomePage() {
     { name: "CSS", path: "/notes/css", color: "cyan" },
     { name: "Swift", path: "/notes/swift", color: "red" },
   ];
-
-  //   const [currentValue, setCurrentValue] = useState("front");
-  //   const [color, setColor] = useState("yellow");
-
-  //   useEffect(() => {
-  //     const values = ["front", "back", "side"];
-  //     const colors = ["red", "green", "blue"];
-  //     const interval = setInterval(() => {
-  //       const index = (values.indexOf(currentValue) + 1) % values.length;
-  //       const colorIndex = (colors.indexOf(color) + 1) % colors.length;
-
-  //       setCurrentValue(values[index]);
-  //       setColor(colors[colorIndex]);
-  //     }, 700);
-
-  //     return () => clearInterval(interval); // This is important to clear the interval when the component unmounts
-  //   }, [currentValue, color]);
 
   return (
     <div className="relative">
@@ -106,6 +98,14 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="flex justify-center items-center mt-12 gap-10"></div>
+        </section>
+
+        <section>
+          <div>
+            {deepThought && (
+              <div className="text-white">{deepThought.thought}</div>
+            )}
+          </div>
         </section>
 
         <ColorDivider className="w-full h-6" />
