@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Note } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { getNotes } from "@/lib/actions/notes";
-import DeepThought from "@/components/DeepThought";
 import { getGithubRepoFileContents } from "@/lib/actions/github";
 import { getRandomElement } from "@/lib/utils/array";
 
@@ -21,10 +20,15 @@ export default async function HomePage() {
   const { notes } = await getNotes();
 
   const deepThoughts = await getGithubRepoFileContents({
-    username: "andrewgilliland",
-    repoName: "JSON",
-    fileName: "deep-thoughts.json",
+    fileName: "deep-thoughts",
   });
+
+  const states = await getGithubRepoFileContents({
+    fileName: "states",
+  });
+
+  // !FIXME: This is not working
+  console.log("states: ", states);
 
   const deepThought = getRandomElement(deepThoughts);
 

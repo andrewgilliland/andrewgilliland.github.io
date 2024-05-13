@@ -12,26 +12,24 @@ const getGithubRepos = async (username: string) => {
   }
 };
 
-const getGithubRepoFileContents = async ({
-  username,
-  repoName,
+const getDataFromJSONGithubRepo = async ({
   fileName,
 }: {
-  username: string;
-  repoName: string;
   fileName: string;
 }) => {
   // More deep thoughts: https://www.sccs.swarthmore.edu/users/99/mimno/humor/deep.thoughts.txt
   try {
     const response = await fetch(
-      `https://api.github.com/repos/${username}/${repoName}/contents/${fileName}`
+      `https://api.github.com/repos/andrewgilliland/JSON/contents/${fileName}.json`
     );
-    const data1 = await response.json();
+    const responseData = await response.json();
 
-    const content = Buffer.from(data1.content, "base64").toString("utf-8");
+    console.log("responseData: ", responseData);
+
+    const content = Buffer.from(responseData.content, "base64").toString(
+      "utf-8"
+    );
     const { data } = await JSON.parse(content);
-
-    console.log("parsedData: ", data);
 
     return data;
   } catch (error) {
@@ -39,4 +37,7 @@ const getGithubRepoFileContents = async ({
   }
 };
 
-export { getGithubRepos, getGithubRepoFileContents };
+export {
+  getGithubRepos,
+  getDataFromJSONGithubRepo as getGithubRepoFileContents,
+};
