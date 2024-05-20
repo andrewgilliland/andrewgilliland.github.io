@@ -8,6 +8,7 @@ import Monk from "@/components/svg/pixel-art/Monk";
 import Garland from "@/components/svg/pixel-art/Garland";
 import { useState } from "react";
 import Nemo from "./svg/pixel-art/Nemo";
+import Chocobo from "./svg/pixel-art/Chocobo";
 
 export type BattleState =
   | "ready"
@@ -108,6 +109,7 @@ const Battle = () => {
           <RedMage />
           <Monk />
           <Nemo />
+          <Chocobo />
         </div>
       </div>
     </div>
