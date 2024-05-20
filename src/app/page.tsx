@@ -8,6 +8,8 @@ import { getNotes } from "@/lib/actions/notes";
 import { getGithubRepoFileContents } from "@/lib/actions/github";
 import { getRandomElement } from "@/lib/utils/array";
 import DeepThought from "@/components/DeepThought";
+import Block from "@/components/Block";
+import SvgIcon from "@/components/svg/SvgIcon";
 
 type HomeProps = {
   notes: Note[];
@@ -19,6 +21,9 @@ type HomeProps = {
 
 export default async function HomePage() {
   const { notes } = await getNotes();
+
+  // only get the first 5 notes
+  const notesSlice = notes.slice(0, 5);
 
   const deepThoughts = await getGithubRepoFileContents({
     fileName: "deep-thoughts",
@@ -53,14 +58,50 @@ export default async function HomePage() {
                 Howdy, I&apos;m Andrew!
               </h1>
               <p className="text-black text-xl mt-8 md:mt-12">
-                I&apos;m a Community taught Full Stack Mobile and Web Developer.
-                This site is to share what I am learning and hopefully help
-                others along the way.
+                I am a community taught Full Stack Developer. This site is to
+                share what I am learning and hopefully help others along the
+                way.
               </p>
               <PrimaryButton href="/notes" className="mt-12" text="Read More" />
             </div>
           </div>
           <div className="flex-1 bg-emerald-300 p-16 flex justify-center items-center">
+            <div className="grid grid-cols-2 gap-5">
+              <div className="grid gap-5">
+                <Block
+                  color="yellow"
+                  Icon={
+                    <SvgIcon name="javascript" className="fill-yellow-500" />
+                  }
+                />
+                <Block
+                  color="cyan"
+                  Icon={<SvgIcon name="css" className="fill-cyan-500" />}
+                />
+              </div>
+              <div className="grid gap-5">
+                <Block
+                  color="pink"
+                  Icon={<SvgIcon name="swift" className="fill-red-500" />}
+                />
+                <Block
+                  color="cyan"
+                  Icon={<SvgIcon name="react" className="fill-blue-500" />}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="border-b-2 border-white p-[6.5vw]">
+          {<DeepThought deepThought={deepThought} />}
+        </section>
+
+        <section className="flex flex-col border-b-2 border-white md:flex-row">
+          <div className="flex-1 bg-cyan-300 p-[6.5vw]">
+            <h2 className="text-center font-bold text-white text-4xl stroke-black">
+              Notes
+            </h2>
+
             <div className="flex flex-col justify-center items-center">
               <div className="flex items-center gap-4">
                 <h2 className="font-bold text-black text-2xl">
@@ -74,18 +115,10 @@ export default async function HomePage() {
               </div>
             </div>
           </div>
-        </section>
-        <section className="border-b-2 border-white p-[6.5vw]">
-          {<DeepThought deepThought={deepThought} />}
-        </section>
-        <section className="flex flex-col justify-center items-center bg-black border-b-2 border-white p-[6.5vw]">
-          <h2 className="text-center font-bold text-black text-4xl stroke-white">
-            Recent Notes
-          </h2>
 
-          <div className="bg-yellow-300 w-full md:w-1/2 mt-16 border-2 border-white rounded p-6">
+          <div className="flex-1 bg-yellow-300 md:w-1/2 border-l-2 border-white p-[6.5vw]">
             <div className="flex flex-col">
-              {notes.map(({ path, frontmatter: { title } }, index) => (
+              {notesSlice.map(({ path, frontmatter: { title } }, index) => (
                 <Link
                   key={index}
                   className={`${index && "mt-4"} group relative`}
@@ -105,60 +138,11 @@ export default async function HomePage() {
               ))}
             </div>
           </div>
-          <div className="flex justify-center items-center mt-12 gap-10"></div>
         </section>
 
+        <div className="h-12"></div>
         <ColorDivider className="w-full h-6" />
       </div>
     </div>
   );
 }
-
-// export async function getStaticProps() {
-//   function getFilesPaths(rootDirectory: string) {
-//     let entries = fs.readdirSync(rootDirectory, { withFileTypes: true });
-
-//     let files = entries
-//       .filter((entry) => !entry.isDirectory())
-//       .map((entry) => path.join(rootDirectory, entry.name)); // maps to an array of file paths
-
-//     let directories = entries.filter((entry) => entry.isDirectory());
-
-//     for (let directory of directories) {
-//       let subdirPaths = getFilesPaths(
-//         path.join(`${rootDirectory}`, directory.name)
-//       );
-
-//       files = files.concat(subdirPaths); // adds the file paths from the subdirectories
-//     }
-
-//     return files;
-//   }
-
-//   let filePaths = getFilesPaths("./posts");
-
-//   const notes = filePaths.map((filePath) => {
-//     const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
-//     const { data: frontmatter } = matter(markdownWithMeta);
-//     frontmatter.date = new Date(frontmatter.date);
-
-//     const note = {
-//       path: filePath.replace(/\.md$/, "").replace(/^posts\//, "notes/"),
-//       frontmatter,
-//     };
-
-//     return note;
-//   });
-
-//   // posts.sort(
-//   //   (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
-//   // );
-
-//   return {
-//     props: {
-//       // posts: JSON.parse(JSON.stringify(posts)),
-//       posts: [],
-//       notes: JSON.parse(JSON.stringify(notes)),
-//     },
-//   };
-// }

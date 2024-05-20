@@ -1,5 +1,5 @@
 import Block from "./Block";
-import SvgIcon from "./SvgIcon";
+import SvgIcon from "./svg/SvgIcon";
 
 const AnimatedBlocks = () => (
   <div className="relative grid grid-rows-2 grid-flow-col gap-6 animate-rotate">

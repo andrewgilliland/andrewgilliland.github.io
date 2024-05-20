@@ -1,9 +1,11 @@
 type IconOptions = "swift" | "javascript" | "css" | "react";
 
 type SvgIconProps = {
-  name: string;
+  name: IconOptions;
   className?: string;
 };
+
+// ! Add Node.js icon
 
 const SvgIcon = ({ name, className }: SvgIconProps) => {
   const iconOptions: Record<IconOptions, string> = {
