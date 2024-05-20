@@ -37,6 +37,13 @@ const getDataFromJSONGithubRepo = async ({
   }
 };
 
+const getMarkdownFromGithubRepo = async () => {
+  try {
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   getGithubRepos,
   getDataFromJSONGithubRepo as getGithubRepoFileContents,

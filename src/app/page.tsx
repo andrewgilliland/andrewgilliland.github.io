@@ -7,6 +7,7 @@ import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { getNotes } from "@/lib/actions/notes";
 import { getGithubRepoFileContents } from "@/lib/actions/github";
 import { getRandomElement } from "@/lib/utils/array";
+import DeepThought from "@/components/DeepThought";
 
 type HomeProps = {
   notes: Note[];
@@ -30,7 +31,7 @@ export default async function HomePage() {
   // !FIXME: This is not working
   console.log("states: ", states);
 
-  const deepThought = getRandomElement(deepThoughts);
+  const deepThought: { thought: string } = getRandomElement(deepThoughts);
 
   const topics = [
     {
@@ -74,6 +75,9 @@ export default async function HomePage() {
             </div>
           </div>
         </section>
+        <section className="border-b-2 border-white p-[6.5vw]">
+          {<DeepThought deepThought={deepThought} />}
+        </section>
         <section className="flex flex-col justify-center items-center bg-black border-b-2 border-white p-[6.5vw]">
           <h2 className="text-center font-bold text-black text-4xl stroke-white">
             Recent Notes
@@ -102,14 +106,6 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="flex justify-center items-center mt-12 gap-10"></div>
-        </section>
-
-        <section>
-          <div>
-            {deepThought && (
-              <div className="text-white">{deepThought.thought}</div>
-            )}
-          </div>
         </section>
 
         <ColorDivider className="w-full h-6" />
