@@ -1,15 +1,13 @@
-import PrimaryButton from "@/components/PrimaryButton";
-import ColorDivider from "@/components/ColorDivider";
-import TopicCard from "@/components/TopicCard";
 import Link from "next/link";
 import { Note } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { getNotes } from "@/lib/actions/notes";
 import { getGithubRepoFileContents } from "@/lib/actions/github";
 import { getRandomElement } from "@/lib/utils/array";
+import HomeHero from "@/components/pages/home/HomeHero";
 import DeepThought from "@/components/DeepThought";
-import Block from "@/components/Block";
-import SvgIcon from "@/components/svg/SvgIcon";
+import TopicCard from "@/components/TopicCard";
+import ColorDivider from "@/components/ColorDivider";
 
 type HomeProps = {
   notes: Note[];
@@ -51,47 +49,7 @@ export default async function HomePage() {
   return (
     <div className="relative">
       <div>
-        <section className="flex flex-col border-b-2 border-white md:flex-row">
-          <div className="flex-1 bg-pink-300 border-b-2 md:border-b-0 md:border-r-2 border-white p-[6.5vw]">
-            <div className="max-w-xl mx-auto">
-              <h1 className="font-bold text-white text-4xl md:text-6xl stroke-black">
-                Howdy, I&apos;m Andrew!
-              </h1>
-              <p className="text-black text-xl mt-8 md:mt-12">
-                I am a community taught Full Stack Developer. This site is to
-                share what I am learning and hopefully help others along the
-                way.
-              </p>
-              <PrimaryButton href="/notes" className="mt-12" text="Read More" />
-            </div>
-          </div>
-          <div className="flex-1 bg-emerald-300 p-16 flex justify-center items-center">
-            <div className="grid grid-cols-2 gap-5">
-              <div className="grid gap-5">
-                <Block
-                  color="yellow"
-                  Icon={
-                    <SvgIcon name="javascript" className="fill-yellow-500" />
-                  }
-                />
-                <Block
-                  color="cyan"
-                  Icon={<SvgIcon name="css" className="fill-cyan-500" />}
-                />
-              </div>
-              <div className="grid gap-5">
-                <Block
-                  color="pink"
-                  Icon={<SvgIcon name="swift" className="fill-red-500" />}
-                />
-                <Block
-                  color="cyan"
-                  Icon={<SvgIcon name="react" className="fill-blue-500" />}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <HomeHero />
         <section className="border-b-2 border-white p-[6.5vw]">
           {<DeepThought deepThought={deepThought} />}
         </section>
