@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Note } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { getNotes } from "@/lib/actions/notes";
 import { getGithubRepoFileContents } from "@/lib/actions/github";
@@ -8,10 +7,6 @@ import HomeHero from "@/components/pages/home/HomeHero";
 import DeepThought from "@/components/DeepThought";
 import TopicCard from "@/components/TopicCard";
 import ColorDivider from "@/components/ColorDivider";
-
-type HomeProps = {
-  notes: Note[];
-};
 
 // https://howdy.com/
 // https://gumroad.com/
