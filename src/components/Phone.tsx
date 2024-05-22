@@ -26,10 +26,10 @@ const Phone = () => {
           <div className="text-2xl leading-[20px] mt-0.5">{`${currentTime}:${currentMinutes}`}</div>
         </div>
 
-        <div className="absolute grid gap-1 left-[7px] bottom-[10%]">
-          <div className="bg-gray-800 w-20 h-8 rounded-md" />
-          <div className="bg-gray-800 w-20 h-8 rounded-md" />
-          <div className="bg-gray-800 w-20 h-8 rounded-md" />
+        <div className="absolute grid gap-1 left-[6px] bottom-[10%]">
+          <div className="bg-gray-800 w-20 h-8 rounded-md border border-gray-600" />
+          <div className="bg-gray-800 w-20 h-8 rounded-md border border-gray-600" />
+          <div className="bg-gray-800 w-20 h-8 rounded-md border border-gray-600" />
         </div>
 
         {/* Side Buttons */}

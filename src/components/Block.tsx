@@ -1,16 +1,18 @@
+import { ReactNode } from "react";
+
 type BlockProps = {
   className?: string;
-  color: string;
-  Icon: JSX.Element;
+  children?: ReactNode;
+  backgroundColor?: string;
 };
 
-const Block = ({ className, color, Icon }: BlockProps) => {
+const Block = ({ className, children, backgroundColor }: BlockProps) => {
   return (
     <div className={`relative ${className}`}>
       <div
-        className={`absolute flex justify-center items-center bg-${color}-100 h-[4.5rem] w-[4.5rem] border-2 border-black rounded-lg right-1 bottom-1`}
+        className={`absolute flex justify-center items-center h-[4.5rem] w-[4.5rem] border-2 border-black rounded-lg right-1 bottom-1 ${backgroundColor}`}
       >
-        {Icon}
+        {children}
       </div>
       <div className="bg-black h-[4.5rem] w-[4.5rem] rounded-lg" />
     </div>
