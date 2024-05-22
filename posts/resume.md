@@ -13,11 +13,11 @@ _(251) 401-7113_
 
 _Bloomington, Illinois_
 
-### **_Professional Summary_**
+### _Professional Summary_
 
 _Web and mobile Developer with three plus years of professional experience detail-oriented specializing in full stack development who is skilled in JavaScript, TypeScript, Swift, HTML, CSS, React, React Native, SwiftUI, Node.js, MySQL & MongoDB. I am looking to add value as a developer in a company which will utilize my excellent team collaboration and communication skills. I was a former organizer and participant of local and remote web developer meetups._
 
-### **_Technical Skills_**
+### _Technical Skills_
 
 - **Programming Languages:** JavaScript, TypeScript, Swift
 - **Mobile/Web Technologies & Frameworks:** React Native, SwiftUI, UIKit, React, HTML5, CSS3, Node.js, Deno, Bun, ARKit, SceneKit, RealityKit, CoreML, Next.js, Gatsby.js, GraphQL
@@ -28,7 +28,7 @@ _Web and mobile Developer with three plus years of professional experience detai
 - **Versioning and Tooling:** Git, webpack, Parcel, Vite
 - **Deployment Platforms:** AWS, Heroku, Netlify, Vercel, Firebase
 
-### **_Managerial Skills_**
+### _Managerial Skills_
 
 **_Client Relationship Management_**
 
@@ -46,7 +46,7 @@ _Web and mobile Developer with three plus years of professional experience detai
 - _Collaborated with staff and members at a gym to establish a weekly running/walking club._
 - _Work with other meetup organizers to create educational events for meetup members._
 
-### **_Professional Experience_**
+### _Professional Experience_
 
 **_Software Engineer_** - _December 2021 - Current_
 
@@ -87,7 +87,7 @@ _The Gulf, Orange Beach, AL_
 - _Utilized excellent communication skills with multinational staff and guests to effectively and promptly deliver customer service._
 - _Make and sell drinks while developing customer relationships with patrons at an inviting outdoor beach restaurant._
 
-### **_Education_**
+### _Education_
 
 **_AWS Certified Cloud Practitioner_**
 
@@ -127,7 +127,7 @@ _The Gulf, Orange Beach, AL_
 
 - _Learned how to perform CPR, how to use an AED, skills for treating choking and shock victims, and a variety of first aid skills._
 
-### **_Extracurricular_** **_Activities_**
+### _Extracurricular Activities_
 
 **_Pensacola Developers_** **_Meetup Organizer:_**
 
