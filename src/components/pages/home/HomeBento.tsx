@@ -3,6 +3,9 @@ import BrowserWindow from "@/components/BrowserWindow";
 import Phone from "@/components/Phone";
 import SvgIcon from "@/components/svg/SvgIcon";
 
+//! Make component mobile responsive
+//! Make phone zIndex is below MobileNav
+
 const HomeBento = () => {
   return (
     <div className="flex-1 bg-emerald-300 p-16 flex justify-center items-center">
