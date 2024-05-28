@@ -6,10 +6,7 @@ type PrimaryButtonProps = {
 
 const PrimaryButton = ({ className, href, text }: PrimaryButtonProps) => {
   return (
-    <button
-      data-test-id="primary-button"
-      className={`group relative ${className}`}
-    >
+    <button data-cy="primary-button" className={`group relative ${className}`}>
       <a href={href}>
         <div className="absolute bg-cyan-400 border-2 border-black w-full h-full rounded bottom-0 transform-gpu transition group-hover:translate-x-2 group-hover:translate-y-2" />
         <div className="absolute bg-red-400 border-2 border-black w-full h-full rounded bottom-0" />
