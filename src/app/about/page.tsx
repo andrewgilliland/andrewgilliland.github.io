@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { socialLinks } from "@/lib/utils/social";
 import ExternalLink from "@/components/ExternalLink";
+import Link from "next/link";
 
 const AboutPage = () => {
   return (
@@ -20,13 +21,13 @@ const AboutPage = () => {
                   width={200}
                   height={200}
                   alt="Andrew Gilliland"
-                  className="bg-black rounded-lg h-32 w-32 object-contain"
+                  className="bg-black rounded-lg border-2 border-black h-32 w-32 object-contain"
                 />
                 <div className="text-white text-sm flex flex-col justify-between">
-                  <div className="text-center bg-black rounded-lg min-w-max px-4 py-4">
+                  <div className="text-center bg-black rounded-lg border-2 border-white min-w-max px-4 py-4">
                     Full Stack Developer
                   </div>
-                  <div className="text-center bg-black rounded-lg px-4 py-4">
+                  <div className="text-center bg-black rounded-lg border-2 border-white px-4 py-4">
                     Bloomington, IL
                   </div>
                 </div>
@@ -47,10 +48,10 @@ const AboutPage = () => {
           <div className="relative">
             <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
             <div className="relative flex justify-center items-center bg-pink-300 border-2 border-black rounded-lg h-full">
-              <ExternalLink
-                href="https://andrewgilliland.notion.site/Resume-e726ff3b64e841de86ce23de5a4ef0af?pvs=4"
-                text="Resume"
-              />
+              <Link className="group" href="/resume">
+                <div className="font-semibold text-black text-lg">Resume</div>
+                <div className="bg-black h-0.5 w-[0%] rounded-full group-hover:w-full transition-all" />
+              </Link>
             </div>
           </div>
 
@@ -58,12 +59,11 @@ const AboutPage = () => {
             <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
             <div className="relative bg-yellow-300 border-2 border-black rounded-lg p-4 h-full">
               <p className="font-semibold text-black text-lg">
-                I am passionate about constantly learning and using new mobile
-                and web technologies. I currently work mainly with React Native
-                and Swift to build mobile applications, but always enjoy
-                implementing new technologies. In my spare time, I enjoy
-                learning about fitness and nutrition, woodworking and am a music
-                aficionado.
+                I enjoy learning and using new mobile and web technologies. I
+                currently work mainly with React Native and Swift to build
+                mobile applications, but always enjoy implementing new
+                technologies. In my spare time, I enjoy learning about fitness
+                and nutrition, woodworking and am a music aficionado.
               </p>
             </div>
           </div>
@@ -73,9 +73,9 @@ const AboutPage = () => {
               key={index}
               className="flex flex-col justify-center items-center bg-black border-2 border-white rounded-lg col-span-1 row-span-1"
             >
-              <a className={`group bg-black rounded-lg px-4 py-2`} href={href}>
+              <a className="group bg-black rounded-lg px-4 py-2" href={href}>
                 <div className="font-semibold text-white text-lg">{title}</div>
-                <div className="bg-white h-0.5 w-[0%] rounded-full group-hover:w-full transition-all" />
+                <div className="bg-pink-300 h-0.5 w-[0%] rounded-full group-hover:w-full transition-all" />
               </a>
             </div>
           ))}

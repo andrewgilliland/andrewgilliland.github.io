@@ -44,7 +44,7 @@ const NotePage: FC<NotePageProps> = ({
   // }, []);
 
   return (
-    <div className="px-[10%] md:p-0 md:w-[40em] mx-auto mt-12">
+    <div className="px-[10%] md:p-0 md:w-[40em] mx-auto mt-12 min-h-screen">
       <div>
         <BackButton back={router.back} />
         <h1 className="text-4xl md:text-5xl lg:text-7xl mt-8">{title}</h1>
