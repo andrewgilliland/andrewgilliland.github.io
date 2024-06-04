@@ -3,16 +3,6 @@ title: "Resume"
 date: "2024-05-22"
 ---
 
-## _Andrew Gilliland_
-
-_Full Stack Developer_
-
-_(251) 401-7113_
-
-*andrewpgilliland@gmail.com*
-
-_Bloomington, Illinois_
-
 ### _Professional Summary_
 
 _Web and mobile Developer with three plus years of professional experience detail-oriented specializing in full stack development who is skilled in JavaScript, TypeScript, Swift, HTML, CSS, React, React Native, SwiftUI, Node.js, MySQL & MongoDB. I am looking to add value as a developer in a company which will utilize my excellent team collaboration and communication skills. I was a former organizer and participant of local and remote web developer meetups._
