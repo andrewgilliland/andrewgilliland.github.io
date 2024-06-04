@@ -149,7 +149,7 @@ const getNotesFromSlug = async (slugOne: string) => {
       frontmatter.date = new Date(frontmatter.date);
 
       return {
-        path: `${slugOne}/${filename?.replace(".mdx", "")}`,
+        path: `${slugOne}/${filename?.replace(".md", "")}`,
         frontmatter,
       };
     });
@@ -168,11 +168,11 @@ const getNotesFromSlugTwo = async (slugOne: string, slugTwo: string) => {
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
     .filter((dirent) => dirent !== null);
 
-  const isNote = files.includes(`${slugTwo}.mdx`);
+  const isNote = files.includes(`${slugTwo}.md`);
 
   if (isNote) {
     const markdownWithMeta = fs.readFileSync(
-      path.join("posts", slugOne, `${slugTwo}.mdx`),
+      path.join("posts", slugOne, `${slugTwo}.md`),
       "utf-8"
     );
 
@@ -201,7 +201,7 @@ const getNotesFromSlugTwo = async (slugOne: string, slugTwo: string) => {
       frontmatter.date = new Date(frontmatter.date);
 
       return {
-        path: `${slugOne}/${slugTwo}/${filename.replace(".mdx", "")}`,
+        path: `${slugOne}/${slugTwo}/${filename.replace(".md", "")}`,
         frontmatter,
       };
     });
