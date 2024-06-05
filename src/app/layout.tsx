@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${pixelifySans.variable} font-brand`}
       >
         <Header />
-        <main className="flex flex-col">{children}</main>
+        <main className="flex flex-col pt-[82px] md:pt-0">{children}</main>
         <Footer />
       </body>
     </html>
