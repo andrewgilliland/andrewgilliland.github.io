@@ -20,7 +20,7 @@ const NoteCard = ({ note }: NoteCardProps) => {
 
   return (
     <Link
-      data-cy={`[data-cy="note-card-${path}"]`}
+      data-cy={`note-card-${path}`}
       href={`/notes/${path}`}
       className="group relative"
     >
