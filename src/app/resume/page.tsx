@@ -1,16 +1,14 @@
 import ColorDivider from "@/components/ColorDivider";
 import DownloadButton from "@/components/DownloadButton";
-import { getResume as getContent } from "@/lib/actions/content";
+import { parseMarkDownFile } from "@/lib/actions/markdown";
 import { marked } from "marked";
 import { useRouter } from "next/router";
 
 const ResumePage = async () => {
   const {
-    note: {
-      frontmatter: { title, excerpt, date },
-      content,
-    },
-  } = await getContent({ fileName: "resume.md" });
+    frontmatter: { title, excerpt, date },
+    content,
+  } = await parseMarkDownFile({ fileName: "resume.md" });
 
   // ! "use client" is needed to use hook !
   // ! And needs to be its own component ??? !

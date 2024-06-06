@@ -9,8 +9,8 @@ import SvgIcon from "@/components/svg/SvgIcon";
 const HomeBento = () => {
   return (
     <div className="flex-1 bg-emerald-300 p-16 flex justify-center items-center">
-      <div className="grid place-items-center grid-cols-2 gap-5">
-        <div className="grid grid-cols-2 gap-5">
+      <div className="grid place-items-center md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-2 gap-5 order-1">
           <Block backgroundColor="bg-yellow-300">
             <SvgIcon name="javascript" className="fill-black" />
           </Block>
@@ -18,10 +18,10 @@ const HomeBento = () => {
             <SvgIcon name="css" className="fill-blue-600" />
           </Block>
         </div>
-        <BrowserWindow />
+        <BrowserWindow className="order-3" />
 
         <Phone />
-        <div className="grid gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-5 order-2">
           <Block backgroundColor="bg-emerald-100">
             <SvgIcon name="node" className="fill-emerald-600" />
           </Block>
