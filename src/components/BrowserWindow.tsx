@@ -9,9 +9,13 @@ import {
 } from "@heroicons/react/20/solid";
 import BrowserWindowCard from "@/components/BrowserWindowCard";
 
-const BrowserWindow = () => {
+type BrowserWindowProps = {
+  className?: string;
+};
+
+const BrowserWindow = ({ className }) => {
   return (
-    <div className="relative h-32 w-48">
+    <div className={`relative h-32 w-48 ${className}`}>
       <div className="absolute bg-black h-32 w-48 border-2 border-black rounded transform translate-x-1 translate-y-1" />
       <div className="absolute bg-white h-32 w-48 border-2 border-black rounded">
         <div className="border-b-2 border-black p-1">
