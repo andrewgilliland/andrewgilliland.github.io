@@ -24,8 +24,6 @@ const getDataFromJSONGithubRepo = async ({
     );
     const responseData = await response.json();
 
-    console.log("responseData: ", responseData);
-
     const content = Buffer.from(responseData.content, "base64").toString(
       "utf-8"
     );

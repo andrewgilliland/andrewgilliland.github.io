@@ -22,13 +22,6 @@ export default async function HomePage() {
     fileName: "deep-thoughts",
   });
 
-  const states = await getGithubRepoFileContents({
-    fileName: "states",
-  });
-
-  // !FIXME: This is not working
-  console.log("states: ", states);
-
   const deepThought: { thought: string } = getRandomElement(deepThoughts);
 
   const topics = [
@@ -46,7 +39,7 @@ export default async function HomePage() {
       <div>
         <HomeHero />
         <section className="border-b-2 border-white p-[6.5vw]">
-          {<DeepThought deepThought={deepThought} />}
+          <DeepThought deepThought={deepThought} />
         </section>
 
         <section className="flex flex-col border-b-2 border-white md:flex-row">

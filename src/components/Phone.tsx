@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
   currentDayOfWeek,
   currentMonthName,
@@ -6,9 +7,13 @@ import {
   currentMinutes,
 } from "../lib/utils/date";
 
-const Phone = () => {
+type PhoneProps = {
+  className?: string;
+};
+
+const Phone: FC<PhoneProps> = ({ className }) => {
   return (
-    <div>
+    <div className={className}>
       {/* Shadow */}
       <div className="absolute bg-black w-[96px] h-[198px] rounded-[12px] translate-x-0.5 translate-y-0.5" />
 
