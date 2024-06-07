@@ -33,7 +33,6 @@ export default async function HomePage() {
       <div>
         <HomeHero />
         <section className="border-b-2 border-white p-[6.5vw]">
-          {/* @ts-expect-error Async Server Component */}
           <DeepThought />
         </section>
 
