@@ -12,8 +12,6 @@ type NotesRouteThreePageProps = {
 const NotesRouteThreePage = async ({
   params: { slugOne, slugTwo, slugThree },
 }: NotesRouteThreePageProps) => {
-  console.log("slugThree", slugThree);
-
   const { note, topic, notes, topics } = await getNotesFromSlugThree(
     slugOne,
     slugTwo,
