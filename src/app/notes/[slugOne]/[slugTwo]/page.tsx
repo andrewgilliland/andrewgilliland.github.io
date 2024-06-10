@@ -1,22 +1,24 @@
 import NoteRoute from "@/components/NoteRoute";
 import { getNotesFromSlugTwo } from "@/lib/actions/notes";
 
-type NotesRouteOnePageProps = {
+type NotesRouteTwoPageProps = {
   params: {
     slugOne: string;
     slugTwo: string;
   };
 };
 
-const NotesRouteOnePage = async ({
+const NotesRouteTwoPage = async ({
   params: { slugOne, slugTwo },
-}: NotesRouteOnePageProps) => {
+}: NotesRouteTwoPageProps) => {
   const { note, topic, notes, topics } = await getNotesFromSlugTwo(
     slugOne,
     slugTwo
   );
 
+  console.log("topics: ", topics);
+
   return <NoteRoute note={note} topic={topic} topics={topics} notes={notes} />;
 };
 
-export default NotesRouteOnePage;
+export default NotesRouteTwoPage;
