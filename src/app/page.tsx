@@ -1,35 +1,22 @@
 import Link from "next/link";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { getNotes } from "@/lib/actions/notes";
-import { getGithubRepoFileContents } from "@/lib/actions/github";
-import { getRandomElement } from "@/lib/utils/array";
 import HomeHero from "@/components/pages/home/HomeHero";
 import DeepThought from "@/components/DeepThought";
 import TopicCard from "@/components/TopicCard";
 import ColorDivider from "@/components/ColorDivider";
 
+//* Design Inspiration
 // https://howdy.com/
 // https://gumroad.com/
 // https://salehmubashar.com/
+// https://www.hover.dev/
 
 export default async function HomePage() {
   const { notes } = await getNotes();
 
   // only get the first 5 notes
   const notesSlice = notes.slice(0, 5);
-
-  const deepThoughts = await getGithubRepoFileContents({
-    fileName: "deep-thoughts",
-  });
-
-  const states = await getGithubRepoFileContents({
-    fileName: "states",
-  });
-
-  // !FIXME: This is not working
-  console.log("states: ", states);
-
-  const deepThought: { thought: string } = getRandomElement(deepThoughts);
 
   const topics = [
     {
@@ -46,7 +33,7 @@ export default async function HomePage() {
       <div>
         <HomeHero />
         <section className="border-b-2 border-white p-[6.5vw]">
-          {<DeepThought deepThought={deepThought} />}
+          <DeepThought />
         </section>
 
         <section className="flex flex-col border-b-2 border-white md:flex-row">
