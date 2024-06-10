@@ -18,8 +18,6 @@ const NotesRouteThreePage = async ({
     slugThree
   );
 
-  console.log("topic: ", topic);
-
   return <NoteRoute note={note} topic={topic} topics={topics} notes={notes} />;
 };
 
