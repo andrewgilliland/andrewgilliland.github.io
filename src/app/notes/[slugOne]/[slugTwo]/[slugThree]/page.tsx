@@ -12,15 +12,11 @@ type NotesRouteThreePageProps = {
 const NotesRouteThreePage = async ({
   params: { slugOne, slugTwo, slugThree },
 }: NotesRouteThreePageProps) => {
-  console.log("slugThree", slugThree);
-
   const { note, topic, notes, topics } = await getNotesFromSlugThree(
     slugOne,
     slugTwo,
     slugThree
   );
-
-  console.log("topic: ", topic);
 
   return <NoteRoute note={note} topic={topic} topics={topics} notes={notes} />;
 };
