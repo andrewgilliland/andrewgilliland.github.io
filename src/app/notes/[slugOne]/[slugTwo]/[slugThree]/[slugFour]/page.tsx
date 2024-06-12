@@ -14,8 +14,6 @@ type NotesSlugFourPageProps = {
 const NotesSlugFourPage: FC<NotesSlugFourPageProps> = async ({
   params: { slugOne, slugTwo, slugThree, slugFour },
 }) => {
-  console.log("slugFour: ", slugFour);
-
   const { note, topic, notes, topics } = await getNotesFromSlugFour(
     slugOne,
     slugTwo,
