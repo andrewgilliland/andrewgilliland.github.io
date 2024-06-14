@@ -13,7 +13,11 @@ const TopicCard: FC<TopicCardProps> = ({ topic }) => {
   const bgColor = color ? "white" : "black";
 
   return (
-    <Link href={path.toLocaleLowerCase()} className="group relative">
+    <Link
+      data-cy={`topic-card-${name}`}
+      href={path.toLocaleLowerCase()}
+      className="group relative"
+    >
       <div
         className={`absolute bg-${bgColor} border-2 border-${lineColor} rounded w-full h-full bottom-0`}
       />

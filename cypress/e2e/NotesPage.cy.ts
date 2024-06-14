@@ -11,6 +11,7 @@ describe("NotesPage", () => {
     cy.url().should("include", "/notes");
   });
 
+  // Level 1
   it("should render Glossary of Terms page when clicking on NoteCard", () => {
     renderComponent();
 
@@ -19,5 +20,18 @@ describe("NotesPage", () => {
 
     cy.get('[data-cy="note-card-glossary-of-terms"]').first().click();
     cy.url().should("include", "/notes/glossary-of-terms");
+  });
+
+  // Level 2
+  it("should rend the 'Array Methods' page when clicking on the NoteCard", () => {
+    renderComponent();
+
+    cy.get('[data-cy="primary-button"]').click();
+    cy.url().should("include", "/notes");
+
+    cy.get('[data-cy="topic-card-javascript"]').first().click();
+
+    cy.get('[data-cy="note-card-javascript/array-methods"]').first().click();
+    cy.url().should("include", "/notes/javascript/array-methods");
   });
 });
