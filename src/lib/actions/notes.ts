@@ -224,13 +224,7 @@ const getNotesFromSlugTwo = async (slugOne: string, slugTwo: string) => {
   }
 };
 
-const getNotesFromSlugThree = async (
-  slugOne: string,
-  slugTwo: string,
-  slugThree: string
-) => {
-  const pagePath = `./posts/${slugOne}/${slugTwo}/${slugThree}`;
-
+const getTopicsAndNotes = async (pagePath: string) => {
   const result = await isDirectory(pagePath);
 
   if (result) {
@@ -254,7 +248,7 @@ const getNotesFromSlugThree = async (
 
     const notes = files.map((filename) => {
       const markdownWithMeta = fs.readFileSync(
-        path.join(`./posts/${slugOne}/${slugTwo}/${slugThree}`, filename!),
+        `${pagePath}/${filename!}`,
         "utf-8"
       );
       const { data: frontmatter } = matter(markdownWithMeta);
@@ -270,15 +264,11 @@ const getNotesFromSlugThree = async (
     });
 
     return {
-      topic: slugThree,
       topics: topics,
       notes: JSON.parse(JSON.stringify(notes)),
     };
   } else {
-    const markdownWithMeta = fs.readFileSync(
-      path.join("posts", slugOne, slugTwo, `${slugThree}.md`),
-      "utf-8"
-    );
+    const markdownWithMeta = fs.readFileSync(`${pagePath}.md`, "utf-8");
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
 
@@ -381,6 +371,6 @@ export {
   getNotesAndTopics,
   getNotesFromSlug,
   getNotesFromSlugTwo,
-  getNotesFromSlugThree,
+  getTopicsAndNotes,
   getNotesFromSlugFour,
 };
