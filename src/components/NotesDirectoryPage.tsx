@@ -1,26 +1,24 @@
 import { FC } from "react";
 import NoteCard from "./NoteCard";
 import TopicCard from "./TopicCard";
-import { Note, Topic } from "@/types";
+import { getNoteDirectory } from "@/lib/actions/notes";
 
 type NotesDirectoryPageProps = {
-  topic?: string;
-  notes: Note[];
-  topics: Topic[];
-  pagePath?: string;
+  directory: string;
+  pagePath: string;
 };
 
 const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
-  topics,
-  topic,
-  notes,
+  directory,
   pagePath,
 }) => {
+  const { notes, topics } = await getNoteDirectory(pagePath);
+
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
       <section className="mt-10 md:mt-0 mx-8 md:mx-0 mb-24">
         <h2 className="capitalize font-bold text-gray-100 text-3xl md:text-4xl stroke-white">
-          {`${topic ? `${topic} ` : "Topics"}`}
+          {`${directory ? `${directory} ` : "Topics"}`}
         </h2>
         {topics.length > 0 && (
           <div className="grid md:grid-cols-2 gap-8 mt-6">

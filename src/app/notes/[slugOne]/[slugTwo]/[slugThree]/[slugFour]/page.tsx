@@ -1,9 +1,7 @@
-import NotePage from "@/components/NotePage";
-
-import NotesDirectoryPage from "@/components/NotesDirectoryPage";
-import { getNoteDirectory } from "@/lib/actions/notes";
-import { isPathDirectory } from "@/lib/utils/fs";
 import { FC } from "react";
+import { isPathDirectory } from "@/lib/utils/fs";
+import NotePage from "@/components/NotePage";
+import NotesDirectoryPage from "@/components/NotesDirectoryPage";
 
 type NotesSlugFourPageProps = {
   params: {
@@ -18,17 +16,14 @@ const NotesSlugFourPage: FC<NotesSlugFourPageProps> = async ({
   params: { slugOne, slugTwo, slugThree, slugFour },
 }) => {
   const pagePath = `./posts/${slugOne}/${slugTwo}/${slugThree}/${slugFour}`;
-
   const isDirectory = await isPathDirectory(pagePath);
-
-  const { note, notes, topics } = await getNoteDirectory(pagePath);
 
   return (
     <>
       {isDirectory ? (
-        <NotesDirectoryPage topic={slugTwo} topics={topics} notes={notes} />
+        <NotesDirectoryPage directory={slugFour} pagePath={pagePath} />
       ) : (
-        <NotePage note={note} />
+        <NotePage pagePath={pagePath} />
       )}
     </>
   );

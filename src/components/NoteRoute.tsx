@@ -13,7 +13,7 @@ const NoteRoute: FC<RoutePageProps> = ({
     {note ? (
       <NotePage note={note} />
     ) : (
-      <NotesDirectoryPage topic={topic} topics={topics} notes={notes} />
+      <NotesDirectoryPage directory={topic} topics={topics} notes={notes} />
     )}
   </>
 );

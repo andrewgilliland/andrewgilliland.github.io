@@ -1,7 +1,7 @@
+import { FC } from "react";
+import { isPathDirectory } from "@/lib/utils/fs";
 import NotePage from "@/components/NotePage";
 import NotesDirectoryPage from "@/components/NotesDirectoryPage";
-import { getNoteDirectory } from "@/lib/actions/notes";
-import { isPathDirectory } from "@/lib/utils/fs";
 
 type NotesRouteTwoPageProps = {
   params: {
@@ -10,21 +10,18 @@ type NotesRouteTwoPageProps = {
   };
 };
 
-const NotesRouteTwoPage = async ({
+const NotesRouteTwoPage: FC<NotesRouteTwoPageProps> = async ({
   params: { slugOne, slugTwo },
-}: NotesRouteTwoPageProps) => {
+}) => {
   const pagePath = `./posts/${slugOne}/${slugTwo}`;
-
   const isDirectory = await isPathDirectory(pagePath);
-
-  const { note, notes, topics } = await getNoteDirectory(pagePath);
 
   return (
     <>
       {isDirectory ? (
-        <NotesDirectoryPage topic={slugTwo} topics={topics} notes={notes} />
+        <NotesDirectoryPage directory={slugTwo} pagePath={pagePath} />
       ) : (
-        <NotePage note={note} />
+        <NotePage pagePath={pagePath} />
       )}
     </>
   );

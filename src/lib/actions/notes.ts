@@ -3,7 +3,6 @@ import { Note } from "@/types";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import { isPathDirectory } from "../utils/fs";
 
 const getNotes = async (): Promise<{ notes: Note[] }> => {
   function getFilesPaths(rootDirectory: string) {
@@ -51,65 +50,48 @@ const getNotes = async (): Promise<{ notes: Note[] }> => {
 };
 
 const getNoteDirectory = async (pagePath: string) => {
-  const isDirectory = await isPathDirectory(pagePath);
+  const files = fs
+    .readdirSync(pagePath, {
+      withFileTypes: true,
+    })
+    .map((dirent) => (dirent.isFile() ? dirent.name : null))
+    .filter((dirent) => dirent !== null);
 
-  if (isDirectory) {
-    const files = fs
-      .readdirSync(pagePath, {
-        withFileTypes: true,
-      })
-      .map((dirent) => (dirent.isFile() ? dirent.name : null))
-      .filter((dirent) => dirent !== null);
+  const topics = fs
+    .readdirSync(pagePath, {
+      withFileTypes: true,
+    })
+    .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
+    .filter((dirent) => dirent !== null)
+    .map((topic) => ({
+      name: topic?.replace(/-/g, " "),
+      path: `${pagePath.replace("./posts", "/notes")}/${topic}`,
+    }));
 
-    const topics = fs
-      .readdirSync(pagePath, {
-        withFileTypes: true,
-      })
-      .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
-      .filter((dirent) => dirent !== null)
-      .map((topic) => ({
-        name: topic?.replace(/-/g, " "),
-        path: `${pagePath.replace("./posts", "/notes")}/${topic}`,
-      }));
-
-    const notes = files.map((filename) => {
-      const markdownWithMeta = fs.readFileSync(
-        `${pagePath}/${filename!}`,
-        "utf-8"
-      );
-      const { data: frontmatter } = matter(markdownWithMeta);
-      frontmatter.date = new Date(frontmatter.date);
-
-      return {
-        // !! Fix this conditional
-        // !! There is still "//" in the path for NotesPage
-        path: `${
-          pagePath === "./posts"
-            ? pagePath.replace("./posts", "")
-            : pagePath.replace("./posts/", "")
-        }/${filename!.replace(".md", "")}`,
-        frontmatter,
-      };
-    });
+  const notes = files.map((filename) => {
+    const markdownWithMeta = fs.readFileSync(
+      `${pagePath}/${filename!}`,
+      "utf-8"
+    );
+    const { data: frontmatter } = matter(markdownWithMeta);
+    frontmatter.date = new Date(frontmatter.date);
 
     return {
-      topics: topics,
-      notes: JSON.parse(JSON.stringify(notes)),
+      // !! Fix this conditional
+      // !! There is still "//" in the path for NotesPage
+      path: `${
+        pagePath === "./posts"
+          ? pagePath.replace("./posts", "")
+          : pagePath.replace("./posts/", "")
+      }/${filename!.replace(".md", "")}`,
+      frontmatter,
     };
-  } else {
-    const markdownWithMeta = fs.readFileSync(`${pagePath}.md`, "utf-8");
+  });
 
-    const { data: frontmatter, content } = matter(markdownWithMeta);
-
-    const note = {
-      frontmatter: JSON.parse(JSON.stringify(frontmatter)),
-      content,
-    };
-
-    return {
-      note,
-    };
-  }
+  return {
+    topics: topics,
+    notes: JSON.parse(JSON.stringify(notes)),
+  };
 };
 
 const getNoteFile = async (pagePath: string) => {

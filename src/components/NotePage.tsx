@@ -1,29 +1,33 @@
-"use client";
+// "use client";
 import { FC, useEffect, useState } from "react";
 import { marked } from "marked";
 import BackButton from "./BackButton";
 import ColorDivider from "./ColorDivider";
 import { HeadingElement, Note } from "@/types";
 import { useRouter } from "next/navigation";
+import { getNoteFile } from "@/lib/actions/notes";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
 
 type NotePageProps = {
-  note: Note;
+  pagePath: string;
 };
 
-const NotePage: FC<NotePageProps> = ({
-  note: {
+const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
+  const { note } = await getNoteFile(pagePath);
+
+  const {
     frontmatter: { title, excerpt, date },
     content,
-  },
-}) => {
-  const router = useRouter();
-  // const [headingElements, setHeadingElements] = useState<HeadingElement[]>([]);
+  } = note;
+
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+
+  // const router = useRouter();
+  // const [headingElements, setHeadingElements] = useState<HeadingElement[]>([]);
 
   // useEffect(() => {
   //   const childElements = document.querySelector(".prose").children;
@@ -46,7 +50,7 @@ const NotePage: FC<NotePageProps> = ({
   return (
     <div className="px-[10%] md:p-0 md:w-[40em] mx-auto mt-12 min-h-screen">
       <div>
-        <BackButton back={router.back} />
+        {/* <BackButton back={router.back} /> */}
         <h1 className="text-4xl md:text-5xl lg:text-7xl mt-8">{title}</h1>
         <div className="text-gray-200 text-xl mt-2">{excerpt}</div>
         <div className="text-sm text-gray-400 mt-2">
