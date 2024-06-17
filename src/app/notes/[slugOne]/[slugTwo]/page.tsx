@@ -1,6 +1,5 @@
 import NotePage from "@/components/NotePage";
 import NotesDirectoryPage from "@/components/NotesDirectoryPage";
-
 import { getNoteDirectory } from "@/lib/actions/notes";
 import { isPathDirectory } from "@/lib/utils/fs";
 

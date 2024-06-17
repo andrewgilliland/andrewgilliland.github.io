@@ -50,59 +50,6 @@ const getNotes = async (): Promise<{ notes: Note[] }> => {
   };
 };
 
-const getNotesAndTopics = async () => {
-  const topics = fs
-    .readdirSync("./posts", { withFileTypes: true })
-    .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
-    .filter((dirent) => dirent !== null)
-    .map((topic) => ({
-      name: topic!,
-      path: `/notes/${topic}`,
-    }));
-
-  const files = fs
-    .readdirSync("./posts", { withFileTypes: true })
-    .map((dirent) => (dirent.isFile() ? dirent.name : null))
-    .filter((dirent) => dirent !== null);
-
-  // const mostRecentPosts = fs
-  //   .readdirSync("./posts", { withFileTypes: true })
-  //   .map((dirent) =>
-  //     dirent.isFile()
-  //       ? {
-  //           name: dirent.name,
-  //           lastUpdated: fs.statSync(path.join("./posts", dirent.name)).mtime,
-  //         }
-  //       : null
-  //   )
-  //   .filter((file) => file !== null)
-  //   .sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime())
-  //   .slice(0, 5);
-
-  const notes = files.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(
-      path.join("posts", filename!),
-      "utf-8"
-    );
-    const { data: frontmatter } = matter(markdownWithMeta);
-    frontmatter.date = new Date(frontmatter.date);
-
-    return {
-      path: filename?.replace(".md", ""),
-      frontmatter,
-    };
-  });
-
-  notes.sort(
-    (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
-  );
-
-  return {
-    notes: notes,
-    topics: topics,
-  };
-};
-
 const getNoteDirectory = async (pagePath: string) => {
   const isDirectory = await isPathDirectory(pagePath);
 
@@ -165,89 +112,6 @@ const getNoteDirectory = async (pagePath: string) => {
   }
 };
 
-const getNotesFromSlugFour = async (
-  slugOne: string,
-  slugTwo: string,
-  slugThree: string,
-  slugFour: string
-) => {
-  const files = fs
-    .readdirSync(`./posts/${slugOne}/${slugTwo}/${slugThree}`, {
-      withFileTypes: true,
-    })
-    .map((dirent) => (dirent.isFile() ? dirent.name : null))
-    .filter((dirent) => dirent !== null);
-
-  const isNote = files.includes(`${slugFour}.md`);
-
-  console.log(
-    "path: ",
-    path.join("posts", slugOne, slugTwo, slugThree, `${slugFour}.md`)
-  );
-
-  if (isNote) {
-    const markdownWithMeta = fs.readFileSync(
-      path.join("posts", slugOne, slugTwo, slugThree, `${slugFour}.md`),
-      "utf-8"
-    );
-
-    const { data: frontmatter, content } = matter(markdownWithMeta);
-
-    const note = {
-      frontmatter: JSON.parse(JSON.stringify(frontmatter)),
-      content,
-    };
-
-    return {
-      note,
-    };
-  } else {
-    const files = fs
-      .readdirSync(`./posts/${slugOne}/${slugTwo}/${slugThree}/${slugFour}`, {
-        withFileTypes: true,
-      })
-      .map((dirent) => (dirent.isFile() ? dirent.name : null))
-      .filter((dirent) => dirent !== null);
-
-    const topics = fs
-      .readdirSync(`./posts/${slugOne}/${slugTwo}/${slugThree}/${slugFour}`, {
-        withFileTypes: true,
-      })
-      .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
-      .filter((dirent) => dirent !== null)
-      .map((topic) => ({
-        name: topic?.replace(/-/g, " "),
-        path: `/notes/${slugOne}/${slugTwo}/${topic}`,
-      }));
-
-    const notes = files.map((filename) => {
-      const markdownWithMeta = fs.readFileSync(
-        path.join(
-          `./posts/${slugOne}/${slugTwo}/${slugThree}/${slugFour}`,
-          filename
-        ),
-        "utf-8"
-      );
-      const { data: frontmatter } = matter(markdownWithMeta);
-      frontmatter.date = new Date(frontmatter.date);
-
-      return {
-        path: `${slugOne}/${slugTwo}/${slugThree}/${slugFour}/${filename.replace(
-          ".md",
-          ""
-        )}`,
-        frontmatter,
-      };
-    });
-
-    return {
-      topic: slugFour,
-      topics: topics,
-      notes: JSON.parse(JSON.stringify(notes)),
-    };
-  }
-};
-
 const getNoteFile = async (pagePath: string) => {
   const markdownWithMeta = fs.readFileSync(`${pagePath}.md`, "utf-8");
 
@@ -263,10 +127,4 @@ const getNoteFile = async (pagePath: string) => {
   };
 };
 
-export {
-  getNotes,
-  getNotesAndTopics,
-  getNoteDirectory,
-  getNotesFromSlugFour,
-  getNoteFile,
-};
+export { getNotes, getNoteDirectory, getNoteFile };
