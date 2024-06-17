@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { RoutePageProps } from "@/types";
 import NotePage from "./NotePage";
-import NotesPageBody from "./NotesPageBody";
+import NotesDirectoryPage from "./NotesDirectoryPage";
 
 const NoteRoute: FC<RoutePageProps> = ({
   note,
@@ -13,7 +13,7 @@ const NoteRoute: FC<RoutePageProps> = ({
     {note ? (
       <NotePage note={note} />
     ) : (
-      <NotesPageBody topic={topic} topics={topics} notes={notes} />
+      <NotesDirectoryPage topic={topic} topics={topics} notes={notes} />
     )}
   </>
 );

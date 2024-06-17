@@ -1,5 +1,8 @@
-import NoteRoute from "@/components/NoteRoute";
-import { getNotesFromSlug } from "@/lib/actions/notes";
+import NotePage from "@/components/NotePage";
+
+import NotesDirectoryPage from "@/components/NotesDirectoryPage";
+import { getNoteDirectory } from "@/lib/actions/notes";
+import { isPathDirectory } from "@/lib/utils/fs";
 
 type NotesRouteOnePageProps = {
   params: {
@@ -10,9 +13,21 @@ type NotesRouteOnePageProps = {
 const NotesRouteOnePage = async ({
   params: { slugOne },
 }: NotesRouteOnePageProps) => {
-  const { note, topic, notes, topics } = await getNotesFromSlug(slugOne);
+  const pagePath = `./posts/${slugOne}`;
 
-  return <NoteRoute note={note} topic={topic} topics={topics} notes={notes} />;
+  const isDirectory = await isPathDirectory(pagePath);
+
+  const { note, notes, topics } = await getNoteDirectory(pagePath);
+
+  return (
+    <>
+      {isDirectory ? (
+        <NotesDirectoryPage topic={slugOne} topics={topics} notes={notes} />
+      ) : (
+        <NotePage note={note} />
+      )}
+    </>
+  );
 };
 
 export default NotesRouteOnePage;

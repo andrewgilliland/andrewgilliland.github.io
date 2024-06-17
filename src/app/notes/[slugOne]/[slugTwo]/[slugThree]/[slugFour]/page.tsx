@@ -14,6 +14,8 @@ type NotesSlugFourPageProps = {
 const NotesSlugFourPage: FC<NotesSlugFourPageProps> = async ({
   params: { slugOne, slugTwo, slugThree, slugFour },
 }) => {
+  const pagePath = `./posts/${slugOne}/${slugTwo}/${slugThree}/${slugFour}`;
+
   const { note, topic, notes, topics } = await getNotesFromSlugFour(
     slugOne,
     slugTwo,

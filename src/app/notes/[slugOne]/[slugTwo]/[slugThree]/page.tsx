@@ -1,7 +1,8 @@
 import NotePage from "@/components/NotePage";
-import NoteRoute from "@/components/NoteRoute";
-import NotesPageBody from "@/components/NotesPageBody";
-import { getTopicsAndNotes } from "@/lib/actions/notes";
+import NotesDirectoryPage from "@/components/NotesDirectoryPage";
+
+import { getNoteFile, getNoteDirectory } from "@/lib/actions/notes";
+import { isPathDirectory } from "@/lib/utils/fs";
 
 type NotesRouteThreePageProps = {
   params: {
@@ -16,14 +17,16 @@ const NotesRouteThreePage = async ({
 }: NotesRouteThreePageProps) => {
   const pagePath = `./posts/${slugOne}/${slugTwo}/${slugThree}`;
 
-  const { note, notes, topics } = await getTopicsAndNotes(pagePath);
+  const isDirectory = await isPathDirectory(pagePath);
+
+  const { note, notes, topics } = await getNoteDirectory(pagePath);
 
   return (
     <>
-      {note ? (
-        <NotePage note={note} />
+      {isDirectory ? (
+        <NotesDirectoryPage topic={slugThree} topics={topics} notes={notes} />
       ) : (
-        <NotesPageBody topic={slugThree} topics={topics} notes={notes} />
+        <NotePage note={note} />
       )}
     </>
   );

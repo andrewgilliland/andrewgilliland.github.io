@@ -3,13 +3,19 @@ import NoteCard from "./NoteCard";
 import TopicCard from "./TopicCard";
 import { Note, Topic } from "@/types";
 
-type NotesPageBodyProps = {
+type NotesDirectoryPageProps = {
   topic?: string;
   notes: Note[];
   topics: Topic[];
+  pagePath?: string;
 };
 
-const NotesPageBody: FC<NotesPageBodyProps> = ({ topics, topic, notes }) => {
+const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
+  topics,
+  topic,
+  notes,
+  pagePath,
+}) => {
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
       <section className="mt-10 md:mt-0 mx-8 md:mx-0 mb-24">
@@ -40,4 +46,4 @@ const NotesPageBody: FC<NotesPageBodyProps> = ({ topics, topic, notes }) => {
   );
 };
 
-export default NotesPageBody;
+export default NotesDirectoryPage;
