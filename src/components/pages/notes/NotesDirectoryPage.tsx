@@ -1,7 +1,7 @@
 import { FC } from "react";
-import NoteCard from "./NoteCard";
-import TopicCard from "./TopicCard";
 import { getNoteDirectory } from "@/lib/actions/notes";
+import TopicCard from "@/components/TopicCard";
+import NoteCard from "@/components/NoteCard";
 
 type NotesDirectoryPageProps = {
   directory: string;

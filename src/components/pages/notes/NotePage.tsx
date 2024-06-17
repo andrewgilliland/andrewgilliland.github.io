@@ -1,8 +1,8 @@
 // "use client";
 import { FC, useEffect, useState } from "react";
 import { marked } from "marked";
-import BackButton from "./BackButton";
-import ColorDivider from "./ColorDivider";
+import BackButton from "../../BackButton";
+import ColorDivider from "../../ColorDivider";
 import { HeadingElement, Note } from "@/types";
 import { useRouter } from "next/navigation";
 import { getNoteFile } from "@/lib/actions/notes";

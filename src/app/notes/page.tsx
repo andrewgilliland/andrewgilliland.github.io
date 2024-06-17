@@ -1,4 +1,4 @@
-import NotesDirectoryPage from "@/components/NotesDirectoryPage";
+import NotesDirectoryPage from "@/components/pages/notes/NotesDirectoryPage";
 
 const NotesPage = () => {
   const pagePath = "./posts";

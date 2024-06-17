@@ -1,5 +1,5 @@
 import { FC } from "react";
-import NoteRoute from "@/components/NoteRoute";
+import NoteRoute from "@/components/pages/notes/NoteRoute";
 
 type NotesRouteOnePageProps = {
   params: {
