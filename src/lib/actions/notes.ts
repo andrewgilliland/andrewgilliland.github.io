@@ -2,29 +2,9 @@
 import { Note } from "@/types";
 import fs from "fs";
 import matter from "gray-matter";
-import path from "path";
+import { getFilesPaths } from "../utils/fs";
 
 const getNotes = async (): Promise<{ notes: Note[] }> => {
-  function getFilesPaths(rootDirectory: string) {
-    let entries = fs.readdirSync(rootDirectory, { withFileTypes: true });
-
-    let files = entries
-      .filter((entry) => !entry.isDirectory())
-      .map((entry) => path.join(rootDirectory, entry.name)); // maps to an array of file paths
-
-    let directories = entries.filter((entry) => entry.isDirectory());
-
-    for (let directory of directories) {
-      let subdirPaths = getFilesPaths(
-        path.join(`${rootDirectory}`, directory.name)
-      );
-
-      files = files.concat(subdirPaths); // adds the file paths from the subdirectories
-    }
-
-    return files;
-  }
-
   let filePaths = getFilesPaths("./posts");
 
   const notes = filePaths.map((filePath) => {
@@ -55,18 +35,19 @@ const getNoteDirectory = async (pagePath: string) => {
       withFileTypes: true,
     })
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
-    .filter((dirent) => dirent !== null);
+    .filter((dirent) => dirent !== null) as string[];
 
-  const topics = fs
-    .readdirSync(pagePath, {
-      withFileTypes: true,
-    })
-    .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
-    .filter((dirent) => dirent !== null)
-    .map((topic) => ({
-      name: topic?.replace(/-/g, " "),
-      path: `${pagePath.replace("./posts", "/notes")}/${topic}`,
-    }));
+  const topics = (
+    fs
+      .readdirSync(pagePath, {
+        withFileTypes: true,
+      })
+      .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
+      .filter((dirent) => dirent !== null) as string[]
+  ).map((topic) => ({
+    name: topic?.replace(/-/g, " "),
+    path: `${pagePath.replace("./posts", "/notes")}/${topic}`,
+  }));
 
   const notes = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
