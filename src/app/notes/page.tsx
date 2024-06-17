@@ -1,11 +1,9 @@
-import { getNotesAndTopics } from "@/lib/actions/notes";
-import NotesPageBody from "@/components/NotesPageBody";
+import NotesDirectoryPage from "@/components/pages/notes/NotesDirectoryPage";
 
+const NotesPage = () => {
+  const pagePath = "./posts";
 
-const NotesPage = async ({ topic }) => {
-  const { notes, topics } = await getNotesAndTopics();
-
-  return <NotesPageBody topic={topic} notes={notes} topics={topics} />;
+  return <NotesDirectoryPage directory="" pagePath={pagePath} />;
 };
 
 export default NotesPage;
