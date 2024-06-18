@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import { getFilesPaths } from "../utils/fs";
 
 const getNotes = async (): Promise<{ notes: Note[] }> => {
-  let filePaths = getFilesPaths("./posts");
+  let filePaths = await getFilesPaths("./posts");
 
   const notes = filePaths.map((filePath) => {
     const markdownWithMeta = fs.readFileSync(filePath, "utf-8");

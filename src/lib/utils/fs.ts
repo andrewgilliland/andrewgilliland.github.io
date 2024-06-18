@@ -11,7 +11,10 @@ export const isPathDirectory = async (path: string): Promise<boolean> => {
   }
 };
 
-export const getFilesPaths = (rootDirectory: string): string[] => {
+/** Recursively finds all file paths in a directory tree */
+export const getFilesPaths = async (
+  rootDirectory: string
+): Promise<string[]> => {
   let entries = fs.readdirSync(rootDirectory, { withFileTypes: true });
 
   let files = entries
@@ -21,7 +24,7 @@ export const getFilesPaths = (rootDirectory: string): string[] => {
   let directories = entries.filter((entry) => entry.isDirectory());
 
   for (let directory of directories) {
-    let subdirPaths = getFilesPaths(
+    let subdirPaths = await getFilesPaths(
       path.join(`${rootDirectory}`, directory.name)
     );
 

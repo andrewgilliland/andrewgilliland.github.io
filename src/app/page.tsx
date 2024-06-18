@@ -56,7 +56,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="flex-1 bg-yellow-300 border-t-2 border-l-0 border-white p-[6.5vw] md:w-1/2 md:border-l-2">
+          <div className="flex-1 bg-yellow-300 border-t-2 border-l-0 border-white p-[6.5vw] md:w-1/2 md:border-t-0 md:border-l-2">
             <div className="flex flex-col">
               {notesSlice.map(({ path, frontmatter: { title } }, index) => (
                 <Link
