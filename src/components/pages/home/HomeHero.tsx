@@ -1,4 +1,4 @@
-import PrimaryButton from "@/components/PrimaryButton";
+import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
 import HomeBento from "./HomeBento";
 
 const HomeHero = () => {
@@ -13,7 +13,12 @@ const HomeHero = () => {
             I am a community taught full stack developer. This site is to share
             what I am learning and hopefully help others along the way.
           </p>
-          <PrimaryButton href="/notes" className="mt-12" text="Read More" />
+          <PrimaryButton
+            onClick={() => {}}
+            href="/notes"
+            className="mt-12"
+            text="Read More"
+          />
         </div>
       </div>
       <HomeBento />
