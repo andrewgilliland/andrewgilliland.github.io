@@ -25,5 +25,11 @@ module.exports = {
       pattern:
         /(bg|text)-(yellow|pink|cyan|emerald|red)-(100|200|300|400|500|600|700|800|900)/,
     },
+    {
+      pattern: /(h|w)-(10|11|12|14|16)/,
+    },
+    {
+      pattern: /(border)-(white|black)/,
+    },
   ],
 };

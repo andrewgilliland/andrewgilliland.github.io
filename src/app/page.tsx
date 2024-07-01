@@ -80,7 +80,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <div className="h-12"></div>
+        <div className="h-24 border-b-2 border-white"></div>
         <ColorDivider className="w-full h-6" />
       </div>
     </div>
