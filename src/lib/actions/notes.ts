@@ -20,6 +20,7 @@ const getNotes = async (): Promise<{ notes: Note[] }> => {
     return note;
   });
 
+  //* Sort notes by date ???
   // posts.sort(
   //   (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
   // );

@@ -2,6 +2,7 @@
 import fs from "fs";
 import path from "path";
 
+/** Checks if a url path is a directory or file */
 export const isPathDirectory = async (path: string): Promise<boolean> => {
   try {
     const stats = await fs.promises.stat(path);
