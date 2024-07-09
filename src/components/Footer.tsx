@@ -8,7 +8,7 @@ const Footer = () => (
       {socialLinks.map(({ Icon, href }, index) => (
         <Block backgroundColor="bg-blue-500" size="12" theme="dark" key={index}>
           <a href={href}>
-            <Icon className="fill-black h-5 w-5" />
+            <Icon className="fill-white h-5 w-5" />
           </a>
         </Block>
       ))}

@@ -12,7 +12,7 @@ const AboutPage = () => {
 
       <section className="mt-10">
         <div className="grid grid-cols-4 grid-rows-3 gap-6">
-          <div className="relative col-span-2 row-span-1">
+          <div className="relative col-span-full md:col-span-2 row-span-1">
             <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
             <div className="relative bg-cyan-300 border-2 border-black rounded-lg p-4">
               <div className="flex gap-4">
@@ -35,7 +35,7 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="relative col-span-1 row-span-1">
+          <div className="relative col-span-full md:col-span-1 row-span-1">
             <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
             <div className="relative flex border-2 border-black rounded-lg w-full h-full">
               <div className="bg-yellow-300 rounded-l-lg h-full w-1/4" />
@@ -45,7 +45,7 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative col-span-full md:col-span-1">
             <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
             <div className="relative flex justify-center items-center bg-pink-300 border-2 border-black rounded-lg h-full">
               <Link className="group" href="/resume">
@@ -55,20 +55,21 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="relative col-span-2 row-span-2">
+          <div className="relative col-span-full md:col-span-2 row-span-2">
             <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
             <div className="relative bg-yellow-300 border-2 border-black rounded-lg p-4 h-full">
               <p className="font-semibold text-black text-lg">
-                I enjoy learning and using new mobile and web technologies. I
-                currently work mainly with React Native and Swift to build
-                mobile applications, but always enjoy implementing new
-                technologies. In my spare time, I enjoy learning about fitness
-                and nutrition, woodworking and am a music aficionado.
+                I am a full stack developer with domain expertise in mobile
+                development. I am proficient working with React Native and
+                SwiftUI to build mobile applications, but am always learning and
+                implementing new technologies. In my spare time, I enjoy
+                learning about fitness, nutrition, woodworking and venturing
+                into nature or concerts.
               </p>
             </div>
           </div>
 
-          {socialLinks.map(({ title, Icon, href }, index) => (
+          {/* {socialLinks.map(({ title, Icon, href }, index) => (
             <div
               key={index}
               className="flex flex-col justify-center items-center bg-black border-2 border-white rounded-lg col-span-1 row-span-1"
@@ -78,7 +79,7 @@ const AboutPage = () => {
                 <div className="bg-pink-300 h-0.5 w-[0%] rounded-full group-hover:w-full transition-all" />
               </a>
             </div>
-          ))}
+          ))} */}
         </div>
       </section>
     </div>
