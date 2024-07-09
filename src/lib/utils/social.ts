@@ -19,6 +19,6 @@ export const socialLinks = [
     title: "Twitter",
     Icon: TwitterIcon,
     href: "https://twitter.com/droidgilliland",
-    color: "yellow",
+    color: "emerald",
   },
 ];

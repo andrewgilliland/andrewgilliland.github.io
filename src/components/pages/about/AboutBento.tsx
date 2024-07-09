@@ -10,13 +10,14 @@ const AboutBento = () => {
       <div className="relative col-span-full md:col-span-2 row-span-1">
         <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
         <div className="relative bg-cyan-300 border-2 border-black rounded-lg p-4">
-          <div className="flex gap-4">
+          <div className="flex justify-between gap-4">
             <Image
               src="/andy-2.jpg"
               width={128}
               height={128}
               alt="Andrew Gilliland"
               className="rounded-lg border-2 border-black h-32 w-32 object-cover"
+              priority
             />
             <div className="text-white text-sm flex flex-col justify-between">
               <div className="text-center bg-black rounded-lg border-2 border-white min-w-max px-4 py-4">
