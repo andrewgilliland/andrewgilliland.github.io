@@ -20,13 +20,13 @@ const Block = ({
   return (
     <div className={`relative ${className}`}>
       <div
-        className={`absolute flex justify-center items-center h-${size} w-${size} border-2 border-${themeOptions[theme]} rounded-lg right-1 bottom-1 ${backgroundColor}`}
+        className={`absolute top-0 bg-${themeOptions[theme]} h-${size} w-${size} translate-x-1 translate-y-1 rounded-lg`}
+      />
+      <div
+        className={`relative flex justify-center items-center h-${size} w-${size} border-2 border-${themeOptions[theme]} rounded-lg  ${backgroundColor}`}
       >
         {children}
       </div>
-      <div
-        className={`bg-${themeOptions[theme]} h-${size} w-${size} rounded-lg`}
-      />
     </div>
   );
 };
