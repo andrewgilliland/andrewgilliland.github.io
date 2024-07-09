@@ -39,29 +39,30 @@ const AboutBento = () => {
         </div>
       </Block>
 
-      <div className="relative col-span-full md:col-span-1">
-        <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
-        <div className="relative flex justify-center items-center bg-pink-300 border-2 border-black rounded-lg h-full">
-          <Link className="group" href="/resume">
-            <div className="font-semibold text-black text-lg">Resume</div>
-            <div className="bg-black h-0.5 w-[0%] rounded-full group-hover:w-full transition-all" />
-          </Link>
-        </div>
-      </div>
+      <Block
+        backgroundColor="bg-pink-300"
+        size="full"
+        className="col-span-full md:col-span-1 row-span-1"
+      >
+        <Link className="group" href="/resume">
+          <div className="font-semibold text-black text-lg">Resume</div>
+          <div className="bg-black h-0.5 w-[0%] rounded-full group-hover:w-full transition-all" />
+        </Link>
+      </Block>
 
-      <div className="relative col-span-full md:col-span-2 row-span-2">
-        <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
-        <div className="relative bg-yellow-300 border-2 border-black rounded-lg p-4 h-full">
-          <p className="font-semibold text-black text-lg">
-            I am a full stack developer with domain expertise in mobile
-            development. I am proficient working with React Native and SwiftUI
-            to build mobile applications, but am always learning and
-            implementing new technologies. In my spare time, I enjoy learning
-            about fitness, nutrition, woodworking and venturing into nature or
-            concerts.
-          </p>
-        </div>
-      </div>
+      <Block
+        backgroundColor="bg-yellow-300"
+        size="full"
+        className="col-span-full md:col-span-2 row-span-2"
+      >
+        <p className="font-semibold text-black text-lg m-4">
+          I am a full stack developer with domain expertise in mobile
+          development. I am proficient working with React Native and SwiftUI to
+          build mobile applications, but am always learning and implementing new
+          technologies. In my spare time, I enjoy learning about fitness,
+          nutrition, woodworking and venturing into nature or concerts.
+        </p>
+      </Block>
 
       {/* {socialLinks.map(({ title, Icon, href }, index) => (
           <div
