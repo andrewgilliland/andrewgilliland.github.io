@@ -2,6 +2,7 @@ import Image from "next/image";
 import { socialLinks } from "@/lib/utils/social";
 import ExternalLink from "@/components/ExternalLink";
 import Link from "next/link";
+import Block from "@/components/Block";
 
 const AboutPage = () => {
   return (
@@ -35,15 +36,14 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="relative col-span-full md:col-span-1 row-span-1">
-            <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
-            <div className="relative flex border-2 border-black rounded-lg w-full h-full">
-              <div className="bg-yellow-300 rounded-l-lg h-full w-1/4" />
-              <div className="bg-cyan-300 h-full w-1/4" />
-              <div className="bg-pink-300 h-full w-1/4" />
-              <div className="bg-emerald-300 rounded-r-lg h-full w-1/4" />
+          <Block size="full" className="col-span-full md:col-span-1 row-span-1">
+            <div className="flex w-full h-full">
+              <div className="bg-yellow-300 rounded-l-md w-1/4" />
+              <div className="bg-cyan-300 w-1/4" />
+              <div className="bg-pink-300 w-1/4" />
+              <div className="bg-emerald-300 rounded-r-md w-1/4" />
             </div>
-          </div>
+          </Block>
 
           <div className="relative col-span-full md:col-span-1">
             <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
