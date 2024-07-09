@@ -13,18 +13,21 @@ const AboutBento = () => {
           <div className="flex gap-4">
             <Image
               src="/andy-2.jpg"
-              width={200}
-              height={200}
+              width={128}
+              height={128}
               alt="Andrew Gilliland"
-              className="bg-black rounded-lg border-2 border-black h-32 w-32 object-contain"
+              className="rounded-lg border-2 border-black h-32 w-32 object-cover"
             />
             <div className="text-white text-sm flex flex-col justify-between">
               <div className="text-center bg-black rounded-lg border-2 border-white min-w-max px-4 py-4">
                 Full Stack Developer
               </div>
-              <div className="text-center bg-black rounded-lg border-2 border-white px-4 py-4">
-                Bloomington, IL
-              </div>
+              <a
+                href="https://en.wikipedia.org/wiki/Bloomington,_Illinois"
+                className="text-center bg-black rounded-lg border-2 border-white px-4 py-4"
+              >
+                <div>Bloomington, IL</div>
+              </a>
             </div>
           </div>
         </div>
