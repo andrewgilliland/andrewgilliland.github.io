@@ -18,7 +18,11 @@ const MobileHeader = ({ pages }: MobileHeaderProps) => {
 
   useEffect(() => {
     setIsMenuOpen(false);
-  }, []);
+
+    console.log("pathname: ", pathname);
+  }, [pathname]);
+
+  // close menu when route changes
 
   return (
     <>
