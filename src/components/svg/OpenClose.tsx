@@ -23,14 +23,14 @@ const OpenClose: FC<OpenCloseProps> = ({ isOpen }) => {
           isOpen ? "-rotate-45" : "rotate-0"
         } origin-center`}
         fillRule="evenodd"
-        d="M3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75"
+        d="M3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Z"
       />
       <path
         className={`fill-cyan-300 ${
           isOpen ? "rotate-45" : "rotate-0"
         } origin-center`}
         fillRule="evenodd"
-        d="M3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75"
+        d="M3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Z"
       />
       <path
         className={`fill-yellow-300 ${isOpen ? "opacity-0" : "opacity-100"}`}

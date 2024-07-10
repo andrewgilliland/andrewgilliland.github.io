@@ -18,15 +18,12 @@ const MobileHeader = ({ pages }: MobileHeaderProps) => {
 
   useEffect(() => {
     setIsMenuOpen(false);
-    console.log("isMenuOpen: ", isMenuOpen);
-  }, [router]);
+  }, []);
 
   return (
     <>
       <div className="flex fixed md:hidden justify-between items-center bg-black z-40 border-b-2 border-white-300 w-full px-[10%] py-6">
         <HeaderHeading />
-
-        {/* Todo: Create Hamburger icon, animated to "X" on open  */}
         <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <OpenClose isOpen={isMenuOpen} />
         </button>
