@@ -4,6 +4,7 @@ import HeaderHeading from "./HeaderHeading";
 import Link from "next/link";
 import { Page } from "@/types";
 import { useRouter, usePathname } from "next/navigation";
+import OpenClose from "./svg/OpenClose";
 
 type MobileHeaderProps = {
   pages: Page[];
@@ -27,29 +28,7 @@ const MobileHeader = ({ pages }: MobileHeaderProps) => {
 
         {/* Todo: Create Hamburger icon, animated to "X" on open  */}
         <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className={`fill-pink-300 h-8 w-8 transition ease-in-out ${
-              isMenuOpen ? "rotate-90" : "rotate-0"
-            }`}
-          >
-            <path
-              className="fill-pink-300 origin-top-left"
-              fillRule="evenodd"
-              d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75Z"
-            />
-            <path
-              className="fill-cyan-300"
-              fillRule="evenodd"
-              d="M3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75"
-            />
-            <path
-              className="fill-yellow-300"
-              fillRule="evenodd"
-              d="M3 17.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
-            />
-          </svg>
+          <OpenClose isOpen={isMenuOpen} />
         </button>
       </div>
 
