@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import HeaderHeading from "./HeaderHeading";
 import Link from "next/link";
 import { Page } from "@/types";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import OpenClose from "./svg/OpenClose";
 
 type MobileHeaderProps = {
@@ -12,17 +12,12 @@ type MobileHeaderProps = {
 
 const MobileHeader = ({ pages }: MobileHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
   const pathname = usePathname();
   const activePageTitle = pages.find((page) => page.href === pathname)?.title;
 
   useEffect(() => {
     setIsMenuOpen(false);
-
-    console.log("pathname: ", pathname);
   }, [pathname]);
-
-  // close menu when route changes
 
   return (
     <>
