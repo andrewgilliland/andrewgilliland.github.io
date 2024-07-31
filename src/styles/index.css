@@ -122,3 +122,29 @@ body {
     transform: scale3d(1, 1, 1);
   }
 }
+
+#drawer-nav[popover] {
+  background-color: black;
+  color: white;
+  transition: display 0.3s allow-discrete, overlay 0.5s allow-discrete,
+    opacity 0.3s, translate 0.3s;
+  transition-timing-function: ease-in;
+  translate: 100%;
+  margin: 0;
+  block-size: 100vb;
+  inline-size: 50vi;
+  inset-inline-start: unset;
+  inset-inline-end: 0;
+  border-left: 2px solid white;
+
+  &:popover-open {
+    translate: 0;
+    transition-timing-function: ease-out;
+  }
+
+  @starting-style {
+    &:popover-open {
+      translate: 100%;
+    }
+  }
+}
