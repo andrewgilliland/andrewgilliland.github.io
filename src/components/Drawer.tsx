@@ -1,13 +1,33 @@
+// declare global {
+//   namespace JSX {
+//     interface IntrinsicElements {
+//       button: React.DetailedHTMLProps<
+//         React.ButtonHTMLAttributes<HTMLButtonElement>,
+//         HTMLButtonElement
+//       > & {
+//         popovertarget?: string;
+//         popovertargetaction?: string;
+//       };
+//       nav: React.DetailedHTMLProps<
+//         React.HTMLAttributes<HTMLElement>,
+//         HTMLElement
+//       > & {
+//         popover?: string;
+//       };
+//     }
+//   }
+// }
+
 export const Drawer = () => {
   return (
     <div>
-      <button popovertarget="demo-mobile-nav">Drawer</button>
+      <button popoverTarget="demo-mobile-nav">Drawer</button>
 
       <nav popover="auto" id="demo-mobile-nav">
         <button
           className="demo-button"
-          popovertarget="demo-mobile-nav"
-          popovertargetaction="hide"
+          popoverTarget="demo-mobile-nav"
+          popoverTargetAction="hide"
         >
           Close Nav
         </button>
