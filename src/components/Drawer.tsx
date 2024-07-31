@@ -21,12 +21,12 @@
 export const Drawer = () => {
   return (
     <div>
-      <button popoverTarget="demo-mobile-nav">Drawer</button>
+      <button popoverTarget="drawer-nav">Drawer</button>
 
-      <nav popover="auto" id="demo-mobile-nav">
+      <nav popover="auto" id="drawer-nav">
         <button
-          className="demo-button"
-          popoverTarget="demo-mobile-nav"
+          className="button"
+          popoverTarget="drawer-nav"
           popoverTargetAction="hide"
         >
           Close Nav
