@@ -1,23 +1,3 @@
-// declare global {
-//   namespace JSX {
-//     interface IntrinsicElements {
-//       button: React.DetailedHTMLProps<
-//         React.ButtonHTMLAttributes<HTMLButtonElement>,
-//         HTMLButtonElement
-//       > & {
-//         popovertarget?: string;
-//         popovertargetaction?: string;
-//       };
-//       nav: React.DetailedHTMLProps<
-//         React.HTMLAttributes<HTMLElement>,
-//         HTMLElement
-//       > & {
-//         popover?: string;
-//       };
-//     }
-//   }
-// }
-
 export const Drawer = () => {
   return (
     <div>
