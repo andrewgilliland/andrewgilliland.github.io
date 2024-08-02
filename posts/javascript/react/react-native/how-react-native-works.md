@@ -14,8 +14,8 @@ A high-level overview of how React Native:
 
 3. Bridge: React Native enables communication between JavaScript and the native code using a `bridge`. It operates asynchronously.
 
-4. Native Modules:
+4. Native Modules: When functionality is not covered by React Native's built-in components, writing native modules in Objective-C, Swift, Java, or Kotlin allows you to extend functionality to the native platforms (iOS and Android).
 
-5. Flexbox Layout:
+5. Flexbox Layout: To make it easier to create responsive UIs that work for different screen sizes, React Native uses Flexbox for layouts.
 
-6. Hot Reloading:
+6. Hot Reloading: To allow developers to see changes made in the code immediately without having to recompile the application, React Native supports hot reloading.
