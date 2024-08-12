@@ -4,7 +4,7 @@ import DesktopHeader from "./DesktopHeader";
 const Header = () => {
   const pages = [
     { href: "/", title: "Home" },
-    { href: "/notes", title: "Notes" },
+    { href: "/articles", title: "Articles" },
     { href: "/about", title: "About" },
   ];
 
