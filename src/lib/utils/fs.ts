@@ -4,8 +4,6 @@ import path from "path";
 
 /** Checks if a url path is a directory or file */
 export const isPathDirectory = async (path: string): Promise<boolean> => {
-  console.log("isPathDirectory path: ", path);
-
   try {
     const stats = await fs.promises.stat(path);
     return stats.isDirectory();

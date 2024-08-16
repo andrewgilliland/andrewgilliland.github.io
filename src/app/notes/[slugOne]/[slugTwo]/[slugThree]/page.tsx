@@ -12,7 +12,7 @@ type NotesRouteThreePageProps = {
 const NotesRouteThreePage: FC<NotesRouteThreePageProps> = async ({
   params: { slugOne, slugTwo, slugThree },
 }) => {
-  const pagePath = `./posts/${slugOne}/${slugTwo}/${slugThree}`;
+  const pagePath = `./content/notes/${slugOne}/${slugTwo}/${slugThree}`;
 
   return <NoteRoute directory={slugThree} pagePath={pagePath} />;
 };

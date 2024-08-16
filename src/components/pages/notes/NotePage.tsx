@@ -13,8 +13,6 @@ type NotePageProps = {
 };
 
 const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
-  console.log("NotePage pagePath: ", pagePath);
-
   const { note } = await getNoteFile(pagePath);
 
   const {

@@ -61,8 +61,6 @@ const getNoteDirectory = async (pagePath: string) => {
     frontmatter.date = new Date(frontmatter.date);
 
     return {
-      // !! Fix this conditional
-      // !! There is still "//" in the path for NotesPage
       path: filename.replace(".md", ""),
       frontmatter,
     };
@@ -70,12 +68,11 @@ const getNoteDirectory = async (pagePath: string) => {
 
   return {
     topics: topics,
-    notes: JSON.parse(JSON.stringify(notes)),
+    notes: notes,
   };
 };
 
 const getNoteFile = async (pagePath: string) => {
-  console.log("getNoteFile pagePath: ", pagePath);
   const markdownWithMeta = fs.readFileSync(`${pagePath}.md`, "utf-8");
 
   const { data: frontmatter, content } = matter(markdownWithMeta);
