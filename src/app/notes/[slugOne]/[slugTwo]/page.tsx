@@ -11,7 +11,7 @@ type NotesRouteTwoPageProps = {
 const NotesRouteTwoPage: FC<NotesRouteTwoPageProps> = async ({
   params: { slugOne, slugTwo },
 }) => {
-  const pagePath = `./posts/${slugOne}/${slugTwo}`;
+  const pagePath = `./content/notes/${slugOne}/${slugTwo}`;
 
   return <NoteRoute directory={slugTwo} pagePath={pagePath} />;
 };

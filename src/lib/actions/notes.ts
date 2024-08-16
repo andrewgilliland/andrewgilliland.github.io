@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import { getFilesPaths } from "../utils/fs";
 
 const getNotes = async (): Promise<{ notes: Note[] }> => {
-  let filePaths = await getFilesPaths("./posts");
+  let filePaths = await getFilesPaths("./content/notes");
 
   const notes = filePaths.map((filePath) => {
     const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
@@ -20,7 +20,7 @@ const getNotes = async (): Promise<{ notes: Note[] }> => {
     return note;
   });
 
-  //* Sort notes by date ???
+  // * Sort notes by date ???
   // posts.sort(
   //   (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
   // );
@@ -31,6 +31,8 @@ const getNotes = async (): Promise<{ notes: Note[] }> => {
 };
 
 const getNoteDirectory = async (pagePath: string) => {
+  console.log("getNoteDirectory pagePath: ", pagePath);
+
   const files = fs
     .readdirSync(pagePath, {
       withFileTypes: true,
@@ -47,7 +49,7 @@ const getNoteDirectory = async (pagePath: string) => {
       .filter((dirent) => dirent !== null) as string[]
   ).map((topic) => ({
     name: topic?.replace(/-/g, " "),
-    path: `${pagePath.replace("./posts", "/notes")}/${topic}`,
+    path: `${pagePath.replace("/content/notes", "")}/${topic}`,
   }));
 
   const notes = files.map((filename) => {
@@ -59,20 +61,17 @@ const getNoteDirectory = async (pagePath: string) => {
     frontmatter.date = new Date(frontmatter.date);
 
     return {
-      // !! Fix this conditional
-      // !! There is still "//" in the path for NotesPage
-      path: `${
-        pagePath === "./posts"
-          ? pagePath.replace("./posts", "")
-          : pagePath.replace("./posts/", "")
-      }/${filename!.replace(".md", "")}`,
+      path: `${pagePath.replace("/content/notes", "")}/${filename.replace(
+        ".md",
+        ""
+      )}`,
       frontmatter,
     };
   });
 
   return {
     topics: topics,
-    notes: JSON.parse(JSON.stringify(notes)),
+    notes: notes,
   };
 };
 
