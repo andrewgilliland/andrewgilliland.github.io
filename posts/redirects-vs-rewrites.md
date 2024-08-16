@@ -36,10 +36,14 @@ Temporary redirects can be used to redirect users to an alternative page while t
 
 #### Special Redirects
 
-1. `300` - `Multiple Choices`
-2. `304` - `Not Modified`
+There are two status codes for special redirects:
+
+1. `300` - `Multiple Choices` - Manual redirects
+2. `304` - `Not Modified` - Used for caching purposes, not a redirect
 
 ### Rewrites
+
+Rewrites are handled entirely on the server and are transparent to the user. The URL in the browser's address bar remains unchanged. Rewrites are useful to make URLs more user and SEO friendly. For example, you could rewrite the URL `website.com/index.php?page=about` to `website.com/about`.
 
 ### Key Differences
 
@@ -47,4 +51,5 @@ Temporary redirects can be used to redirect users to an alternative page while t
 
 ### Resources
 
-[Redirections in HTTP - HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections)
+[Redirections in HTTP - HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections)  
+[Introduction To URL Rewriting - Smashing Magazine](https://www.smashingmagazine.com/2011/11/introduction-to-url-rewriting/)
