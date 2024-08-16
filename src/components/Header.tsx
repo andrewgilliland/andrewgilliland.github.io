@@ -5,6 +5,7 @@ const Header = () => {
   const pages = [
     { href: "/", title: "Home" },
     { href: "/articles", title: "Articles" },
+    { href: "/notes", title: "Notes" },
     { href: "/about", title: "About" },
   ];
 

@@ -10,7 +10,8 @@ type NotesRouteOnePageProps = {
 const NotesRouteOnePage: FC<NotesRouteOnePageProps> = async ({
   params: { slugOne },
 }) => {
-  const pagePath = `./posts/${slugOne}`;
+  const pagePath = `./content/notes/${slugOne}`;
+  console.log("NotesRouteOnePage pagePath: ", pagePath);
 
   return <NoteRoute directory={slugOne} pagePath={pagePath} />;
 };
