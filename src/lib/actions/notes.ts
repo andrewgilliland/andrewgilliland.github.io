@@ -49,7 +49,7 @@ const getNoteDirectory = async (pagePath: string) => {
       .filter((dirent) => dirent !== null) as string[]
   ).map((topic) => ({
     name: topic?.replace(/-/g, " "),
-    path: `${pagePath.replace("/content", "")}/${topic}`,
+    path: `${pagePath.replace("/content/notes", "")}/${topic}`,
   }));
 
   const notes = files.map((filename) => {
@@ -61,7 +61,10 @@ const getNoteDirectory = async (pagePath: string) => {
     frontmatter.date = new Date(frontmatter.date);
 
     return {
-      path: filename.replace(".md", ""),
+      path: `${pagePath.replace("/content/notes", "")}/${filename.replace(
+        ".md",
+        ""
+      )}`,
       frontmatter,
     };
   });
