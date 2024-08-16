@@ -11,7 +11,7 @@ In web development, redirects and rewrites are techiques use to manage URLs and 
 
 ### Redirects
 
-URL redirects are a technique used to have more than one URL address to point users to the same website page or destination. URL redirects may also be known as URL forwarding.
+URL redirects are a technique used to have more than one URL address to point users to the same website page or destination. URL redirects may also be known as URL forwarding. Redirect responses have status codes that start with `3`.
 
 There are different types of redirects, that can be sorted into three categories:
 
@@ -21,15 +21,23 @@ There are different types of redirects, that can be sorted into three categories
 
 #### Permanent Redirects
 
-Permanent redirects can be used to preserve existing links to perserve existing URLs.
+Permanent redirects can be used to preserve existing links to perserve existing URLs. These redirects are meant to last forever. There are two status codes for permanent redirects:
+
+1. `301` - `Moved Permanently`
+2. `308` - `Permanent Redirect`
 
 #### Temporary Redirects
 
-Temporary redirects can be used to redirect users to an alternative page while there maintenance or downtime on a web site or app.
+Temporary redirects can be used to redirect users to an alternative page while there maintenance or downtime on a web site or app. There are three status codes for temporary redirects:
+
+1. `302` - `Found`
+2. `303` - `See Other`
+3. `307` - `Temporary Redirect`
 
 #### Special Redirects
 
-There are redirects that could be done for other reasons such as geolocation, device, language
+1. `300` - `Multiple Choices`
+2. `304` - `Not Modified`
 
 ### Rewrites
 
