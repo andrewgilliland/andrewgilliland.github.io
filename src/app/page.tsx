@@ -30,8 +30,8 @@ export default async function HomePage() {
   return (
     <div className="relative">
       <div>
-        <TwinSections
-          sectionOne={
+        <TwinSections>
+          <TwinSections.SectionOne>
             <div className="max-w-xl mx-auto">
               <h1 className="font-bold text-white text-4xl md:text-6xl stroke-black">
                 Howdy, I&apos;m Andrew!
@@ -43,8 +43,8 @@ export default async function HomePage() {
               </p>
               <PrimaryButton href="/notes" className="mt-12" text="Read More" />
             </div>
-          }
-          sectionTwo={
+          </TwinSections.SectionOne>
+          <TwinSections.SectionTwo>
             <div>
               <h2 className="text-center font-bold text-white text-4xl stroke-black">
                 Notes
@@ -63,8 +63,8 @@ export default async function HomePage() {
                 </div>
               </div>
             </div>
-          }
-        />
+          </TwinSections.SectionTwo>
+        </TwinSections>
         <CenteredSection>
           <h2 className="text-center font-bold text-black text-4xl stroke-white mb-12">
             Recent Notes
