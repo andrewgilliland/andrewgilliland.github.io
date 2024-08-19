@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cyan300, emerald300, pink300, yellow300 } from "@/styles/colors";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { getNotes } from "@/lib/actions/notes";
 import TopicCard from "@/components/TopicCard";
@@ -69,22 +70,23 @@ export default async function HomePage() {
           <h2 className="text-center font-bold text-black text-4xl stroke-white mb-12">
             Recent Notes
           </h2>
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center">
             {notesSlice.map(({ path, frontmatter }, index) => (
               <Link
                 key={index}
-                className={`${index && "mt-4"} group relative`}
-                href={path!}
+                className={`${
+                  index && "mt-4"
+                } group relative w-1/2 min-w-[240px]`}
+                href={`notes/${path!}`}
                 title={frontmatter!.title}
               >
-                <div
-                  className={`absolute bg-black border-2 border-white rounded w-full h-full bottom-0`}
-                />
+                <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0" />
                 <div className="flex justify-between items-center bg-black border-2 border-white rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1">
                   <h4 className="font-bold text-white truncate max-w-[75%]">
                     {frontmatter!.title}
                   </h4>
-                  <PencilSquareIcon className="h-6 w-6 stroke-white min-w-max" />
+
+                  <PencilSquareIcon className="h-6 w-6 stroke-2 stroke-white min-w-max" />
                 </div>
               </Link>
             ))}
