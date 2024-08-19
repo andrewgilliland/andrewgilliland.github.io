@@ -14,8 +14,6 @@ import ColorDivider from "@/components/ColorDivider";
 
 export default async function HomePage() {
   const { notes } = await getNotes();
-
-  // only get the first 5 notes
   const notesSlice = notes.slice(0, 5);
 
   const topics = [
@@ -58,19 +56,19 @@ export default async function HomePage() {
 
           <div className="flex-1 bg-yellow-300 border-t-2 border-l-0 border-white p-[6.5vw] md:w-1/2 md:border-t-0 md:border-l-2">
             <div className="flex flex-col">
-              {notesSlice.map(({ path, frontmatter: { title } }, index) => (
+              {notesSlice.map(({ path, frontmatter }, index) => (
                 <Link
                   key={index}
                   className={`${index && "mt-4"} group relative`}
-                  href={path}
-                  title={title}
+                  href={path!}
+                  title={frontmatter!.title}
                 >
                   <div
                     className={`absolute bg-white border-2 border-black rounded w-full h-full bottom-0`}
                   />
                   <div className="flex justify-between items-center bg-black border-2 border-black rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1">
                     <h4 className="font-bold text-white truncate max-w-[75%]">
-                      {title}
+                      {frontmatter!.title}
                     </h4>
                     <PencilSquareIcon className="h-6 w-6 stroke-white min-w-max" />
                   </div>
@@ -80,7 +78,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <div className="h-24 border-b-2 border-white"></div>
+        <div className="h-24 border-b-2 border-white" />
         <ColorDivider className="w-full h-6" />
       </div>
     </div>

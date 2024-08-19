@@ -3,20 +3,20 @@ import { Note } from "@/types";
 import { FireIcon } from "@heroicons/react/20/solid";
 
 type NoteCardProps = {
-  note: Note;
+  note: Partial<Note>;
   index: number;
 };
 
 const NoteCard = ({ note }: NoteCardProps) => {
-  const {
-    path,
-    frontmatter: { date, title, excerpt },
-  } = note;
-  const formattedDate = new Date(date).toLocaleDateString("en-us", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const { path, frontmatter } = note;
+  const formattedDate = new Date(frontmatter!.date).toLocaleDateString(
+    "en-us",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
 
   return (
     <Link
@@ -46,8 +46,10 @@ const NoteCard = ({ note }: NoteCardProps) => {
         <div className="mt-6 px-4 pb-4">
           <div>
             <p className="text-gray-300 text-sm">{formattedDate}</p>
-            <h3 className="font-semibold text-gray-100 text-lg">{title}</h3>
-            <p className="text-gray-300 text-sm">{excerpt}</p>
+            <h3 className="font-semibold text-gray-100 text-lg">
+              {frontmatter!.title}
+            </h3>
+            <p className="text-gray-300 text-sm">{frontmatter!.excerpt}</p>
           </div>
           <div className="text-gray-300 text-sm">Read More</div>
         </div>
