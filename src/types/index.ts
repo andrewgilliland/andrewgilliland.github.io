@@ -1,4 +1,4 @@
-export type Frontmatter = {
+export type NoteFrontmatter = {
   title: string;
   date: string;
   excerpt: string;
@@ -12,7 +12,7 @@ export type Frontmatter = {
 
 export type Note = {
   path: string;
-  frontmatter: Frontmatter;
+  frontmatter: NoteFrontmatter;
   content: string;
 };
 

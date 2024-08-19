@@ -1,5 +1,5 @@
 "use server";
-import { Note } from "@/types";
+import { Note, NoteFrontmatter, Topic } from "@/types";
 import fs from "fs";
 import matter from "gray-matter";
 import { getFilesPaths } from "../utils/fs";
@@ -30,9 +30,9 @@ const getNotes = async (): Promise<{ notes: Note[] }> => {
   };
 };
 
-const getNoteDirectory = async (pagePath: string) => {
-  console.log("getNoteDirectory pagePath: ", pagePath);
-
+const getNoteDirectory = async (
+  pagePath: string
+): Promise<{ topics: Topic[]; notes: Partial<Note>[] }> => {
   const files = fs
     .readdirSync(pagePath, {
       withFileTypes: true,
@@ -57,8 +57,9 @@ const getNoteDirectory = async (pagePath: string) => {
       `${pagePath}/${filename!}`,
       "utf-8"
     );
-    const { data: frontmatter } = matter(markdownWithMeta);
-    frontmatter.date = new Date(frontmatter.date);
+    const { data } = matter(markdownWithMeta);
+
+    const frontmatter = data as NoteFrontmatter;
 
     return {
       path: `${pagePath.replace("/content/notes", "")}/${filename.replace(
