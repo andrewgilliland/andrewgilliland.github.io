@@ -1,6 +1,5 @@
 "use client";
 import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
-import HomeBento from "./HomeBento";
 import ArticlesSection from "./ArticlesSection";
 
 const HomeHero = () => {
