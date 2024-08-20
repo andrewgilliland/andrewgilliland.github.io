@@ -12,10 +12,10 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
     const { data } = matter(markdownWithMeta);
     const frontmatter = data as NoteFrontmatter;
 
-    // frontmatter.date = new Date(frontmatter.date);
+    frontmatter.date = new Date(frontmatter.date);
 
     const note = {
-      path: filePath.replace(/\.md$/, "").replace(/^posts\//, "notes/"),
+      path: filePath.replace("content/notes/", "").replace(".md", ""),
       frontmatter,
     };
 
@@ -23,9 +23,13 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
   });
 
   // * Sort notes by date ???
-  // posts.sort(
-  //   (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
-  // );
+  notes.sort(
+    (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
+  );
+
+  notes.map((note) => {
+    console.log("note: ", note);
+  });
 
   return {
     notes: notes,
