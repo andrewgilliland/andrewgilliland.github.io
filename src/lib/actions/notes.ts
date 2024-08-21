@@ -55,8 +55,12 @@ const getNoteDirectory = async (
       .filter((dirent) => dirent !== null) as string[]
   ).map((topic) => ({
     name: topic?.replace(/-/g, " "),
-    path: `${pagePath.replace("/content/notes", "")}/${topic}`,
+    path: `${pagePath.replace("/content/notes", "/notes")}/${topic}`,
   }));
+
+  topics.map((topic) => {
+    console.log("topic: ", topic);
+  });
 
   const notes = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
@@ -76,13 +80,15 @@ const getNoteDirectory = async (
   });
 
   return {
-    topics: topics,
-    notes: notes,
+    topics,
+    notes,
   };
 };
 
 const getNoteFile = async (pagePath: string) => {
-  const markdownWithMeta = fs.readFileSync(`${pagePath}.md`, "utf-8");
+  const decodedPagePath = decodeURIComponent(pagePath);
+
+  const markdownWithMeta = fs.readFileSync(`${decodedPagePath}.md`, "utf-8");
 
   const { data: frontmatter, content } = matter(markdownWithMeta);
 
