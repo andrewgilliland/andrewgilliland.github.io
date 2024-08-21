@@ -85,6 +85,9 @@ const getNoteDirectory = async (
   };
 };
 
+// ! Should be in markdown.ts
+// ! rename to transformMarkdownFile
+// ! Type this and make it generic
 const getNoteFile = async (pagePath: string) => {
   const decodedPagePath = decodeURIComponent(pagePath);
 
