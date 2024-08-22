@@ -1,11 +1,9 @@
 ---
 title: "Redirects vs. Rewrites"
 date: "2024-08-13"
-excerpt: "An in-depth look at the differences between redirects and rewrites in web development."
+excerpt: ""
 draft: false
 ---
-
-## Redirects vs. Rewrites
 
 In web development, redirects and rewrites are techiques use to manage URLs and control how requests are handled by the server. Here's a detailed explanation of the differences between the two:
 
@@ -77,6 +75,8 @@ Rewrites are useful to make URLs more user and SEO friendly. For example, you co
 - Rewrites: Implemented using server configuration files or server-side scripts.
 
 ### Summary
+
+Redirects and rewrites serve different purposes and are used in different scenarios. Redirects change the URL visible to the user and are used to guide users and search engines to a new location. Rewrites keep the URL the same but map it to a different server-side resource, improving URL readability and SEO.
 
 ### Resources
 
