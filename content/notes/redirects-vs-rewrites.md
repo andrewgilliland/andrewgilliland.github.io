@@ -1,6 +1,6 @@
 ---
 title: "Redirects vs. Rewrites"
-date: "2023-08-13"
+date: "2024-08-13"
 excerpt: "An in-depth look at the differences between redirects and rewrites in web development."
 draft: false
 ---
@@ -43,9 +43,38 @@ There are two status codes for special redirects:
 
 ### Rewrites
 
-Rewrites are handled entirely on the server and are transparent to the user. The URL in the browser's address bar remains unchanged. Rewrites are useful to make URLs more user and SEO friendly. For example, you could rewrite the URL `website.com/index.php?page=about` to `website.com/about`.
+Rewrites are handled entirely on the server and are transparent to the user. The URL in the browser's address bar remains unchanged.
+
+#### Why Use Rewrites
+
+Rewrites are useful to make URLs more user and SEO friendly. For example, you could rewrite the URL `website.com/index.php?page=about` to `website.com/about`.
 
 ### Key Differences
+
+1. Visibility to the User:
+
+- Redirects: The URL in the browser's address bar changes to the new URL. The user is aware of the change.
+- Rewrites: The URL in the browser's address bar remains unchanged. The user is unaware of the change.
+
+2. HTTP Status Codes:
+
+- Redirects: Use specific HTTP status codes (e.g., `301`, `302`, `307`) to indicate the type of redirect.
+- Rewrites: Do not use HTTP status codes. They are handled internally by the server.
+
+3. Purpose:
+
+- Redirects: Used to send users and search engines to a different URL. Commonly used for URL changes, site maintenance, or cotent moved to a new location.
+- Rewrites: Improve SEO by making URLs cleaner and more descriptive, but do not directly affect link equity.
+
+4. Impact on SEO:
+
+- Redirects: Can affect SEO by transferring link equity from the old URL to the new URL (especially with `301` redirects).
+- Rewrites: Improve SEO by making URLs cleaner and more descriptive, but do not directly affect link equity.
+
+5. Implementation:
+
+- Redirects: Implemented using HTTP headers or server configuration files (e.g., `.htaccess` for Apache)
+- Rewrites: Implemented using server configuration files or server-side scripts.
 
 ### Summary
 
