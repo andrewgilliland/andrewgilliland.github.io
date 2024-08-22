@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { cyan300, emerald300, pink300, yellow300 } from "@/styles/colors";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { getNotes } from "@/lib/actions/notes";
 import TopicCard from "@/components/TopicCard";

@@ -27,10 +27,6 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
     (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
   );
 
-  notes.map((note) => {
-    console.log("note: ", note);
-  });
-
   return {
     notes: notes,
   };
