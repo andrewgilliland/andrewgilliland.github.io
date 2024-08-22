@@ -15,7 +15,7 @@ const TopicCard: FC<TopicCardProps> = ({ topic }) => {
   return (
     <Link
       data-cy={`topic-card-${name}`}
-      href={path.toLocaleLowerCase()}
+      href={`/${path.toLocaleLowerCase()}`}
       className="group relative"
     >
       <div

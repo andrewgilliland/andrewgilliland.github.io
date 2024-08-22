@@ -58,10 +58,6 @@ const getNoteDirectory = async (
     path: `${pagePath.replace("/content/notes", "/notes")}/${topic}`,
   }));
 
-  topics.map((topic) => {
-    console.log("topic: ", topic);
-  });
-
   const notes = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
       `${pagePath}/${filename!}`,
@@ -90,6 +86,7 @@ const getNoteDirectory = async (
 // ! Type this and make it generic
 const getNoteFile = async (pagePath: string) => {
   const decodedPagePath = decodeURIComponent(pagePath);
+  console.log("decodedPagePath: ", decodedPagePath);
 
   const markdownWithMeta = fs.readFileSync(`${decodedPagePath}.md`, "utf-8");
 
