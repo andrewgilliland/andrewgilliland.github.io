@@ -27,10 +27,6 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
     (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
   );
 
-  notes.map((note) => {
-    console.log("note: ", note);
-  });
-
   return {
     notes: notes,
   };
@@ -57,10 +53,6 @@ const getNoteDirectory = async (
     name: topic?.replace(/-/g, " "),
     path: `${pagePath.replace("/content/notes", "/notes")}/${topic}`,
   }));
-
-  topics.map((topic) => {
-    console.log("topic: ", topic);
-  });
 
   const notes = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
@@ -90,6 +82,7 @@ const getNoteDirectory = async (
 // ! Type this and make it generic
 const getNoteFile = async (pagePath: string) => {
   const decodedPagePath = decodeURIComponent(pagePath);
+  console.log("decodedPagePath: ", decodedPagePath);
 
   const markdownWithMeta = fs.readFileSync(`${decodedPagePath}.md`, "utf-8");
 
