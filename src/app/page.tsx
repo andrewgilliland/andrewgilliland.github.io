@@ -20,11 +20,11 @@ export default async function HomePage() {
   const topics = [
     {
       name: "JavaScript",
-      path: "/notes/javascript",
+      path: "./notes/javascript",
       color: "yellow",
     },
-    { name: "CSS", path: "/notes/css", color: "cyan" },
-    { name: "Swift", path: "/notes/swift", color: "red" },
+    { name: "CSS", path: "./notes/css", color: "cyan" },
+    { name: "Swift", path: "./notes/swift", color: "red" },
   ];
 
   return (
