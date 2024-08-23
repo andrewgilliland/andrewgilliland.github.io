@@ -70,7 +70,7 @@ const NoteCard = ({ note }: NoteCardProps) => {
         className={`flex justify-between bg-black border-2 border-${lineColor} rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
       >
         <div
-          className={`capitalize font-bold border max-w-fit w-2/3 truncate text-${lineColor}`}
+          className={`capitalize font-bold w-2/3 truncate text-${lineColor}`}
         >
           {frontmatter!.title}
         </div>
