@@ -11,6 +11,22 @@ JavaScript provide a variety of built-in array methods that allow you to manipul
 These methods modify the array itself.
 
 1. `push()`: Adds one of more elements to the end of an array.
+
+```
+let fruits = ["apple", "banana", "mango"];
+
+// Add one element to the end of the array
+fruits.push("orange");
+
+// Add multiple elements to the end of the array
+fruits.push("grape", "pineapple");
+
+// Output: ["apple", "banana", "mango", "orange", "grape", "pineapple"]
+console.log(fruits);
+
+console.log(fruits.length); // Output: 6
+```
+
 2. `pop()`: Removes the last element from an array.
 3. `shift()`: Removes the first element from an array.
 4. `unshift()`: Adds one or more elements to the beginning of an array.
