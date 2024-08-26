@@ -51,3 +51,9 @@ These methods are used to iterate over arrays.
 12. `values()`: Returns a new Array Iterator object that contains the values for each index.
 
 ## Other Methods
+
+1. `flat()`: Creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
+2. `flatMap()`: Maps each element using a mapping function, then flattens the result into a new array.
+3. `from()`: Create a new, shallow-copied array instance from an array-like or iterable object.
+4. `isArray()`: Determines whether the passed value is an array.
+5. `of()`: Creates a new array instance with a variable number of arguments, regardless of number or type of the arguments.
