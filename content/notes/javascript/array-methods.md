@@ -6,29 +6,77 @@ draft: false
 
 JavaScript provide a variety of built-in array methods that allow you to manipulate and interact with arrays. Here are some of the most commonly used array methods:
 
-## Mutator Methods
+[Mutator Methods](#mutator-methods)
+
+[Accessor Methods](#accessor-methods)
+
+[Iteration Methods](#iteration-methods)
+
+[Other Methods](#other-methods)
+
+<h2 id="mutator-methods">Mutator Methods</h2>
 
 These methods modify the array itself.
 
 1. `push()`: Adds one of more elements to the end of an array.
 
-```
-let fruits = ["apple", "banana", "mango"];
+```typescript
+let iceCreamFlavors = ["vanilla", "chocolate", "strawberry"];
 
 // Add one element to the end of the array
-fruits.push("orange");
+iceCreamFlavors.push("cookie dough");
 
 // Add multiple elements to the end of the array
-fruits.push("grape", "pineapple");
+iceCreamFlavors.push("mint chip", "rocky road");
 
-// Output: ["apple", "banana", "mango", "orange", "grape", "pineapple"]
-console.log(fruits);
+// Output: ["vanilla", "chocolate", "strawberry", "cookie dough","mint chip", "rocky road"]
+console.log(iceCreamFlavors);
 
-console.log(fruits.length); // Output: 6
+console.log(iceCreamFlavors.length); // Output: 6
 ```
 
 2. `pop()`: Removes the last element from an array.
+
+```typescript
+let iceCreamFlavors = [
+  "vanilla",
+  "chocolate",
+  "strawberry",
+  "mint chip",
+  "rocky road",
+];
+
+// Remove the last element from the array
+let removedFlavor = iceCreamFlavors.pop();
+
+// Output: ["vanilla", "chocolate", "strawberry", "mint chip", "rocky road"]
+console.log(iceCreamFlavors);
+
+// Output: "rocky road"
+console.log(removedFlavor);
+```
+
 3. `shift()`: Removes the first element from an array.
+
+```typescript
+let iceCreamFlavors = [
+  "vanilla",
+  "chocolate",
+  "strawberry",
+  "mint chip",
+  "rocky road",
+];
+
+// Remove the first element from the array
+let removedFlavor = iceCreamFlavors.shift();
+
+// Output: ["chocolate", "strawberry", "mint chip", "rocky road"]
+console.log(iceCreamFlavors);
+
+// Output: "vanilla"
+console.log(removedFlavor);
+```
+
 4. `unshift()`: Adds one or more elements to the beginning of an array.
 5. `splice()`: Adds or removes elements from an array.
 6. `sort()`: Sorts the elements of an array.
@@ -36,7 +84,7 @@ console.log(fruits.length); // Output: 6
 8. `fill()`: Fills all the elements of an array from a start index to an end index with a static value.
 9. `copyWithin()`: Copies a sequence of array elements within the array.
 
-## Accessor Methods
+<h2 id="accessor-methods">Accessor Methods</h2>
 
 These methods do not modify the array but return some representation of the array.
 
@@ -49,7 +97,7 @@ These methods do not modify the array but return some representation of the arra
 7. `toString()`: Returns a string representing the array.
 8. `toLocalString()`: Returns a localized string representing the array.
 
-## Iteration Methods
+<h2 id="iteration-methods">Iteration Methods</h2>
 
 These methods are used to iterate over arrays.
 
@@ -66,7 +114,7 @@ These methods are used to iterate over arrays.
 11. `keys()`: Returns a new Array Iterator object that contains the keys for each index.
 12. `values()`: Returns a new Array Iterator object that contains the values for each index.
 
-## Other Methods
+<h2 id="other-methods">Other Methods</h2>
 
 1. `flat()`: Creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
 2. `flatMap()`: Maps each element using a mapping function, then flattens the result into a new array.
