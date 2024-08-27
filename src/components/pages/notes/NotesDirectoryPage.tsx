@@ -2,6 +2,7 @@ import { FC } from "react";
 import { getNoteDirectory } from "@/lib/actions/notes";
 import TopicCard from "@/components/TopicCard";
 import NoteCard from "@/components/NoteCard";
+import CardGrid from "@/components/CardGrid";
 
 type NotesDirectoryPageProps = {
   directory: string;
@@ -21,11 +22,11 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
           {`${directory ? directory : "Topics"}`}
         </h2>
         {topics.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-8 mt-6">
+          <CardGrid>
             {topics.map((topic, index) => (
               <TopicCard key={index} topic={topic} />
             ))}
-          </div>
+          </CardGrid>
         )}
       </section>
       {notes.length > 0 && (
@@ -33,11 +34,11 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
           <h2 className="capitalize font-bold text-gray-100 text-3xl md:text-4xl stroke-white">
             Notes
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 mt-6">
+          <CardGrid>
             {notes.map((note, index) => (
               <NoteCard key={index} note={note} index={index} />
             ))}
-          </div>
+          </CardGrid>
         </section>
       )}
     </div>
