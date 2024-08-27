@@ -78,10 +78,140 @@ console.log(removedFlavor);
 ```
 
 4. `unshift()`: Adds one or more elements to the beginning of an array.
+
+```typescript
+let iceCreamFlavors = [
+  "vanilla",
+  "chocolate",
+  "strawberry",
+  "mint chip",
+  "rocky road",
+];
+
+// Add one element to the beginning of the array
+let newLength = iceCreamFlavors.unshift("cookie dough");
+
+// Output: ["cookie dough", "vanilla", "chocolate", "strawberry", "mint chip", "rocky road"]
+console.log(iceCreamFlavors);
+
+// Output: 6
+console.log(newLength);
+
+// Add multiple elements to the beginning of the array
+newLength = iceCreamFlavors.unshift("pistachio", "lemon");
+
+// Output: ["pistachio", "lemon", "cookie dough", "vanilla", "chocolate", "strawberry", "mint chip", "rocky road"]
+console.log(iceCreamFlavors);
+
+// Output: 8
+console.log(newLength);
+```
+
 5. `splice()`: Adds or removes elements from an array.
-6. `sort()`: Sorts the elements of an array.
+
+```typescript
+let iceCreamFlavors = [
+  "vanilla",
+  "chocolate",
+  "strawberry",
+  "mint chip",
+  "rocky road",
+];
+
+// Remove 2 elements starting from index 1
+let removedFlavors = iceCreamFlavors.splice(1, 2);
+
+// Output: ["vanilla", "mint chip", "rocky road"]
+console.log(iceCreamFlavors);
+
+// Output: ["chocolate", "strawberry"]
+console.log(removedFlavors);
+
+// Add 2 elements at index 2
+iceCreamFlavors.splice(2, 0, "cookie dough", "pistachio");
+
+// Output: ["vanilla", "mint chip", "cookie dough", "pistachio", "rocky road"]
+console.log(iceCreamFlavors);
+
+// Replace 1 element at index 1
+iceCreamFlavors.splice(1, 1, "lemon");
+
+// Output: ["vanilla", "lemon", "cookie dough", "pistachio", "rocky road"]
+console.log(iceCreamFlavors);
+```
+
+6. `sort()`: Sorts the elements of an array. By default, the `sort()` method sorts the elements as strings in ascending order. To sort the elements numerically or in a custom order, you can provide a compare function.
+
+```typescript
+let iceCreamFlavors = [
+  "vanilla",
+  "chocolate",
+  "strawberry",
+  "mint chip",
+  "rocky road",
+];
+
+// Sort the array in alphabetical order
+iceCreamFlavors.sort();
+
+// Output: ["chocolate", "mint chip", "rocky road", "strawberry", "vanilla"]
+console.log(iceCreamFlavors);
+
+// Sort the array in reverse alphabetical order
+iceCreamFlavors.sort((a, b) => b.localeCompare(a));
+
+// Output: ["vanilla", "strawberry", "rocky road", "mint chip", "chocolate"]
+console.log(iceCreamFlavors);
+
+// Sort the array by length of the string
+iceCreamFlavors.sort((a, b) => a.length - b.length);
+
+// Output: ["vanilla", "chocolate", "strawberry", "rocky road", "mint chip"]
+console.log(iceCreamFlavors);
+```
+
 7. `reverse()`: Reverses the order of the elements in an array.
+
+```typescript
+let iceCreamFlavors = [
+  "vanilla",
+  "chocolate",
+  "strawberry",
+  "mint chip",
+  "rocky road",
+];
+
+// Reverse the array
+iceCreamFlavors.reverse();
+
+// Output: ["rocky road", "mint chip", "strawberry", "chocolate", "vanilla"]
+console.log(iceCreamFlavors);
+```
+
 8. `fill()`: Fills all the elements of an array from a start index to an end index with a static value.
+
+```typescript
+let numbers = [1, 2, 3, 4, 5];
+
+// Fill all elements with 0
+numbers.fill(0);
+
+// Output: [0, 0, 0, 0, 0]
+console.log(numbers);
+
+// Fill elements from index 1 to 3 with 7
+numbers.fill(7, 1, 3);
+
+// Output: [0, 7, 7, 0, 0]
+console.log(numbers);
+
+// Fill elements from index 2 to the end with 9
+numbers.fill(9, 2);
+
+// Output: [0, 7, 9, 9, 9]
+console.log(numbers);
+```
+
 9. `copyWithin()`: Copies a sequence of array elements within the array.
 
 <h2 id="accessor-methods">Accessor Methods</h2>
