@@ -23,8 +23,8 @@ const AnimatedBlocks = () => (
         color: "emerald",
         icon: <SvgIcon name="css" className="fill-emerald-300 h-10 w-10" />,
       },
-    ].map(({ color, icon }, index) => (
-      <Block key={index} color={color} Icon={icon} />
+    ].map(({ color }, index) => (
+      <Block key={index} />
     ))}
   </div>
 );

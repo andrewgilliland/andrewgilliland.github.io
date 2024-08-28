@@ -1,15 +1,8 @@
 import Battle from "@/components/Battle";
 import MegaMan from "@/components/svg/pixel-art/MegaMan";
-import { getGithubRepoFileContents } from "@/lib/actions/github";
 import colors from "tailwindcss/colors";
 
 const AboutPage = async () => {
-  const deepThoughts = await getGithubRepoFileContents({
-    username: "andrewgilliland",
-    repoName: "JSON",
-    fileName: "deep-thoughts.json",
-  });
-
   return (
     <div className="max-w-3xl w-full mx-auto mt-14 px-8">
       <section className="font-pixel text-white border-2 border-white my-20 p-10">
