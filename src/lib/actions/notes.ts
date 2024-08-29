@@ -28,7 +28,7 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
   );
 
   return {
-    notes: notes,
+    notes,
   };
 };
 

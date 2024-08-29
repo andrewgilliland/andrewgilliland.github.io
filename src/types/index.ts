@@ -1,6 +1,6 @@
 export type NoteFrontmatter = {
   title: string;
-  date: string;
+  date: Date;
   excerpt: string;
   draft: boolean;
 };
