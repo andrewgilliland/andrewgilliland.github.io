@@ -214,6 +214,22 @@ console.log(numbers);
 
 9. `copyWithin()`: Copies a sequence of array elements within the array.
 
+```typescript
+let numbers = [1, 2, 3, 4, 5];
+
+// Copy elements from index 0 to index 2 (exclusive) to index 3
+numbers.copyWithin(3, 0, 2);
+
+// Output: [1, 2, 3, 1, 2]
+console.log(numbers);
+
+// Copy elements from index 2 to the end to index 0
+numbers.copyWithin(0, 2);
+
+// Output: [3, 1, 2, 1, 2]
+console.log(numbers);
+```
+
 <h2 id="accessor-methods">Accessor Methods</h2>
 
 These methods do not modify the array but return some representation of the array.
