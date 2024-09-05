@@ -22,7 +22,6 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
     return note;
   });
 
-  // * Sort notes by date ???
   notes.sort(
     (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
   );
