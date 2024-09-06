@@ -22,3 +22,7 @@ To be able to reference a custom property globally, declare it on the `:root` ps
   --theme-color: black;
 }
 ```
+
+### Resources
+
+[Using CSS custom properties | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
