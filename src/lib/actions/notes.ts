@@ -2,6 +2,13 @@
 import { Note, NoteFrontmatter, Topic } from "@/types";
 import fs from "fs";
 import matter from "gray-matter";
+
+import rehypeShiki from "@shikijs/rehype";
+import rehypeStringify from "rehype-stringify";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import { unified } from "unified";
+
 import { getFilesPaths } from "../utils/fs";
 
 const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
@@ -79,22 +86,30 @@ const getNoteDirectory = async (
 // ! Should be in markdown.ts
 // ! rename to transformMarkdownFile
 // ! Type this and make it generic
-const getNoteFile = async (pagePath: string) => {
-  const decodedPagePath = decodeURIComponent(pagePath);
-  console.log("decodedPagePath: ", decodedPagePath);
-
-  const markdownWithMeta = fs.readFileSync(`${decodedPagePath}.md`, "utf-8");
+const transformMarkdownFile = async (pagePath: string) => {
+  const markdownWithMeta = fs.readFileSync(
+    `${decodeURIComponent(pagePath)}.md`,
+    "utf-8"
+  );
 
   const { data: frontmatter, content } = matter(markdownWithMeta);
 
-  const note = {
-    frontmatter: JSON.parse(JSON.stringify(frontmatter)),
-    content,
-  };
+  // ! This is needed for code syntax highlighting
+  const file = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeShiki, {
+      theme: "synthwave-84",
+    })
+    .use(rehypeStringify)
+    .process(content);
+
+  const html = file.value;
 
   return {
-    note,
+    frontmatter,
+    html,
   };
 };
 
-export { getNotes, getNoteDirectory, getNoteFile };
+export { getNotes, getNoteDirectory, transformMarkdownFile };

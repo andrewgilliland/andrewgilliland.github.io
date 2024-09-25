@@ -1,24 +1,21 @@
 // "use client";
 import { FC, useEffect, useState } from "react";
-import { marked } from "marked";
 import BackButton from "../../BackButton";
 import ColorDivider from "../../ColorDivider";
 import { HeadingElement, Note } from "@/types";
 import { useRouter } from "next/navigation";
-import { getNoteFile } from "@/lib/actions/notes";
+import { transformMarkdownFile } from "@/lib/actions/notes";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
+// ! Todo: Remove marked
+// import { marked } from "marked";
 
 type NotePageProps = {
   pagePath: string;
 };
 
 const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
-  const { note } = await getNoteFile(pagePath);
-
-  const {
-    frontmatter: { title, excerpt, date },
-    content,
-  } = note;
+  const { frontmatter, html } = await transformMarkdownFile(pagePath);
+  const { title, excerpt, date } = frontmatter;
 
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
@@ -60,8 +57,8 @@ const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
       </div>
 
       <div
-        className="prose prose-h2:text-yellow-300 prose-h3:text-purple-400 prose-h4:text-emerald-400 prose-h5:text-gray-500 prose-p:text-gray-200 prose-ul:text-gray-200 prose-ol:text-gray-200 prose-pre:border-2 prose-pre:border-gray-400 prose-code:bg-gray-800 prose-code:text-white prose-code:before:content-none prose-code:after:content-none prose-a:text-cyan-300 prose-a:no-underline prose-a:font-semibold prose-strong:font-semibold prose-strong:text-emerald-400 my-20 max-w-2xl"
-        dangerouslySetInnerHTML={{ __html: marked(content) }}
+        className="prose prose-h2:text-yellow-300 prose-h3:text-purple-400 prose-h4:text-emerald-400 prose-h5:text-gray-500 prose-p:text-gray-200 prose-ul:text-gray-200 prose-ol:text-gray-200 prose-pre:border-2 prose-pre:border-white prose-pre:px-8 prose-pre:py-6 prose-code:text-white prose-code:before:content-none prose-code:after:content-none prose-a:text-cyan-300 prose-a:no-underline prose-a:font-semibold prose-strong:font-semibold prose-strong:text-emerald-400 my-20 max-w-2xl"
+        dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
   );

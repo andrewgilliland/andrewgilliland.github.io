@@ -14,6 +14,7 @@ JavaScript provide a variety of built-in array methods that allow you to manipul
 
 [Other Methods](#other-methods)
 
+<!-- ! Todo: Figure out why html elements are not being rendered -->
 <h2 id="mutator-methods">Mutator Methods</h2>
 
 These methods modify the array itself.

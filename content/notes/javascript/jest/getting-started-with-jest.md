@@ -11,7 +11,7 @@ Install the jest package as dev dependency:
 
 In the `package.json`, under the `scripts` key, change the value for the `test` key to `jest`:
 
-```
+```typescript
 "scripts": {
     "test": "jest"
   },
@@ -21,13 +21,13 @@ To make a test file, use the naming convention `index.test.js` if you were writi
 
 In the `index.test.js` file, writing tests will use the convention:
 
-```
-test("test description", testFunction)
+```typescript
+test("test description", testFunction);
 ```
 
 Here's an example of a test for a function `sum`:
 
-```
+```typescript
 test("Adds 1 + 2 to equal 3", () => {
   expect(sum(1, 2)).toBe(3);
 });
