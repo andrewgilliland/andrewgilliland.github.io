@@ -42,7 +42,7 @@ const AboutBento = () => {
           development. I am proficient working with React Native and SwiftUI to
           build mobile applications, but am always learning and implementing new
           technologies. In my spare time, I enjoy learning about fitness,
-          nutrition, woodworking and venturing into nature or concerts.
+          nutrition, woodworking, venturing into nature, and going to concerts.
         </p>
       </Block>
 
