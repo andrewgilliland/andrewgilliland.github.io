@@ -16,7 +16,7 @@ const pixelifySans = Pixelify_Sans({
 
 export const metadata: Metadata = {
   title: "Andrew Gilliland",
-  description: "A community-taught Full Stack Mobile and Web Developer.",
+  description: "A community-taught Full Stack Developer.",
 };
 
 export default function RootLayout({

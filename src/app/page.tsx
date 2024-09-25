@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { codeToHtml } from "shiki";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { getNotes } from "@/lib/actions/notes";
 import TopicCard from "@/components/TopicCard";
@@ -12,6 +13,22 @@ import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
 // https://gumroad.com/
 // https://salehmubashar.com/
 // https://www.hover.dev/
+
+async function CodeBlock() {
+  const code = `import { codeToHtml } from 'shiki'`;
+
+  const out = await codeToHtml(code, {
+    lang: "ts",
+    theme: "aurora-x",
+  });
+
+  return (
+    <div
+      className="mt-20 p-8 border border-white rounded-md"
+      dangerouslySetInnerHTML={{ __html: out }}
+    />
+  );
+}
 
 export default async function HomePage() {
   const { notes } = await getNotes();
@@ -90,6 +107,7 @@ export default async function HomePage() {
               </Link>
             ))}
           </div>
+          <CodeBlock />
         </CenteredSection>
 
         <ColorDivider className="w-full h-6" />
