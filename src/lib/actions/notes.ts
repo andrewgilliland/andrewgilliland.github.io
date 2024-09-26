@@ -9,6 +9,8 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 
+import { transformerMetaHighlight } from "@shikijs/transformers";
+
 import { getFilesPaths } from "../utils/fs";
 
 const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
@@ -100,6 +102,7 @@ const transformMarkdownFile = async (pagePath: string) => {
     .use(remarkRehype)
     .use(rehypeShiki, {
       theme: "synthwave-84",
+      transformers: [transformerMetaHighlight()],
     })
     .use(rehypeStringify)
     .process(content);

@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@shikijs/rehype": "^1.18.0",
+    "@shikijs/transformers": "^1.18.0",
     "@tailwindcss/typography": "^0.5.9",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",

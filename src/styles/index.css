@@ -148,3 +148,23 @@ body {
     }
   }
 }
+
+pre {
+  tab-size: 2;
+}
+
+.line {
+  counter-increment: count;
+}
+
+.line:not(:last-of-type)::before {
+  content: counter(count);
+  padding-inline: 0.5em;
+  opacity: 0.4;
+  text-align: right;
+  background-color: red;
+}
+
+.highlighted {
+  background-color: theme("colors.black");
+}

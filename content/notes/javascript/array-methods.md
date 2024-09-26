@@ -21,7 +21,7 @@ These methods modify the array itself.
 
 1. `push()`: Adds one of more elements to the end of an array.
 
-```typescript
+```typescript {1,4}
 let iceCreamFlavors = ["vanilla", "chocolate", "strawberry"];
 
 // Add one element to the end of the array
