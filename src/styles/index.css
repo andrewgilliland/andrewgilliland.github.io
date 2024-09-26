@@ -154,6 +154,7 @@ pre {
   tab-size: 2;
   overflow: hidden; /* Ensure the element has overflow hidden */
   position: relative; /* Ensure the element is positioned relative for pseudo-elements */
+  white-space: pre-wrap; /* Wrap text */
 
   /* Firefox */
   scrollbar-width: thin; /* Thin scrollbar */
