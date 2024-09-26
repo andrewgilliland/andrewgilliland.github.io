@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-noto-sans)"],
         brand: ["var(--font-space-grotesk)"],
+        mono: ["var(--font-jetbrains-mono)"],
         pixel: ["var(--font-pixelify-sans)"],
       },
       backgroundImage: {
