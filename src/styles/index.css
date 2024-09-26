@@ -166,14 +166,15 @@ pre {
 
 .line {
   counter-increment: count;
+  display: flex;
 }
 
 .line::before {
   content: counter(count);
-  padding-inline: 0.5em;
+  padding-right: 0.75em;
   opacity: 0.4;
-  /* text-align: right; */
-  /* background-color: red; */
+  width: 2em; /* Make the counter have a fixed width */
+  text-align: right; /* Align the text to the right */
 }
 
 /* WebKit browsers (Chrome, Safari) */
