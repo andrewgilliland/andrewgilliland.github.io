@@ -96,19 +96,23 @@ const transformMarkdownFile = async (pagePath: string) => {
 
   const { data: frontmatter, content } = matter(markdownWithMeta);
 
+  // console.log("content: ", content);
+
   // ! This is needed for code syntax highlighting
   // ! This allows for line highlighting but also requires a '.hightlighted' class to be in the index.css
   const file = await unified()
-    .use(remarkParse)
-    .use(remarkRehype)
+    .use(remarkParse) // Parse markdown
+    .use(remarkRehype, { allowDangerousHtml: true }) // Turn markdown into HTML, and allow raw HTML
     .use(rehypeShiki, {
       theme: "synthwave-84",
       transformers: [transformerMetaHighlight()],
-    })
-    .use(rehypeStringify)
+    }) // Syntax highlighting
+    .use(rehypeStringify, { allowDangerousHtml: true }) // Turn HTML into string
     .process(content);
 
   const html = file.value;
+
+  console.log("html: ", html);
 
   return {
     frontmatter,
