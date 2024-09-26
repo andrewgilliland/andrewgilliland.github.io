@@ -76,25 +76,4 @@ const getNoteDirectory = async (
   };
 };
 
-// ! Should be in markdown.ts
-// ! rename to transformMarkdownFile
-// ! Type this and make it generic
-const getNoteFile = async (pagePath: string) => {
-  const decodedPagePath = decodeURIComponent(pagePath);
-  console.log("decodedPagePath: ", decodedPagePath);
-
-  const markdownWithMeta = fs.readFileSync(`${decodedPagePath}.md`, "utf-8");
-
-  const { data: frontmatter, content } = matter(markdownWithMeta);
-
-  const note = {
-    frontmatter: JSON.parse(JSON.stringify(frontmatter)),
-    content,
-  };
-
-  return {
-    note,
-  };
-};
-
-export { getNotes, getNoteDirectory, getNoteFile };
+export { getNotes, getNoteDirectory };

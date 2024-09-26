@@ -14,13 +14,14 @@ JavaScript provide a variety of built-in array methods that allow you to manipul
 
 [Other Methods](#other-methods)
 
+<!-- ! Todo: Figure out why html elements are not being rendered -->
 <h2 id="mutator-methods">Mutator Methods</h2>
 
 These methods modify the array itself.
 
 1. `push()`: Adds one of more elements to the end of an array.
 
-```typescript
+```typescript {1,4}
 let iceCreamFlavors = ["vanilla", "chocolate", "strawberry"];
 
 // Add one element to the end of the array

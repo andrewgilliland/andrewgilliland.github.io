@@ -5,86 +5,84 @@ excerpt: ""
 draft: true
 ---
 
-```
+```css
 @scope (.card) {
-    h2 {
-        color: pink;
-        width: max-content;
-    }
+  h2 {
+    color: pink;
+    width: max-content;
+  }
 
-    p {
-        color: #bada55;
-    }
+  p {
+    color: #bada55;
+  }
 
-    :scope {
-        background: black;
-        border: 2px solid #ffc600;
-        &:hover {
-            background: red;
-        }
+  :scope {
+    background: black;
+    border: 2px solid #ffc600;
+    &:hover {
+      background: red;
     }
-
+  }
 }
 ```
 
 ###
 
-```
-    <div class="card">
-        <h2>Inside Scope!</h2>
-        <p>I am Scoped inside!</p>
-        <style>
-          @scope {
-            /* Select the Scope div */
-            :scope {
-              background: black;
-              color: white;
-            }
-            /* Select the inside Scope */
-            h2 {
-              color: red;
-            }
-          }
-        </style>
-    </div>
+```html
+<div class="card">
+  <h2>Inside Scope!</h2>
+  <p>I am Scoped inside!</p>
+  <style>
+    @scope {
+      /* Select the Scope div */
+      :scope {
+        background: black;
+        color: white;
+      }
+      /* Select the inside Scope */
+      h2 {
+        color: red;
+      }
+    }
+  </style>
+</div>
 ```
 
 ### Scope Pseudo-Classes Inline
 
-```
+```html
 <button>
-      I'm a button. Hover me
-      <style>
-        @scope {
-          :scope:hover {
-            background: red;
-          }
-        }
-      </style>
+  I'm a button. Hover me
+  <style>
+    @scope {
+      :scope:hover {
+        background: red;
+      }
+    }
+  </style>
 </button>
 ```
 
 ### Donut Scope
 
-```
+```css
 @scope (.card) to (.callout) {
-    h2 {
-        color: pink;
-        width: max-content;
-    }
+  h2 {
+    color: pink;
+    width: max-content;
+  }
 
-    p {
-        color: #bada55;
-    }
+  p {
+    color: #bada55;
+  }
 
-    :scope {
-        background: black;
-        border: 2px solid #ffc600;
-        &:hover {
-            background: red;
-        }
+  :scope {
+    background: black;
+    border: 2px solid #ffc600;
+    &:hover {
+      background: red;
     }
-
+  }
 }
 ```
 

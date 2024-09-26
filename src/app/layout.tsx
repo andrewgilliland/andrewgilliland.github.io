@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Pixelify_Sans } from "next/font/google";
+import { Space_Grotesk, Pixelify_Sans, JetBrains_Mono } from "next/font/google";
 import "@/styles/index.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -14,9 +14,14 @@ const pixelifySans = Pixelify_Sans({
   variable: "--font-pixelify-sans",
 });
 
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+});
+
 export const metadata: Metadata = {
   title: "Andrew Gilliland",
-  description: "A community-taught Full Stack Mobile and Web Developer.",
+  description: "A community-taught Full Stack Developer.",
 };
 
 export default function RootLayout({
@@ -27,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${pixelifySans.variable} font-brand`}
+        className={`${spaceGrotesk.variable} ${pixelifySans.variable} ${jetBrainsMono.variable} font-brand`}
       >
         <Header />
         <main className="flex flex-col pt-[82px] md:pt-0">{children}</main>
