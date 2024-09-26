@@ -1,10 +1,10 @@
 // "use client";
 import { FC, useEffect, useState } from "react";
-import BackButton from "../../BackButton";
 import ColorDivider from "../../ColorDivider";
-import { HeadingElement, Note } from "@/types";
+import { transformMarkdownFile } from "@/lib/actions/markdown";
 import { useRouter } from "next/navigation";
-import { transformMarkdownFile } from "@/lib/actions/notes";
+import BackButton from "../../BackButton";
+import { HeadingElement, Note } from "@/types";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
 // ! Todo: Remove marked
 // import { marked } from "marked";
