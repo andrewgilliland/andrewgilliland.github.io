@@ -97,6 +97,7 @@ const transformMarkdownFile = async (pagePath: string) => {
   const { data: frontmatter, content } = matter(markdownWithMeta);
 
   // ! This is needed for code syntax highlighting
+  // ! This allows for line highlighting but also requires a '.hightlighted' class to be in the index.css
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)
