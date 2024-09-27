@@ -16,3 +16,13 @@ draft: true
 **Fault Tolerance** - The ability of a system to respond in the event of failures or faults in one or more of its components.
 
 **Load Parameters** - Metrics used to measure scalability.
+
+```typescript
+const word = true;
+```
+
+<h2>word</h2>
+
+<div className="flex justify-center">
+    <DownloadButton />
+</div>

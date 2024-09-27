@@ -2,13 +2,13 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import rehypeShiki from "@shikijs/rehype";
 import { transformerMetaHighlight } from "@shikijs/transformers";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
+// import { serialize } from "next-mdx-remote/serialize";
 
 const parseMarkDownFile = async ({ fileName }) => {
   // Get the markdown file from content directory
@@ -47,11 +47,17 @@ const transformMarkdownFile = async (pagePath: string) => {
     .use(rehypeStringify, { allowDangerousHtml: true }) // Turn HTML into string
     .process(content);
 
-  const html = file.value;
+  console.log("markdownWithMeta: ", markdownWithMeta);
+
+  // const serialized = await serialize(file.value);
+  // console.log("serialized: ", serialized);
+
+  console.log("file.value: ", file.value);
 
   return {
     frontmatter,
-    html,
+    html: file.value,
+    source: markdownWithMeta,
   };
 };
 

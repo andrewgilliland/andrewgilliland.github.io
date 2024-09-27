@@ -1,10 +1,12 @@
 // "use client";
 import { FC, useEffect, useState } from "react";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote/rsc";
 import ColorDivider from "../../ColorDivider";
 import { transformMarkdownFile } from "@/lib/actions/markdown";
 import { useRouter } from "next/navigation";
 import BackButton from "../../BackButton";
 import { HeadingElement, Note } from "@/types";
+import DownloadButton from "@/components/DownloadButton";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
 // ! Todo: Remove marked
 // import { marked } from "marked";
@@ -14,7 +16,7 @@ type NotePageProps = {
 };
 
 const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
-  const { frontmatter, html } = await transformMarkdownFile(pagePath);
+  const { frontmatter, html, source } = await transformMarkdownFile(pagePath);
   const { title, excerpt, date } = frontmatter;
 
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
@@ -56,11 +58,27 @@ const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
         <ColorDivider />
       </div>
 
-      <div
+      <div className="prose prose-h2:text-yellow-300 prose-h3:text-purple-400 prose-h4:text-emerald-400 prose-h5:text-gray-500 prose-p:text-gray-200 prose-ul:text-gray-200 prose-ol:text-gray-200 prose-pre:border-2 prose-pre:border-white prose-pre:px-8 prose-pre:py-6 prose-pre:font-mono prose-code:text-white prose-code:before:content-none prose-code:after:content-none prose-code:grid prose-a:text-cyan-300 prose-a:no-underline prose-a:font-semibold prose-strong:font-semibold prose-strong:text-emerald-400 my-20 max-w-2xl">
+        <CustomMDX source={source} />
+      </div>
+
+      {/* <div
         className="prose prose-h2:text-yellow-300 prose-h3:text-purple-400 prose-h4:text-emerald-400 prose-h5:text-gray-500 prose-p:text-gray-200 prose-ul:text-gray-200 prose-ol:text-gray-200 prose-pre:border-2 prose-pre:border-white prose-pre:px-8 prose-pre:py-6 prose-pre:font-mono prose-code:text-white prose-code:before:content-none prose-code:after:content-none prose-code:grid prose-a:text-cyan-300 prose-a:no-underline prose-a:font-semibold prose-strong:font-semibold prose-strong:text-emerald-400 my-20 max-w-2xl"
         dangerouslySetInnerHTML={{ __html: html }}
-      />
+      /> */}
     </div>
+  );
+};
+
+const CustomMDX = (props) => {
+  // * This is a list of all custom components that can be used in MDX files
+  const components = { DownloadButton };
+
+  return (
+    <MDXRemote
+      {...props}
+      components={{ ...components, ...(props.components || {}) }}
+    />
   );
 };
 
