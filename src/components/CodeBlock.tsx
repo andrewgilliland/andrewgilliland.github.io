@@ -1,59 +1,41 @@
+import { FC } from "react";
 import { codeToHtml } from "shiki";
 
-async function CodeBlock() {
-  const code = `
-    {
-      name: "Andrew Gilliland",
-      role: "Full Stack Developer",
-      location: "Bloomington, Illinois"
-    }
-  `;
+type CodeBlockProps = {
+  code: string;
+  language: string;
+  fileName: string;
+};
 
+const CodeBlock: FC<CodeBlockProps> = async ({ code, language, fileName }) => {
   const out = await codeToHtml(code, {
-    lang: "ts",
-    theme: "aurora-x",
+    lang: language,
+    theme: "synthwave-84",
   });
 
   return (
-    <div
-      className="mt-20 border border-white rounded-md overflow-hidden"
-      dangerouslySetInnerHTML={{ __html: out }}
-    />
+    <div className="border-2 rounded">
+      <div className="flex justify-between border-b-2 border-white">
+        <div className="flex">
+          <div className="flex gap-1 px-3 py-2">
+            <div className="bg-red-500 rounded-full h-3 w-3" />
+            <div className="bg-yellow-500 rounded-full h-3 w-3" />
+            <div className="bg-green-500 rounded-full h-3 w-3" />
+          </div>
+          <div className="flex justify-center items-center border-l-2 border-r-2 text-sm text-white px-3">
+            {fileName}
+          </div>
+        </div>
+        <div className="group flex justify-center items-center border-l-2 border-white px-3">
+          <div className="bg-white border-2 border-white h-4 w-4 opacity-50 group-hover:opacity-100 transition" />
+        </div>
+      </div>
+      <div
+        className="prose prose-pre:border-0"
+        dangerouslySetInnerHTML={{ __html: out }}
+      />
+    </div>
   );
-}
-
-// const CodeBlock = () => (
-//   <div className="h-28 w-40 bg-gray-800 rounded p-3">
-//     <div className="bg-black rounded h-full w-full p-3">
-//       <div className="flex flex-row">
-//         <div className="bg-pink-400 rounded-md h-1.5 w-6" />
-//         <div className="bg-gray-600 rounded-md h-1.5 w-6 ml-1" />
-//       </div>
-//       <div className="flex flex-row mt-2">
-//         <div className="bg-pink-400 rounded-md h-1.5 w-5" />
-//         <div className="bg-cyan-400 rounded-md h-1.5 w-10 ml-1" />
-//         <div className="bg-yellow-400 rounded-md h-1.5 w-7 ml-1" />
-//       </div>
-//       <div className="ml-2">
-//         <div className="flex flex-row mt-2">
-//           <div className="bg-gray-600 rounded-md h-1.5 w-5" />
-//           <div className="bg-cyan-400 rounded-md h-1.5 w-8 ml-1" />
-//           <div className="bg-yellow-400 rounded-md h-1.5 w-4 ml-1" />
-//           <div className="bg-emerald-400 rounded-md h-1.5 w-4 ml-1" />
-//         </div>
-//         <div className="flex flex-row mt-2">
-//           <div className="bg-pink-400 rounded-md h-1.5 w-5" />
-//           <div className="bg-yellow-400 rounded-md h-1.5 w-10 ml-1" />
-//           <div className="bg-emerald-400 rounded-md h-1.5 w-7 ml-1" />
-//         </div>
-//         <div className="flex flex-row mt-2">
-//           <div className="bg-gray-600 rounded-md h-1.5 w-6" />
-//           <div className="bg-cyan-400 rounded-md h-1.5 w-10 ml-1" />
-//           <div className="bg-yellow-400 rounded-md h-1.5 w-6 ml-1" />
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-// );
+};
 
 export default CodeBlock;

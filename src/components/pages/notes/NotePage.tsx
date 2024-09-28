@@ -1,13 +1,8 @@
 // "use client";
-import { FC, useEffect, useState } from "react";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote/rsc";
+import { FC } from "react";
 import ColorDivider from "../../ColorDivider";
 import { transformMarkdownFile } from "@/lib/actions/markdown";
-import { useRouter } from "next/navigation";
-import BackButton from "../../BackButton";
-import { HeadingElement, Note } from "@/types";
-import DownloadButton from "@/components/DownloadButton";
-// import BlogOutlineCard from "@/components/BlogOutlineCard";
+import CustomMDX from "@/components/mdx/CustomMDX";
 // ! Todo: Remove marked
 // import { marked } from "marked";
 
@@ -67,18 +62,6 @@ const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
         dangerouslySetInnerHTML={{ __html: html }}
       /> */}
     </div>
-  );
-};
-
-const CustomMDX = (props) => {
-  // * This is a list of all custom components that can be used in MDX files
-  const components = { DownloadButton };
-
-  return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-    />
   );
 };
 

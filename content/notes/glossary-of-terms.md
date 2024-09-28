@@ -21,8 +21,14 @@ draft: true
 const word = true;
 ```
 
-<h2>word</h2>
+<h2>CodeBlock Component Being Imported</h2>
 
-<div className="flex justify-center">
-    <DownloadButton />
-</div>
+<CodeBlock
+fileName="index.tsx"
+code={`{
+    name: "Andrew Gilliland",
+    role: "Full Stack Developer",
+    location: "Bloomington, Illinois"
+}`}
+language="ts"
+/>
