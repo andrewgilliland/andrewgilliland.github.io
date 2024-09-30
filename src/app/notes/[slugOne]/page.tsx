@@ -1,6 +1,6 @@
 import { FC } from "react";
 import NoteRoute from "@/components/pages/notes/NoteRoute";
-import { parentPath } from "../page";
+import { parentPath } from "@/lib/constants";
 
 type NotesRouteOnePageProps = {
   params: {

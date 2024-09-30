@@ -1,6 +1,6 @@
 import { FC } from "react";
 import NoteRoute from "@/components/pages/notes/NoteRoute";
-import { parentPath } from "@/app/notes/page";
+import { parentPath } from "@/lib/constants";
 
 type NotesSlugFourPageProps = {
   params: {
