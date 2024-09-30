@@ -1,7 +1,9 @@
 import NotesDirectoryPage from "@/components/pages/notes/NotesDirectoryPage";
 
+export const parentPath = "../markdown/notes";
+
 const NotesPage = () => {
-  const pagePath = "./content/notes";
+  const pagePath = parentPath;
 
   return <NotesDirectoryPage directory="" pagePath={pagePath} />;
 };

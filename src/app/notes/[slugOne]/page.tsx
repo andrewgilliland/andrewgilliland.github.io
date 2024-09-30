@@ -1,5 +1,6 @@
 import { FC } from "react";
 import NoteRoute from "@/components/pages/notes/NoteRoute";
+import { parentPath } from "../page";
 
 type NotesRouteOnePageProps = {
   params: {
@@ -10,7 +11,7 @@ type NotesRouteOnePageProps = {
 const NotesRouteOnePage: FC<NotesRouteOnePageProps> = async ({
   params: { slugOne },
 }) => {
-  const pagePath = `./content/notes/${slugOne}`;
+  const pagePath = `${parentPath}/${slugOne}`;
 
   return <NoteRoute directory={slugOne} pagePath={pagePath} />;
 };

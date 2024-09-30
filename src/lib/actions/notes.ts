@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import { getFilesPaths } from "../utils/fs";
 
 const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
-  let filePaths = await getFilesPaths("./content/notes");
+  let filePaths = await getFilesPaths("../markdown/notes");
 
   const notes = filePaths.map((filePath) => {
     const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
@@ -15,7 +15,7 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
     frontmatter.date = new Date(frontmatter.date);
 
     const note = {
-      path: filePath.replace("content/notes/", "").replace(".md", ""),
+      path: filePath.replace("markdown/notes/", "").replace(".md", ""),
       frontmatter,
     };
 
@@ -50,7 +50,7 @@ const getNoteDirectory = async (
       .filter((dirent) => dirent !== null) as string[]
   ).map((topic) => ({
     name: topic?.replace(/-/g, " "),
-    path: `${pagePath.replace("/content/notes", "/notes")}/${topic}`,
+    path: `${pagePath.replace("/markdown/notes", "/notes")}/${topic}`,
   }));
 
   const notes = files.map((filename) => {
@@ -62,7 +62,7 @@ const getNoteDirectory = async (
     const frontmatter = data as NoteFrontmatter;
 
     return {
-      path: `${pagePath.replace("/content/notes", "")}/${filename.replace(
+      path: `${pagePath.replace("/markdown/notes", "")}/${filename.replace(
         ".md",
         ""
       )}`,
