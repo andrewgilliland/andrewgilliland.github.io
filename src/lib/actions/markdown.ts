@@ -47,12 +47,12 @@ const transformMarkdownFile = async (pagePath: string) => {
     .use(rehypeStringify, { allowDangerousHtml: true }) // Turn HTML into string
     .process(content);
 
-  console.log("markdownWithMeta: ", markdownWithMeta);
+  // console.log("markdownWithMeta: ", markdownWithMeta);
 
   // const serialized = await serialize(file.value);
   // console.log("serialized: ", serialized);
 
-  console.log("file.value: ", file.value);
+  // console.log("file.value: ", file.value);
 
   return {
     frontmatter,

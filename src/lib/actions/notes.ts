@@ -15,7 +15,7 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
     frontmatter.date = new Date(frontmatter.date);
 
     const note = {
-      path: filePath.replace("content/notes/", "").replace(".md", ""),
+      path: filePath.replace("content/notes/", "").replace(".mdx", ""),
       frontmatter,
     };
 
@@ -63,7 +63,7 @@ const getNoteDirectory = async (
 
     return {
       path: `${pagePath.replace("/content/notes", "")}/${filename.replace(
-        ".md",
+        ".mdx",
         ""
       )}`,
       frontmatter,
