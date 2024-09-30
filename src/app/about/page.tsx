@@ -1,4 +1,3 @@
-import CodeBlock from "@/components/CodeBlock";
 import AboutBento from "@/components/pages/about/AboutBento";
 
 const AboutPage = () => {
@@ -9,7 +8,6 @@ const AboutPage = () => {
       </h1>
 
       <section className="mt-10">
-        <CodeBlock />
         <div className="mt-24"></div>
         <AboutBento />
       </section>
