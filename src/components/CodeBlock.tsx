@@ -2,16 +2,23 @@ import { FC } from "react";
 import { codeToHtml } from "shiki";
 
 type CodeBlockProps = {
-  code: string;
+  children: string;
+  // code: string;
   language: string;
   fileName: string;
 };
 
-const CodeBlock: FC<CodeBlockProps> = async ({ code, language, fileName }) => {
-  const out = await codeToHtml(code, {
-    lang: language,
-    theme: "synthwave-84",
-  });
+const CodeBlock: FC<CodeBlockProps> = async ({
+  children,
+  language,
+  fileName,
+}) => {
+  console.log("CodeBlock: ", children);
+
+  // const out = await codeToHtml(children, {
+  //   lang: language,
+  //   theme: "github-dark-high-contrast",
+  // });
 
   return (
     <div className="border-2 rounded">
@@ -32,7 +39,7 @@ const CodeBlock: FC<CodeBlockProps> = async ({ code, language, fileName }) => {
       </div>
       <div
         className="prose prose-pre:border-0"
-        dangerouslySetInnerHTML={{ __html: out }}
+        dangerouslySetInnerHTML={{ __html: children }}
       />
     </div>
   );

@@ -24,11 +24,23 @@ const word = true;
 <h2>CodeBlock Component Being Imported</h2>
 
 <CodeBlock
-fileName="index.tsx"
-code={`{
+  fileName="index.tsx"
+  language="ts"
+> 
+```json
+{
     name: "Andrew Gilliland",
     role: "Full Stack Developer",
     location: "Bloomington, Illinois"
-}`}
-language="ts"
-/>
+}
+```
+</CodeBlock>
+
+```typescript
+const this = "that";
+
+const function = () => {
+  return "Hello, World!";
+}
+
+```

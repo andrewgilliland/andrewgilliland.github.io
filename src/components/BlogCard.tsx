@@ -1,5 +1,4 @@
 import Link from "next/link";
-import CodeBlock from "./CodeBlock";
 import { Note } from "@/types";
 
 type BlogCardProps = {
@@ -24,9 +23,7 @@ const BlogCard = ({ slug, note, index }: BlogCardProps) => {
       <div
         className={`flex flex-col lg:flex-row border-2 border-white bg-black rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1`}
       >
-        <div className="flex justify-center">
-          <CodeBlock />
-        </div>
+        <div className="flex justify-center"></div>
         <div className="mt-4 lg:mt-0 lg:ml-8">
           <div className="font-semibold">{title}</div>
           <div className="text-gray-400">{formattedDate}</div>
