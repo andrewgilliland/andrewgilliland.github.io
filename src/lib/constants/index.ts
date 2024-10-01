@@ -1,1 +1,1 @@
-export const parentPath = "../markdown/notes";
+export const parentPath = "./src/markdown/notes";

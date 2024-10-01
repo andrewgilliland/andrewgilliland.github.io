@@ -50,7 +50,7 @@ const getNoteDirectory = async (
       .filter((dirent) => dirent !== null) as string[]
   ).map((topic) => ({
     name: topic?.replace(/-/g, " "),
-    path: `${pagePath.replace("/markdown/notes", "/notes")}/${topic}`,
+    path: `${pagePath.replace("/src/markdown/notes", "/notes")}/${topic}`,
   }));
 
   const notes = files.map((filename) => {
@@ -62,10 +62,10 @@ const getNoteDirectory = async (
     const frontmatter = data as NoteFrontmatter;
 
     return {
-      path: `${pagePath.replace(
-        "/markdown/notes",
-        "/notes"
-      )}/${filename.replace(".md", "")}`,
+      path: `${pagePath.replace("/src/markdown/notes", "")}/${filename.replace(
+        ".md",
+        ""
+      )}`,
       frontmatter,
     };
   });
