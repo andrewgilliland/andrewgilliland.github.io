@@ -27,32 +27,41 @@ const parseMarkDownFile = async ({ fileName }) => {
 };
 
 // ! Type this and make it generic
-const transformMarkdownFile = async (pagePath: string) => {
-  const markdownWithMeta = fs.readFileSync(
-    `${decodeURIComponent(pagePath)}.md`.replace("./", ""),
-    "utf-8"
-  );
+const transformMarkdown = async (pagePath: string) => {
+  try {
+    const markdownWithMeta = fs.readFileSync(
+      `${decodeURIComponent(pagePath)}.md`,
+      "utf-8"
+    );
 
-  const { data: frontmatter, content } = matter(markdownWithMeta);
+    const { data: frontmatter, content } = matter(markdownWithMeta);
 
-  // ! This is needed for code syntax highlighting
-  // ! This allows for line highlighting but also requires a '.hightlighted' class to be in the index.css
-  const file = await unified()
-    .use(remarkParse) // Parse markdown
-    .use(remarkRehype, { allowDangerousHtml: true }) // Turn markdown into HTML, and allow raw HTML
-    .use(rehypeShiki, {
-      theme: "synthwave-84",
-      transformers: [transformerMetaHighlight()],
-    }) // Syntax highlighting
-    .use(rehypeStringify, { allowDangerousHtml: true }) // Turn HTML into string
-    .process(content);
+    // ! This is needed for code syntax highlighting
+    // ! This allows for line highlighting but also requires a '.hightlighted' class to be in the index.css
+    const file = await unified()
+      .use(remarkParse) // Parse markdown
+      .use(remarkRehype, { allowDangerousHtml: true }) // Turn markdown into HTML, and allow raw HTML
+      .use(rehypeShiki, {
+        theme: "synthwave-84",
+        transformers: [transformerMetaHighlight()],
+      }) // Syntax highlighting
+      .use(rehypeStringify, { allowDangerousHtml: true }) // Turn HTML into string
+      .process(content);
 
-  const html = file.value;
+    const html = file.value;
 
-  return {
-    frontmatter,
-    html,
-  };
+    return {
+      frontmatter,
+      html,
+    };
+  } catch (error) {
+    console.error("transformMarkdown: ", error);
+
+    return {
+      frontmatter: {},
+      html: "Error parsing markdown file",
+    };
+  }
 };
 
-export { parseMarkDownFile, transformMarkdownFile };
+export { parseMarkDownFile, transformMarkdown };

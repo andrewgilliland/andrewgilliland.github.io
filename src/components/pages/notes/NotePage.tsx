@@ -1,7 +1,7 @@
 // "use client";
 import { FC, useEffect, useState } from "react";
 import ColorDivider from "../../ColorDivider";
-import { transformMarkdownFile } from "@/lib/actions/markdown";
+import { transformMarkdown } from "@/lib/actions/markdown";
 import { useRouter } from "next/navigation";
 import BackButton from "../../BackButton";
 import { HeadingElement, Note } from "@/types";
@@ -14,7 +14,7 @@ type NotePageProps = {
 };
 
 const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
-  const { frontmatter, html } = await transformMarkdownFile(pagePath);
+  const { frontmatter, html } = await transformMarkdown(pagePath);
   const { title, excerpt, date } = frontmatter;
 
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
