@@ -62,10 +62,10 @@ const getNoteDirectory = async (
     const frontmatter = data as NoteFrontmatter;
 
     return {
-      path: `${pagePath.replace("/markdown/notes", "")}/${filename.replace(
-        ".md",
-        ""
-      )}`,
+      path: `${pagePath.replace(
+        "/markdown/notes",
+        "/notes"
+      )}/${filename.replace(".md", "")}`,
       frontmatter,
     };
   });
