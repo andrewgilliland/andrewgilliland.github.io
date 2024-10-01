@@ -29,6 +29,7 @@ const parseMarkDownFile = async ({ fileName }) => {
 // ! Type this and make it generic
 const transformMarkdown = async (pagePath: string) => {
   try {
+    // ! path.join(process.cwd(), `${decodeURIComponent(pagePath)}.md`) is needed to access the correct file path
     const markdownWithMeta = fs.readFileSync(
       path.join(process.cwd(), `${decodeURIComponent(pagePath)}.md`),
       "utf-8"

@@ -35,8 +35,10 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
 const getNoteDirectory = async (
   pagePath: string
 ): Promise<{ topics: Topic[]; notes: Partial<Note>[] }> => {
+  const decodedPath = decodeURIComponent(pagePath);
+
   const files = fs
-    .readdirSync(pagePath, {
+    .readdirSync(decodedPath, {
       withFileTypes: true,
     })
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
@@ -44,19 +46,19 @@ const getNoteDirectory = async (
 
   const topics = (
     fs
-      .readdirSync(pagePath, {
+      .readdirSync(decodedPath, {
         withFileTypes: true,
       })
       .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
       .filter((dirent) => dirent !== null) as string[]
   ).map((topic) => ({
     name: topic?.replace(/-/g, " "),
-    path: `${pagePath.replace("/src/markdown/notes", "/notes")}/${topic}`,
+    path: `${decodedPath.replace("/src/markdown/notes", "/notes")}/${topic}`,
   }));
 
   const notes = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
-      `${pagePath}/${filename!}`,
+      `${decodedPath}/${filename!}`,
       "utf-8"
     );
     const { data } = matter(markdownWithMeta);

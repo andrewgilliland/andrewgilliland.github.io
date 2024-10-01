@@ -19,7 +19,7 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
     <div className="max-w-3xl w-full mx-auto mt-14">
       <section className="mt-10 md:mt-0 mx-8 md:mx-0 mb-24">
         <h2 className="capitalize font-bold text-gray-100 text-3xl md:text-4xl stroke-white">
-          {`${directory ? directory : "Topics"}`}
+          {`${directory ? decodeURIComponent(directory) : "Topics"}`}
         </h2>
         {topics.length > 0 && (
           <CardGrid>
