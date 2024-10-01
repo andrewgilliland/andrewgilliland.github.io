@@ -3,9 +3,10 @@ import { Note, NoteFrontmatter, Topic } from "@/types";
 import fs from "fs";
 import matter from "gray-matter";
 import { getFilesPaths } from "../utils/fs";
+import { parentPath } from "../constants";
 
 const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
-  let filePaths = await getFilesPaths("../markdown/notes");
+  let filePaths = await getFilesPaths(parentPath);
 
   const notes = filePaths.map((filePath) => {
     const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
