@@ -30,7 +30,7 @@ const parseMarkDownFile = async ({ fileName }) => {
 const transformMarkdown = async (pagePath: string) => {
   try {
     const markdownWithMeta = fs.readFileSync(
-      `${decodeURIComponent(pagePath)}.md`,
+      path.join(process.cwd(), `${decodeURIComponent(pagePath)}.md`),
       "utf-8"
     );
 
