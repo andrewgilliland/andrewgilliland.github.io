@@ -15,9 +15,6 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
 }) => {
   const { notes, topics } = await getNoteDirectory(pagePath);
 
-  console.log("topics: ", topics);
-  console.log("notes: ", notes);
-
   return (
     <div className="max-w-3xl w-full mx-auto mt-14">
       <section className="mt-10 md:mt-0 mx-8 md:mx-0 mb-24">
