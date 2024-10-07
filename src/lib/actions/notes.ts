@@ -16,7 +16,7 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
     frontmatter.date = new Date(frontmatter.date);
 
     const note = {
-      path: filePath.replace("markdown/notes/", "").replace(".md", ""),
+      path: filePath.replace("src/markdown/notes/", "").replace(".md", ""),
       frontmatter,
     };
 
