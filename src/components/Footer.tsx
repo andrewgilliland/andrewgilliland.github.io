@@ -6,16 +6,11 @@ const Footer = () => (
     <div>ⓒ {new Date().getFullYear()} Andrew Gilliland</div>
     <div className="flex items-center gap-10 mt-6 lg:mt-0">
       {socialLinks.map(({ Icon, href, color }, index) => (
-        <Block
-          backgroundColor={`bg-${color}-500`}
-          size="12"
-          theme="dark"
-          key={index}
-        >
-          <a href={href}>
+        <a key={index} href={href}>
+          <Block backgroundColor={`bg-${color}-500`} size="12" theme="dark">
             <Icon className="fill-white h-5 w-5" />
-          </a>
-        </Block>
+          </Block>
+        </a>
       ))}
     </div>
   </footer>
