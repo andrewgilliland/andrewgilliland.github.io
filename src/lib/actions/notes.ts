@@ -3,9 +3,10 @@ import { Note, NoteFrontmatter, Topic } from "@/types";
 import fs from "fs";
 import matter from "gray-matter";
 import { getFilesPaths } from "../utils/fs";
+import { parentPath } from "../constants";
 
 const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
-  let filePaths = await getFilesPaths("./content/notes");
+  let filePaths = await getFilesPaths(parentPath);
 
   const notes = filePaths.map((filePath) => {
     const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
@@ -15,7 +16,7 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
     frontmatter.date = new Date(frontmatter.date);
 
     const note = {
-      path: filePath.replace("content/notes/", "").replace(".md", ""),
+      path: filePath.replace("src/markdown/notes/", "").replace(".md", ""),
       frontmatter,
     };
 
@@ -34,8 +35,10 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
 const getNoteDirectory = async (
   pagePath: string
 ): Promise<{ topics: Topic[]; notes: Partial<Note>[] }> => {
+  const decodedPath = decodeURIComponent(pagePath);
+
   const files = fs
-    .readdirSync(pagePath, {
+    .readdirSync(decodedPath, {
       withFileTypes: true,
     })
     .map((dirent) => (dirent.isFile() ? dirent.name : null))
@@ -43,26 +46,26 @@ const getNoteDirectory = async (
 
   const topics = (
     fs
-      .readdirSync(pagePath, {
+      .readdirSync(decodedPath, {
         withFileTypes: true,
       })
       .map((dirent) => (dirent.isDirectory() ? dirent.name : null))
       .filter((dirent) => dirent !== null) as string[]
   ).map((topic) => ({
     name: topic?.replace(/-/g, " "),
-    path: `${pagePath.replace("/content/notes", "/notes")}/${topic}`,
+    path: `${decodedPath.replace("/src/markdown/notes", "/notes")}/${topic}`,
   }));
 
   const notes = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
-      `${pagePath}/${filename!}`,
+      `${decodedPath}/${filename!}`,
       "utf-8"
     );
     const { data } = matter(markdownWithMeta);
     const frontmatter = data as NoteFrontmatter;
 
     return {
-      path: `${pagePath.replace("/content/notes", "")}/${filename.replace(
+      path: `${pagePath.replace("/src/markdown/notes", "")}/${filename.replace(
         ".md",
         ""
       )}`,

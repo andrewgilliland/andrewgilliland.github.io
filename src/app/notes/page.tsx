@@ -1,7 +1,8 @@
 import NotesDirectoryPage from "@/components/pages/notes/NotesDirectoryPage";
+import { parentPath } from "@/lib/constants";
 
 const NotesPage = () => {
-  const pagePath = "./content/notes";
+  const pagePath = parentPath;
 
   return <NotesDirectoryPage directory="" pagePath={pagePath} />;
 };

@@ -5,9 +5,11 @@ import path from "path";
 /** Checks if a url path is a directory or file */
 export const isPathDirectory = async (path: string): Promise<boolean> => {
   try {
-    const stats = await fs.promises.stat(path);
+    const decodedPath = decodeURIComponent(path);
+    const stats = await fs.promises.stat(decodedPath);
     return stats.isDirectory();
   } catch (error) {
+    // ! Todo: shouldn't return false, should throw an error
     return false;
   }
 };
