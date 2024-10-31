@@ -96,6 +96,6 @@ const HomePage = async () => {
       </div>
     </div>
   );
-}
+};
 
 export default HomePage;
