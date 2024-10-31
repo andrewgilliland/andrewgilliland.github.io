@@ -9,7 +9,7 @@
     "type-check": "tsc --noEmit",
     "lint": "next lint",
     "test": "jest",
-    "cypress": "npx cypress open"
+    "cypress:open": "npx cypress open"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.17",
