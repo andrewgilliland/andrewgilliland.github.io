@@ -10,4 +10,11 @@ describe("HomePage", () => {
     cy.get('[data-cy="primary-button"]').click();
     cy.url().should("include", "/notes");
   });
+
+  it("should navigate to the /notes/javascript page when clicking the JavaScript topic card", () => {
+    renderComponent();
+
+    cy.get('[data-cy="topic-card-javascript"]').click();
+    cy.url().should("include", "/notes/javascript");
+  });
 });

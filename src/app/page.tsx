@@ -13,7 +13,7 @@ import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
 // https://salehmubashar.com/
 // https://www.hover.dev/
 
-export default async function HomePage() {
+const HomePage = async () => {
   const { notes } = await getNotes();
   const notesSlice = notes.slice(0, 5);
 
@@ -96,4 +96,6 @@ export default async function HomePage() {
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;
