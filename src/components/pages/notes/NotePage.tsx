@@ -57,7 +57,14 @@ const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
       </div>
 
       <div
-        className="prose prose-h2:text-yellow-300 prose-h3:text-purple-400 prose-h4:text-emerald-400 prose-h5:text-gray-500 prose-p:text-gray-200 prose-ul:text-gray-200 prose-ol:text-gray-200 prose-pre:border-2 prose-pre:border-white prose-pre:px-8 prose-pre:py-6 prose-pre:font-mono prose-code:text-white prose-code:before:content-none prose-code:after:content-none prose-code:grid prose-a:text-cyan-300 prose-a:no-underline prose-a:font-semibold prose-strong:font-semibold prose-strong:text-emerald-400 my-20 max-w-2xl"
+        className="prose grid
+      prose-h2:text-yellow-300 prose-h3:text-purple-400 prose-h4:text-emerald-400 prose-h5:text-gray-500 prose-p:text-gray-200
+      prose-ul:text-gray-200 prose-ol:text-gray-200 
+        prose-pre:border-2 prose-pre:border-white prose-pre:md:py-6
+        prose-code:grid prose-code:sm:grid-cols-1
+      prose-a:text-cyan-300 prose-a:no-underline prose-a:font-semibold 
+        prose-strong:font-semibold prose-strong:text-emerald-400 
+        my-20 max-w-2xl"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
