@@ -80,12 +80,11 @@ const HomePage = async () => {
                 title={frontmatter!.title}
               >
                 <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0" />
-                <div className="flex justify-between items-center bg-black border-2 border-white rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1">
-                  <h4 className="font-bold text-white truncate max-w-[75%]">
+                <div className="flex bg-black border-2 border-white rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1">
+                  <PencilSquareIcon className="h-6 w-6 stroke-2 stroke-white" />
+                  <h4 className="font-bold text-white truncate ml-2">
                     {frontmatter!.title}
                   </h4>
-
-                  <PencilSquareIcon className="h-6 w-6 stroke-2 stroke-white min-w-max" />
                 </div>
               </Link>
             ))}

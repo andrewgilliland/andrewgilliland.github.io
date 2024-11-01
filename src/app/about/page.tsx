@@ -9,7 +9,16 @@ const AboutPage = () => {
       </h1>
 
       <section className="mt-10">
-        <CodeBlock />
+        <CodeBlock
+          code={`{
+  name: "Andrew Gilliland",
+  role: "Full Stack Developer",
+  location: "Bloomington, Illinois",
+  languages: ["TypeScript", "JavaScript", "Swift"],
+  frameworks: ["React", "React Native", "Expo", "SwiftUI", "UIKit", "Next.js", "Express"],
+  databases: ["PostgreSQL", "SQLite", "MongoDB"]
+}`}
+        />
         <div className="mt-24"></div>
         <AboutBento />
       </section>
