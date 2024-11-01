@@ -1,6 +1,6 @@
 ---
 title: "Closures"
-date: "2023-01-02"
+date: "2024-11-01"
 draft: true
 ---
 
@@ -16,6 +16,8 @@ The basic syntax of a closure expression is:
 }
 ```
 
+## Example
+
 Here is an example of a closure that takes two integers and returns their sum:
 
 ```swift
@@ -24,7 +26,25 @@ let sumClosure = { (a: Int, b: Int) -> Int in
 }
 
 let result = sumClosure(3, 5) // result is 8
+```
 
+## Capturing Values
+
+Closures can capture and store references to any constants and variables from the context in which they are defined:
+
+```swift
+func makeIncrementer(incrementAmount: Int) -> () -> Int {
+    var total = 0
+    let incrementer: () -> Int = {
+        total += incremnentAmount
+        return total
+    }
+    return incrementer
+}
+
+let incrementByTwo = makeIncrementer(incrementAmount: 2)
+print(incrementByTwo()) // prints 2
+print(incrementByTwo()) // prints 4
 ```
 
 ## Resources
