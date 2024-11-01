@@ -160,6 +160,7 @@ pre {
 .line {
   counter-increment: count;
   display: flex;
+  padding-right: 1em;
 }
 
 .line::before {
@@ -177,17 +178,17 @@ pre::-webkit-scrollbar {
 
 pre::-webkit-scrollbar-track {
   background: theme(
-    "colors.emerald.500"
+    "colors.emerald.300"
   ); /* Background of the scrollbar track */
 }
 
 pre::-webkit-scrollbar-thumb {
-  background: theme("colors.yellow.500"); /* Color of the scrollbar thumb */
+  background: theme("colors.yellow.300"); /* Color of the scrollbar thumb */
   border-radius: 0px; /* Rounded corners for the scrollbar thumb */
 }
 
 pre::-webkit-scrollbar-thumb:hover {
   background: theme(
-    "colors.pink.500"
+    "colors.pink.300"
   ); /* Color of the scrollbar thumb on hover */
 }
