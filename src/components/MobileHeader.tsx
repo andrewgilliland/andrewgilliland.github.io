@@ -31,15 +31,11 @@ const MobileHeader = ({ pages }: MobileHeaderProps) => {
       <div
         className={`${
           isMenuOpen ? "translate-y-0" : "-translate-y-full"
-        } md:hidden fixed z-30 top-0 left-0 bottom-[50%] right-0 flex-col bg-black border-x-2 border-b-2 border-white-300 rounded-b-lg px-[10%] pt-[82px] transition-all duration-300`}
+        } md:hidden fixed z-30 top-0 left-0 right-0 flex-col bg-black border-x-2 border-b-2 border-white-300 rounded-b-lg px-[10%] pt-[82px] transition-all duration-300`}
       >
-        <div className="flex flex-col justify-center items-center h-full">
+        <div className="flex flex-col items-center gap-10 h-full my-10">
           {pages.map(({ href, title }, index) => (
-            <Link
-              className={`group ${index ? "mt-6" : ""}`}
-              key={index}
-              href={href}
-            >
+            <Link className="group" key={index} href={href}>
               <div
                 className={`text-3xl px-2 py-1 rounded-md ${
                   activePageTitle === title
