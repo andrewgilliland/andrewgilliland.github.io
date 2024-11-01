@@ -5,7 +5,7 @@ import Block from "@/components/Block";
 const AboutBento = () => {
   return (
     <div className="grid grid-cols-4 grid-rows-4 md:grid-rows-3 gap-6">
-      <div className="relative col-span-full md:col-span-2 row-span-1">
+      {/* <div className="relative col-span-full md:col-span-2 row-span-1">
         <div className="absolute top-0 bg-black rounded-lg translate-x-1 translate-y-1 w-full h-full" />
         <div className="relative bg-cyan-300 border-2 border-black rounded-lg p-4">
           <div className="flex justify-between gap-4">
@@ -30,7 +30,7 @@ const AboutBento = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <Block
         backgroundColor="bg-yellow-300"

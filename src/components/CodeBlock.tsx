@@ -1,25 +1,24 @@
+import { FC } from "react";
 import { codeToHtml } from "shiki";
 
-async function CodeBlock() {
-  const code = `
-    {
-      name: "Andrew Gilliland",
-      role: "Full Stack Developer",
-      location: "Bloomington, Illinois"
-    }
-  `;
+type CodeBlockProps = {
+  code: string;
+};
 
+const CodeBlock: FC<CodeBlockProps> = async ({ code }) => {
   const out = await codeToHtml(code, {
     lang: "ts",
-    theme: "aurora-x",
+    theme: "synthwave-84",
   });
 
   return (
     <div
-      className="mt-20 border border-white rounded-md overflow-hidden"
+      className="prose
+                 prose-pre:border-2 prose-pre:border-white prose-pre:md:py-6
+                 prose-code:grid"
       dangerouslySetInnerHTML={{ __html: out }}
     />
   );
-}
+};
 
 export default CodeBlock;
