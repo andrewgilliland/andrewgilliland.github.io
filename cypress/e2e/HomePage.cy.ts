@@ -16,5 +16,7 @@ describe("HomePage", () => {
 
     cy.get('[data-cy="topic-card-javascript"]').click();
     cy.url().should("include", "/notes/javascript");
+    // the page should not contain the data-cy attribute "not-found-page"
+    cy.get('[data-cy="not-found-page"]').should("not.exist");
   });
 });
