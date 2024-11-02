@@ -39,28 +39,28 @@ const transformMarkdown = async (pagePath: string) => {
 
     // ! This is needed for code syntax highlighting
     // ! This allows for line highlighting but also requires a '.hightlighted' class to be in the index.css
-    const file = await unified()
-      .use(remarkParse) // Parse markdown
-      .use(remarkRehype, { allowDangerousHtml: true }) // Turn markdown into HTML, and allow raw HTML
-      .use(rehypeShiki, {
-        theme: "synthwave-84",
-        transformers: [transformerMetaHighlight()],
-      }) // Syntax highlighting
-      .use(rehypeStringify, { allowDangerousHtml: true }) // Turn HTML into string
-      .process(content);
+    // const file = await unified()
+    //   .use(remarkParse) // Parse markdown
+    //   .use(remarkRehype, { allowDangerousHtml: true }) // Turn markdown into HTML, and allow raw HTML
+    //   // .use(rehypeShiki, {
+    //   //   theme: "synthwave-84",
+    //   //   transformers: [transformerMetaHighlight()],
+    //   // }) // Syntax highlighting
+    //   .use(rehypeStringify, { allowDangerousHtml: true }) // Turn HTML into string
+    //   .process(content);
 
-    const html = file.value;
+    // const html = file.value;
 
     return {
       frontmatter,
-      html,
+      content,
     };
   } catch (error) {
     console.error("transformMarkdown: ", error);
 
     return {
       frontmatter: {},
-      html: "Error parsing markdown file",
+      content: "Error parsing markdown file",
     };
   }
 };
