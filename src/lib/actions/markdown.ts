@@ -11,28 +11,45 @@ import { transformerMetaHighlight } from "@shikijs/transformers";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 
-const parseMarkDownFile = async ({ fileName }) => {
-  // Get the markdown file from content directory
-  const markdownWithMeta = fs.readFileSync(
-    path.join("content", `${fileName}`),
-    "utf-8"
-  );
+type TransformMarkdownFileResult = {
+  frontmatter: Record<string, unknown>;
+  html: string;
+};
 
-  // Parse frontmatter & content from markdown
-  const { data: frontmatter, content } = matter(markdownWithMeta);
+/* Separates frontmatter and content from markdownfile, then transforms content to html */
+const transformMarkdownFile = async (
+  fileName: string
+): Promise<TransformMarkdownFileResult> => {
+  try {
+    const markdownWithMeta = fs.readFileSync(
+      path.join("content", fileName),
+      "utf-8"
+    );
 
-  return {
-    frontmatter: JSON.parse(JSON.stringify(frontmatter)),
-    content,
-  };
+    const { data: frontmatter, content } = matter(markdownWithMeta);
+    const html = marked(content);
+
+    return {
+      frontmatter,
+      html,
+    };
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      throw new Error(`File not found: ${fileName}`);
+    } else {
+      throw new Error(`Error reading file: ${fileName}`);
+    }
+  }
 };
 
 // ! Type this and make it generic
 const transformMarkdown = async (pagePath: string) => {
+  const markdownFilePath = `${decodeURIComponent(pagePath)}.md`;
+
   try {
     // ! path.join(process.cwd(), `${decodeURIComponent(pagePath)}.md`) is needed to access the correct file path
     const markdownWithMeta = fs.readFileSync(
-      path.join(process.cwd(), `${decodeURIComponent(pagePath)}.md`),
+      path.join(process.cwd(), markdownFilePath),
       "utf-8"
     );
 
@@ -57,13 +74,12 @@ const transformMarkdown = async (pagePath: string) => {
       html,
     };
   } catch (error) {
-    console.error("transformMarkdown: ", error);
-
-    return {
-      frontmatter: {},
-      html: "Error parsing markdown file",
-    };
+    if (error.code === "ENOENT") {
+      throw new Error(`File not found: ${markdownFilePath}`);
+    } else {
+      throw new Error(`Error reading file: ${markdownFilePath}`);
+    }
   }
 };
 
-export { parseMarkDownFile, transformMarkdown };
+export { transformMarkdownFile, transformMarkdown };
