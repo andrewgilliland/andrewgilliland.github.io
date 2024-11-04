@@ -6,11 +6,12 @@ import { marked } from "marked";
 
 import { unified } from "unified";
 import remarkParse from "remark-parse";
-import rehypeShiki from "@shikijs/rehype";
-import { transformerMetaHighlight } from "@shikijs/transformers";
+// import rehypeShiki from "@shikijs/rehype";
+// import { transformerMetaHighlight } from "@shikijs/transformers";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
-import { Value } from "unified/lib";
+import rehypeShikiFromHighlighter from "@shikijs/rehype/core";
+import { createHighlighterCore } from "shiki/core";
 
 type TransformMarkdownFileResult = {
   frontmatter: Record<string, string>;
@@ -43,11 +44,19 @@ const transformMarkdownFile = async (
   }
 };
 
-// ! Type this and make it generic
 const transformMarkdown = async (
   pagePath: string
 ): Promise<TransformMarkdownFileResult> => {
   const markdownFilePath = `${decodeURIComponent(pagePath)}.md`;
+
+  const highlighter = await createHighlighterCore({
+    themes: [import("shiki/themes/synthwave-84.mjs")],
+    langs: [
+      import("shiki/langs/javascript.mjs"),
+      import("shiki/langs/typescript.mjs"),
+    ],
+    loadWasm: import("shiki/wasm"),
+  });
 
   try {
     // ! path.join(process.cwd(), `${decodeURIComponent(pagePath)}.md`) is needed to access the correct file path
@@ -64,9 +73,8 @@ const transformMarkdown = async (
     const file = await unified()
       .use(remarkParse) // Parse markdown
       .use(remarkRehype, { allowDangerousHtml: true }) // Turn markdown into HTML, and allow raw HTML
-      .use(rehypeShiki, {
+      .use(rehypeShikiFromHighlighter, highlighter, {
         theme: "synthwave-84",
-        transformers: [transformerMetaHighlight()],
       }) // Syntax highlighting
       .use(rehypeStringify, { allowDangerousHtml: true }) // Turn HTML into string
       .process(content);
