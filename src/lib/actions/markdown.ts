@@ -12,7 +12,7 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 
 type TransformMarkdownFileResult = {
-  frontmatter: Record<string, unknown>;
+  frontmatter: Record<string, string>;
   html: string;
 };
 
@@ -43,7 +43,9 @@ const transformMarkdownFile = async (
 };
 
 // ! Type this and make it generic
-const transformMarkdown = async (pagePath: string) => {
+const transformMarkdown = async (
+  pagePath: string
+): Promise<TransformMarkdownFileResult> => {
   const markdownFilePath = `${decodeURIComponent(pagePath)}.md`;
 
   try {
@@ -55,6 +57,7 @@ const transformMarkdown = async (pagePath: string) => {
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
     const html = marked(content);
+
     // ! This is needed for code syntax highlighting
     // ! This allows for line highlighting but also requires a '.hightlighted' class to be in the index.css
     // const file = await unified()
