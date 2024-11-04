@@ -2,6 +2,7 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
+import { marked } from "marked";
 
 import { unified } from "unified";
 import remarkParse from "remark-parse";
@@ -36,7 +37,7 @@ const transformMarkdown = async (pagePath: string) => {
     );
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
-
+    const html = marked(content);
     // ! This is needed for code syntax highlighting
     // ! This allows for line highlighting but also requires a '.hightlighted' class to be in the index.css
     // const file = await unified()
@@ -53,14 +54,14 @@ const transformMarkdown = async (pagePath: string) => {
 
     return {
       frontmatter,
-      content,
+      html,
     };
   } catch (error) {
     console.error("transformMarkdown: ", error);
 
     return {
       frontmatter: {},
-      content: "Error parsing markdown file",
+      html: "Error parsing markdown file",
     };
   }
 };

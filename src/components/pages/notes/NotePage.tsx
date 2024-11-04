@@ -7,16 +7,14 @@ import { transformMarkdown } from "@/lib/actions/markdown";
 // import { HeadingElement, Note } from "@/types";
 // import BlogOutlineCard from "@/components/BlogOutlineCard";
 // ! Todo: Remove marked
-import { marked } from "marked";
 
 type NotePageProps = {
   pagePath: string;
 };
 
 const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
-  const { frontmatter, content } = await transformMarkdown(pagePath);
+  const { frontmatter, html } = await transformMarkdown(pagePath);
   const { title, excerpt, date } = frontmatter;
-  const html = marked(content);
 
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
