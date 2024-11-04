@@ -53,7 +53,9 @@ const transformMarkdown = async (
     themes: [import("shiki/themes/synthwave-84.mjs")],
     langs: [
       import("shiki/langs/javascript.mjs"),
+      import("shiki/langs/jsx.mjs"),
       import("shiki/langs/typescript.mjs"),
+      import("shiki/langs/swift.mjs"),
     ],
     loadWasm: import("shiki/wasm"),
   });
