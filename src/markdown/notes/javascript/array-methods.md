@@ -19,7 +19,7 @@ JavaScript provide a variety of built-in array methods that allow you to manipul
 
 These methods modify the array itself.
 
-1. `push()`: Adds one of more elements to the end of an array.
+1. **push()**: Adds one of more elements to the end of an array.
 
 ```typescript
 let iceCreamFlavors = ["vanilla", "chocolate", "strawberry"];
@@ -36,7 +36,7 @@ console.log(iceCreamFlavors);
 console.log(iceCreamFlavors.length); // Output: 6
 ```
 
-2. `pop()`: Removes the last element from an array.
+2. **pop()**: Removes the last element from an array.
 
 ```typescript
 let iceCreamFlavors = [
@@ -57,7 +57,7 @@ console.log(iceCreamFlavors);
 console.log(removedFlavor);
 ```
 
-3. `shift()`: Removes the first element from an array.
+3. **shift()**: Removes the first element from an array.
 
 ```typescript
 let iceCreamFlavors = [
@@ -78,7 +78,7 @@ console.log(iceCreamFlavors);
 console.log(removedFlavor);
 ```
 
-4. `unshift()`: Adds one or more elements to the beginning of an array.
+4. **unshift()**: Adds one or more elements to the beginning of an array.
 
 ```typescript
 let iceCreamFlavors = [
@@ -108,7 +108,7 @@ console.log(iceCreamFlavors);
 console.log(newLength);
 ```
 
-5. `splice()`: Adds or removes elements from an array.
+5. **splice()**: Adds or removes elements from an array.
 
 ```typescript
 let iceCreamFlavors = [
@@ -141,7 +141,7 @@ iceCreamFlavors.splice(1, 1, "lemon");
 console.log(iceCreamFlavors);
 ```
 
-6. `sort()`: Sorts the elements of an array. By default, the `sort()` method sorts the elements as strings in ascending order. To sort the elements numerically or in a custom order, you can provide a compare function.
+6. **sort()**: Sorts the elements of an array. By default, the `sort()` method sorts the elements as strings in ascending order. To sort the elements numerically or in a custom order, you can provide a compare function.
 
 ```typescript
 let iceCreamFlavors = [
@@ -171,7 +171,7 @@ iceCreamFlavors.sort((a, b) => a.length - b.length);
 console.log(iceCreamFlavors);
 ```
 
-7. `reverse()`: Reverses the order of the elements in an array.
+7. **reverse()**: Reverses the order of the elements in an array.
 
 ```typescript
 let iceCreamFlavors = [
@@ -189,7 +189,7 @@ iceCreamFlavors.reverse();
 console.log(iceCreamFlavors);
 ```
 
-8. `fill()`: Fills all the elements of an array from a start index to an end index with a static value.
+8. **fill()**: Fills all the elements of an array from a start index to an end index with a static value.
 
 ```typescript
 let numbers = [1, 2, 3, 4, 5];
@@ -213,7 +213,7 @@ numbers.fill(9, 2);
 console.log(numbers);
 ```
 
-9. `copyWithin()`: Copies a sequence of array elements within the array.
+9. **copyWithin()**: Copies a sequence of array elements within the array.
 
 ```typescript
 let numbers = [1, 2, 3, 4, 5];

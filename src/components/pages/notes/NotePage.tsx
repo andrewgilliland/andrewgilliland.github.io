@@ -62,7 +62,8 @@ const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
         prose-pre:border-2 prose-pre:border-white prose-pre:md:py-6
         prose-code:grid
       prose-a:text-cyan-300 prose-a:no-underline prose-a:font-semibold 
-        prose-strong:font-semibold prose-strong:text-emerald-400 
+        prose-strong:font-semibold prose-strong:font-mono prose-strong:text-emerald-400 
+        prose-em:font-semibold prose-em:text-yellow-300
         my-20 max-w-2xl"
         dangerouslySetInnerHTML={{ __html: html }}
       />

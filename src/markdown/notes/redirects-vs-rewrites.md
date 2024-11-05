@@ -9,7 +9,7 @@ In web development, redirects and rewrites are techiques use to manage URLs and 
 
 ### Redirects
 
-URL redirects are a technique used to have more than one URL address to point users to the same website page or destination. URL redirects may also be known as URL forwarding. Redirect responses have status codes that start with `3`.
+URL redirects are a technique used to have more than one URL address to point users to the same website page or destination. URL redirects may also be known as URL forwarding. Redirect responses have status codes that start with **3**.
 
 There are different types of redirects, that can be sorted into three categories:
 
@@ -21,23 +21,23 @@ There are different types of redirects, that can be sorted into three categories
 
 Permanent redirects can be used to preserve existing links to perserve existing URLs. These redirects are meant to last forever. There are two status codes for permanent redirects:
 
-1. `301` - `Moved Permanently`
-2. `308` - `Permanent Redirect`
+1. **301** - Moved Permanently
+2. **308** - Permanent Redirect
 
 #### Temporary Redirects
 
 Temporary redirects can be used to redirect users to an alternative page while there maintenance or downtime on a web site or app. There are three status codes for temporary redirects:
 
-1. `302` - `Found`
-2. `303` - `See Other`
-3. `307` - `Temporary Redirect`
+1. **302** - Found
+2. **303** - See Other
+3. **307** - Temporary Redirect
 
 #### Special Redirects
 
 There are two status codes for special redirects:
 
-1. `300` - `Multiple Choices` - Manual redirects
-2. `304` - `Not Modified` - Used for caching purposes, not a redirect
+1. **300** - Multiple Choices - Manual redirects
+2. **304** - Not Modified - Used for caching purposes, not a redirect
 
 ### Rewrites
 
@@ -45,7 +45,7 @@ Rewrites are handled entirely on the server and are transparent to the user. The
 
 #### Why Use Rewrites
 
-Rewrites are useful to make URLs more user and SEO friendly. For example, you could rewrite the URL `website.com/index.php?page=about` to `website.com/about`.
+Rewrites are useful to make URLs more user and SEO friendly. For example, you could rewrite the URL _website.com/index.php?page=about_ to _website.com/about_.
 
 ### Key Differences
 
@@ -56,7 +56,7 @@ Rewrites are useful to make URLs more user and SEO friendly. For example, you co
 
 2. HTTP Status Codes:
 
-- Redirects: Use specific HTTP status codes (e.g., `301`, `302`, `307`) to indicate the type of redirect.
+- Redirects: Use specific HTTP status codes (e.g., **301**, **302**, **307**) to indicate the type of redirect.
 - Rewrites: Do not use HTTP status codes. They are handled internally by the server.
 
 3. Purpose:
@@ -66,12 +66,12 @@ Rewrites are useful to make URLs more user and SEO friendly. For example, you co
 
 4. Impact on SEO:
 
-- Redirects: Can affect SEO by transferring link equity from the old URL to the new URL (especially with `301` redirects).
+- Redirects: Can affect SEO by transferring link equity from the old URL to the new URL (especially with **301** redirects).
 - Rewrites: Improve SEO by making URLs cleaner and more descriptive, but do not directly affect link equity.
 
 5. Implementation:
 
-- Redirects: Implemented using HTTP headers or server configuration files (e.g., `.htaccess` for Apache)
+- Redirects: Implemented using HTTP headers or server configuration files (e.g., _.htaccess_ for Apache)
 - Rewrites: Implemented using server configuration files or server-side scripts.
 
 ### Summary

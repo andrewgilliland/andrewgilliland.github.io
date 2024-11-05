@@ -3,11 +3,8 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import { marked } from "marked";
-
 import { unified } from "unified";
 import remarkParse from "remark-parse";
-// import rehypeShiki from "@shikijs/rehype";
-// import { transformerMetaHighlight } from "@shikijs/transformers";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeShikiFromHighlighter from "@shikijs/rehype/core";
