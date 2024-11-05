@@ -1,8 +1,6 @@
 ---
 title: "Getting Started with Jest"
 date: "2024-05-10"
-excerpt: ""
-draft: true
 ---
 
 Install the jest package as dev dependency:
