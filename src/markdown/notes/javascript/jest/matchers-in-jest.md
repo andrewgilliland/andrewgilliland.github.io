@@ -9,7 +9,7 @@ draft: true
 
 Matchers let you test values in different ways. In this block of code, the matcher is `.toBe(3)`:
 
-```
+```typescript
 test("Adds 1 + 2 to equal 3", () => {
   expect(sum(1, 2)).toBe(3);
 });

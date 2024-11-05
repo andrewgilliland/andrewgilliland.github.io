@@ -7,7 +7,7 @@ draft: true
 
 **index.ts**
 
-```
+```typescript
 const fetchData = (callback) => {
   setTimeout(() => {
     callback("peanut butter");
@@ -27,7 +27,7 @@ module.exports = fetchDataPromise;
 
 **index.test.js**
 
-```
+```javascript
 const fetchPromise = require("./index");
 
 // test("the data is peanut butter", () => {

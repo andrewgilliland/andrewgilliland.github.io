@@ -7,7 +7,7 @@ draft: true
 
 **mock.test.js**
 
-```
+```javascript
 test("mock implementation of a basic function", () => {
   const mock = jest.fn((x) => 42 + x);
   expect(mock(1)).toBe(43);
@@ -17,7 +17,7 @@ test("mock implementation of a basic function", () => {
 
 **spy.test.js**
 
-```
+```javascript
 test("spying on a method of an object", () => {
   const video = {
     play() {
@@ -31,5 +31,4 @@ test("spying on a method of an object", () => {
   expect(spy).toHaveBeenCalled();
   spy.mockRestore();
 });
-
 ```

@@ -52,9 +52,12 @@ const transformMarkdown = async (
   const highlighter = await createHighlighterCore({
     themes: [import("shiki/themes/synthwave-84.mjs")],
     langs: [
+      import("shiki/langs/html.mjs"),
+      import("shiki/langs/css.mjs"),
       import("shiki/langs/javascript.mjs"),
       import("shiki/langs/jsx.mjs"),
       import("shiki/langs/typescript.mjs"),
+      import("shiki/langs/tsx.mjs"),
       import("shiki/langs/swift.mjs"),
     ],
     loadWasm: import("shiki/wasm"),
@@ -68,7 +71,6 @@ const transformMarkdown = async (
     );
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
-    // const html = marked(content);
 
     // ! This is needed for code syntax highlighting
     // ! This allows for line highlighting but also requires a '.hightlighted' class to be in the index.css
