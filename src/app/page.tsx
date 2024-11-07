@@ -2,7 +2,6 @@ import Link from "next/link";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { getNotes } from "@/lib/actions/notes";
 import TopicCard from "@/components/TopicCard";
-import ColorDivider from "@/components/ColorDivider";
 import CenteredSection from "@/components/sections/CenteredSection";
 import TwinSections from "@/components/sections/TwinSections";
 import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
@@ -94,8 +93,6 @@ const HomePage = async () => {
             ))}
           </div>
         </CenteredSection>
-
-        <ColorDivider className="w-full h-6" />
       </div>
     </div>
   );

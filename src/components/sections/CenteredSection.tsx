@@ -5,11 +5,7 @@ type CenteredSectionProps = {
 };
 
 const CenteredSection: FC<CenteredSectionProps> = ({ children }) => {
-  return (
-    <section className="border-b-2 border-white p-[6.5vw] md:p-20">
-      {children}
-    </section>
-  );
+  return <section className="p-[6.5vw] md:p-20">{children}</section>;
 };
 
 export default CenteredSection;
