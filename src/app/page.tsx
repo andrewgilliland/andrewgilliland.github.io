@@ -23,7 +23,11 @@ const HomePage = async () => {
       path: "./notes/javascript",
       color: "yellow",
     },
-    { name: "CSS", path: "./notes/css", color: "cyan" },
+    {
+      name: "React Native",
+      path: "./notes/javascript/react/react-native",
+      color: "cyan",
+    },
     { name: "Swift", path: "./notes/swift", color: "red" },
   ];
 
