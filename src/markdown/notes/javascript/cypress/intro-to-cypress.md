@@ -58,3 +58,26 @@ Here are some common interactions you can perform with elements in Cypress:
 10. **.rightclick()** - right-click on element
 
 ### Asserting about Elements
+
+Assertions in tests are statements that verify whether a certain condition is true or false. Assertions validate the expected behavior of an application during testing.There are two ways you can write assertions in Cypress:
+
+1. **Cypress Commands** - **.should()** or **.and()**
+
+```typescript
+// The subject here is the first <tr>.
+// This asserts that the <tr> has an .active class
+cy.get("tbody tr:first").should("have.class", "active");
+```
+
+```typescript
+cy.get("#header a")
+  .should("have.class", "active")
+  .and("have.attr", "href", "/users");
+```
+
+2. **Mocha Assertions** - **expect**
+
+```typescript
+// the explicit subject here is the boolean: true
+expect(true).to.be.true;
+```
