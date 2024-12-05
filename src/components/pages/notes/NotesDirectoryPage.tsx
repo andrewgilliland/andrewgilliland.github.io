@@ -19,8 +19,16 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
     <div className="max-w-3xl w-full mx-auto mt-14">
       <section className="mt-10 md:mt-0 mx-8 md:mx-0 mb-24">
         <h2 className="capitalize font-bold text-gray-100 text-3xl md:text-4xl stroke-white">
-          {`${directory ? decodeURIComponent(directory) : "Topics"}`}
+          Notes
         </h2>
+        {!directory && (
+          <p className="text-gray-300 mt-4">
+            This is a collection of notes on various topics. My notes may be
+            code snippets, info directly from docs, or what I have learned. I
+            will add resources to give due credit where info comes from. Click
+            on a topic below to view notes related to that topic.
+          </p>
+        )}
         {topics.length > 0 && (
           <CardGrid>
             {topics.map((topic, index) => (
@@ -32,7 +40,7 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
       {notes.length > 0 && (
         <section className="mt-10 mx-8 md:mx-0 mb-24">
           <h2 className="capitalize font-bold text-gray-100 text-3xl md:text-4xl stroke-white">
-            Notes
+            {decodeURIComponent(directory)}
           </h2>
           <CardGrid>
             {notes.map((note, index) => (
