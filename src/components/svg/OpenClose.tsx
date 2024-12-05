@@ -9,7 +9,7 @@ const OpenClose: FC<OpenCloseProps> = ({ isOpen }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      className={`fill-pink-300 h-8 w-8 transition ease-in-out ${
+      className={`fill-pink-300 h-10 w-10 transition ease-in-out ${
         isOpen ? "rotate-90" : "rotate-0"
       }`}
     >
