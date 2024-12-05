@@ -9,7 +9,7 @@ const AboutPage = () => {
         About
       </h1>
 
-      <section className="mt-10 grid gap-4 sm:grid-cols-2">
+      <section className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-10">
         <div className="grid bg-cyan-300 rounded-lg overflow-hidden border-2 border-black p-16 sm:px-16">
           <Image
             src="/andy-config-2.jpg"
