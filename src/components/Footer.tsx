@@ -10,7 +10,12 @@ const Footer = () => (
       <div className="flex items-center gap-10 mt-6 lg:mt-0">
         {socialLinks.map(({ Icon, href, color }, index) => (
           <a key={index} href={href}>
-            <Block backgroundColor={`bg-${color}-500`} size="12" theme="dark">
+            <Block
+              backgroundColor={`bg-${color}-500`}
+              height="12"
+              width="12"
+              theme="dark"
+            >
               <Icon className="fill-white h-5 w-5" />
             </Block>
           </a>

@@ -5,6 +5,8 @@ type BlockProps = {
   children?: ReactNode;
   backgroundColor?: string;
   size?: string;
+  height?: string;
+  width?: string;
   theme?: "dark" | "light";
 };
 
@@ -13,6 +15,8 @@ const Block = ({
   children,
   backgroundColor,
   size = "16",
+  height = "16",
+  width = "16",
   theme = "light",
 }: BlockProps) => {
   const themeOptions = { dark: "white", light: "black" };
@@ -20,10 +24,10 @@ const Block = ({
   return (
     <div className={`relative group ${className}`}>
       <div
-        className={`absolute top-0 bg-${themeOptions[theme]} h-${size} w-${size} translate-x-1 translate-y-1 rounded-lg`}
+        className={`absolute top-0 bg-${themeOptions[theme]} h-${height} w-${width} translate-x-1 translate-y-1 rounded-lg`}
       />
       <div
-        className={`relative flex justify-center items-center h-${size} w-${size} border-2 border-${themeOptions[theme]} rounded-lg group-hover:translate-x-1 group-hover:translate-y-1 transition-transform ${backgroundColor}`}
+        className={`relative flex justify-center items-center h-${height} w-${width} border-2 border-${themeOptions[theme]} rounded-lg group-hover:translate-x-1 group-hover:translate-y-1 transition-transform ${backgroundColor}`}
       >
         {children}
       </div>
