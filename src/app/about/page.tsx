@@ -62,6 +62,43 @@ const AboutPage = () => {
             Yacht Rock.
           </p>
         </div>
+        <div className="flex flex-col items-center gap-4 rounded-lg border-2 border-black bg-pink-300 p-4 text-black">
+          <h3 className="rounded-lg border-2 border-black bg-white px-2 py-1 font-bold">
+            Technologies
+          </h3>
+          <div className="flex list-disc gap-2 text-sm font-semibold">
+            <ul className="min-w-fit">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>Next.js</li>
+              <li>React Native</li>
+              <li>Expo</li>
+              <li>Node.js</li>
+              <li>Bun</li>
+            </ul>
+            <ul className="">
+              <li>AWS</li>
+              <li>Vercel</li>
+              <li>Fly.io</li>
+              <li>Netlify</li>
+              <li>MySQL</li>
+              <li>PostgreSQL</li>
+              <li>SQLite</li>
+              <li>DynamoDB</li>
+              <li>MongoDB</li>
+            </ul>
+            <ul className="">
+              <li>Swift</li>
+              <li>UIKit</li>
+              <li>SwiftUI</li>
+              <li>CoreML</li>
+              <li>ARKit</li>
+              <li>RealityKit</li>
+            </ul>
+          </div>
+        </div>
       </section>
     </div>
   );
