@@ -22,12 +22,12 @@ const Block = ({
   const themeOptions = { dark: "white", light: "black" };
 
   return (
-    <div className={`relative group ${className}`}>
+    <div className={`group relative ${className}`}>
       <div
         className={`absolute top-0 bg-${themeOptions[theme]} h-${height} w-${width} translate-x-1 translate-y-1 rounded-lg`}
       />
       <div
-        className={`relative flex justify-center items-center h-${height} w-${width} border-2 border-${themeOptions[theme]} rounded-lg group-hover:translate-x-1 group-hover:translate-y-1 transition-transform ${backgroundColor}`}
+        className={`relative flex items-center justify-center h-${height} w-${width} border-2 border-${themeOptions[theme]} rounded-lg transition-transform group-hover:translate-x-1 group-hover:translate-y-1 ${backgroundColor}`}
       >
         {children}
       </div>
