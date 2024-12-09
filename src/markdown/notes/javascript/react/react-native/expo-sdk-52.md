@@ -4,18 +4,18 @@ date: "2024-12-08"
 draft: false
 ---
 
-## The Roolout
+## The Rollout
 
 - The New Architecture is now enabled by default for all new projects.
 - Projects that are upgrading from a previous version of the SDK can opt in to the New Architecture
 - Expo Go for SDK 52 and higher will only support the New Architecture.
 
-## Testing
+## The Testing
 
 - Ensure that you use the latest version of all third-party native libraries.
 - Run **npx expo-doctor@latest** in your SDK 52 project to find any library incompatibilities that may cause issues when migrating.
 
-## Sweetness
+## The Sweetness
 
 - iOS deployment target bumped from 13.4 to iOS 15.1.
 - Android **minSdkVersion** and **compileSdkVersion** bumped from 23 to 24 and 34 to 35 respectively.
