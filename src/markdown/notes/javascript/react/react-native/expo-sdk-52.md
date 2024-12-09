@@ -24,5 +24,12 @@ draft: false
 - Beta release of **expo-file-system/next**. This enables synchronous read/write operations, using **SharedObjects** to represent files and directories. [expo-file-system Docs](https://docs.expo.dev/versions/v52.0.0/sdk/filesystem-next/)
 - Many improvements to **expo-camera**. Switched to using Swift Concurrency, which improves the camera configuration setup reliability compared to using dispatch queues.
 - New **expo-live-photo** library _(iOS only)_. [expo-live-photo Docs](https://docs.expo.dev/versions/v52.0.0/sdk/live-photo/)
+- Improvements in affordances for edge-to-edge layouts on Android.
+- **expo-image** v2 introduces the **useImage** hook for loading images, which allows you to preload the image into memory, providing size and metadata before the image is rendered.
+- **expo-image-manipulator** offers a new object-oriented, contextual API.
+- **expo-sqlite/kv-store** is a new API built on top of **expo-sqlite** that provides key/value storage. [expo-sqlite/kv-store Docs](https://docs.expo.dev/versions/v52.0.0/sdk/sqlite/#key-value-storage)
+- **expo-sqlite** now supports SQLCipher.
+- **expo-sqlite** now supports saving SQLite databases to shared containers on iOS.
+- Expo DevTools Plugins now support binary payloads like **Uint8Array**.
 
 [Expo SDK 52 | Expo Changelog](https://expo.dev/changelog/2024/11-12-sdk-52)
