@@ -44,27 +44,19 @@ const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
   // }, []);
 
   return (
-    <div className="px-[10%] md:p-0 md:w-[40em] mx-auto mt-12 min-h-screen">
+    <div className="mx-auto mt-12 min-h-screen px-[10%] md:w-[40em] md:p-0">
       <div>
         {/* <BackButton back={router.back} /> */}
-        <h1 className="text-4xl md:text-5xl lg:text-7xl mt-8">{title}</h1>
-        <div className="text-gray-200 text-xl mt-2">{excerpt}</div>
-        <div className="text-sm text-gray-400 mt-2">
+        <h1 className="mt-8 text-4xl md:text-5xl lg:text-7xl">{title}</h1>
+        <div className="mt-2 text-xl text-gray-200">{excerpt}</div>
+        <div className="mt-2 text-sm text-gray-400">
           Last Updated: {formattedDate}
         </div>
         <ColorDivider />
       </div>
 
       <div
-        className="prose grid
-      prose-h2:text-yellow-300 prose-h3:text-purple-400 prose-h4:text-emerald-400 prose-h5:text-gray-500 prose-p:text-gray-200
-      prose-ul:text-gray-200 prose-ol:text-gray-200 
-        prose-pre:border-2 prose-pre:border-white prose-pre:md:py-6
-        prose-code:grid
-      prose-a:text-cyan-300 prose-a:no-underline prose-a:font-semibold 
-        prose-strong:font-semibold prose-strong:font-mono prose-strong:text-emerald-400 
-        prose-em:font-semibold prose-em:text-yellow-300
-        my-20 max-w-2xl"
+        className="prose my-20 grid max-w-2xl prose-h2:text-yellow-300 prose-h3:text-purple-400 prose-h4:text-emerald-400 prose-h5:text-gray-500 prose-p:text-gray-200 prose-a:font-semibold prose-a:text-cyan-300 prose-a:no-underline prose-strong:bg-emerald-950 prose-strong:font-mono prose-strong:text-emerald-400 prose-em:font-semibold prose-em:text-yellow-300 prose-code:grid prose-pre:border-2 prose-pre:border-white prose-ol:text-gray-200 prose-ul:text-gray-200 prose-pre:md:py-6"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
