@@ -9,14 +9,14 @@ const HeaderHeading = () => {
 
   return (
     <Link href="/">
-      <h1
-        className="font-bold text-2xl md:text-3xl header-heading"
+      <h2
+        className="header-heading text-2xl font-bold md:text-3xl"
         style={{
           backgroundImage: `linear-gradient( to bottom right, ${pink300}, ${pink300} 30%, ${emerald300} 30%, ${emerald300} 50%, ${yellow300} 50%, ${yellow300} 70%, ${cyan300} 70%, ${cyan300})`,
         }}
       >
         Andrew Gilliland
-      </h1>
+      </h2>
     </Link>
   );
 };
