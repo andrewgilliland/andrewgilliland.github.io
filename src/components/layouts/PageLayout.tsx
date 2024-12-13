@@ -8,7 +8,7 @@ type PageLayoutProps = {
 
 const PageLayout: FC<PageLayoutProps> = ({ title, children }) => {
   return (
-    <div className="mx-auto mt-14 h-screen w-full max-w-3xl">
+    <div className="mx-auto mt-14 min-h-screen w-full max-w-3xl">
       <PageHeading className="ml-8 mt-10">{title}</PageHeading>
       {children}
     </div>
