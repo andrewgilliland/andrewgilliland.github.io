@@ -1,4 +1,22 @@
-const Input = ({ className, label, name, type, value, onChange }) => {
+import { FC } from "react";
+
+type InputProps = {
+  className?: string;
+  label: string;
+  name: string;
+  type: string;
+  value: string | number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+const Input: FC<InputProps> = ({
+  className = "",
+  label,
+  name,
+  type,
+  value,
+  onChange,
+}) => {
   return (
     <div className={className}>
       <label

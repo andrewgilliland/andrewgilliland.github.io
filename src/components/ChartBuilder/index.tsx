@@ -9,6 +9,7 @@ import {
 } from "victory";
 import { ArrowDownOnSquareIcon } from "@heroicons/react/24/outline";
 import Input from "../forms/Input";
+import { fill } from "cypress/types/lodash";
 
 type ChartType = "area" | "bar" | "line" | "pie";
 
@@ -21,8 +22,16 @@ type Chart = {
 const ChartBuilder = () => {
   const [chartType, setChartType] = useState<ChartType>("line");
   const [chartTitle, setChartTitle] = useState<string>("New Line Chart");
-  const [yAxisColor, setYAxisColor] = useState<string>("black");
+
+  // Axis Options
+  const [axisColor, setAxisColor] = useState<string>("black");
   const [axisLabelFontSize, setAxisLabelFontSize] = useState<number>(20);
+  const [axisTickFontSize, setAxisTickFontSize] = useState<number>(12);
+  const [axisTickColor, setAxisTickColor] = useState<string>("black");
+
+  // Line Chart Options
+  const [lineColor, setLineColor] = useState<string>("blue");
+  const [lineWidth, setLineWidth] = useState<number>(2);
 
   useEffect(() => {
     console.log(chartType);
@@ -47,36 +56,39 @@ const ChartBuilder = () => {
 
   const chartTheme = {
     axis: {
+      //   height: 300,
+      //   width: 450,
+      padding: 50,
       style: {
         axis: {
-          stroke: yAxisColor,
+          stroke: axisColor,
         },
         axisLabel: {
+          fill: "red",
           fontSize: axisLabelFontSize,
-          padding: 30,
+          padding: 50,
         },
         grid: {
           fill: "none",
           stroke: "none",
         },
         ticks: {
-          stroke: "grey",
+          stroke: "red",
         },
         tickLabels: {
-          fontSize: 15,
+          fontSize: axisTickFontSize,
           padding: 5,
+          fill: axisTickColor,
         },
       },
     },
     line: {
+      //   height: 300,
+      //   width: 450,
       style: {
         data: {
-          stroke: "black",
-          strokeWidth: 5,
-        },
-        labels: {
-          fontSize: 20,
-          padding: 30,
+          stroke: lineColor,
+          strokeWidth: lineWidth,
         },
       },
     },
@@ -96,7 +108,7 @@ const ChartBuilder = () => {
 
   return (
     <section className="mx-8 mt-10 pb-32 md:mx-0 md:mt-0">
-      <div className="mt-4 grid grid-cols-2 grid-rows-2 gap-4">
+      <div className="mt-4 grid grid-cols-2 gap-4">
         <div>
           <label
             htmlFor="chartType"
@@ -120,7 +132,6 @@ const ChartBuilder = () => {
         </div>
 
         <Input
-          className={""}
           label="Chart Title"
           name="chartTitle"
           type="text"
@@ -131,11 +142,12 @@ const ChartBuilder = () => {
         />
       </div>
 
-      <div className="col-span-2 row-span-2 grid">
-        <div className="mb-2 text-sm font-medium text-white">Chart Tools</div>
+      <div className="mt-4">
+        <div className="mb-2 text-sm font-medium text-white">
+          Chart Axis Options
+        </div>
         <div className="grid grid-cols-3 gap-4 rounded-xl border-2 border-white p-4">
           <Input
-            className={""}
             label="Axis Label Font Size"
             name="axisLabelFontSize"
             type="number"
@@ -145,13 +157,56 @@ const ChartBuilder = () => {
             }
           />
           <Input
-            className={""}
             label="Axis Color"
             name="axisColor"
             type="text"
-            value={yAxisColor}
+            value={axisColor}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setYAxisColor(event.target.value)
+              setAxisColor(event.target.value)
+            }
+          />
+          <Input
+            label="Axis Tick Font Size"
+            name="axisTickFontSize"
+            type="number"
+            value={axisTickFontSize}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setAxisTickFontSize(Number(event.target.value))
+            }
+          />
+          <Input
+            label="Axis Tick Color"
+            name="axisTickColor"
+            type="string"
+            value={axisTickColor}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setAxisTickColor(event.target.value)
+            }
+          />
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <div className="mb-2 text-sm font-medium text-white">
+          Line Chart Options
+        </div>
+        <div className="grid grid-cols-3 gap-4 rounded-xl border-2 border-white p-4">
+          <Input
+            label="Line Color"
+            name="lineColor"
+            type="text"
+            value={lineColor}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setLineColor(event.target.value)
+            }
+          />
+          <Input
+            label="Line Width"
+            name="lineWidth"
+            type="number"
+            value={lineWidth}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setLineWidth(Number(event.target.value))
             }
           />
         </div>
