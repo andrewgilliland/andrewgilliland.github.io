@@ -9,13 +9,13 @@ type TwinSectionProps = {
 };
 
 const SectionOne: FC<TwinSectionProps> = ({ children }) => (
-  <div className="flex-1 flex flex-col justify-center items-center bg-pink-300 border-b-2 md:border-b-0 md:border-r-2 border-white p-[6.5vw]">
+  <div className="flex flex-1 flex-col items-center justify-center border-b-2 border-white bg-pink-300 px-[6.5vw] py-16 md:border-b-0 md:border-r-2">
     {children}
   </div>
 );
 
 const SectionTwo: FC<TwinSectionProps> = ({ children }) => (
-  <div className="flex-1 flex flex-col justify-center items-center bg-cyan-300 p-[6.5vw]">
+  <div className="flex flex-1 flex-col items-center justify-center bg-cyan-300 px-[6.5vw] py-16">
     {children}
   </div>
 );
