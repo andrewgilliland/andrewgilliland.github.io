@@ -9,7 +9,6 @@ import {
 } from "victory";
 import { ArrowDownOnSquareIcon } from "@heroicons/react/24/outline";
 import Input from "../forms/Input";
-import { fill } from "cypress/types/lodash";
 
 type ChartType = "area" | "bar" | "line" | "pie";
 
@@ -20,6 +19,14 @@ type Chart = {
 };
 
 const ChartBuilder = () => {
+  const data = [
+    { x: 1, y: 2 },
+    { x: 2, y: 3 },
+    { x: 3, y: 5 },
+    { x: 4, y: 4 },
+    { x: 5, y: 7 },
+  ];
+
   const [chartType, setChartType] = useState<ChartType>("line");
   const [chartTitle, setChartTitle] = useState<string>("New Line Chart");
 
@@ -33,22 +40,16 @@ const ChartBuilder = () => {
   const [lineColor, setLineColor] = useState<string>("blue");
   const [lineWidth, setLineWidth] = useState<number>(2);
 
+  // Chart Data
+  const [chartData, setChartData] = useState(data);
+
   useEffect(() => {
-    console.log(chartType);
-
-    console.log(VictoryTheme.clean);
-  }, [chartType]);
-
-  const data = [
-    { x: 1, y: 2 },
-    { x: 2, y: 3 },
-    { x: 3, y: 5 },
-    { x: 4, y: 4 },
-    { x: 5, y: 7 },
-  ];
+    console.log(chartData);
+    // console.log(VictoryTheme.clean);
+  }, [chartData]);
 
   const chartMap = {
-    line: <VictoryLine data={data} />,
+    line: <VictoryLine data={chartData} />,
     bar: <VictoryBar />,
     area: <VictoryArea />,
     pie: <VictoryPie />,
@@ -108,7 +109,7 @@ const ChartBuilder = () => {
 
   return (
     <section className="mx-8 mt-10 pb-32 md:mx-0 md:mt-0">
-      <div className="mt-4 grid grid-cols-2 gap-4">
+      <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <div>
           <label
             htmlFor="chartType"
@@ -146,7 +147,7 @@ const ChartBuilder = () => {
         <div className="mb-2 text-sm font-medium text-white">
           Chart Axis Options
         </div>
-        <div className="grid grid-cols-3 gap-4 rounded-xl border-2 border-white p-4">
+        <div className="grid gap-4 rounded-xl border-2 border-white p-4 sm:grid-cols-2">
           <Input
             label="Axis Label Font Size"
             name="axisLabelFontSize"
@@ -190,7 +191,7 @@ const ChartBuilder = () => {
         <div className="mb-2 text-sm font-medium text-white">
           Line Chart Options
         </div>
-        <div className="grid grid-cols-3 gap-4 rounded-xl border-2 border-white p-4">
+        <div className="grid gap-4 rounded-xl border-2 border-white p-4 sm:grid-cols-2">
           <Input
             label="Line Color"
             name="lineColor"
@@ -209,6 +210,38 @@ const ChartBuilder = () => {
               setLineWidth(Number(event.target.value))
             }
           />
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <div className="mb-2 text-sm font-medium text-white">Chart Data</div>
+        <div className="grid-flow-rows grid gap-4 rounded-xl border-2 border-white p-4">
+          {chartData.map((dataPoint, index) => (
+            <div key={index} className="grid gap-4 sm:grid-cols-2">
+              <Input
+                label="X Value"
+                name="xValue"
+                type="number"
+                value={dataPoint.x}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  const newData = [...chartData];
+                  newData[index].x = Number(event.target.value);
+                  setChartData(newData);
+                }}
+              />
+              <Input
+                label="Y Value"
+                name="yValue"
+                type="number"
+                value={dataPoint.y}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  const newData = [...chartData];
+                  newData[index].y = Number(event.target.value);
+                  setChartData(newData);
+                }}
+              />
+            </div>
+          ))}
         </div>
       </div>
 
