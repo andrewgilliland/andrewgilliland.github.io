@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import {
   VictoryArea,
@@ -9,26 +11,22 @@ import {
 } from "victory";
 import { ArrowDownOnSquareIcon } from "@heroicons/react/24/outline";
 import Input from "../forms/Input";
+import Select from "../forms/Select";
 
 type ChartType = "area" | "bar" | "line" | "pie";
 
-type Chart = {
-  type: ChartType;
-  title: string;
-  data: { x: number; y: number }[];
-};
+// type Chart = {
+//   type: ChartType;
+//   title: string;
+//   data: { x: number; y: number }[];
+// };
 
 const ChartBuilder = () => {
-  const data = [
-    { x: 1, y: 2 },
-    { x: 2, y: 3 },
-    { x: 3, y: 5 },
-    { x: 4, y: 4 },
-    { x: 5, y: 7 },
-  ];
-
+  // Chart Options
   const [chartType, setChartType] = useState<ChartType>("line");
-  const [chartTitle, setChartTitle] = useState<string>("New Line Chart");
+  const [domainPadding, setDomainPadding] = useState<number>(0);
+  const [chartTitle, setChartTitle] = useState<string>("New Chart");
+  const [chartBgColor, setChartBgColor] = useState<string>("white");
 
   // Axis Options
   const [axisColor, setAxisColor] = useState<string>("black");
@@ -40,20 +38,22 @@ const ChartBuilder = () => {
   const [lineColor, setLineColor] = useState<string>("blue");
   const [lineWidth, setLineWidth] = useState<number>(2);
 
+  // Bar Chart Options
+  const [barColor, setBarColor] = useState<string>("red");
+
   // Chart Data
-  const [chartData, setChartData] = useState(data);
+  const [chartData, setChartData] = useState([
+    { x: 1990, y: 2 },
+    { x: 1995, y: 3 },
+    { x: 2000, y: 5 },
+    { x: 2005, y: 4 },
+    { x: 2010, y: 7 },
+  ]);
 
   useEffect(() => {
-    console.log(chartData);
-    // console.log(VictoryTheme.clean);
+    // console.log("useEffect chartData: ", chartData);
+    console.log(VictoryTheme.clean);
   }, [chartData]);
-
-  const chartMap = {
-    line: <VictoryLine data={chartData} />,
-    bar: <VictoryBar />,
-    area: <VictoryArea />,
-    pie: <VictoryPie />,
-  };
 
   const chartTheme = {
     axis: {
@@ -83,6 +83,13 @@ const ChartBuilder = () => {
         },
       },
     },
+    bar: {
+      style: {
+        data: {
+          fill: barColor,
+        },
+      },
+    },
     line: {
       //   height: 300,
       //   width: 450,
@@ -109,40 +116,6 @@ const ChartBuilder = () => {
 
   return (
     <section className="mx-8 mt-10 pb-32 md:mx-0 md:mt-0">
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        <div>
-          <label
-            htmlFor="chartType"
-            className="mb-2 block text-sm font-medium text-white"
-          >
-            Select Chart Type
-          </label>
-          <select
-            id="chartType"
-            value={chartType}
-            onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-              setChartType(event.target.value as ChartType)
-            }
-            className="rounded-lg border-2 border-white bg-black px-4 py-3"
-          >
-            <option value="line">Line Chart</option>
-            <option value="bar">Bar Chart</option>
-            <option value="area">Area Chart</option>
-            <option value="pie">Pie Chart</option>
-          </select>
-        </div>
-
-        <Input
-          label="Chart Title"
-          name="chartTitle"
-          type="text"
-          value={chartTitle}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setChartTitle(event.target.value)
-          }
-        />
-      </div>
-
       <div className="mt-4">
         <div className="mb-2 text-sm font-medium text-white">
           Chart Axis Options
@@ -220,24 +193,30 @@ const ChartBuilder = () => {
             <div key={index} className="grid gap-4 sm:grid-cols-2">
               <Input
                 label="X Value"
-                name="xValue"
+                name={`xValue-${index}`}
                 type="number"
                 value={dataPoint.x}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  const newData = [...chartData];
-                  newData[index].x = Number(event.target.value);
-                  setChartData(newData);
+                  setChartData((prevData) => {
+                    const newData = [...prevData];
+                    newData[index].x = Number(event.target.value);
+                    return newData;
+                  });
+                  setLineColor(lineColor === "red" ? "blue" : "red");
                 }}
               />
               <Input
                 label="Y Value"
-                name="yValue"
+                name={`yValue-${index}`}
                 type="number"
                 value={dataPoint.y}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  const newData = [...chartData];
-                  newData[index].y = Number(event.target.value);
-                  setChartData(newData);
+                  setChartData((prevData) => {
+                    const newData = [...prevData];
+                    newData[index].y = Number(event.target.value);
+                    return newData;
+                  });
+                  setLineColor(lineColor === "red" ? "blue" : "red");
                 }}
               />
             </div>
@@ -247,12 +226,64 @@ const ChartBuilder = () => {
 
       <div className="mt-4 rounded-lg border-2 border-white bg-white">
         <div className="rounded-lg border-2 border-black">
-          <div className="border-b-2 border-black bg-black px-4 py-3">
-            <div className="font-medium text-white">
-              {chartTitle ? chartTitle : "Please Enter A Chart Title"}
-            </div>
+          <div className="flex flex-wrap justify-between gap-4 border-b-2 border-black bg-black px-4 py-3">
+            <Input
+              label="Chart Title"
+              name="chartTitle"
+              type="text"
+              value={chartTitle}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setChartTitle(event.target.value)
+              }
+            />
+            <Input
+              label="Chart Background Color"
+              name="chartBgColor"
+              type="text"
+              value={chartBgColor}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setChartBgColor(event.target.value)
+              }
+            />
+            <Input
+              label="Domain Padding"
+              name="domainPadding"
+              type="number"
+              value={domainPadding}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setDomainPadding(Number(event.target.value))
+              }
+            />
+            <Select
+              label="Select Chart Type"
+              id="chartType"
+              value={chartType}
+              onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
+                setChartType(event.target.value as ChartType)
+              }
+              options={[
+                { value: "line", label: "Line Chart" },
+                { value: "bar", label: "Bar Chart" },
+                { value: "area", label: "Area Chart" },
+                { value: "pie", label: "Pie Chart" },
+              ]}
+            />
           </div>
-          <VictoryChart theme={chartTheme}>{chartMap[chartType]}</VictoryChart>
+          <VictoryChart
+            title={chartTitle}
+            domainPadding={domainPadding}
+            theme={chartTheme}
+            style={{ background: { fill: chartBgColor } }}
+          >
+            {
+              {
+                line: <VictoryLine data={chartData} />,
+                bar: <VictoryBar data={chartData} />,
+                area: <VictoryArea />,
+                pie: <VictoryPie />,
+              }[chartType]
+            }
+          </VictoryChart>
         </div>
       </div>
 

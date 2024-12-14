@@ -1,5 +1,3 @@
-"use client";
-
 import PageLayout from "@/components/layouts/PageLayout";
 import ChartBuilder from "@/components/ChartBuilder";
 
