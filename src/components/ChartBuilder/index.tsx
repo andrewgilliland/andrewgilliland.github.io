@@ -24,7 +24,9 @@ type ChartType = "area" | "bar" | "line" | "pie";
 const ChartBuilder = () => {
   // Chart Options
   const [chartType, setChartType] = useState<ChartType>("line");
-  const [chartTitle, setChartTitle] = useState<string>("New Line Chart");
+  const [domainPadding, setDomainPadding] = useState<number>(0);
+  const [chartTitle, setChartTitle] = useState<string>("New Chart");
+  const [chartBgColor, setChartBgColor] = useState<string>("white");
 
   // Axis Options
   const [axisColor, setAxisColor] = useState<string>("black");
@@ -35,6 +37,9 @@ const ChartBuilder = () => {
   // Line Chart Options
   const [lineColor, setLineColor] = useState<string>("blue");
   const [lineWidth, setLineWidth] = useState<number>(2);
+
+  // Bar Chart Options
+  const [barColor, setBarColor] = useState<string>("red");
 
   // Chart Data
   const [chartData, setChartData] = useState([
@@ -49,13 +54,6 @@ const ChartBuilder = () => {
     // console.log("useEffect chartData: ", chartData);
     console.log(VictoryTheme.clean);
   }, [chartData]);
-
-  const chartMap = {
-    line: <VictoryLine data={chartData} />,
-    bar: <VictoryBar />,
-    area: <VictoryArea />,
-    pie: <VictoryPie />,
-  };
 
   const chartTheme = {
     axis: {
@@ -86,10 +84,9 @@ const ChartBuilder = () => {
       },
     },
     bar: {
-      colorScale: ["red", "blue", "green", "yellow", "purple"],
       style: {
         data: {
-          fill: "red",
+          fill: barColor,
         },
       },
     },
@@ -229,7 +226,7 @@ const ChartBuilder = () => {
 
       <div className="mt-4 rounded-lg border-2 border-white bg-white">
         <div className="rounded-lg border-2 border-black">
-          <div className="flex justify-between border-b-2 border-black bg-black px-4 py-3">
+          <div className="flex flex-wrap justify-between gap-4 border-b-2 border-black bg-black px-4 py-3">
             <Input
               label="Chart Title"
               name="chartTitle"
@@ -237,6 +234,24 @@ const ChartBuilder = () => {
               value={chartTitle}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                 setChartTitle(event.target.value)
+              }
+            />
+            <Input
+              label="Chart Background Color"
+              name="chartBgColor"
+              type="text"
+              value={chartBgColor}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setChartBgColor(event.target.value)
+              }
+            />
+            <Input
+              label="Domain Padding"
+              name="domainPadding"
+              type="number"
+              value={domainPadding}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setDomainPadding(Number(event.target.value))
               }
             />
             <Select
@@ -254,7 +269,12 @@ const ChartBuilder = () => {
               ]}
             />
           </div>
-          <VictoryChart theme={chartTheme}>
+          <VictoryChart
+            title={chartTitle}
+            domainPadding={domainPadding}
+            theme={chartTheme}
+            style={{ background: { fill: chartBgColor } }}
+          >
             {
               {
                 line: <VictoryLine data={chartData} />,
