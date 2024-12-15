@@ -202,6 +202,7 @@ const ChartBuilder = () => {
                     newData[index].x = Number(event.target.value);
                     return newData;
                   });
+                  // ! Needed for the Chart to re-render
                   setLineColor(lineColor === "red" ? "blue" : "red");
                 }}
               />
@@ -216,6 +217,7 @@ const ChartBuilder = () => {
                     newData[index].y = Number(event.target.value);
                     return newData;
                   });
+                  // ! Needed for the Chart to re-render
                   setLineColor(lineColor === "red" ? "blue" : "red");
                 }}
               />

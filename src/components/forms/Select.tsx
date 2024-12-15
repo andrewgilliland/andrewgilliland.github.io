@@ -18,8 +18,6 @@ const Select: FC<SelectProps> = ({ label, id, value, onChange, options }) => {
         id={id}
         value={value}
         onChange={onChange}
-        //     (event: React.ChangeEvent<HTMLSelectElement>) =>
-        //   setChartType(event.target.value as ChartType)
         className="rounded-lg border-2 border-white bg-black px-4 py-3"
       >
         {options.map((option) => (
