@@ -41,3 +41,8 @@ export default function Button({ title }) {
   return <Text onPress={() => {}}>{title}</Text>;
 }
 ```
+
+## Resources
+
+[Using React Server Components in Expo Router apps](https://docs.expo.dev/guides/server-components/)
+[React-Native Server Components! Change Your Native UI From Your Server!](https://www.youtube.com/watch?v=RW1SlwBx0hk&ab_channel=JackHerrington)
