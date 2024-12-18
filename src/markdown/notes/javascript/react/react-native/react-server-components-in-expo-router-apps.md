@@ -27,3 +27,17 @@ export async function Person() {
     )
 }
 ```
+
+## Client Components
+
+- Client Components can access native APIs or React Context.
+- Create a Client Component by adding the **"use client"** directive at the top of a file.
+
+```tsx
+"use client";
+import { Text } from "react-native";
+
+export default function Button({ title }) {
+  return <Text onPress={() => {}}>{title}</Text>;
+}
+```
