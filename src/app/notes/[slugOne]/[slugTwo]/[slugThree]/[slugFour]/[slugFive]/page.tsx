@@ -8,17 +8,18 @@ type NotesSlugFourPageProps = {
     slugTwo: string;
     slugThree: string;
     slugFour: string;
+    slugFive: string;
   };
 };
 
 const NotesSlugFourPage: FC<NotesSlugFourPageProps> = async ({
-  params: { slugOne, slugTwo, slugThree, slugFour },
+  params: { slugOne, slugTwo, slugThree, slugFour, slugFive },
 }) => {
-  const pagePath = `${parentPath}/${slugOne}/${slugTwo}/${slugThree}/${slugFour}`;
+  const pagePath = `${parentPath}/${slugOne}/${slugTwo}/${slugThree}/${slugFour}/${slugFive}`;
 
   console.log("pagePath: ", pagePath);
 
-  return <NoteRoute directory={slugFour} pagePath={pagePath} />;
+  return <NoteRoute directory={slugFive} pagePath={pagePath} />;
 };
 
 export default NotesSlugFourPage;

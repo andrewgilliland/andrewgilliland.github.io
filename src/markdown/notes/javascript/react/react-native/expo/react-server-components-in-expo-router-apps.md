@@ -42,6 +42,8 @@ export default function Button({ title }) {
 }
 ```
 
+## React Server Functions
+
 ## Resources
 
 [Using React Server Components in Expo Router apps](https://docs.expo.dev/guides/server-components/)
