@@ -8,6 +8,8 @@ import { parentPath } from "../constants";
 const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
   let filePaths = await getFilesPaths(parentPath);
 
+  console.log(filePaths);
+
   const notes = filePaths.map((filePath) => {
     const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
     const { data } = matter(markdownWithMeta);
@@ -16,7 +18,9 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
     frontmatter.date = new Date(frontmatter.date);
 
     const note = {
-      path: filePath.replace("src/markdown/notes/", "").replace(".md", ""),
+      path: filePath
+        .replace("src/markdown/notes/", "./notes/")
+        .replace(".md", ""),
       frontmatter,
     };
 
@@ -24,8 +28,10 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
   });
 
   notes.sort(
-    (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime()
+    (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime(),
   );
+
+  console.log("notes: ", notes);
 
   return {
     notes,
@@ -33,7 +39,7 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
 };
 
 const getNoteDirectory = async (
-  pagePath: string
+  pagePath: string,
 ): Promise<{ topics: Topic[]; notes: Partial<Note>[] }> => {
   const decodedPath = decodeURIComponent(pagePath);
 
@@ -59,7 +65,7 @@ const getNoteDirectory = async (
   const notes = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
       `${decodedPath}/${filename!}`,
-      "utf-8"
+      "utf-8",
     );
     const { data } = matter(markdownWithMeta);
     const frontmatter = data as NoteFrontmatter;
@@ -67,7 +73,7 @@ const getNoteDirectory = async (
     return {
       path: `${pagePath.replace("/src/markdown/notes", "")}/${filename.replace(
         ".md",
-        ""
+        "",
       )}`,
       frontmatter,
     };
