@@ -6,11 +6,11 @@ import { Page } from "@/types";
 import { usePathname } from "next/navigation";
 import OpenClose from "./svg/OpenClose";
 
-type MobileHeaderProps = {
+type MobileNavbarProps = {
   pages: Page[];
 };
 
-const MobileHeader = ({ pages }: MobileHeaderProps) => {
+const MobileNavbar = ({ pages }: MobileNavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const activePageTitle = pages.find((page) => page.href === pathname)?.title;
@@ -21,7 +21,7 @@ const MobileHeader = ({ pages }: MobileHeaderProps) => {
 
   return (
     <>
-      <div className="flex fixed md:hidden justify-between items-center bg-black z-40 border-b-2 border-white-300 w-full px-[10%] py-6">
+      <div className="border-white-300 fixed z-40 flex w-full items-center justify-between border-b-2 bg-black px-[10%] py-6 md:hidden">
         <HeaderHeading />
         <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <OpenClose isOpen={isMenuOpen} />
@@ -31,22 +31,22 @@ const MobileHeader = ({ pages }: MobileHeaderProps) => {
       <div
         className={`${
           isMenuOpen ? "translate-y-0" : "-translate-y-full"
-        } md:hidden fixed z-30 top-0 left-0 right-0 flex-col bg-black border-x-2 border-b-2 border-white-300 rounded-b-lg px-[10%] pt-[82px] transition-all duration-300`}
+        } border-white-300 fixed left-0 right-0 top-0 z-30 flex-col rounded-b-lg border-x-2 border-b-2 bg-black px-[10%] pt-[82px] transition-all duration-300 md:hidden`}
       >
-        <div className="flex flex-col items-center gap-10 h-full my-10">
+        <div className="my-10 flex h-full flex-col items-center gap-10">
           {pages.map(({ href, title }, index) => (
             <Link className="group" key={index} href={href}>
               <div
-                className={`text-3xl px-2 py-1 rounded-md ${
+                className={`rounded-md px-2 py-1 text-3xl ${
                   activePageTitle === title
-                    ? "font-semibold bg-pink-300 text-black"
+                    ? "bg-pink-300 font-semibold text-black"
                     : "text-white"
                 }`}
               >
                 {title}
               </div>
               <div
-                className={`bg-pink-300 h-0.5 w-[0%] ${
+                className={`h-0.5 w-[0%] bg-pink-300 ${
                   activePageTitle !== title && "group-hover:w-full"
                 } transition-all`}
               />
@@ -59,4 +59,4 @@ const MobileHeader = ({ pages }: MobileHeaderProps) => {
   );
 };
 
-export default MobileHeader;
+export default MobileNavbar;

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Pixelify_Sans, JetBrains_Mono } from "next/font/google";
 import "@/styles/index.css";
-import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const spaceGrotesk = Space_Grotesk({
@@ -34,7 +34,7 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${pixelifySans.variable} ${jetBrainsMono.variable} font-brand`}
       >
-        <Header />
+        <Navbar />
         <main className="flex flex-col pt-[82px] md:pt-0">{children}</main>
         <Footer />
       </body>
