@@ -13,16 +13,21 @@ const AboutPage = () => {
         </h1>
 
         <section className="mt-10 grid grid-rows-3 gap-4 sm:grid-cols-2 sm:gap-10">
-          <div className="grid justify-items-center overflow-hidden rounded-lg border-2 border-black bg-cyan-300 px-16 py-4">
-            <div className="relative overflow-hidden">
+          <div className="grid justify-items-center overflow-hidden rounded-lg border-2 border-black bg-emerald-950 py-4">
+            <div className="flex items-center">
               <Image
-                src="/andy-config-2.jpg"
+                src="/andy-4.png"
                 width={800}
                 height={500}
                 alt="Andrew Gilliland"
-                className="h-40 w-40 rounded-lg border-2 border-black object-cover object-left-top"
+                className="h-20 w-20 rounded-full border-2 border-black bg-cyan-400 object-cover object-left-top"
               />
+              <div className="ml-4 text-sm">
+                <div className="font-bold">Andrew Gilliland</div>
+                <div className="mt-2 font-thin">Full Stack Developer</div>
+              </div>
             </div>
+
             <Link className="mt-4" href="/resume">
               <Block
                 backgroundColor="bg-pink-500"

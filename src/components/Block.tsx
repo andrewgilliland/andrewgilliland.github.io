@@ -27,7 +27,7 @@ const Block = ({
         className={`absolute top-0 bg-${themeOptions[theme]} h-${height} w-${width} translate-x-1 translate-y-1 rounded-lg`}
       />
       <div
-        className={`relative flex items-center justify-center h-${height} w-${width} border-2 border-${themeOptions[theme]} rounded-lg transition-transform group-hover:translate-x-1 group-hover:translate-y-1 ${backgroundColor}`}
+        className={`relative flex items-center justify-center text-white h-${height} w-${width} border-2 border-${themeOptions[theme]} rounded-lg transition-transform group-hover:translate-x-1 group-hover:translate-y-1 ${backgroundColor}`}
       >
         {children}
       </div>
