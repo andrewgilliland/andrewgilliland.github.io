@@ -27,7 +27,11 @@ const HomePage = async () => {
       path: "./notes/javascript/react/react-native",
       color: "cyan",
     },
-    { name: "Swift", path: "./notes/swift", color: "red" },
+    {
+      name: "Expo",
+      path: "./notes/javascript/react/react-native/expo",
+      color: "pink",
+    },
   ];
 
   return (
@@ -35,11 +39,11 @@ const HomePage = async () => {
       <div>
         <TwinSections>
           <TwinSections.SectionOne>
-            <div className="max-w-xl mx-auto">
-              <h1 className="font-bold text-white text-4xl md:text-6xl stroke-black">
+            <div className="mx-auto max-w-xl">
+              <h1 className="stroke-black text-4xl font-bold text-white md:text-6xl">
                 Howdy, I&apos;m Andrew!
               </h1>
-              <p className="text-black text-xl mt-8 md:mt-12">
+              <p className="mt-8 text-xl text-black md:mt-12">
                 I am a community taught full stack developer. This site is to
                 share what I am learning and hopefully help others along the
                 way.
@@ -49,17 +53,17 @@ const HomePage = async () => {
           </TwinSections.SectionOne>
           <TwinSections.SectionTwo>
             <div>
-              <h2 className="text-center font-bold text-white text-4xl stroke-black">
+              <h2 className="stroke-black text-center text-4xl font-bold text-white">
                 Notes
               </h2>
 
-              <div className="flex flex-col justify-center items-center">
+              <div className="flex flex-col items-center justify-center">
                 <div className="flex items-center gap-4">
-                  <h2 className="font-bold text-black text-2xl">
+                  <h2 className="text-2xl font-bold text-black">
                     Some topics to explore:
                   </h2>
                 </div>
-                <div className="grid gap-4 mt-6 w-60">
+                <div className="mt-6 grid w-60 gap-4">
                   {topics.map((topic, index) => (
                     <TopicCard topic={topic} key={index} />
                   ))}
@@ -69,7 +73,7 @@ const HomePage = async () => {
           </TwinSections.SectionTwo>
         </TwinSections>
         <CenteredSection>
-          <h2 className="text-center font-bold text-black text-4xl stroke-white mb-12">
+          <h2 className="mb-12 stroke-white text-center text-4xl font-bold text-black">
             Recent Notes
           </h2>
           <div className="flex flex-col items-center">
@@ -82,10 +86,10 @@ const HomePage = async () => {
                 href={`notes/${path!}`}
                 title={frontmatter!.title}
               >
-                <div className="absolute bg-black border-2 border-white rounded w-full h-full bottom-0" />
-                <div className="flex bg-black border-2 border-white rounded p-4 transform-gpu transition group-hover:-translate-x-1 group-hover:-translate-y-1">
-                  <PencilSquareIcon className="h-6 w-6 stroke-2 stroke-white" />
-                  <h4 className="font-bold text-white truncate ml-2">
+                <div className="absolute bottom-0 h-full w-full rounded border-2 border-white bg-black" />
+                <div className="flex transform-gpu rounded border-2 border-white bg-black p-4 transition group-hover:-translate-x-1 group-hover:-translate-y-1">
+                  <PencilSquareIcon className="h-6 w-6 stroke-white stroke-2" />
+                  <h4 className="ml-2 truncate font-bold text-white">
                     {frontmatter!.title}
                   </h4>
                 </div>
