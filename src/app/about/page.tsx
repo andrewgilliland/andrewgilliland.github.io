@@ -20,7 +20,7 @@ const AboutPage = () => {
                 width={800}
                 height={500}
                 alt="Andrew Gilliland"
-                className="h-20 w-20 rounded-full border-2 border-black bg-cyan-400 object-cover object-left-top"
+                className="h-20 w-20 rounded-full border-2 border-black bg-purple-700 object-cover object-left-top"
               />
               <div className="ml-4 text-sm">
                 <div className="font-bold">Andrew Gilliland</div>
