@@ -48,7 +48,11 @@ const HomePage = async () => {
                 share what I am learning and hopefully help others along the
                 way.
               </p>
-              <PrimaryButton href="/notes" className="mt-12" text="Read More" />
+              <PrimaryButton
+                href="/notes"
+                className="mt-12"
+                text="Read Notes"
+              />
             </div>
           </TwinSections.SectionOne>
           <TwinSections.SectionTwo>
@@ -83,7 +87,7 @@ const HomePage = async () => {
                 className={`${
                   index && "mt-4"
                 } group relative w-1/2 min-w-[240px]`}
-                href={`notes/${path!}`}
+                href={`${path!}`}
                 title={frontmatter!.title}
               >
                 <div className="absolute bottom-0 h-full w-full rounded border-2 border-white bg-black" />
