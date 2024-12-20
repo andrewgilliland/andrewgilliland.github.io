@@ -2,6 +2,7 @@
 import { FC, useEffect, useState } from "react";
 import ColorDivider from "../../ColorDivider";
 import { transformMarkdown } from "@/lib/actions/markdown";
+import BackButton from "@/components/BackButton";
 // import { useRouter } from "next/navigation";
 // import BackButton from "../../BackButton";
 // import { HeadingElement, Note } from "@/types";
@@ -46,8 +47,10 @@ const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
   return (
     <div className="mx-auto mt-12 min-h-screen px-[10%] md:w-[40em] md:p-0">
       <div>
-        {/* <BackButton back={router.back} /> */}
-        <h1 className="mt-8 text-4xl md:text-5xl lg:text-7xl">{title}</h1>
+        {/* <BackButton back={() => {}} /> */}
+        <h1 className="mt-8 text-4xl text-white md:text-5xl lg:text-7xl">
+          {title}
+        </h1>
         <div className="mt-2 text-xl text-gray-200">{excerpt}</div>
         <div className="mt-2 text-sm text-gray-400">
           Last Updated: {formattedDate}

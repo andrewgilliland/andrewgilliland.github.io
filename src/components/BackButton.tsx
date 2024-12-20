@@ -6,11 +6,11 @@ type BackButtonProps = {
 
 const BackButton: FC<BackButtonProps> = ({ back }) => (
   <button
-    className="group flex items-center text-gray-400 hover:text-gray-200 w-fit transition-colors"
+    className="group flex w-fit items-center text-gray-400 transition-colors hover:text-gray-200"
     onClick={back}
   >
     <svg
-      className="transform rotate-180 mr-1 stroke-2 stroke-current fill-none"
+      className="mr-1 rotate-180 transform fill-none stroke-current stroke-2"
       width="10"
       height="10"
       viewBox="0 0 10 10"
@@ -18,7 +18,7 @@ const BackButton: FC<BackButtonProps> = ({ back }) => (
     >
       <g fillRule="evenodd">
         <path
-          className="transition opacity-0 group-hover:opacity-100"
+          className="opacity-0 transition group-hover:opacity-100"
           d="M0 5h7"
         ></path>
         <path

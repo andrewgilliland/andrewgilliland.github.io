@@ -4,10 +4,12 @@ import ColorDivider from "./ColorDivider";
 
 const Footer = () => (
   <>
-    <ColorDivider className="w-full h-6 border-t-2 border-b-2 border-white" />
-    <footer className="flex flex-col lg:flex-row justify-center lg:justify-between items-center  px-[10%] py-8">
-      <div>ⓒ {new Date().getFullYear()} Andrew Gilliland</div>
-      <div className="flex items-center gap-10 mt-6 lg:mt-0">
+    <ColorDivider className="h-6 w-full border-b-2 border-t-2 border-white" />
+    <footer className="flex flex-col items-center justify-center bg-black px-[10%] py-8 lg:flex-row lg:justify-between">
+      <div className="text-white">
+        ⓒ {new Date().getFullYear()} Andrew Gilliland
+      </div>
+      <div className="mt-6 flex items-center gap-10 lg:mt-0">
         {socialLinks.map(({ Icon, href, color }, index) => (
           <a key={index} href={href}>
             <Block
@@ -16,7 +18,7 @@ const Footer = () => (
               width="12"
               theme="dark"
             >
-              <Icon className="fill-white h-5 w-5" />
+              <Icon className="h-5 w-5 fill-white" />
             </Block>
           </a>
         ))}
