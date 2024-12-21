@@ -24,31 +24,28 @@ const FileTree: FC<FileTreeProps> = ({ node }) => {
   const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
-    <div className="">
-      <div className="">
-        {isMainDirectory ? (
-          <div className="flex items-center gap-2 border-b bg-cyan-300 px-4 py-3">
-            <h2 className="text-lg font-bold text-black">{node.name}</h2>
-          </div>
-        ) : (
-          <div className="flex items-center gap-2 border-b px-4 py-3">
-            {isDirectory ? (
-              <button onClick={toggleOpen} className="flex items-center gap-1">
-                {isOpen ? (
-                  <FolderMinusIcon className="h-6 w-6" />
-                ) : (
-                  <FolderPlusIcon className="h-6 w-6" />
-                )}
-              </button>
-            ) : (
-              <PencilSquareIcon className="h-5 w-5" />
-            )}
-            <span>{node.name}</span>
-          </div>
-        )}
-      </div>
+    <div>
+      {isMainDirectory ? (
+        <></>
+      ) : (
+        <div className="flex items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900">
+          {isDirectory ? (
+            <button onClick={toggleOpen} className="flex items-center gap-1">
+              {isOpen ? (
+                <FolderMinusIcon className="h-6 w-6" />
+              ) : (
+                <FolderPlusIcon className="h-6 w-6" />
+              )}
+            </button>
+          ) : (
+            <PencilSquareIcon className="h-5 w-5" />
+          )}
+          <span>{node.name}</span>
+        </div>
+      )}
+
       {isDirectory && isOpen && node.children && (
-        <div className="ml-4">
+        <div className="pl-4">
           {node.children.map((child, index) => (
             <FileTree key={index} node={child} />
           ))}

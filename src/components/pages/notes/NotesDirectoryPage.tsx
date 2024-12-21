@@ -60,8 +60,13 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
         )}
       </section>
 
-      <div className="mb-4 border">
-        <FileTree node={dir} />
+      <div className="relative mb-4 overflow-hidden border-2 border-white">
+        <div className="flex w-full items-center gap-2 border-2 border-black bg-cyan-300 px-4 py-3">
+          <h2 className="text-lg font-bold text-black">Notes</h2>
+        </div>
+        <div className="h-96 overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-thumb]:bg-pink-300 dark:[&::-webkit-scrollbar-thumb]:bg-emerald-300 [&::-webkit-scrollbar-track]:rounded-none [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-gray-800 [&::-webkit-scrollbar]:w-2">
+          <FileTree node={dir} />
+        </div>
       </div>
     </div>
   );
