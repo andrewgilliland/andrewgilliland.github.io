@@ -1,7 +1,5 @@
 import { FC } from "react";
 import { getNoteDirectory } from "@/lib/actions/notes";
-import { FolderPlusIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
 import FileTree from "@/components/FileTree";
 import FileViewer from "@/components/FileViewer";
 
