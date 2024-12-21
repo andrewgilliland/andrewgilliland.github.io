@@ -21,25 +21,31 @@ const FileTree: FC<FileTreeProps> = ({ node }) => {
   const [isOpen, setIsOpen] = useState(isMainDirectory);
   const isDirectory = node.children && node.children.length > 0;
 
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
     <div className="">
-      <div className="flex items-center gap-2 border-b px-4 py-3">
-        {isDirectory ? (
-          <button onClick={toggleOpen} className="flex items-center gap-1">
-            {isOpen ? (
-              <FolderMinusIcon className="h-6 w-6" />
-            ) : (
-              <FolderPlusIcon className="h-6 w-6" />
-            )}
-          </button>
+      <div className="">
+        {isMainDirectory ? (
+          <div className="flex items-center gap-2 border-b bg-cyan-300 px-4 py-3">
+            <h2 className="text-lg font-bold text-black">{node.name}</h2>
+          </div>
         ) : (
-          <PencilSquareIcon className="h-5 w-5" />
+          <div className="flex items-center gap-2 border-b px-4 py-3">
+            {isDirectory ? (
+              <button onClick={toggleOpen} className="flex items-center gap-1">
+                {isOpen ? (
+                  <FolderMinusIcon className="h-6 w-6" />
+                ) : (
+                  <FolderPlusIcon className="h-6 w-6" />
+                )}
+              </button>
+            ) : (
+              <PencilSquareIcon className="h-5 w-5" />
+            )}
+            <span>{node.name}</span>
+          </div>
         )}
-        <span>{node.name}</span>
       </div>
       {isDirectory && isOpen && node.children && (
         <div className="ml-4">
