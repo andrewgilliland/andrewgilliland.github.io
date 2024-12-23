@@ -9,17 +9,27 @@ import {
 
 type FileNode = {
   name: string;
-  children?: FileNode[];
+  title: string;
+  path: string;
+};
+
+type DirectoryNode = {
+  name: string;
+  children?: (DirectoryNode | FileNode)[];
 };
 
 type FileTreeProps = {
-  node: FileNode;
+  node: DirectoryNode | FileNode;
 };
+
+// Type guard to check if a node is of type DirectoryNode
+const isDirectoryNode = (
+  node: DirectoryNode | FileNode,
+): node is DirectoryNode => "children" in node;
 
 const FileTree: FC<FileTreeProps> = ({ node }) => {
   const isMainDirectory = node.name === "Notes";
   const [isOpen, setIsOpen] = useState(isMainDirectory);
-  const isDirectory = node.children && node.children.length > 0;
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -29,22 +39,25 @@ const FileTree: FC<FileTreeProps> = ({ node }) => {
         <></>
       ) : (
         <div className="flex items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900">
-          {isDirectory ? (
+          {isDirectoryNode(node) ? (
             <button onClick={toggleOpen} className="flex items-center gap-1">
               {isOpen ? (
                 <FolderMinusIcon className="h-6 w-6" />
               ) : (
                 <FolderPlusIcon className="h-6 w-6" />
               )}
+              <span>{node.name}</span>
             </button>
           ) : (
-            <PencilSquareIcon className="h-5 w-5" />
+            <>
+              <PencilSquareIcon className="h-5 w-5" />
+              <span>{node.title}</span>
+            </>
           )}
-          <span>{node.name}</span>
         </div>
       )}
 
-      {isDirectory && isOpen && node.children && (
+      {isDirectoryNode(node) && isOpen && node.children && (
         <div className="pl-4">
           {node.children.map((child, index) => (
             <FileTree key={index} node={child} />
