@@ -14,8 +14,6 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
 }) => {
   const { notes, topics } = await getNoteDirectory(pagePath);
 
-  // console.log("directory: ", directory);
-
   const dir = {
     name: "Notes",
     children: [
@@ -25,17 +23,17 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
           {
             name: "data-governance.md",
             title: "Data Governance",
-            path: "aws/data-governance",
+            path: "/aws/data-governance",
           },
 
           {
             name: "S3",
             children: [
-              { name: "basics.md", title: "Basics", path: "aws/s3/basics" },
+              { name: "basics.md", title: "Basics", path: "/aws/s3/basics" },
               {
                 name: "static-website.md",
                 title: "Static Website",
-                path: "aws/s3/static-website",
+                path: "/aws/s3/static-website",
               },
             ],
           },
@@ -43,9 +41,19 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
       },
       {
         name: "CSS",
-        children: [{ name: "basics.md", title: "Basics", path: "css/basics" }],
+        children: [{ name: "basics.md", title: "Basics", path: "/css/basics" }],
       },
-      { name: "general.md", title: "General", path: "general" },
+      {
+        name: "JavaScript",
+        children: [
+          {
+            name: "arrays.md",
+            title: "Arrays",
+            path: "/javascript/arrays",
+          },
+        ],
+      },
+      { name: "general.md", title: "General", path: "/general" },
     ],
   };
 
@@ -65,11 +73,11 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
         </section>
       )}
 
-      <section className="mx-8 mb-24 mt-10 md:mx-0 md:mt-0">
+      {/* <section className="mx-8 mb-24 mt-10 md:mx-0 md:mt-0">
         {notes.length > 0 && (
           <FileViewer directory={directory} topics={topics} notes={notes} />
         )}
-      </section>
+      </section> */}
 
       <div className="relative mb-4 overflow-hidden border-2 border-white">
         <div className="flex w-full items-center gap-2 border-2 border-black bg-cyan-300 px-4 py-3">

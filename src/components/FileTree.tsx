@@ -6,6 +6,7 @@ import {
   PencilSquareIcon,
   FolderMinusIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 type FileNode = {
   name: string;
@@ -38,9 +39,12 @@ const FileTree: FC<FileTreeProps> = ({ node }) => {
       {isMainDirectory ? (
         <></>
       ) : (
-        <div className="flex items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900">
+        <div>
           {isDirectoryNode(node) ? (
-            <button onClick={toggleOpen} className="flex items-center gap-1">
+            <button
+              className="flex w-full items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
+              onClick={toggleOpen}
+            >
               {isOpen ? (
                 <FolderMinusIcon className="h-6 w-6" />
               ) : (
@@ -49,10 +53,13 @@ const FileTree: FC<FileTreeProps> = ({ node }) => {
               <span>{node.name}</span>
             </button>
           ) : (
-            <>
+            <Link
+              href={`/notes${node.path}`}
+              className="flex w-full items-center gap-2 px-4 py-3 transition-colors hover:bg-gray-900"
+            >
               <PencilSquareIcon className="h-5 w-5" />
               <span>{node.title}</span>
-            </>
+            </Link>
           )}
         </div>
       )}
