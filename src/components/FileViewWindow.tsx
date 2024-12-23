@@ -66,6 +66,7 @@ const FileViewWindow: FC<FileViewWindowProps> = ({ directory }) => {
               <>
                 {searchResults.map((result, index) => (
                   <Link
+                    key={index}
                     href={`/notes${result.path}`}
                     title={result.title}
                     className="flex w-full items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
@@ -78,7 +79,7 @@ const FileViewWindow: FC<FileViewWindowProps> = ({ directory }) => {
             ) : (
               // Empty state
               <div className="p-4 text-center text-gray-300">
-                No notes found with the search term "{searchTerm}"
+                No notes found with the search term &quot;{searchTerm}&quot;
               </div>
             )}
           </>
