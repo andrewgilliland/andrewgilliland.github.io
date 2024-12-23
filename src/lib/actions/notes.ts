@@ -4,7 +4,14 @@ import fs from "fs";
 import matter from "gray-matter";
 import { getFilesPaths } from "../utils/fs";
 import { parentPath } from "../constants";
-import { DirectoryNode } from "@/components/FileTree";
+import { DirectoryNode, FileNode } from "@/components/FileTree";
+
+const isDirectoryNode = (
+  node: DirectoryNode | FileNode,
+): node is DirectoryNode => "children" in node;
+
+const isFileNode = (node: DirectoryNode | FileNode): node is FileNode =>
+  "path" in node;
 
 const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
   let filePaths = await getFilesPaths(parentPath);
@@ -140,6 +147,30 @@ const getNotesFileTree = async (path: string): Promise<DirectoryNode> => {
       });
     }
   });
+};
+
+const getFilesBySearchTerm = (
+  searchTerm: string,
+  node: DirectoryNode,
+): FileNode[] => {
+  const files: FileNode[] = [];
+
+  if (node.children) {
+    node.children.forEach((child) => {
+      if (
+        isFileNode(child) &&
+        child.name.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
+        files.push(child);
+      }
+
+      if (isDirectoryNode(child)) {
+        files.push(...getFilesBySearchTerm(searchTerm, child));
+      }
+    });
+  }
+
+  return files;
 };
 
 export { getNotes, getNotesFileTree };
