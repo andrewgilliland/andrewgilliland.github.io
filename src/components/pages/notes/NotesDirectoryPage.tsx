@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { getNoteDirectory, getNotesFileTree } from "@/lib/actions/notes";
+import { getNotesFileTree } from "@/lib/actions/notes";
 import FileTree from "@/components/FileTree";
 import FileViewer from "@/components/FileViewer";
 
@@ -12,7 +12,7 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
   directory,
   pagePath,
 }) => {
-  const { notes, topics } = await getNoteDirectory(pagePath);
+  // const { notes, topics } = await getNoteDirectory(pagePath);
 
   console.log("pagePath: ", pagePath);
 
