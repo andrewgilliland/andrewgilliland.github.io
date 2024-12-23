@@ -16,6 +16,7 @@ const isDirectoryNode = (
 const isFileNode = (node: DirectoryNode | FileNode): node is FileNode =>
   "path" in node;
 
+/** Recursive function to get all files that match the search term that compares by file path*/
 const getFilesBySearchTerm = (
   searchTerm: string,
   node: DirectoryNode,
@@ -26,7 +27,7 @@ const getFilesBySearchTerm = (
     node.children.forEach((child) => {
       if (
         isFileNode(child) &&
-        child.name.toLowerCase().includes(searchTerm.toLowerCase())
+        child.path.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         files.push(child);
       }
@@ -58,20 +59,31 @@ const FileViewWindow: FC<FileViewWindowProps> = ({ directory }) => {
       </div>
       {/* Custom Scrollbar with Tailwindcss - https://preline.co/docs/custom-scrollbar.html */}
       <div className="h-[26rem] overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-thumb]:bg-pink-300 dark:[&::-webkit-scrollbar-thumb]:bg-emerald-300 [&::-webkit-scrollbar-track]:rounded-none [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-gray-800 [&::-webkit-scrollbar]:w-2">
-        {searchResults.length > 0 && searchTerm !== "" ? (
-          <div>
-            {searchResults.map((result, index) => (
-              <Link
-                href={`/notes${result.path}`}
-                title={result.title}
-                className="flex w-full items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
-              >
-                <PencilSquareIcon className="h-5 w-5" />
-                <span>{result.title}</span>
-              </Link>
-            ))}
-          </div>
+        {searchTerm !== "" ? (
+          // Success state
+          <>
+            {searchResults.length > 0 ? (
+              <>
+                {searchResults.map((result, index) => (
+                  <Link
+                    href={`/notes${result.path}`}
+                    title={result.title}
+                    className="flex w-full items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
+                  >
+                    <PencilSquareIcon className="h-5 w-5" />
+                    <span>{result.title}</span>
+                  </Link>
+                ))}
+              </>
+            ) : (
+              // Empty state
+              <div className="p-4 text-center text-gray-300">
+                No notes found with the search term "{searchTerm}"
+              </div>
+            )}
+          </>
         ) : (
+          // Default state
           <FileTree node={directory} />
         )}
       </div>
