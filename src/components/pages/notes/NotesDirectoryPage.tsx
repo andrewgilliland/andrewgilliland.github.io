@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { getNoteDirectory } from "@/lib/actions/notes";
+import { getNoteDirectory, getNotesFileTree } from "@/lib/actions/notes";
 import FileTree from "@/components/FileTree";
 import FileViewer from "@/components/FileViewer";
 
@@ -14,53 +14,16 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
 }) => {
   const { notes, topics } = await getNoteDirectory(pagePath);
 
-  const dir = {
-    name: "Notes",
-    children: [
-      {
-        name: "AWS",
-        children: [
-          {
-            name: "data-governance.md",
-            title: "Data Governance",
-            path: "/aws/data-governance",
-          },
+  console.log("pagePath: ", pagePath);
 
-          {
-            name: "S3",
-            children: [
-              { name: "basics.md", title: "Basics", path: "/aws/s3/basics" },
-              {
-                name: "static-website.md",
-                title: "Static Website",
-                path: "/aws/s3/static-website",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: "CSS",
-        children: [{ name: "basics.md", title: "Basics", path: "/css/basics" }],
-      },
-      {
-        name: "JavaScript",
-        children: [
-          {
-            name: "arrays.md",
-            title: "Arrays",
-            path: "/javascript/arrays",
-          },
-        ],
-      },
-      { name: "general.md", title: "General", path: "/general" },
-    ],
-  };
+  const direct = await getNotesFileTree(pagePath);
+
+  console.log("directory from getNotesFileTree: ", direct);
 
   return (
     <div className="mx-auto mt-14 w-full max-w-3xl">
       {directory === "" && (
-        <section className="mx-8 mb-24 mt-10 md:mx-0 md:mt-0">
+        <section className="mx-8 my-10 md:mx-0 md:mt-0">
           <h2 className="stroke-white text-3xl font-bold capitalize text-gray-100 md:text-4xl">
             Notes
           </h2>
@@ -73,21 +36,21 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
         </section>
       )}
 
-      {/* <section className="mx-8 mb-24 mt-10 md:mx-0 md:mt-0">
-        {notes.length > 0 && (
-          <FileViewer directory={directory} topics={topics} notes={notes} />
-        )}
-      </section> */}
-
       <div className="relative mb-4 overflow-hidden border-2 border-white">
         <div className="flex w-full items-center gap-2 border-2 border-black bg-cyan-300 px-4 py-3">
           <h2 className="text-lg font-bold text-black">Notes</h2>
         </div>
         {/* Custom Scrollbar with Tailwindcss - https://preline.co/docs/custom-scrollbar.html */}
-        <div className="h-96 overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-thumb]:bg-pink-300 dark:[&::-webkit-scrollbar-thumb]:bg-emerald-300 [&::-webkit-scrollbar-track]:rounded-none [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-gray-800 [&::-webkit-scrollbar]:w-2">
-          <FileTree node={dir} />
+        <div className="h-[28rem] overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-thumb]:bg-pink-300 dark:[&::-webkit-scrollbar-thumb]:bg-emerald-300 [&::-webkit-scrollbar-track]:rounded-none [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-gray-800 [&::-webkit-scrollbar]:w-2">
+          <FileTree node={direct} />
         </div>
       </div>
+
+      {/* <section className="mx-8 mb-24 mt-10 md:mx-0 md:mt-0">
+        {notes.length > 0 && (
+          <FileViewer directory={directory} topics={topics} notes={notes} />
+        )}
+      </section> */}
     </div>
   );
 };

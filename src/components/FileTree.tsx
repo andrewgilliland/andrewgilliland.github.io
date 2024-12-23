@@ -14,7 +14,7 @@ type FileNode = {
   path: string;
 };
 
-type DirectoryNode = {
+export type DirectoryNode = {
   name: string;
   children?: (DirectoryNode | FileNode)[];
 };
@@ -36,8 +36,12 @@ const FileTree: FC<FileTreeProps> = ({ node }) => {
 
   return (
     <div>
-      {isMainDirectory ? (
-        <></>
+      {isMainDirectory && isDirectoryNode(node) && node.children ? (
+        <>
+          {node.children.map((child, index) => (
+            <FileTree key={index} node={child} />
+          ))}
+        </>
       ) : (
         <div>
           {isDirectoryNode(node) ? (
@@ -55,7 +59,8 @@ const FileTree: FC<FileTreeProps> = ({ node }) => {
           ) : (
             <Link
               href={`/notes${node.path}`}
-              className="flex w-full items-center gap-2 px-4 py-3 transition-colors hover:bg-gray-900"
+              title={node.title}
+              className="flex w-full items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
             >
               <PencilSquareIcon className="h-5 w-5" />
               <span>{node.title}</span>
