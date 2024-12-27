@@ -16,7 +16,7 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
   return (
     <div className="mx-auto mt-14 w-full max-w-3xl">
       {directory === "" && (
-        <section className="mx-8 my-10 md:mx-0 md:mt-0">
+        <section className="mx-4 my-10 md:mx-0">
           <h2 className="stroke-white text-3xl font-bold capitalize text-gray-100 md:text-4xl">
             Notes
           </h2>
@@ -29,7 +29,9 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
         </section>
       )}
 
-      <FileViewWindow directory={direct} />
+      <section className="mx-4 my-10 md:mx-0">
+        <FileViewWindow directory={direct} />
+      </section>
 
       {/* <section className="mx-8 mb-24 mt-10 md:mx-0 md:mt-0">
         {notes.length > 0 && (

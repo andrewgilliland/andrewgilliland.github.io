@@ -67,7 +67,7 @@ const FileTree: FC<FileTreeProps> = ({ mainDirectory, node }) => {
       {isDirectoryNode(node) && isOpen && node.children && (
         <div className="pl-4">
           {node.children.map((child, index) => (
-            <FileTree key={index} node={child} />
+            <FileTree mainDirectory={mainDirectory} key={index} node={child} />
           ))}
         </div>
       )}

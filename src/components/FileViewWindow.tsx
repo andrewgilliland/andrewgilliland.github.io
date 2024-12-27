@@ -47,17 +47,17 @@ const FileViewWindow: FC<FileViewWindowProps> = ({ directory }) => {
   const mainDirectory = directory.name;
 
   return (
-    <div className="relative mb-4 overflow-hidden border-2 border-white">
-      <div className="flex w-full items-center justify-between gap-2 border-2 border-black bg-cyan-300 px-4 py-3">
-        <h2 className="text-lg font-bold capitalize text-black">
+    <div className="relative overflow-hidden border-2 border-white">
+      <div className="flex w-full flex-col justify-between gap-2 border-2 border-black bg-cyan-300 px-4 py-3 md:flex-row md:items-center">
+        <h3 className="text-lg font-bold capitalize text-black">
           {mainDirectory}
-        </h2>
+        </h3>
         <input
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           type="text"
           placeholder={`Search ${mainDirectory === "notes" ? "all" : mainDirectory} notes`}
-          className="w-1/2 border-2 border-black bg-white px-2 py-1 font-semibold text-black"
+          className="border-2 border-black bg-white px-2 py-1 font-semibold text-black md:w-1/2"
         />
       </div>
       {/* Custom Scrollbar with Tailwindcss - https://preline.co/docs/custom-scrollbar.html */}
