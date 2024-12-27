@@ -1,10 +1,11 @@
+import { FC } from "react";
 import { FileNode } from "@/types";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { FC } from "react";
 
 type FileRowProps = {
   fileNode: FileNode;
+  /** depth of the node in the tree determines left padding */
   depth?: number;
 };
 

@@ -6,6 +6,7 @@ import { DirectoryNode, FileNode, isDirectoryNode } from "@/types";
 type FileTreeProps = {
   mainDirectory: string;
   node: DirectoryNode | FileNode;
+  /** depth of the node in the tree determines left padding */
   depth?: number;
 };
 
@@ -18,6 +19,8 @@ const FileTree: FC<FileTreeProps> = ({ mainDirectory, node, depth = 0 }) => {
   return (
     <div>
       {isMainDirectory && isDirectoryNode(node) && node.children ? (
+        // Hide the main directory node
+        // ! This is a hacky way to hide the main directory node
         <div className="hidden" />
       ) : (
         <div>
