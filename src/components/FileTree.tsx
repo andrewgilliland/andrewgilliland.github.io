@@ -1,17 +1,12 @@
 import { FC, useState } from "react";
 import { FolderPlusIcon, FolderMinusIcon } from "@heroicons/react/24/outline";
 import FileRow from "./FileRow";
-import { DirectoryNode, FileNode } from "@/types";
+import { DirectoryNode, FileNode, isDirectoryNode } from "@/types";
 
 type FileTreeProps = {
   mainDirectory: string;
   node: DirectoryNode | FileNode;
 };
-
-// Type guard to check if a node is of type DirectoryNode
-const isDirectoryNode = (
-  node: DirectoryNode | FileNode,
-): node is DirectoryNode => "children" in node;
 
 const FileTree: FC<FileTreeProps> = ({ mainDirectory, node }) => {
   const isMainDirectory = node.name === mainDirectory;

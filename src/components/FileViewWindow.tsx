@@ -5,18 +5,11 @@ import FileTree from "./FileTree";
 import { FolderIcon } from "@heroicons/react/24/outline";
 
 import FileRow from "./FileRow";
-import { DirectoryNode, FileNode } from "@/types";
+import { DirectoryNode, FileNode, isDirectoryNode, isFileNode } from "@/types";
 
 type FileViewWindowProps = {
   directory: DirectoryNode;
 };
-
-const isDirectoryNode = (
-  node: DirectoryNode | FileNode,
-): node is DirectoryNode => "children" in node;
-
-const isFileNode = (node: DirectoryNode | FileNode): node is FileNode =>
-  "path" in node;
 
 /** Recursive function to get all files that match the search term that compares by file path*/
 const getFilesBySearchTerm = (
@@ -29,6 +22,7 @@ const getFilesBySearchTerm = (
     node.children.forEach((child) => {
       if (
         isFileNode(child) &&
+        // Check if the file path includes the search term
         child.path.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         files.push(child);
