@@ -1,10 +1,7 @@
 import { FC, useState } from "react";
-import {
-  FolderPlusIcon,
-  PencilSquareIcon,
-  FolderMinusIcon,
-} from "@heroicons/react/24/outline";
-import Link from "next/link";
+import { FolderPlusIcon, FolderMinusIcon } from "@heroicons/react/24/outline";
+
+import FileRow from "./FileRow";
 
 export type FileNode = {
   name: string;
@@ -52,20 +49,7 @@ const FileTree: FC<FileTreeProps> = ({ mainDirectory, node }) => {
               <span>{node.name}</span>
             </button>
           ) : (
-            <Link
-              href={`/notes${node.path}`}
-              title={node.title}
-              className="flex border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
-            >
-              <div className="flex w-3/4 items-center gap-2">
-                <div>
-                  <PencilSquareIcon className="h-5 w-5 stroke-2 text-pink-400" />
-                </div>
-                <span className="truncate text-base font-bold text-white">
-                  {node.title}
-                </span>
-              </div>
-            </Link>
+            <FileRow fileNode={node} />
           )}
         </div>
       )}

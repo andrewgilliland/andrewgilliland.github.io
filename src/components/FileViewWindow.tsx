@@ -2,8 +2,9 @@
 
 import { FC, useState } from "react";
 import FileTree, { DirectoryNode, FileNode } from "./FileTree";
-import { PencilSquareIcon, FolderIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
+import { FolderIcon } from "@heroicons/react/24/outline";
+
+import FileRow from "./FileRow";
 
 type FileViewWindowProps = {
   directory: DirectoryNode;
@@ -71,21 +72,7 @@ const FileViewWindow: FC<FileViewWindowProps> = ({ directory }) => {
             {searchResults.length > 0 ? (
               <>
                 {searchResults.map((result, index) => (
-                  <Link
-                    key={index}
-                    href={`/notes${result.path}`}
-                    title={result.title}
-                    className="flex w-full items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
-                  >
-                    <div className="flex w-3/4 items-center gap-2">
-                      <div>
-                        <PencilSquareIcon className="h-5 w-5 text-white" />
-                      </div>
-                      <span className="truncate text-base font-bold text-white">
-                        {result.title}
-                      </span>
-                    </div>
-                  </Link>
+                  <FileRow key={index} fileNode={result} />
                 ))}
               </>
             ) : (
