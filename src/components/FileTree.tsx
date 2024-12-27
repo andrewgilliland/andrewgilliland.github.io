@@ -35,7 +35,9 @@ const FileTree: FC<FileTreeProps> = ({ mainDirectory, node, depth = 0 }) => {
               ) : (
                 <FolderPlusIcon className="h-6 w-6 text-white" />
               )}
-              <span>{node.name}</span>
+              <span className="truncate text-base font-bold text-white">
+                {node.name}
+              </span>
             </button>
           ) : (
             <FileRow fileNode={node} depth={depth} />

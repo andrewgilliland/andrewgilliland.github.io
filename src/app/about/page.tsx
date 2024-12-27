@@ -22,7 +22,7 @@ const AboutPage = () => {
                 alt="Andrew Gilliland"
                 className="h-20 w-20 rounded-full border-2 border-black bg-purple-700 object-cover object-left-top"
               />
-              <div className="ml-4 text-sm">
+              <div className="ml-4 text-sm text-white">
                 <div className="font-bold">Andrew Gilliland</div>
                 <div className="mt-2 font-thin">Full Stack Developer</div>
               </div>
