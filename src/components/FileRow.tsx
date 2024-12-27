@@ -19,7 +19,7 @@ const FileRow: FC<FileRowProps> = ({ fileNode, depth = 1 }) => {
     >
       <div className="flex w-full items-center gap-2">
         <div>
-          <PencilSquareIcon className="h-5 w-5 stroke-2 text-pink-400" />
+          <PencilSquareIcon className="h-5 w-5 stroke-2 text-pink-300" />
         </div>
         <span className="truncate text-base font-bold text-white">
           {fileNode.title}

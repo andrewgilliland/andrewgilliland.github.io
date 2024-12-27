@@ -32,12 +32,6 @@ const NotesDirectoryPage: FC<NotesDirectoryPageProps> = async ({
       <section className="mx-4 my-10 md:mx-0">
         <FileViewWindow directory={direct} />
       </section>
-
-      {/* <section className="mx-8 mb-24 mt-10 md:mx-0 md:mt-0">
-        {notes.length > 0 && (
-          <FileViewer directory={directory} topics={topics} notes={notes} />
-        )}
-      </section> */}
     </div>
   );
 };
