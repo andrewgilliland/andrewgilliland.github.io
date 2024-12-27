@@ -45,9 +45,9 @@ const FileTree: FC<FileTreeProps> = ({ mainDirectory, node }) => {
               onClick={toggleOpen}
             >
               {isOpen ? (
-                <FolderMinusIcon className="h-6 w-6" />
+                <FolderMinusIcon className="h-6 w-6 text-white" />
               ) : (
-                <FolderPlusIcon className="h-6 w-6" />
+                <FolderPlusIcon className="h-6 w-6 text-white" />
               )}
               <span>{node.name}</span>
             </button>
@@ -55,10 +55,16 @@ const FileTree: FC<FileTreeProps> = ({ mainDirectory, node }) => {
             <Link
               href={`/notes${node.path}`}
               title={node.title}
-              className="flex w-full items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
+              className="flex border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
             >
-              <PencilSquareIcon className="h-5 w-5" />
-              <span>{node.title}</span>
+              <div className="flex w-3/4 items-center gap-2">
+                <div>
+                  <PencilSquareIcon className="h-5 w-5 stroke-2 text-pink-400" />
+                </div>
+                <span className="truncate text-base font-bold text-white">
+                  {node.title}
+                </span>
+              </div>
             </Link>
           )}
         </div>

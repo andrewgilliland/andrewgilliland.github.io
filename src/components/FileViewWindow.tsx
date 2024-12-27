@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 import FileTree, { DirectoryNode, FileNode } from "./FileTree";
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon, FolderIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 type FileViewWindowProps = {
@@ -49,9 +49,12 @@ const FileViewWindow: FC<FileViewWindowProps> = ({ directory }) => {
   return (
     <div className="relative overflow-hidden border-2 border-white">
       <div className="flex w-full flex-col justify-between gap-2 border-2 border-black bg-cyan-300 px-4 py-3 md:flex-row md:items-center">
-        <h3 className="text-lg font-bold capitalize text-black">
-          {mainDirectory}
-        </h3>
+        <div className="flex items-center gap-2">
+          <FolderIcon className="h-5 w-5 text-black" />
+          <h3 className="text-lg font-bold capitalize text-black">
+            {mainDirectory}
+          </h3>
+        </div>
         <input
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -74,8 +77,14 @@ const FileViewWindow: FC<FileViewWindowProps> = ({ directory }) => {
                     title={result.title}
                     className="flex w-full items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
                   >
-                    <PencilSquareIcon className="h-5 w-5" />
-                    <span>{result.title}</span>
+                    <div className="flex w-3/4 items-center gap-2">
+                      <div>
+                        <PencilSquareIcon className="h-5 w-5 text-white" />
+                      </div>
+                      <span className="truncate text-base font-bold text-white">
+                        {result.title}
+                      </span>
+                    </div>
                   </Link>
                 ))}
               </>
