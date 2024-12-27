@@ -1,5 +1,3 @@
-"use client";
-
 import { FC, useState } from "react";
 import {
   FolderPlusIcon,
@@ -20,6 +18,7 @@ export type DirectoryNode = {
 };
 
 type FileTreeProps = {
+  mainDirectory: string;
   node: DirectoryNode | FileNode;
 };
 
@@ -28,8 +27,8 @@ const isDirectoryNode = (
   node: DirectoryNode | FileNode,
 ): node is DirectoryNode => "children" in node;
 
-const FileTree: FC<FileTreeProps> = ({ node }) => {
-  const isMainDirectory = node.name === "Notes";
+const FileTree: FC<FileTreeProps> = ({ mainDirectory, node }) => {
+  const isMainDirectory = node.name === mainDirectory;
   const [isOpen, setIsOpen] = useState(isMainDirectory);
 
   const toggleOpen = () => setIsOpen(!isOpen);
@@ -37,11 +36,7 @@ const FileTree: FC<FileTreeProps> = ({ node }) => {
   return (
     <div>
       {isMainDirectory && isDirectoryNode(node) && node.children ? (
-        <>
-          {node.children.map((child, index) => (
-            <FileTree key={index} node={child} />
-          ))}
-        </>
+        <div className="hidden" />
       ) : (
         <div>
           {isDirectoryNode(node) ? (

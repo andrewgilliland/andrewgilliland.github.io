@@ -44,21 +44,24 @@ const getFilesBySearchTerm = (
 const FileViewWindow: FC<FileViewWindowProps> = ({ directory }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const searchResults = getFilesBySearchTerm(searchTerm, directory);
+  const mainDirectory = directory.name;
 
   return (
     <div className="relative mb-4 overflow-hidden border-2 border-white">
       <div className="flex w-full items-center justify-between gap-2 border-2 border-black bg-cyan-300 px-4 py-3">
-        <h2 className="text-lg font-bold text-black">Notes</h2>
+        <h2 className="text-lg font-bold capitalize text-black">
+          {mainDirectory}
+        </h2>
         <input
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           type="text"
-          placeholder="Search notes"
+          placeholder={`Search ${mainDirectory === "notes" ? "all" : mainDirectory} notes`}
           className="w-1/2 border-2 border-black bg-white px-2 py-1 font-semibold text-black"
         />
       </div>
       {/* Custom Scrollbar with Tailwindcss - https://preline.co/docs/custom-scrollbar.html */}
-      <div className="h-[26rem] overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-thumb]:bg-pink-300 dark:[&::-webkit-scrollbar-thumb]:bg-emerald-300 [&::-webkit-scrollbar-track]:rounded-none [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-gray-800 [&::-webkit-scrollbar]:w-2">
+      <div className="h-[26rem] overflow-y-auto border-b-2 border-r-2 border-black [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-thumb]:bg-pink-300 dark:[&::-webkit-scrollbar-thumb]:bg-emerald-300 [&::-webkit-scrollbar-track]:rounded-none [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-gray-800 [&::-webkit-scrollbar]:w-2">
         {searchTerm !== "" ? (
           // Success state
           <>
@@ -85,7 +88,7 @@ const FileViewWindow: FC<FileViewWindowProps> = ({ directory }) => {
           </>
         ) : (
           // Default state
-          <FileTree node={directory} />
+          <FileTree mainDirectory={mainDirectory} node={directory} />
         )}
       </div>
     </div>
