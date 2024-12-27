@@ -5,11 +5,6 @@ export type NoteFrontmatter = {
   draft: boolean;
 };
 
-// export type Post = {
-//   path: string;
-//   frontmatter: Frontmatter;
-// };
-
 export type Note = {
   path: string;
   frontmatter: NoteFrontmatter;
@@ -32,3 +27,23 @@ export type RoutePageProps = {
   notes?: Note[];
   topics?: Topic[];
 };
+
+export type FileNode = {
+  name: string;
+  title: string;
+  path: string;
+};
+
+export type DirectoryNode = {
+  name: string;
+  children?: (DirectoryNode | FileNode)[];
+};
+
+// Type guard to check if a node is of type FileNode
+export const isFileNode = (node: DirectoryNode | FileNode): node is FileNode =>
+  "path" in node;
+
+// Type guard to check if a node is of type DirectoryNode
+export const isDirectoryNode = (
+  node: DirectoryNode | FileNode,
+): node is DirectoryNode => "children" in node;

@@ -17,12 +17,12 @@ type TransformMarkdownFileResult = {
 
 /* Separates frontmatter and content from markdownfile, then transforms content to html */
 const transformMarkdownFile = async (
-  fileName: string
+  fileName: string,
 ): Promise<TransformMarkdownFileResult> => {
   try {
     const markdownWithMeta = fs.readFileSync(
       path.join("content", fileName),
-      "utf-8"
+      "utf-8",
     );
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
@@ -42,7 +42,7 @@ const transformMarkdownFile = async (
 };
 
 const transformMarkdown = async (
-  pagePath: string
+  pagePath: string,
 ): Promise<TransformMarkdownFileResult> => {
   const markdownFilePath = `${decodeURIComponent(pagePath)}.md`;
 
@@ -56,6 +56,7 @@ const transformMarkdown = async (
       import("shiki/langs/typescript.mjs"),
       import("shiki/langs/tsx.mjs"),
       import("shiki/langs/swift.mjs"),
+      import("shiki/langs/bash.mjs"),
     ],
     loadWasm: import("shiki/wasm"),
   });
@@ -64,7 +65,7 @@ const transformMarkdown = async (
     // ! path.join(process.cwd(), `${decodeURIComponent(pagePath)}.md`) is needed to access the correct file path
     const markdownWithMeta = fs.readFileSync(
       path.join(process.cwd(), markdownFilePath),
-      "utf-8"
+      "utf-8",
     );
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
