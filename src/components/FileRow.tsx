@@ -5,14 +5,16 @@ import { FC } from "react";
 
 type FileRowProps = {
   fileNode: FileNode;
+  depth?: number;
 };
 
-const FileRow: FC<FileRowProps> = ({ fileNode }) => {
+const FileRow: FC<FileRowProps> = ({ fileNode, depth = 1 }) => {
   return (
     <Link
       href={`/notes${fileNode.path}`}
       title={fileNode.title}
-      className="flex border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
+      className="flex border-b border-gray-800 py-3 pr-4 transition-colors hover:bg-gray-900"
+      style={{ paddingLeft: 16 * depth }}
     >
       <div className="flex w-full items-center gap-2">
         <div>

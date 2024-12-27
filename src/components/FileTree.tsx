@@ -6,9 +6,10 @@ import { DirectoryNode, FileNode, isDirectoryNode } from "@/types";
 type FileTreeProps = {
   mainDirectory: string;
   node: DirectoryNode | FileNode;
+  depth?: number;
 };
 
-const FileTree: FC<FileTreeProps> = ({ mainDirectory, node }) => {
+const FileTree: FC<FileTreeProps> = ({ mainDirectory, node, depth = 0 }) => {
   const isMainDirectory = node.name === mainDirectory;
   const [isOpen, setIsOpen] = useState(isMainDirectory);
 
@@ -22,8 +23,9 @@ const FileTree: FC<FileTreeProps> = ({ mainDirectory, node }) => {
         <div>
           {isDirectoryNode(node) ? (
             <button
-              className="flex w-full items-center gap-2 border-b border-gray-700 px-4 py-3 transition-colors hover:bg-gray-900"
+              className="flex w-full items-center gap-2 border-b border-gray-800 py-3 pr-4 transition-colors hover:bg-gray-900"
               onClick={toggleOpen}
+              style={{ paddingLeft: 16 * depth }}
             >
               {isOpen ? (
                 <FolderMinusIcon className="h-6 w-6 text-white" />
@@ -33,15 +35,20 @@ const FileTree: FC<FileTreeProps> = ({ mainDirectory, node }) => {
               <span>{node.name}</span>
             </button>
           ) : (
-            <FileRow fileNode={node} />
+            <FileRow fileNode={node} depth={depth} />
           )}
         </div>
       )}
 
       {isDirectoryNode(node) && isOpen && node.children && (
-        <div className="pl-4">
+        <div>
           {node.children.map((child, index) => (
-            <FileTree mainDirectory={mainDirectory} key={index} node={child} />
+            <FileTree
+              mainDirectory={mainDirectory}
+              key={index}
+              node={child}
+              depth={depth + 1}
+            />
           ))}
         </div>
       )}
