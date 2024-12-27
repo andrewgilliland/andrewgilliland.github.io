@@ -1,18 +1,7 @@
 import { FC, useState } from "react";
 import { FolderPlusIcon, FolderMinusIcon } from "@heroicons/react/24/outline";
-
 import FileRow from "./FileRow";
-
-export type FileNode = {
-  name: string;
-  title: string;
-  path: string;
-};
-
-export type DirectoryNode = {
-  name: string;
-  children?: (DirectoryNode | FileNode)[];
-};
+import { DirectoryNode, FileNode } from "@/types";
 
 type FileTreeProps = {
   mainDirectory: string;

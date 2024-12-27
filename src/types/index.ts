@@ -5,11 +5,6 @@ export type NoteFrontmatter = {
   draft: boolean;
 };
 
-// export type Post = {
-//   path: string;
-//   frontmatter: Frontmatter;
-// };
-
 export type Note = {
   path: string;
   frontmatter: NoteFrontmatter;
@@ -31,4 +26,15 @@ export type RoutePageProps = {
   topic?: string;
   notes?: Note[];
   topics?: Topic[];
+};
+
+export type FileNode = {
+  name: string;
+  title: string;
+  path: string;
+};
+
+export type DirectoryNode = {
+  name: string;
+  children?: (DirectoryNode | FileNode)[];
 };

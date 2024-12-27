@@ -1,10 +1,9 @@
 "use server";
-import { Note, NoteFrontmatter } from "@/types";
+import { DirectoryNode, FileNode, Note, NoteFrontmatter } from "@/types";
 import fs from "fs";
 import matter from "gray-matter";
 import { getFilesPaths } from "../utils/fs";
 import { parentPath } from "../constants";
-import { DirectoryNode, FileNode } from "@/components/FileTree";
 
 const isDirectoryNode = (
   node: DirectoryNode | FileNode,
