@@ -18,3 +18,7 @@ const Container = () => (
 
 export default Container;
 ```
+
+## Resources
+
+[View · React Native](https://reactnative.dev/docs/view)
