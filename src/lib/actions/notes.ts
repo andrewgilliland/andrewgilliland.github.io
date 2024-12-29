@@ -5,11 +5,8 @@ import matter from "gray-matter";
 import { getFilesPaths } from "../utils/fs";
 import { parentPath } from "../constants";
 
-
 const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
   let filePaths = await getFilesPaths(parentPath);
-
-  console.log(filePaths);
 
   const notes = filePaths.map((filePath) => {
     const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
@@ -31,8 +28,6 @@ const getNotes = async (): Promise<{ notes: Partial<Note>[] }> => {
   notes.sort(
     (a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime(),
   );
-
-  console.log("notes: ", notes);
 
   return {
     notes,

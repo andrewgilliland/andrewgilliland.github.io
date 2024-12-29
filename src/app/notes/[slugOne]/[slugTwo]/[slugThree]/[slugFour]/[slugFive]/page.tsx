@@ -17,8 +17,6 @@ const NotesSlugFourPage: FC<NotesSlugFourPageProps> = async ({
 }) => {
   const pagePath = `${parentPath}/${slugOne}/${slugTwo}/${slugThree}/${slugFour}/${slugFive}`;
 
-  console.log("pagePath: ", pagePath);
-
   return <NoteRoute directory={slugFive} pagePath={pagePath} />;
 };
 

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, MouseEvent, useState } from "react";
 import { FolderPlusIcon, FolderMinusIcon } from "@heroicons/react/24/outline";
 import FileRow from "./FileRow";
 import { DirectoryNode, FileNode, isDirectoryNode } from "@/types";
@@ -16,6 +16,21 @@ const FileTree: FC<FileTreeProps> = ({ mainDirectory, node, depth = 0 }) => {
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
+  const handleClick = (
+    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
+  ) => {
+    // Switch on the mouse button clicked
+    switch (event.detail) {
+      case 1:
+        toggleOpen();
+        break;
+      case 2:
+        // TODO: Needs to get the path of depth more than 1
+        // window.location.href = `/notes/${node.name}`;
+        break;
+    }
+  };
+
   return (
     <div>
       {isMainDirectory && isDirectoryNode(node) && node.children ? (
@@ -27,7 +42,7 @@ const FileTree: FC<FileTreeProps> = ({ mainDirectory, node, depth = 0 }) => {
           {isDirectoryNode(node) ? (
             <button
               className="flex w-full items-center gap-2 border-b border-gray-800 py-3 pr-4 transition-colors hover:bg-gray-900"
-              onClick={toggleOpen}
+              onClick={(event) => handleClick(event)}
               style={{ paddingLeft: 16 * depth }}
             >
               {isOpen ? (
