@@ -3,7 +3,6 @@ import { FC, useEffect, useState } from "react";
 import ColorDivider from "../../ColorDivider";
 import { transformMarkdown } from "@/lib/actions/markdown";
 import BackButton from "@/components/BackButton";
-import { transformDirectoryPath } from "@/lib/utils/fs";
 // import { useRouter } from "next/navigation";
 // import BackButton from "../../BackButton";
 // import { HeadingElement, Note } from "@/types";
@@ -15,14 +14,7 @@ type NotePageProps = {
 };
 
 const NotePage: FC<NotePageProps> = async ({ pagePath }) => {
-  // ! Any directories with a space in the name will not be found
-  // ! They are kabob-cased for the url
-  // ! The space must be put back in for the file path
-  // ! This is a hacky way to fix the issue
-  // ! Await does have an effect on this expression
-  const transformedPagePath = await transformDirectoryPath(pagePath);
-
-  const { frontmatter, html } = await transformMarkdown(transformedPagePath);
+  const { frontmatter, html } = await transformMarkdown(pagePath);
   const { title, excerpt, date } = frontmatter;
 
   const formattedDate = new Date(date).toLocaleDateString("en-us", {
