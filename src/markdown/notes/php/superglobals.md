@@ -9,4 +9,7 @@ Superglobals in PHP are buit-in gobals arrays that provide acces to various type
 Some of the main PHP superglobals:
 
 - **$GLOBALS** - An associative array containing all global variables in the script.
+- **$\_GET** - Contains form data sent via the HTTP POST method.
 - **$\_POST** - Contains form data sent via the HTTP POST method.
+- **$\_COOKIE** - Stores cookie data sent from the client to the server.
+- **$\_REQUEST** - A combination of $\_GET, $\_POST, $\_COOKIE data.
