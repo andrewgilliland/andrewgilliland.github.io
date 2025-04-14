@@ -1,6 +1,6 @@
 import { expect } from "@jest/globals";
 import { render, fireEvent, screen } from "@testing-library/react";
-import PrimaryButton from "./PrimaryButton";
+import PrimaryButton from "../../../src/components/PrimaryButton/PrimaryButton";
 
 describe("PrimaryButton", () => {
   it("should be truthy", () => {

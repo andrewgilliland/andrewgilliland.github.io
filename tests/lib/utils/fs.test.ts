@@ -1,4 +1,4 @@
-import { isPathDirectory } from "./fs";
+import { isPathDirectory } from "../../../src/lib/utils/fs";
 import { expect } from "@jest/globals";
 
 describe("isPathDirectory", () => {
