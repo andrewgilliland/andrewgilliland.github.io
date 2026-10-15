@@ -5,24 +5,29 @@ date: "2026-10-15"
 
 ### Professional Summary
 
-Software engineer with about five years of professional experience building full-stack web, mobile, and cloud applications. I design and build cloud infrastructure on AWS, ship TypeScript and React front ends, and have built augmented reality and machine learning mobile apps for agricultural research and development. I work in a spec-driven, test-first way and use AI coding agents such as Claude Code, with clear review and verification gates, to deliver faster without lowering the bar. I also organize Bloomington-Normal Developers, a local community for software engineers.
+Software engineer with about five years of professional experience building full-stack web, mobile, and cloud applications. I design and build multi-tenant platforms on AWS, from infrastructure and CI/CD through Python and TypeScript services and React front ends, and have built augmented reality and machine learning mobile apps for agricultural research and development. I work in a spec-driven, test-first way and use AI coding agents such as Claude Code, with clear review and verification gates, to deliver faster without lowering the bar. I also organize Bloomington-Normal Developers, a local community for software engineers.
 
 ### Technical Skills
 
 - **Languages:** TypeScript, JavaScript, Python, Swift, SQL; working knowledge of Rust and Go
-- **Front end:** React, Next.js, Astro, TanStack, Tailwind CSS, PixiJS (WebGL), D3, HTML, CSS
+- **Front end:** React, Next.js, Astro, Redux, React Query, TanStack, MUI, Tailwind CSS, PixiJS (WebGL), D3, HTML, CSS
 - **Mobile:** React Native, Expo, SwiftUI, UIKit, ARKit, RealityKit, SceneKit, Core ML
 - **Back end:** Node.js, Express, Fastify, Hono, FastAPI, REST and GraphQL APIs
-- **Cloud and DevOps:** AWS (Lambda, API Gateway, ECS, RDS, DynamoDB, S3, CloudFront, Cognito, Route 53, CloudWatch, CDK, CloudFormation), Cloudflare Workers and Pages, Vercel, Netlify, Fly.io, Docker, GitHub Actions
-- **Data:** PostgreSQL, MySQL, SQLite, DynamoDB, MongoDB, Firebase Firestore, pandas, scikit-learn
-- **Testing:** Vitest, Jest, Testing Library, Playwright, Cypress
+- **Cloud and DevOps:** AWS (Lambda, API Gateway, ECS, RDS, DynamoDB, S3, CloudFront, Cognito, Secrets Manager, Route 53, CloudWatch, CDK, CloudFormation), Cloudflare Workers and Pages, Vercel, Netlify, Fly.io, Docker, GitHub Actions
+- **Data:** PostgreSQL, Alembic, MySQL, SQLite, DynamoDB, MongoDB, Firebase Firestore, pandas, scikit-learn
+- **Testing and quality:** Vitest, Jest, Testing Library, MSW, Playwright, Cypress, pytest, Ruff, mypy, ESLint, Prettier
 - **AI-assisted engineering:** Claude Code, agentic workflows, Model Context Protocol (MCP) servers, coding-agent extensions, spec-driven development
 
 ### Professional Experience
 
 **Full Stack Engineer** · Elevate · Remote · August 2025 – Present
 
-- Design and build cloud infrastructure, backed by full-stack development, for Elevate's premium sports and entertainment hospitality platform.
+- Built the foundation of Elevate's multi-tenant Experiences Platform for premium sports and entertainment hospitality, including its Manchester United partnership, from repository structure and AWS architecture through production support.
+- Designed AWS infrastructure in CDK (Lambda, API Gateway, Cognito, CloudFront, RDS PostgreSQL) across sandbox, dev, staging, and production, with GitHub Actions pipelines that promote releases from dev to staging to production.
+- Built Python and FastAPI services on Lambda and a React and TypeScript operations app for inventory, package creation, ticket assignment, pricing, and checkout, moving sorting and filtering to the server and consolidating reads to reduce API traffic.
+- Enforced tenant isolation with Cognito account scoping, project-level access checks in the API, and role-based permissions in the UI.
+- Added release quality gates (pre-commit hooks, Ruff, mypy, pytest, ESLint, Vitest, and Playwright browser regression tests) and investigated production incidents with CloudWatch.
+- Set up spec-first delivery conventions (AGENTS.md, glossaries, ADRs, and implementation specs) so features could be split across backend, frontend, data, and infrastructure repositories without losing the shared contract.
 
 **Senior Software Engineer** · GoodJava Software Solutions, Morton, IL · March 2025 – August 2025
 
