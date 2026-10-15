@@ -1,132 +1,64 @@
 ---
 title: "Resume"
-date: "2024-05-22"
+date: "2026-10-15"
 ---
 
-### _Professional Summary_
+### Professional Summary
 
-_Web and mobile Developer with three plus years of professional experience detail-oriented specializing in full stack development who is skilled in JavaScript, TypeScript, Swift, HTML, CSS, React, React Native, SwiftUI, Node.js, MySQL & MongoDB. I am looking to add value as a developer in a company which will utilize my excellent team collaboration and communication skills. I was a former organizer and participant of local and remote web developer meetups._
+Software engineer with about five years of professional experience building full-stack web, mobile, and cloud applications. I design and build cloud infrastructure on AWS, ship TypeScript and React front ends, and have built augmented reality and machine learning mobile apps for agricultural research and development. I work in a spec-driven, test-first way and use AI coding agents such as Claude Code, with clear review and verification gates, to deliver faster without lowering the bar. I also organize Bloomington-Normal Developers, a local community for software engineers.
 
-### _Technical Skills_
+### Technical Skills
 
-- **Programming Languages:** JavaScript, TypeScript, Swift
-- **Mobile/Web Technologies & Frameworks:** React Native, SwiftUI, UIKit, React, HTML5, CSS3, Node.js, Deno, Bun, ARKit, SceneKit, RealityKit, CoreML, Next.js, Gatsby.js, GraphQL
-- **UI:** Tailwind, Bootstrap
-- **Database and ORM:** MySQL, MongoDB, Firebase Cloud Firestore
-- **Web Debug Tools:** Chrome developer tools, Firefox developer tools
-- **Application/Web Server:** Express, Fastify, Hono
-- **Versioning and Tooling:** Git, webpack, Parcel, Vite
-- **Deployment Platforms:** AWS, Heroku, Netlify, Vercel, Firebase
+- **Languages:** TypeScript, JavaScript, Python, Swift, SQL; working knowledge of Rust and Go
+- **Front end:** React, Next.js, Astro, TanStack, Tailwind CSS, PixiJS (WebGL), D3, HTML, CSS
+- **Mobile:** React Native, Expo, SwiftUI, UIKit, ARKit, RealityKit, SceneKit, Core ML
+- **Back end:** Node.js, Express, Fastify, Hono, FastAPI, REST and GraphQL APIs
+- **Cloud and DevOps:** AWS (Lambda, API Gateway, ECS, RDS, DynamoDB, S3, CloudFront, Cognito, Route 53, CloudWatch, CDK, CloudFormation), Cloudflare Workers and Pages, Vercel, Netlify, Fly.io, Docker, GitHub Actions
+- **Data:** PostgreSQL, MySQL, SQLite, DynamoDB, MongoDB, Firebase Firestore, pandas, scikit-learn
+- **Testing:** Vitest, Jest, Testing Library, Playwright, Cypress
+- **AI-assisted engineering:** Claude Code, agentic workflows, Model Context Protocol (MCP) servers, coding-agent extensions, spec-driven development
 
-### _Managerial Skills_
+### Professional Experience
 
-**_Client Relationship Management_**
+**Full Stack Engineer** · Elevate · Remote · August 2025 – Present
 
-- _Regularly handle interactions between clients and myself for scheduling appointments._
-- _Regularly communicate with clients, managers and team members via phone, email and in-person._
-- _Effectively educate clients on new exercises with an emphasis on constructive feedback._
+- Design and build cloud infrastructure, backed by full-stack development, for Elevate's premium sports and entertainment hospitality platform.
 
-**_Creative Problem Solving_**
+**Senior Software Engineer** · GoodJava Software Solutions, Morton, IL · March 2025 – August 2025
 
-- _Utilize creative problem solving to work with clients with disabilities or exercise restrictions._
-- _Found outside the box strategies to create unique fitness classes that where effective and fun for clients._
+**Software Engineer** · Precision Planting, Bloomington, IL · December 2021 – March 2025
 
-**_Team Building_**
+- Built and maintained research and development mobile applications that use augmented reality and machine learning models to collect data for testing and product development.
+- Introduced new practices for mobile application testing and deployment.
+- Started and built a full-stack web application that used manufacturer APIs and web scraping to work around supply chain shortages, producing substantial profit for the company.
+- Developed and maintained full-stack web applications for internal company software.
 
-- _Collaborated with staff and members at a gym to establish a weekly running/walking club._
-- _Work with other meetup organizers to create educational events for meetup members._
+**Junior Creative Developer** · Creative Sites Media, Bloomington, IL · September 2021 – December 2021
 
-### _Professional Experience_
+- Built custom user interfaces for full-stack mobile and web applications.
+- Developed and maintained full-stack web applications for company clients.
+- Implemented new features for a client's full-stack mobile application.
 
-**_Software Engineer_** - _December 2021 - Current_
+**Owner and Certified Personal Trainer** · Gilliland Fitness · December 2012 – August 2021
 
-_Precision Planting, Tremont, IL_
+- Ran a personal training business for nearly nine years, handling scheduling, client relationships, and program design.
+- Designed and taught group fitness classes, including spin, HIIT, and bootcamp sessions.
 
-- _Build and maintain Research and Development mobile applications utilizing augmented reality and machine learning models for data acquisition to test and progress product development._
-- _Implemented new strategies_ _for mobile application testing and deployment._
-- _Initiated the development of a full stack web application to overcome supply chain shortages using manufacturer API’s and web scraping libraries that resulted in substantial profits for the company._
-- _Developed and maintained_ _full stack web applications for internal company software._
+### Selected Projects
 
-**_Junior Creative Developer_** - _September 2021 - December 2021_
+- **[SmartScout](/projects/smartscout):** a Precision Planting app on iOS and iPadOS ([App Store](https://apps.apple.com/us/app/precision-planting-smartscout/id1672094173)) that uses machine vision and augmented reality to assess plant emergence and spacing in 3D. A neural network infers emergence from the live camera feed, and ARKit measures the spacing between plants. Built with React Native and TypeScript, with Swift native modules, SwiftUI, Core ML, and AWS.
+- **[blono.dev](/projects/blono-dev):** the website for Bloomington-Normal Developers, a local developer community in Central Illinois, with event announcements and resources. Built with Next.js and Tailwind CSS.
+- **Coding-agent extensions:** [Pi PR Sentinel](https://github.com/andrewgilliland/pi-pr-sentinel), which watches a branch's pull request checks and wakes the agent only for new failures, and [pi-permission-gate](https://github.com/andrewgilliland/pi-permission-gate), which asks for confirmation before dangerous commands or writes to protected files.
+- **[TanStack Start on AWS](https://github.com/andrewgilliland/tanstack-aws-demo):** a server-rendered TanStack Start app deployed with AWS CDK on Lambda, API Gateway, S3, and CloudFront.
 
-_Creative Sites Media, Bloomington, IL_
+### Leadership and Community
 
-- _Built customized user interfaces for full stack mobile and web applications._
-- _Developed and maintained full stack web applications for various company clients._
-- _Implemented new features for a full stack mobile application for a company client._
+- **Organizer, Bloomington-Normal Developers** (March 2022 – present): run monthly meetups and happy hours for local software engineers, students, and career changers.
+- **Organizer, Pensacola Developers:** organized a web developer meetup in Pensacola, Florida, that grew to more than 100 members.
+- **Business owner:** ran Gilliland Fitness for nearly nine years.
 
-**_Business Owner/ Certified Personal Trainer_** - _December 2012-August 2021_
+### Education and Certifications
 
-_Gilliland Fitness_
-
-- _Develop and administer fitness programs designed to enhance muscular strength, endurance, flexibility, cardiorespiratory fitness, body composition, and/or any of the motor skill related components of physical fitness._
-- _Create and deliver a variety of group fitness sessions to clients and gym members including Spin, HIIT, and Bootcamp style classes._
-- _Educate clients using scientifically sound resources._
-
-**_Bartender_** - _July 2020-April 2021_
-
-_Angry Crab Shack, Orange Beach, AL_
-
-- _Implement standards for organization, cleanliness, and restocking procedures for staff cohesiveness._
-- _Make and sell drinks while developing customer relationships with patrons at an inviting beach restaurant._
-
-**_Bartender_** - _February 2014-July 2020_
-
-_The Gulf, Orange Beach, AL_
-
-- _Utilized excellent communication skills with multinational staff and guests to effectively and promptly deliver customer service._
-- _Make and sell drinks while developing customer relationships with patrons at an inviting outdoor beach restaurant._
-
-### _Education_
-
-**_AWS Certified Cloud Practitioner_**
-
-- _Gained high level understanding of AWS Cloud, services, and terminology._
-- _Validated cloud data engineering skills and knowledge._
-- _Learned cloud deployment models (e.g., public, private, hybrid)._
-
-**_American College of Sports Medicine (ACSM) Certified Personal Trainer_**
-
-- _Optimized client adherence by learning effective communication, motivational
-  techniques, and behavioral strategies._
-- _Learned the basic structures of bone, skeletal muscle, connective tissue, as well as the anatomy of_ _the cardiovascular and respiratory systems._
-- _Developed skills to implement a plan and timeline for reassessing physical fitness, goals, and
-  related behaviors._
-
-**_National Outdoor Leadership School (NOLS) - Alaska Mountaineering_**
-
-- _Developed risk management and decision-making skills to lead a roped team across a glacier._
-- _Developed technical skills to traverse on ice and snow._
-- _Learned the basics of mountaineering, from snow camping and avalanche safety to glacier travel and crevasse rescue._
-
-**_TRX Suspension Training Certification_**
-
-- _Developed skills on how to cue and correct common faults with exercises._
-- _Learned how to properly perform a variety of Suspension Training exercises._
-
-**_Professional Association of Diving Instructors (PADI) Advanced Open Water Diver_**
-
-- _Learned how to plan dives to deal with the physiological effects and challenges of deeper scuba diving._
-- _Refined compass navigation skills and learned to better navigate using kick-cycles, visual landmarks and time._
-
-**_Emergency First Response Corporation - Emergency Responder_**
-
-- _Developed primary care skills through a combination of knowledge development, skill development and realistic scenario practice._
-
-**_CPR/AED/First Aid - Adult/Child/Infant_**
-
-- _Learned how to perform CPR, how to use an AED, skills for treating choking and shock victims, and a variety of first aid skills._
-
-### _Extracurricular Activities_
-
-**_Pensacola Developers_** **_Meetup Organizer:_**
-
-- _Organized a web developer meetup with 100+ members based in Pensacola, Florida._
-
-**_Reading:_**
-
-- _Regularly read books spanning over topics such as leadership, technology, philosophy, biographies, fitness, and fiction._
-
-**_Running:_**
-
-- _Regularly train for and participate in 5K, 10K, half marathon, and marathon distance races._
+- **United States Naval Academy**, Annapolis, MD · 2003 – 2006 · Computer science coursework
+- **AWS Certified Cloud Practitioner**
+- **Other certifications:** ACSM Certified Personal Trainer, TRX Suspension Training, NOLS Alaska Mountaineering, PADI Advanced Open Water Diver, Emergency First Response, CPR/AED/First Aid
