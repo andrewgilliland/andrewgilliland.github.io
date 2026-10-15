@@ -46,10 +46,10 @@ Software engineer with about five years of professional experience building full
 
 ### Selected Projects
 
-- **Digital Venue:** an interactive seat-level stadium map in React and PixiJS (WebGL) with offer filtering, adjacent seat selection, keyboard and screen-reader support, and a touch-first mobile layout. Built spec-first with Claude Code: a written spec broken into issues, test-driven implementation, code review, and pull requests, with tests across Chrome, Firefox, Safari, and mobile devices.
+- **[SmartScout](/projects/smartscout):** a Precision Planting app on iOS and iPadOS ([App Store](https://apps.apple.com/us/app/precision-planting-smartscout/id1672094173)) that uses machine vision and augmented reality to assess plant emergence and spacing in 3D. A neural network infers emergence from the live camera feed, and ARKit measures the spacing between plants. Built with React Native and TypeScript, with Swift native modules, SwiftUI, Core ML, and AWS.
+- **[blono.dev](/projects/blono-dev):** the website for Bloomington-Normal Developers, a local developer community in Central Illinois, with event announcements and resources. Built with Next.js and Tailwind CSS.
 - **Coding-agent extensions:** [Pi PR Sentinel](https://github.com/andrewgilliland/pi-pr-sentinel), which watches a branch's pull request checks and wakes the agent only for new failures, and [pi-permission-gate](https://github.com/andrewgilliland/pi-permission-gate), which asks for confirmation before dangerous commands or writes to protected files.
 - **[TanStack Start on AWS](https://github.com/andrewgilliland/tanstack-aws-demo):** a server-rendered TanStack Start app deployed with AWS CDK on Lambda, API Gateway, S3, and CloudFront.
-- **[andrewgilliland.dev](https://andrewgilliland.dev):** this site, an Astro blog with practical articles on AWS, Python, testing, and building for the web.
 
 ### Leadership and Community
 
