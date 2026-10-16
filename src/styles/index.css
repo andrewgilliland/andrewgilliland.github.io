@@ -151,30 +151,58 @@ html {
   color: theme("colors.cyan.500");
 }
 
-/* Article body (neon brutalist). Scoped so other prose pages keep their
-   styles until they are restyled. */
-.article-body a {
+/* Neon brutalist prose: articles and the resume. */
+.neon-prose a {
   color: theme("colors.neutral.50");
   text-decoration-color: theme("colors.neon.pink");
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }
 
-.article-body a:hover {
+.neon-prose a:hover {
   color: theme("colors.neon.cyan");
 }
 
-.article-body pre {
+.neon-prose pre {
   border-radius: 0;
   box-shadow: 6px 6px 0 0 theme("colors.neon.cyan");
 }
 
-.article-body :not(pre) > code {
+.neon-prose :not(pre) > code {
   background: theme("colors.neon.surface");
   border: 1px solid theme("colors.neutral.700");
   border-radius: 0;
 }
 
-.article-body blockquote {
+.neon-prose blockquote {
   border-inline-start-color: theme("colors.neon.yellow");
+}
+
+.resume-body li::marker {
+  color: theme("colors.neon.pink");
+}
+
+/* Resume section headings read as accent chips. */
+.resume-body h3 {
+  display: inline-block;
+  margin-top: 3rem;
+  padding: 0.25rem 0.75rem;
+  border: 2px solid theme("colors.neutral.950");
+  background: theme("colors.neon.pink");
+  box-shadow: 4px 4px 0 0 theme("colors.neon.cyan");
+  color: theme("colors.neutral.950");
+  font-family: var(--font-jetbrains-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.resume-body > h3:first-child {
+  margin-top: 0;
+}
+
+/* Role lines ("**Title** · Company · Dates") lead each job. */
+.resume-body p > strong:first-child {
+  color: theme("colors.neon.yellow");
+  font-size: 1.125em;
 }
