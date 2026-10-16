@@ -46,6 +46,19 @@ test("article page renders a heading", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 });
 
+test("article page links back to the list and dates the article", async ({
+  page,
+}) => {
+  await page.goto("/articles/intro-to-aws-lambda");
+  await expect(
+    page.getByRole("link", { name: "Back to Articles" }),
+  ).toHaveAttribute("href", "/articles");
+  await expect(page.locator("header time")).toHaveAttribute(
+    "datetime",
+    /^\d{4}-\d{2}-\d{2}T/,
+  );
+});
+
 test("draft article is not publicly accessible", async ({ page }) => {
   const response = await page.goto("/articles/test-draft-fixture");
   expect(response?.status()).toBe(404);

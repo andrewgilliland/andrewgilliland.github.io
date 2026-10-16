@@ -14,7 +14,7 @@ const filtered = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
     <>
       <button
         popovertarget="mobile-toc"
-        class="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white text-black shadow-lg transition hover:bg-gray-200 lg:hidden"
+        class="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center border-2 border-neutral-950 bg-neon-pink text-neutral-950 shadow-[4px_4px_0_0_theme(colors.neutral.50)] transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 lg:hidden"
         aria-label="Open table of contents"
       >
         <svg
@@ -37,14 +37,16 @@ const filtered = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
       <div
         id="mobile-toc"
         popover
-        class="mobile-toc-sheet m-0 w-full rounded-t-2xl border-t border-white/10 bg-black p-6 lg:hidden"
+        class="mobile-toc-sheet m-0 w-full border-t-2 border-neutral-50 bg-neon-bg p-6 lg:hidden"
       >
         <div class="mb-4 flex items-center justify-between">
-          <p class="text-xs font-semibold uppercase tracking-wider text-gray-500">Table of Contents</p>
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
+            Table of Contents
+          </p>
           <button
             popovertarget="mobile-toc"
             popovertargetaction="hide"
-            class="text-gray-400 transition hover:text-white"
+            class="text-neutral-400 transition-colors hover:text-neutral-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-50"
             aria-label="Close table of contents"
           >
             <svg
@@ -63,13 +65,13 @@ const filtered = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
             </svg>
           </button>
         </div>
-        <ul class="flex flex-col border-l border-white/10">
+        <ul class="flex flex-col border-l-2 border-neutral-700">
           {filtered.map((heading) => (
             <li>
               <a
                 href={`#${heading.slug}`}
                 class:list={[
-                  "mobile-toc-link block py-2 text-sm text-gray-400 transition-colors hover:text-white",
+                  "mobile-toc-link block py-2 text-sm text-neutral-400 transition-colors hover:text-neutral-50",
                   heading.depth === 2 ? "pl-4" : "pl-7",
                 ]}
               >

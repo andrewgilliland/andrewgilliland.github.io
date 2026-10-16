@@ -8,7 +8,7 @@ const { tag } = Astro.props;
 
 <a
   href={`/articles?q=${tag}`}
-  class="rounded-full border border-gray-600 px-2.5 py-0.5 text-xs text-gray-400 transition-colors hover:border-pink-400 hover:text-pink-400"
+  class="border-2 border-neutral-600 px-2.5 py-1 font-mono text-xs font-semibold text-neutral-300 transition-transform hover:border-neutral-50 hover:shadow-[3px_3px_0_0_theme(colors.neon.pink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5"
 >
   {tag}
 </a>

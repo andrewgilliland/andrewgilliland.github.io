@@ -150,3 +150,31 @@ html {
 .prose a:hover {
   color: theme("colors.cyan.500");
 }
+
+/* Article body (neon brutalist). Scoped so other prose pages keep their
+   styles until they are restyled. */
+.article-body a {
+  color: theme("colors.neutral.50");
+  text-decoration-color: theme("colors.neon.pink");
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.article-body a:hover {
+  color: theme("colors.neon.cyan");
+}
+
+.article-body pre {
+  border-radius: 0;
+  box-shadow: 6px 6px 0 0 theme("colors.neon.cyan");
+}
+
+.article-body :not(pre) > code {
+  background: theme("colors.neon.surface");
+  border: 1px solid theme("colors.neutral.700");
+  border-radius: 0;
+}
+
+.article-body blockquote {
+  border-inline-start-color: theme("colors.neon.yellow");
+}
