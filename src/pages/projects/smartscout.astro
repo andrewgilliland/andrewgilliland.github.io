@@ -40,17 +40,15 @@ const techStack = [
   techStack={techStack}
 >
   <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-    {
-      images.map((src, index) => (
-        <img
-          src={src}
-          alt={`SmartScout screenshot ${index + 1} of ${images.length}`}
-          width={500}
-          height={300}
-          class="h-auto w-full border-2 border-neutral-50"
-        />
-      ))
-    }
+    {images.map((src, index) => (
+      <img
+        src={src}
+        alt={`SmartScout screenshot ${index + 1} of ${images.length}`}
+        width={500}
+        height={300}
+        class="h-auto w-full border-2 border-neutral-50"
+      />
+    ))}
   </div>
 
   <CaseStudySection title="Overview">

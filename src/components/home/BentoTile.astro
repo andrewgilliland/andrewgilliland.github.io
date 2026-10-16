@@ -47,14 +47,12 @@ const classes = [
   .join(" ");
 ---
 
-{
-  href ? (
-    <a href={href} class={classes}>
-      <slot />
-    </a>
-  ) : (
-    <section class={classes} aria-label={label}>
-      <slot />
-    </section>
-  )
-}
+{href ? (
+  <a href={href} class={classes}>
+    <slot />
+  </a>
+) : (
+  <section class={classes} aria-label={label}>
+    <slot />
+  </section>
+)}

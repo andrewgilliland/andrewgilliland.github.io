@@ -11,13 +11,11 @@ const { title, eyebrow } = Astro.props;
 ---
 
 <header class="pb-10 pt-14">
-  {
-    eyebrow && (
-      <p class="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
-        {eyebrow}
-      </p>
-    )
-  }
+  {eyebrow && (
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
+      {eyebrow}
+    </p>
+  )}
   <h1 class="mt-4 text-5xl font-bold leading-none text-neutral-50 md:text-7xl">
     {title}
   </h1>

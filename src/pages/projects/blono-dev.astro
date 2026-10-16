@@ -27,16 +27,14 @@ const techStack = ["TypeScript", "React", "Next.js", "Tailwind CSS", "Vercel"];
   linkLabel="Visit blono.dev"
   techStack={techStack}
 >
-  {
-    images.map((src, index) => (
-      <Image
-        src={src}
-        alt={`blono.dev screenshot ${index + 1}`}
-        width={800}
-        class="mt-12 h-auto w-full border-2 border-neutral-50 shadow-[6px_6px_0_0_theme(colors.neon.yellow)]"
-      />
-    ))
-  }
+  {images.map((src, index) => (
+    <Image
+      src={src}
+      alt={`blono.dev screenshot ${index + 1}`}
+      width={800}
+      class="mt-12 h-auto w-full border-2 border-neutral-50 shadow-[6px_6px_0_0_theme(colors.neon.yellow)]"
+    />
+  ))}
 
   <CaseStudySection title="Overview">
     <p>{overview}</p>

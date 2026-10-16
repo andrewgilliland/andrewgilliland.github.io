@@ -12,9 +12,7 @@ const currentPath = Astro.url.pathname;
 const stateFor = (href: string) => navState(href, currentPath);
 ---
 
-<div
-  class="relative z-40 w-full border-b-2 border-neutral-50 bg-neon-bg py-6 md:hidden"
->
+<div class="relative z-40 w-full border-b-2 border-neutral-50 bg-neon-bg py-6 md:hidden">
   <Container class="flex items-center justify-between">
     <a href="/" aria-label="Andrew Gilliland - Home">
       <span class="header-heading text-2xl font-bold"> Andrew Gilliland </span>
@@ -67,29 +65,27 @@ const stateFor = (href: string) => navState(href, currentPath);
       aria-label="Main"
       class="my-10 flex h-full flex-col items-stretch gap-4"
     >
-      {
-        pages.map(({ href, title }) => (
-          <a
-            href={href}
-            aria-current={
-              stateFor(href) === "page"
-                ? "page"
-                : stateFor(href)
-                  ? "true"
-                  : undefined
-            }
-            data-foley-click="tap"
-            class:list={[
-              "border-2 px-4 py-3 text-center text-3xl font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50",
-              stateFor(href)
-                ? "neo-shadow neo-press border-neutral-950 bg-neon-pink text-neutral-950 [--neo-color:theme(colors.neon.cyan)] [--neo-offset:4px]"
-                : "border-neutral-50 text-neutral-50",
-            ]}
-          >
-            {title}
-          </a>
-        ))
-      }
+      {pages.map(({ href, title }) => (
+        <a
+          href={href}
+          aria-current={
+            stateFor(href) === "page"
+              ? "page"
+              : stateFor(href)
+                ? "true"
+                : undefined
+          }
+          data-foley-click="tap"
+          class:list={[
+            "border-2 px-4 py-3 text-center text-3xl font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50",
+            stateFor(href)
+              ? "neo-shadow neo-press border-neutral-950 bg-neon-pink text-neutral-950 [--neo-color:theme(colors.neon.cyan)] [--neo-offset:4px]"
+              : "border-neutral-50 text-neutral-50",
+          ]}
+        >
+          {title}
+        </a>
+      ))}
     </nav>
   </Container>
 </div>
