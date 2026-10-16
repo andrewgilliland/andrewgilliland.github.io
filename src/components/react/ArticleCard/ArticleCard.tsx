@@ -9,6 +9,7 @@ import {
   LIGHT_SHAPE_STROKE,
   SHAPE_FILL_COLORS,
 } from "../../../lib/shapeColors";
+import { articleTitleTransitionName } from "../../../lib/slug";
 
 export type Article = {
   id: string;
@@ -206,6 +207,9 @@ export default function ArticleCard({
         <div className="flex h-full grow flex-col space-y-2 p-6">
           <h2
             className={`flex-none pr-6 font-bold leading-tight ${featured ? "text-3xl md:text-4xl" : "text-2xl"}`}
+            style={{
+              viewTransitionName: articleTitleTransitionName(article.id),
+            }}
           >
             {article.title}
           </h2>

@@ -12,7 +12,7 @@ import Tag from "@/components/Tag.astro";
 import CopyCodeButton from "@/components/CopyCodeButton.astro";
 import { getCollection, render } from "astro:content";
 import { getRelatedArticles } from "@/lib/relatedArticles";
-import { toSlug } from "@/lib/slug";
+import { articleTitleTransitionName, toSlug } from "@/lib/slug";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles", ({ data }) => !data.draft);
@@ -52,6 +52,7 @@ const relatedArticles = getRelatedArticles(article, allArticles, 3);
           </p>
           <h1
             class="mt-4 text-4xl font-bold leading-tight text-neutral-50 md:text-5xl"
+            style={`view-transition-name: ${articleTitleTransitionName(toSlug(article.id))}`}
           >
             {article.data.title}
           </h1>

@@ -212,6 +212,53 @@ html {
   box-shadow: 6px 6px 0 0 theme("colors.neon.cyan");
 }
 
+/* Code blocks get a yellow language chip in the top-left corner, made
+   from Shiki's data-language. Plain text blocks stay unlabelled. */
+.neon-prose pre {
+  position: relative;
+}
+
+.neon-prose
+  pre[data-language]:where(
+    :not([data-language="plaintext"], [data-language="text"])
+  ) {
+  padding-top: 2.75rem;
+}
+
+.neon-prose
+  pre[data-language]:where(
+    :not([data-language="plaintext"], [data-language="text"])
+  )::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.125rem 0.625rem;
+  background: theme("colors.neon.yellow");
+  color: theme("colors.neutral.950");
+  font-family: var(--font-jetbrains-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* Short aliases share the full name's label. The :where() above keeps the
+   general rule's specificity low enough for these to win. */
+.neon-prose pre[data-language="ts"]::before {
+  content: "typescript";
+}
+
+.neon-prose pre[data-language="js"]::before {
+  content: "javascript";
+}
+
+.neon-prose pre[data-language="sh"]::before,
+.neon-prose pre[data-language="shell"]::before {
+  content: "bash";
+}
+
 .neon-prose :not(pre) > code {
   background: theme("colors.neon.surface");
   border: 1px solid theme("colors.neutral.700");
@@ -300,4 +347,23 @@ html {
     --neo-lift: calc(var(--neo-offset, 8px) * -1);
     --neo-grow: calc(var(--neo-offset, 8px) * -1);
   }
+}
+
+/* Page transitions: a quick cross-fade between pages (no JavaScript), the
+   header holds still, and an article card's title morphs into the
+   article's heading. Browsers without support navigate as before. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+}
+
+::view-transition-group(*) {
+  animation-duration: 250ms;
+  animation-timing-function: ease-out;
 }
