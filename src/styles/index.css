@@ -30,19 +30,16 @@
   --font-jetbrains-mono: "JetBrains Mono Variable", monospace;
 }
 
-::-moz-selection {
-  /* Code for Firefox */
-  color: theme("colors.white");
-  background: theme("colors.pink.600");
-}
-
+/* Selected text: near-black on neon pink, like the accent tiles. */
 ::selection {
-  color: theme("colors.white");
-  background: theme("colors.pink.600");
+  color: theme("colors.neutral.950");
+  background: theme("colors.neon.pink");
 }
 
 html {
   scroll-behavior: smooth;
+  /* Pink thumb on the page background; inherited by scrolling panels. */
+  scrollbar-color: theme("colors.neon.pink") theme("colors.neon.bg");
 }
 
 /* Site name: the neon accents in diagonal bands. */
