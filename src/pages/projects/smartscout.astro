@@ -1,6 +1,6 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import ColorDivider from "@/components/ColorDivider.astro";
+import CaseStudyLayout from "@/components/projects/CaseStudyLayout.astro";
+import CaseStudySection from "@/components/projects/CaseStudySection.astro";
 
 const title = "SmartScout";
 const description =
@@ -32,55 +32,30 @@ const techStack = [
 ];
 ---
 
-<BaseLayout title={`${title} - Andrew Gilliland`}>
-  <div class="px-8">
-    <section class="mx-auto mt-20 max-w-[60ch]">
-      <h1
-        class="stroke-white text-3xl font-bold capitalize text-gray-100 md:text-4xl"
-      >
-        {title}
-      </h1>
-      <p class="mt-10 text-gray-300">{description}</p>
-      <ColorDivider />
-    </section>
-
-    <section class="mx-auto mt-10 max-w-[60ch]">
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href={link}
-        class="grid grid-cols-4 gap-2"
-      >
-        {
-          images.map((src, index) => (
-            <img
-              src={src}
-              alt={`SmartScout ${index + 1}`}
-              width={500}
-              height={300}
-            />
-          ))
-        }
-      </a>
-    </section>
-
-    <section class="mx-auto mt-10 max-w-[60ch]">
-      <h2 class="text-2xl font-bold text-gray-100">Overview</h2>
-      <p class="mt-4 text-gray-300">{overview}</p>
-    </section>
-
-    <section class="mx-auto mt-10 max-w-[60ch]">
-      <h2 class="text-2xl font-bold text-gray-100">Features</h2>
-      <ul class="mt-4 list-disc space-y-2 pl-5 text-gray-300">
-        {features.map((feature) => <li>{feature}</li>)}
-      </ul>
-    </section>
-
-    <section class="mx-auto mt-10 max-w-[60ch] pb-20">
-      <h2 class="text-2xl font-bold text-gray-100">Tech Stack</h2>
-      <ul class="mt-4 list-disc space-y-2 pl-5 text-gray-300">
-        {techStack.map((tech) => <li>{tech}</li>)}
-      </ul>
-    </section>
+<CaseStudyLayout
+  title={title}
+  description={description}
+  link={link}
+  linkLabel="View on the App Store"
+  techStack={techStack}
+>
+  <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
+    {
+      images.map((src, index) => (
+        <img
+          src={src}
+          alt={`SmartScout screenshot ${index + 1} of ${images.length}`}
+          width={500}
+          height={300}
+          class="h-auto w-full border-2 border-neutral-50"
+        />
+      ))
+    }
   </div>
-</BaseLayout>
+
+  <CaseStudySection title="Overview">
+    <p>{overview}</p>
+  </CaseStudySection>
+
+  <CaseStudySection title="Features" items={features} />
+</CaseStudyLayout>

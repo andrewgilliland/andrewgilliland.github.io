@@ -1,6 +1,6 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import ColorDivider from "@/components/ColorDivider.astro";
+import CaseStudyLayout from "@/components/projects/CaseStudyLayout.astro";
+import CaseStudySection from "@/components/projects/CaseStudySection.astro";
 
 const title = "Manchester United Hospitality";
 const description =
@@ -33,47 +33,30 @@ const techStack = [
 ];
 ---
 
-<BaseLayout title={`${title} - Andrew Gilliland`}>
-  <div class="px-8">
-    <section class="mx-auto mt-20 max-w-[60ch]">
-      <h1
-        class="stroke-white text-3xl font-bold capitalize text-gray-100 md:text-4xl"
+<CaseStudyLayout
+  title={title}
+  description={description}
+  link={link}
+  linkLabel="Visit hospitality.manutd.com"
+  techStack={techStack}
+>
+  <CaseStudySection title="Overview">
+    <p>{overview}</p>
+  </CaseStudySection>
+
+  <CaseStudySection title="My Contributions" items={contributions} />
+
+  <CaseStudySection title="The Platform Behind It">
+    <p>{platform}</p>
+    <figure class="mt-6">
+      <div
+        class="border-2 border-neutral-50 bg-neon-surface p-4 shadow-[6px_6px_0_0_theme(colors.neon.cyan)]"
       >
-        {title}
-      </h1>
-      <p class="mt-10 text-gray-300">{description}</p>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href={link}
-        class="mt-6 inline-block text-gray-100 underline underline-offset-4 hover:text-white"
-      >
-        Visit hospitality.manutd.com
-      </a>
-      <ColorDivider />
-    </section>
-
-    <section class="mx-auto mt-10 max-w-[60ch]">
-      <h2 class="text-2xl font-bold text-gray-100">Overview</h2>
-      <p class="mt-4 text-gray-300">{overview}</p>
-    </section>
-
-    <section class="mx-auto mt-10 max-w-[60ch]">
-      <h2 class="text-2xl font-bold text-gray-100">My Contributions</h2>
-      <ul class="mt-4 list-disc space-y-2 pl-5 text-gray-300">
-        {contributions.map((item) => <li>{item}</li>)}
-      </ul>
-    </section>
-
-    <section class="mx-auto mt-10 max-w-[60ch]">
-      <h2 class="text-2xl font-bold text-gray-100">The Platform Behind It</h2>
-      <p class="mt-4 text-gray-300">{platform}</p>
-      <figure class="mt-6">
         <svg
           viewBox="0 0 560 300"
           role="img"
           aria-labelledby="architecture-title architecture-desc"
-          class="w-full text-gray-300"
+          class="w-full text-neutral-200"
         >
           <title id="architecture-title">Storefront architecture</title>
           <desc id="architecture-desc">
@@ -102,12 +85,12 @@ const techStack = [
             stroke-width="1.5"
             stroke-opacity="0.6"
           >
-            <rect x="10" y="20" width="120" height="56" rx="8"></rect>
-            <rect x="170" y="20" width="160" height="56" rx="8"></rect>
-            <rect x="370" y="20" width="180" height="56" rx="8"></rect>
-            <rect x="170" y="130" width="160" height="56" rx="8"></rect>
-            <rect x="370" y="130" width="180" height="56" rx="8"></rect>
-            <rect x="370" y="234" width="180" height="56" rx="8"></rect>
+            <rect x="10" y="20" width="120" height="56"></rect>
+            <rect x="170" y="20" width="160" height="56"></rect>
+            <rect x="370" y="20" width="180" height="56"></rect>
+            <rect x="170" y="130" width="160" height="56"></rect>
+            <rect x="370" y="130" width="180" height="56"></rect>
+            <rect x="370" y="234" width="180" height="56"></rect>
             <path d="M130 48 H168" marker-end="url(#arrow)"></path>
             <path d="M330 48 H368" marker-end="url(#arrow)"></path>
             <path d="M460 76 V128" marker-end="url(#arrow)"></path>
@@ -138,18 +121,11 @@ const techStack = [
             <text x="460" y="276" font-size="11" opacity="0.7">PostgreSQL</text>
           </g>
         </svg>
-        <figcaption class="mt-2 text-sm text-gray-400">
-          A simplified view of the storefront's path from the edge to the
-          platform APIs. Every environment is defined in AWS CDK.
-        </figcaption>
-      </figure>
-    </section>
-
-    <section class="mx-auto mt-10 max-w-[60ch] pb-20">
-      <h2 class="text-2xl font-bold text-gray-100">Tech Stack</h2>
-      <ul class="mt-4 list-disc space-y-2 pl-5 text-gray-300">
-        {techStack.map((tech) => <li>{tech}</li>)}
-      </ul>
-    </section>
-  </div>
-</BaseLayout>
+      </div>
+      <figcaption class="mt-4 font-mono text-xs text-neutral-400">
+        A simplified view of the storefront's path from the edge to the platform
+        APIs. Every environment is defined in AWS CDK.
+      </figcaption>
+    </figure>
+  </CaseStudySection>
+</CaseStudyLayout>

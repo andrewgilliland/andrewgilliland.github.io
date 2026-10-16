@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import BackLink from "@/components/BackLink.astro";
 import ColorDivider from "@/components/ColorDivider.astro";
 import Container from "@/components/Container.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
@@ -42,22 +43,7 @@ const relatedArticles = getRelatedArticles(article, allArticles, 3);
       ]}
     >
       <div class="mx-auto min-w-0 max-w-prose">
-        <a
-          class="inline-flex items-center gap-1.5 border-2 border-neutral-50 px-3 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-neutral-50 transition-transform hover:shadow-[3px_3px_0_0_theme(colors.neon.pink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5"
-          href="/articles"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="16"
-            height="16"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path d="m6 12 6 5v-4h6v-2h-6V7z"></path>
-          </svg>
-          Back to Articles
-        </a>
+        <BackLink href="/articles" label="Back to Articles" />
         <header class="mt-10">
           <p
             class="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400"
