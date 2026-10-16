@@ -6,6 +6,9 @@ import ArticleCard, { type Accent, type Article } from "../ArticleCard";
 // the home page's latest-article tile.
 const CARD_ACCENTS: Accent[] = ["cyan", "pink", "emerald", "yellow"];
 
+// On phones the topic list collapses to the most-used topics.
+const COLLAPSED_TOPIC_COUNT = 12;
+
 export function filterArticles(
   articles: Article[],
   query: string,
@@ -34,9 +37,26 @@ export function getUniqueTags(articles: Article[]): string[] {
   return [...new Set(articles.flatMap((a) => a.tags))].sort();
 }
 
+/** The `limit` most-used tags, ties broken alphabetically. */
+export function getPopularTags(
+  articles: Article[],
+  limit: number,
+): Set<string> {
+  const counts = new Map<string, number>();
+  for (const tag of articles.flatMap((a) => a.tags)) {
+    counts.set(tag, (counts.get(tag) ?? 0) + 1);
+  }
+  const ranked = [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, limit)
+    .map(([tag]) => tag);
+  return new Set(ranked);
+}
+
 export default function ArticleSearch({ articles }: { articles: Article[] }) {
   const [query, setQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
+  const [showAllTopics, setShowAllTopics] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -72,6 +92,8 @@ export default function ArticleSearch({ articles }: { articles: Article[] }) {
   };
 
   const allTags = getUniqueTags(articles);
+  const popularTags = getPopularTags(articles, COLLAPSED_TOPIC_COUNT);
+  const canCollapse = allTags.length > COLLAPSED_TOPIC_COUNT;
   const filtered = filterArticles(articles, query, selectedTag);
 
   return (
@@ -97,15 +119,18 @@ export default function ArticleSearch({ articles }: { articles: Article[] }) {
             </button>
           )}
         </div>
-        <div className="mt-5 flex flex-wrap gap-2.5">
+        <div id="topic-filters" className="mt-5 flex flex-wrap gap-2.5">
           {allTags.map((tag) => {
             const pressed = selectedTag === tag;
+            // display:none (not just clipped) so hidden topics are not focusable.
+            const hiddenOnPhones =
+              !showAllTopics && !pressed && !popularTags.has(tag);
             return (
               <button
                 key={tag}
                 onClick={() => toggleTag(tag)}
                 aria-pressed={pressed}
-                className={`border-2 px-2.5 py-1 font-mono text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-50 ${
+                className={`${hiddenOnPhones ? "max-sm:hidden" : ""} border-2 px-2.5 py-1 font-mono text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-50 ${
                   pressed
                     ? "neo-shadow neo-press border-neutral-950 bg-neon-pink text-neutral-950 [--neo-color:theme(colors.neon.cyan)] [--neo-hover:2px] [--neo-offset:3px]"
                     : "neo-shadow neo-press border-neutral-600 text-neutral-300 [--neo-color:theme(colors.neon.pink)] [--neo-hover:3px] [--neo-offset:0px] hover:border-neutral-50"
@@ -116,6 +141,19 @@ export default function ArticleSearch({ articles }: { articles: Article[] }) {
             );
           })}
         </div>
+        {canCollapse && (
+          <button
+            type="button"
+            onClick={() => setShowAllTopics((open) => !open)}
+            aria-expanded={showAllTopics}
+            aria-controls="topic-filters"
+            className="mt-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-neon-pink underline decoration-2 underline-offset-4 hover:text-neon-cyan focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-50 sm:hidden"
+          >
+            {showAllTopics
+              ? "Show fewer topics"
+              : `Show all topics (${allTags.length})`}
+          </button>
+        )}
       </div>
 
       {filtered.length > 0 ? (
