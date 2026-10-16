@@ -44,6 +44,21 @@ html {
   display: inline-block;
 }
 
+/* The striped divider under page headers and above the footer. */
+.color-divider {
+  background-image: linear-gradient(
+    -10deg,
+    theme("colors.neon.pink"),
+    theme("colors.neon.pink") 30%,
+    theme("colors.neon.emerald") 30%,
+    theme("colors.neon.emerald") 50%,
+    theme("colors.neon.yellow") 50%,
+    theme("colors.neon.yellow") 70%,
+    theme("colors.neon.cyan") 70%,
+    theme("colors.neon.cyan")
+  );
+}
+
 .header-heading:hover {
   animation: spring-bounce 900ms ease forwards;
   will-change: transform;
