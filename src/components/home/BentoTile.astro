@@ -22,6 +22,12 @@ const shadows: Record<Accent, string> = {
   yellow: "shadow-[8px_8px_0_0_theme(colors.neon.yellow)]",
   cyan: "shadow-[8px_8px_0_0_theme(colors.neon.cyan)]",
 };
+const neoColors: Record<Accent, string> = {
+  pink: "[--neo-color:theme(colors.neon.pink)]",
+  emerald: "[--neo-color:theme(colors.neon.emerald)]",
+  yellow: "[--neo-color:theme(colors.neon.yellow)]",
+  cyan: "[--neo-color:theme(colors.neon.cyan)]",
+};
 const fills: Record<Accent, string> = {
   pink: "bg-neon-pink text-neutral-950",
   emerald: "bg-neon-emerald text-neutral-950",
@@ -32,9 +38,9 @@ const fills: Record<Accent, string> = {
 const classes = [
   "flex flex-col border-2 border-neutral-50 p-6",
   fill ? fills[fill] : "bg-neon-surface text-neutral-50",
-  shadows[shadow],
+  href ? `neo-shadow neo-press ${neoColors[shadow]}` : shadows[shadow],
   href &&
-    "transition-transform motion-safe:hover:-translate-x-1 motion-safe:hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50",
+    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50",
   className,
 ]
   .filter(Boolean)

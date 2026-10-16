@@ -105,10 +105,10 @@ export default function ArticleSearch({ articles }: { articles: Article[] }) {
                 key={tag}
                 onClick={() => toggleTag(tag)}
                 aria-pressed={pressed}
-                className={`border-2 px-2.5 py-1 font-mono text-xs font-semibold transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 ${
+                className={`border-2 px-2.5 py-1 font-mono text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-50 ${
                   pressed
-                    ? "border-neutral-950 bg-neon-pink text-neutral-950 shadow-[3px_3px_0_0_theme(colors.neon.cyan)]"
-                    : "border-neutral-600 text-neutral-300 hover:border-neutral-50 hover:shadow-[3px_3px_0_0_theme(colors.neon.pink)]"
+                    ? "neo-shadow neo-press border-neutral-950 bg-neon-pink text-neutral-950 [--neo-color:theme(colors.neon.cyan)] [--neo-hover:2px] [--neo-offset:3px]"
+                    : "neo-shadow neo-press border-neutral-600 text-neutral-300 [--neo-color:theme(colors.neon.pink)] [--neo-hover:3px] [--neo-offset:0px] hover:border-neutral-50"
                 }`}
               >
                 {tag}

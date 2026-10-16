@@ -82,7 +82,7 @@ const stateFor = (href: string) => navState(href, currentPath);
             class:list={[
               "border-2 px-4 py-3 text-center text-3xl font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50",
               stateFor(href)
-                ? "border-neutral-950 bg-neon-pink text-neutral-950 shadow-[4px_4px_0_0_theme(colors.neon.cyan)]"
+                ? "neo-shadow neo-press border-neutral-950 bg-neon-pink text-neutral-950 [--neo-color:theme(colors.neon.cyan)] [--neo-offset:4px]"
                 : "border-neutral-50 text-neutral-50",
             ]}
           >

@@ -21,11 +21,11 @@ export type Article = {
 export type Accent = "pink" | "emerald" | "yellow" | "cyan";
 
 // Full class names so Tailwind can see them.
-const SHADOWS: Record<Accent, string> = {
-  pink: "shadow-[8px_8px_0_0_theme(colors.neon.pink)]",
-  emerald: "shadow-[8px_8px_0_0_theme(colors.neon.emerald)]",
-  yellow: "shadow-[8px_8px_0_0_theme(colors.neon.yellow)]",
-  cyan: "shadow-[8px_8px_0_0_theme(colors.neon.cyan)]",
+const SHADOW_COLORS: Record<Accent, string> = {
+  pink: "[--neo-color:theme(colors.neon.pink)]",
+  emerald: "[--neo-color:theme(colors.neon.emerald)]",
+  yellow: "[--neo-color:theme(colors.neon.yellow)]",
+  cyan: "[--neo-color:theme(colors.neon.cyan)]",
 };
 
 type ShapeType = "circle" | "rect" | "triangle" | "diamond";
@@ -190,7 +190,7 @@ export default function ArticleCard({
     <article className={featured ? "sm:col-span-2" : ""}>
       <a
         href={`/articles/${article.id}`}
-        className={`relative grid h-full overflow-hidden border-2 border-neutral-50 no-underline transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-1 motion-safe:hover:-translate-y-1 ${SHADOWS[accent]} ${
+        className={`neo-shadow neo-press relative grid h-full overflow-hidden border-2 border-neutral-50 no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 ${SHADOW_COLORS[accent]} ${
           featured
             ? "min-h-[280px] bg-neon-pink text-neutral-950"
             : "min-h-[220px] bg-neon-surface text-neutral-50"
