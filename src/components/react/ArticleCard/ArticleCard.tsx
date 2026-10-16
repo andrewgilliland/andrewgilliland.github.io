@@ -10,6 +10,7 @@ import {
   SHAPE_FILL_COLORS,
 } from "../../../lib/shapeColors";
 import { articleTitleTransitionName } from "../../../lib/slug";
+import { formatArticleDate } from "../../../lib/date";
 
 export type Article = {
   id: string;
@@ -219,11 +220,7 @@ export default function ArticleCard({
           >
             {featured && "Latest · "}
             <time dateTime={article.date}>
-              {new Date(article.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {formatArticleDate(article.date)}
             </time>
           </div>
         </div>

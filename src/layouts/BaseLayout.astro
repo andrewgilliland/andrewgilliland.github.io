@@ -2,6 +2,12 @@
 import "@/styles/index.css";
 import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
+import {
+  SHARE_IMAGE_SIZE,
+  isShareImage,
+  shareImageIds,
+  shareImageUrl,
+} from "@/lib/og/shareImages";
 import fontUrl from "@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url";
 
 interface Props {
@@ -15,7 +21,7 @@ interface Props {
 const {
   title = "Andrew Gilliland",
   description = "A community-taught Software Engineer.",
-  image = "/og/default.png",
+  image = shareImageUrl(shareImageIds.default),
   type = "website",
   publishedTime,
 } = Astro.props;
@@ -46,8 +52,18 @@ const canonicalURL = Astro.url.href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.site).href} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    {isShareImage(image) && (
+      <>
+        <meta
+          property="og:image:width"
+          content={String(SHARE_IMAGE_SIZE.width)}
+        />
+        <meta
+          property="og:image:height"
+          content={String(SHARE_IMAGE_SIZE.height)}
+        />
+      </>
+    )}
     {publishedTime && (
       <meta property="article:published_time" content={publishedTime} />
     )}

@@ -1,25 +1,20 @@
 import type { APIRoute, GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import { projects } from "@/data/projects";
+import { formatArticleDate } from "@/lib/date";
 import { toSlug } from "@/lib/slug";
 import { renderShareCard, type ShareCard } from "@/lib/og/shareCard";
+import { shareImageIds } from "@/lib/og/shareImages";
 
 // Link-preview images, generated at build time: /og/default.png,
 // /og/articles/<slug>.png, and /og/projects/<slug>.png.
-
-const formatDate = (date: Date) =>
-  date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
 export const getStaticPaths = (async () => {
   const articles = await getCollection("articles", ({ data }) => !data.draft);
 
   const cards: { path: string; card: ShareCard }[] = [
     {
-      path: "default",
+      path: shareImageIds.default,
       card: {
         eyebrow: "Software engineer · Bloomington, IL",
         title: "Writing about AWS, Python, and building things on the web.",
@@ -27,15 +22,15 @@ export const getStaticPaths = (async () => {
       },
     },
     ...articles.map((article) => ({
-      path: `articles/${toSlug(article.id)}`,
+      path: shareImageIds.article(toSlug(article.id)),
       card: {
-        eyebrow: `Article · ${formatDate(article.data.date)}`,
+        eyebrow: `Article · ${formatArticleDate(article.data.date)}`,
         title: article.data.title,
         accent: "cyan" as const,
       },
     })),
     ...projects.map((project) => ({
-      path: project.href.replace(/^\//, ""),
+      path: shareImageIds.project(project.href),
       card: {
         eyebrow: "Case study",
         title: project.title,

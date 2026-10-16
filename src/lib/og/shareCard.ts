@@ -1,7 +1,9 @@
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { createRequire } from "node:module";
 import satori from "satori";
 import sharp from "sharp";
+import { NEON } from "../neonPalette";
+import { SHARE_IMAGE_SIZE } from "./shareImages";
 
 // Build-time only: renders the link-preview image for a page in the neon
 // brutalist style. Satori draws text as paths, so the result does not depend
@@ -16,20 +18,10 @@ export interface ShareCard {
   accent: ShareCardAccent;
 }
 
-// Mirrors the neon palette in tailwind.config.cjs.
-const NEON = {
-  bg: "#0a0a0a",
-  surface: "#171717",
-  pink: "#ec4899",
-  emerald: "#6ee7b7",
-  yellow: "#fde047",
-  cyan: "#67e8f9",
-};
 const WHITE = "#fafafa";
 const MUTED = "#a3a3a3";
 
-const WIDTH = 1200;
-const HEIGHT = 630;
+const { width: WIDTH, height: HEIGHT } = SHARE_IMAGE_SIZE;
 
 const stripes = (angle: string) =>
   `linear-gradient(${angle}, ${NEON.pink}, ${NEON.pink} 30%, ${NEON.emerald} 30%, ${NEON.emerald} 50%, ${NEON.yellow} 50%, ${NEON.yellow} 70%, ${NEON.cyan} 70%, ${NEON.cyan})`;
@@ -43,8 +35,10 @@ const div = (style: Record<string, unknown>, children?: unknown): Node => ({
   props: { style, children },
 });
 
+// Resolve through Node so the build works from any working directory.
+const resolve = createRequire(import.meta.url).resolve;
 const fontFile = (pkg: string, file: string) =>
-  readFile(join(process.cwd(), "node_modules", pkg, "files", file));
+  readFile(resolve(`${pkg}/files/${file}`));
 
 let fonts: Promise<Parameters<typeof satori>[1]["fonts"]> | undefined;
 const loadFonts = () =>
@@ -57,10 +51,30 @@ const loadFonts = () =>
       "@fontsource/jetbrains-mono",
       "jetbrains-mono-latin-700-normal.woff",
     ),
-  ]).then(([grotesk, mono]) => [
-    { name: "Space Grotesk", data: grotesk, weight: 700, style: "normal" },
-    { name: "JetBrains Mono", data: mono, weight: 700, style: "normal" },
-  ]));
+  ])
+    .then(([grotesk, mono]) => [
+      {
+        name: "Space Grotesk",
+        data: grotesk,
+        weight: 700 as const,
+        style: "normal" as const,
+      },
+      {
+        name: "JetBrains Mono",
+        data: mono,
+        weight: 700 as const,
+        style: "normal" as const,
+      },
+    ])
+    .catch((error) => {
+      fonts = undefined; // Let the next card retry instead of caching the failure.
+      throw error;
+    }));
+
+// Step the title down as it grows, and clamp it to four lines (with an
+// ellipsis), so it never runs into the name and stripe at the bottom.
+export const titleFontSize = (title: string) =>
+  title.length > 70 ? 48 : title.length > 40 ? 56 : 72;
 
 export async function renderShareCard({
   eyebrow,
@@ -101,10 +115,14 @@ export async function renderShareCard({
         ),
         div(
           {
-            fontSize: title.length > 40 ? 56 : 72,
+            fontSize: titleFontSize(title),
+            display: "block",
+            lineClamp: 4,
             fontWeight: 700,
             lineHeight: 1.1,
-            textWrap: "balance",
+            // Balancing a clamped title spreads it over every line first, so
+            // only balance titles short enough to show in full.
+            textWrap: title.length > 70 ? "wrap" : "balance",
             color: WHITE,
           },
           title,
