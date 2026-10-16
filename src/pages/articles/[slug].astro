@@ -35,6 +35,7 @@ const relatedArticles = getRelatedArticles(article, allArticles, 3);
   description={article.data.excerpt}
   type="article"
   publishedTime={article.data.date.toISOString()}
+  image={`/og/articles/${toSlug(article.id)}.png`}
 >
   <Container class="min-h-screen py-14">
     <div
@@ -45,9 +46,7 @@ const relatedArticles = getRelatedArticles(article, allArticles, 3);
       <div class="mx-auto min-w-0 max-w-prose">
         <BackLink href="/articles" label="Back to Articles" />
         <header class="mt-10">
-          <p
-            class="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400"
-          >
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
             Article · <FormattedDate date={article.data.date} />
           </p>
           <h1
@@ -56,33 +55,27 @@ const relatedArticles = getRelatedArticles(article, allArticles, 3);
           >
             {article.data.title}
           </h1>
-          {
-            article.data.tags.length > 0 && (
-              <div class="mt-6 flex flex-wrap gap-2.5">
-                {article.data.tags.map((tag) => (
-                  <Tag tag={tag} />
-                ))}
-              </div>
-            )
-          }
-          <ColorDivider
-            className="mt-8 h-4 w-full border-2 border-neutral-50"
-          />
+          {article.data.tags.length > 0 && (
+            <div class="mt-6 flex flex-wrap gap-2.5">
+              {article.data.tags.map((tag) => (
+                <Tag tag={tag} />
+              ))}
+            </div>
+          )}
+          <ColorDivider className="mt-8 h-4 w-full border-2 border-neutral-50" />
         </header>
         <article class="neon-prose prose prose-invert py-12">
           <Content />
         </article>
         <RelatedArticlesSection articles={relatedArticles} />
       </div>
-      {
-        hasHeadings && (
-          <aside class="hidden lg:block">
-            <div class="sticky top-10 pt-24">
-              <TableOfContents headings={headings} />
-            </div>
-          </aside>
-        )
-      }
+      {hasHeadings && (
+        <aside class="hidden lg:block">
+          <div class="sticky top-10 pt-24">
+            <TableOfContents headings={headings} />
+          </div>
+        </aside>
+      )}
     </div>
   </Container>
   {hasHeadings && <MobileTOC headings={headings} />}
