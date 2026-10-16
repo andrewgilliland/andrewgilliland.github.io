@@ -8,9 +8,7 @@ const path = Astro.url.pathname;
 <BaseLayout title="404 - Page Not Found">
   <Container class="min-h-screen py-14">
     <div class="grid gap-6 md:grid-cols-3">
-      <section
-        class="flex flex-col justify-between border-2 border-neutral-50 bg-neon-pink p-6 text-neutral-950 shadow-[8px_8px_0_0_theme(colors.neon.cyan)]"
-      >
+      <section class="flex flex-col justify-between border-2 border-neutral-50 bg-neon-pink p-6 text-neutral-950 shadow-[8px_8px_0_0_theme(colors.neon.cyan)]">
         <p class="font-mono text-xs uppercase tracking-[0.2em]">Error</p>
         <h1 class="mt-6 font-bold leading-none">
           <span class="block text-8xl md:text-9xl">404</span>{" "}
@@ -19,32 +17,25 @@ const path = Astro.url.pathname;
         <a
           href="/"
           class="neo-shadow neo-press mt-10 inline-block self-start border-2 border-neutral-950 bg-neutral-950 px-5 py-2.5 font-bold text-neutral-50 [--neo-hover:2px] [--neo-offset:4px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-950"
-          >Back to home</a
         >
+          Back to home
+        </a>
       </section>
 
       <!-- Terminal window chrome -->
-      <div
-        class="overflow-hidden border-2 border-neutral-50 shadow-[8px_8px_0_0_theme(colors.neon.yellow)] md:col-span-2"
-      >
+      <div class="overflow-hidden border-2 border-neutral-50 shadow-[8px_8px_0_0_theme(colors.neon.yellow)] md:col-span-2">
         <!-- Title bar -->
-        <div
-          class="flex items-center gap-2 border-b-2 border-neutral-50 bg-neon-bg px-4 py-3"
-        >
+        <div class="flex items-center gap-2 border-b-2 border-neutral-50 bg-neon-bg px-4 py-3">
           <span class="h-3 w-3 border-2 border-neutral-950 bg-neon-pink"></span>
-          <span class="h-3 w-3 border-2 border-neutral-950 bg-neon-yellow"
-          ></span>
-          <span class="h-3 w-3 border-2 border-neutral-950 bg-neon-emerald"
-          ></span>
-          <span class="ml-3 font-mono text-xs text-neutral-400"
-            >zsh - 80x24</span
-          >
+          <span class="h-3 w-3 border-2 border-neutral-950 bg-neon-yellow"></span>
+          <span class="h-3 w-3 border-2 border-neutral-950 bg-neon-emerald"></span>
+          <span class="ml-3 font-mono text-xs text-neutral-400">
+            zsh - 80x24
+          </span>
         </div>
 
         <!-- Terminal body -->
-        <div
-          class="bg-neon-surface p-6 font-mono text-sm leading-relaxed [overflow-wrap:anywhere]"
-        >
+        <div class="bg-neon-surface p-6 font-mono text-sm leading-relaxed [overflow-wrap:anywhere]">
           <!-- Line 1 -->
           <div class="flex gap-2">
             <span class="text-neon-emerald">➜</span>
@@ -59,9 +50,9 @@ const path = Astro.url.pathname;
           <div class="mt-4 flex gap-2">
             <span class="text-neon-emerald">➜</span>
             <span class="text-neon-cyan">~</span>
-            <span class="text-neutral-50"
-              >find / -name "{path.replace(/\//g, "")}" 2&gt;/dev/null</span
-            >
+            <span class="text-neutral-50">
+              find / -name "{path.replace(/\//g, "")}" 2&gt;/dev/null
+            </span>
           </div>
           <div class="mt-1 italic text-neutral-400">...searching...</div>
           <div class="text-neutral-400">no results found</div>
@@ -70,9 +61,9 @@ const path = Astro.url.pathname;
           <div class="mt-4 flex gap-2">
             <span class="text-neon-emerald">➜</span>
             <span class="text-neon-cyan">~</span>
-            <span class="text-neutral-50"
-              >curl -I https://andrewgilliland.dev{path}</span
-            >
+            <span class="text-neutral-50">
+              curl -I https://andrewgilliland.dev{path}
+            </span>
           </div>
           <div class="mt-1 space-y-0.5">
             <div>
@@ -98,7 +89,8 @@ const path = Astro.url.pathname;
             <span class="text-neutral-50">cat suggestion.txt</span>
           </div>
           <div class="mt-1 text-neutral-300">
-            Looks like this page doesn't exist.<br />
+            Looks like this page doesn't exist.
+            <br />
             Try heading back home or checking the URL.
           </div>
 
@@ -109,10 +101,13 @@ const path = Astro.url.pathname;
             <a
               href="/"
               class="font-semibold text-neon-pink underline decoration-2 underline-offset-4 hover:text-neon-cyan"
-              >cd ~</a
             >
-            <div id="cursor" class="ml-0.5 h-4 w-2 bg-neutral-50 align-middle">
-            </div>
+              cd ~
+            </a>
+            <div
+              id="cursor"
+              class="ml-0.5 h-4 w-2 bg-neutral-50 align-middle"
+            ></div>
           </div>
         </div>
       </div>

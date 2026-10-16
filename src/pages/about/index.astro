@@ -47,12 +47,14 @@ const caption =
   <Container class="min-h-screen pb-14">
     <PageHeader title="About" eyebrow="Software engineer · Bloomington, IL" />
 
-    <div
-      class="grid auto-rows-[minmax(10rem,auto)] grid-cols-2 gap-6 md:grid-cols-4"
-    >
+    <div class="grid auto-rows-[minmax(10rem,auto)] grid-cols-2 gap-6 md:grid-cols-4">
       <BentoTile shadow="cyan" fill="pink" class="col-span-2 justify-center">
         <h2 class="text-4xl font-bold leading-none md:text-5xl">
-          Developer.<br />Builder.<br />Learner.
+          Developer.
+          <br />
+          Builder.
+          <br />
+          Learner.
         </h2>
       </BentoTile>
 
@@ -88,10 +90,14 @@ const caption =
           way, one Stack Overflow rabbit hole at a time. He loves digging into
           new ideas, untangling hard problems, and making things that actually
           ship. When he&apos;s not pushing commits, he&apos;s organizing meetups
-          for <a
+          for{" "}
+          <a
             class="font-semibold text-neon-emerald underline decoration-2 underline-offset-4 hover:text-neon-cyan"
-            href="https://www.blono.dev/">Bloomington-Normal Developers</a
-          >, because talking about code is almost as fun as writing it.
+            href="https://www.blono.dev/"
+          >
+            Bloomington-Normal Developers
+          </a>
+          , because talking about code is almost as fun as writing it.
         </p>
       </BentoTile>
 
@@ -118,7 +124,9 @@ const caption =
 
       <BentoTile shadow="pink" fill="cyan" class="col-span-2 justify-center">
         <h2 class="text-4xl font-bold leading-none md:text-5xl">
-          Cats, code,<br />and Yacht Rock.
+          Cats, code,
+          <br />
+          and Yacht Rock.
         </h2>
       </BentoTile>
 
@@ -160,23 +168,21 @@ const caption =
         </span>
       </BentoTile>
 
-      {
-        techGroups.map((group, index) => (
-          <BentoTile
-            shadow={techShadows[index % techShadows.length]}
-            class="col-span-2 lg:col-span-1"
+      {techGroups.map((group, index) => (
+        <BentoTile
+          shadow={techShadows[index % techShadows.length]}
+          class="col-span-2 lg:col-span-1"
+        >
+          <h2 class="text-xl font-bold">{group.title}</h2>
+          <ul
+            class={`mt-4 list-[square] space-y-1.5 pl-5 text-neutral-300 ${markers[index % markers.length]}`}
           >
-            <h2 class="text-xl font-bold">{group.title}</h2>
-            <ul
-              class={`mt-4 list-[square] space-y-1.5 pl-5 text-neutral-300 ${markers[index % markers.length]}`}
-            >
-              {group.items.map((item) => (
-                <li>{item}</li>
-              ))}
-            </ul>
-          </BentoTile>
-        ))
-      }
+            {group.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </BentoTile>
+      ))}
     </div>
   </Container>
 </BaseLayout>

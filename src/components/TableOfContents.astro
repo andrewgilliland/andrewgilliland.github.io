@@ -9,30 +9,28 @@ const { headings } = Astro.props;
 const filtered = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
 ---
 
-{
-  filtered.length > 0 && (
-    <nav aria-label="Table of contents">
-      <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
-        Table of Contents
-      </p>
-      <ul class="flex flex-col border-l-2 border-neutral-700">
-        {filtered.map((heading) => (
-          <li>
-            <a
-              href={`#${heading.slug}`}
-              class:list={[
-                "toc-link block py-1 text-sm text-neutral-400 transition-colors hover:text-neutral-50",
-                heading.depth === 2 ? "pl-4" : "pl-7",
-              ]}
-            >
-              {heading.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  )
-}
+{filtered.length > 0 && (
+  <nav aria-label="Table of contents">
+    <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
+      Table of Contents
+    </p>
+    <ul class="flex flex-col border-l-2 border-neutral-700">
+      {filtered.map((heading) => (
+        <li>
+          <a
+            href={`#${heading.slug}`}
+            class:list={[
+              "toc-link block py-1 text-sm text-neutral-400 transition-colors hover:text-neutral-50",
+              heading.depth === 2 ? "pl-4" : "pl-7",
+            ]}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
 
 <script is:inline>
   const links = document.querySelectorAll(".toc-link");
