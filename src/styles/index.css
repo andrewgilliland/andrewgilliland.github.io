@@ -5,6 +5,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Balanced headings and no single-word last lines in running text. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  figcaption,
+  blockquote,
+  dd {
+    text-wrap: pretty;
+  }
+}
+
 :root {
   --font-space-grotesk: "Space Grotesk Variable", sans-serif;
   --font-jetbrains-mono: "JetBrains Mono Variable", monospace;
