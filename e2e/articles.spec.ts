@@ -107,3 +107,40 @@ test("?q= and ?tag= params together pre-populate both filters on load", async ({
     "true",
   );
 });
+
+test.describe("topic filters on a phone", () => {
+  test.use({ viewport: { width: 375, height: 812 } });
+
+  test("show the 12 most-used topics until expanded", async ({ page }) => {
+    await page.goto("/articles", { waitUntil: "networkidle" });
+    const topics = page.locator("button[aria-pressed]");
+    const total = await topics.count();
+    expect(total).toBeGreaterThan(12);
+    await expect(topics.filter({ visible: true })).toHaveCount(12);
+
+    const toggle = page.getByRole("button", { name: /show all topics/i });
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await toggle.click();
+    await expect(topics.filter({ visible: true })).toHaveCount(total);
+    await expect(
+      page.getByRole("button", { name: /show fewer topics/i }),
+    ).toHaveAttribute("aria-expanded", "true");
+  });
+
+  test("keep the selected topic visible while collapsed", async ({ page }) => {
+    await page.goto("/articles?tag=cdk", { waitUntil: "networkidle" });
+    await expect(page.getByRole("button", { name: "cdk" })).toBeVisible();
+  });
+});
+
+test("topic filters are all visible on wide screens", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/articles", { waitUntil: "networkidle" });
+  const topics = page.locator("button[aria-pressed]");
+  await expect(topics.filter({ visible: true })).toHaveCount(
+    await topics.count(),
+  );
+  await expect(
+    page.getByRole("button", { name: /show all topics/i }),
+  ).toBeHidden();
+});
