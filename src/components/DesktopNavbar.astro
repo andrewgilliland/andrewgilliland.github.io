@@ -69,10 +69,10 @@ const stateFor = (href: string) => navState(href, currentPath);
               }
               data-foley-click="tap"
               class:list={[
-                "border-2 px-3 py-1.5 font-semibold transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5",
+                "border-2 px-3 py-1.5 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50",
                 stateFor(href)
-                  ? "border-neutral-950 bg-neon-pink text-neutral-950 shadow-[4px_4px_0_0_theme(colors.neon.cyan)]"
-                  : "border-transparent text-neutral-50 hover:border-neutral-50 hover:shadow-[4px_4px_0_0_theme(colors.neon.pink)]",
+                  ? "neo-shadow neo-press border-neutral-950 bg-neon-pink text-neutral-950 [--neo-color:theme(colors.neon.cyan)] [--neo-hover:2px] [--neo-offset:4px]"
+                  : "border-transparent text-neutral-50 transition-transform hover:border-neutral-50 hover:shadow-[4px_4px_0_0_theme(colors.neon.pink)] motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5",
               ]}
             >
               {title}

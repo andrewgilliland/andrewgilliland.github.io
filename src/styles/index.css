@@ -233,3 +233,46 @@ html {
   color: theme("colors.neon.yellow");
   font-size: 1.125em;
 }
+
+/* Offset shadows that respond to the pointer. Each element sets
+   --neo-offset (default 8px), --neo-color (default white), and optionally
+   --neo-hover (lift on hover, default 4px). Lift is registered so it does
+   not inherit into nested elements. */
+@property --neo-lift {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --neo-grow {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.neo-shadow {
+  box-shadow: calc(var(--neo-offset, 8px) + var(--neo-grow))
+    calc(var(--neo-offset, 8px) + var(--neo-grow)) 0 0
+    var(--neo-color, theme("colors.neutral.50"));
+  translate: calc(var(--neo-lift) * -1) calc(var(--neo-lift) * -1);
+}
+
+.neo-press {
+  transition:
+    translate 120ms ease-out,
+    box-shadow 120ms ease-out;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .neo-press:hover {
+    --neo-lift: var(--neo-hover, 4px);
+  }
+}
+
+/* Pressed: the element slides into its shadow. */
+@media (prefers-reduced-motion: no-preference) {
+  .neo-press:active {
+    --neo-lift: calc(var(--neo-offset, 8px) * -1);
+    --neo-grow: calc(var(--neo-offset, 8px) * -1);
+  }
+}

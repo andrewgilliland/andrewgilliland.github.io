@@ -21,11 +21,11 @@ const {
 } = Astro.props as Props;
 
 // Full class names so Tailwind can see them.
-const shadows: Record<Accent, string> = {
-  pink: "shadow-[6px_6px_0_0_theme(colors.neon.pink)]",
-  emerald: "shadow-[6px_6px_0_0_theme(colors.neon.emerald)]",
-  yellow: "shadow-[6px_6px_0_0_theme(colors.neon.yellow)]",
-  cyan: "shadow-[6px_6px_0_0_theme(colors.neon.cyan)]",
+const shadowColors: Record<Accent, string> = {
+  pink: "[--neo-color:theme(colors.neon.pink)]",
+  emerald: "[--neo-color:theme(colors.neon.emerald)]",
+  yellow: "[--neo-color:theme(colors.neon.yellow)]",
+  cyan: "[--neo-color:theme(colors.neon.cyan)]",
 };
 const fills: Record<Accent, string> = {
   pink: "bg-neon-pink",
@@ -37,7 +37,7 @@ const fills: Record<Accent, string> = {
 
 <li>
   <a
-    class={`flex h-full items-center justify-between gap-6 border-2 border-neutral-50 bg-neon-surface p-5 text-neutral-50 no-underline transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-1 motion-safe:hover:-translate-y-1 ${shadows[accent]}`}
+    class={`flex h-full items-center justify-between gap-6 border-2 border-neutral-50 bg-neon-surface p-5 text-neutral-50 no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 neo-shadow neo-press [--neo-offset:6px] ${shadowColors[accent]}`}
     href={href}
   >
     <div>

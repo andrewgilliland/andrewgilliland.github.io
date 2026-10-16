@@ -37,7 +37,7 @@ const { title, description, link, linkLabel, techStack } = Astro.props;
           target="_blank"
           rel="noopener noreferrer"
           href={link}
-          class="mt-8 inline-block border-2 border-neutral-950 bg-neon-pink px-5 py-2.5 font-bold text-neutral-950 shadow-[4px_4px_0_0_theme(colors.neon.cyan)] transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5"
+          class="neo-shadow neo-press mt-8 inline-block border-2 border-neutral-950 bg-neon-pink px-5 py-2.5 font-bold text-neutral-950 [--neo-color:theme(colors.neon.cyan)] [--neo-hover:2px] [--neo-offset:4px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50"
         >
           {linkLabel}
         </a>
