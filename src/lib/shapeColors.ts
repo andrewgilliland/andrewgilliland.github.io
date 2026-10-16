@@ -1,10 +1,12 @@
 import colors from "tailwindcss/colors";
 
+// The neon accents from tailwind.config.cjs, as hex for SVG fills.
+// shapeColors.test.ts keeps the two in sync.
 export const SHAPE_FILL_COLORS = [
-  colors.pink[300],
-  colors.cyan[300],
-  colors.emerald[300],
-  colors.yellow[300],
+  "#ec4899", // neon.pink
+  "#67e8f9", // neon.cyan
+  "#6ee7b7", // neon.emerald
+  "#fde047", // neon.yellow
 ] as const;
 
 export const DARK_SHAPE_STROKE = colors.black;

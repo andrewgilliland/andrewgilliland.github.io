@@ -2,6 +2,7 @@
 import Container from "./Container.astro";
 import HeaderHeading from "./HeaderHeading.astro";
 import type { Page } from "@/types";
+import { navState } from "@/lib/navigation";
 
 interface Props {
   pages: Page[];
@@ -9,9 +10,10 @@ interface Props {
 
 const { pages } = Astro.props;
 const currentPath = Astro.url.pathname;
+const stateFor = (href: string) => navState(href, currentPath);
 ---
 
-<div class="hidden border-b-2 border-white px-[10%] py-6 md:block">
+<div class="hidden border-b-2 border-neutral-50 py-6 md:block">
   <Container>
     <div class="items-center justify-between md:flex">
       <div class="flex items-center gap-3">
@@ -19,7 +21,7 @@ const currentPath = Astro.url.pathname;
         <a
           target="_blank"
           rel="noopener noreferrer"
-          class="flex gap-1.5 rounded-full border border-white/35 p-1.5 text-white no-underline transition-all duration-100 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:bg-gray-700 hover:shadow-[2px_2px_0_0_rgba(255,255,255,0.35)]"
+          class="flex gap-1.5 border-2 border-neutral-50 px-2 py-1 text-neutral-50 no-underline transition-transform hover:shadow-[3px_3px_0_0_theme(colors.neon.yellow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5"
           aria-label="Visit andrewgilliland on GitHub"
           href="https://github.com/andrewgilliland"
         >
@@ -53,26 +55,31 @@ const currentPath = Astro.url.pathname;
         </a>
       </div>
 
-      <div class="flex">
+      <nav aria-label="Main" class="flex gap-3">
         {
           pages.map(({ href, title }) => (
             <a
-              class="group mr-4"
               href={href}
-              aria-current={currentPath === href ? "page" : undefined}
+              aria-current={
+                stateFor(href) === "page"
+                  ? "page"
+                  : stateFor(href)
+                    ? "true"
+                    : undefined
+              }
               data-foley-click="tap"
+              class:list={[
+                "border-2 px-3 py-1.5 font-semibold transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5",
+                stateFor(href)
+                  ? "border-neutral-950 bg-neon-pink text-neutral-950 shadow-[4px_4px_0_0_theme(colors.neon.cyan)]"
+                  : "border-transparent text-neutral-50 hover:border-neutral-50 hover:shadow-[4px_4px_0_0_theme(colors.neon.pink)]",
+              ]}
             >
-              <div class="text-white">{title}</div>
-              <div
-                class:list={[
-                  "h-[2px] rounded-full bg-pink-300 transition-all group-hover:w-full",
-                  currentPath === href ? "w-full" : "w-[0%]",
-                ]}
-              />
+              {title}
             </a>
           ))
         }
-      </div>
+      </nav>
     </div>
   </Container>
 </div>

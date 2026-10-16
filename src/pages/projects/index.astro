@@ -1,53 +1,20 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import SectionHeader from "@/components/SectionHeader.astro";
-import CardLink from "@/components/CardLink.astro";
+import BentoTile from "@/components/home/BentoTile.astro";
+import Container from "@/components/Container.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import { projects } from "@/data/projects";
 
-interface Project {
-  title: string;
-  description: string;
-  href: string;
-  logo?: string;
-  logoAlt?: string;
-  logoWidth?: number;
-  logoHeight?: number;
-  logoClass?: string;
-}
-
-const projects: Project[] = [
-  {
-    title: "Manchester United Hospitality",
-    description:
-      "The official Manchester United hospitality storefront, built by Elevate. I worked on the launch, from the production go-live cutover to the payments and catalogue APIs behind checkout.",
-    href: "/projects/manchester-united-hospitality",
-    logo: "/projects/manchester-united-hospitality-logo.webp",
-    // The partnership lockup is wide, so it keeps its aspect ratio.
-    logoAlt: "Manchester United and Elevate logos",
-    logoWidth: 600,
-    logoHeight: 128,
-    logoClass: "h-12 w-auto",
-  },
-  {
-    title: "SmartScout",
-    description:
-      "Precision Planting SmartScout is an app that uses machine vision and augmented reality to automatically assess emergence and plant spacing in a 3D space.",
-    href: "/projects/smartscout",
-    logo: "/projects/smartscout-icon-1.webp",
-  },
-  {
-    title: "blono.dev",
-    description:
-      "blono.dev is a website for Bloomington-Normal Developers, a local developer community in Central Illinois. Built with Next.js and Tailwind CSS.",
-    href: "/projects/blono-dev",
-    logo: "/projects/blono-dev-icon-1.svg",
-  },
-];
+const shadows = ["emerald", "yellow", "cyan"] as const;
 ---
 
 <BaseLayout title="Projects - Andrew Gilliland">
-  <div class="mx-auto mt-14 min-h-screen w-full max-w-3xl px-8">
-    <SectionHeader title="Projects" />
-    <section class="grid grid-cols-1 gap-8 sm:grid-cols-2">
+  <Container class="min-h-screen pb-14">
+    <PageHeader
+      title="Projects"
+      eyebrow={`Selected work · ${projects.length} projects`}
+    />
+    <section class="grid grid-cols-1 gap-6 md:grid-cols-2">
       {
         projects.map(
           (
@@ -55,6 +22,7 @@ const projects: Project[] = [
               href,
               title,
               description,
+              stack,
               logo,
               logoAlt,
               logoWidth = 48,
@@ -63,30 +31,35 @@ const projects: Project[] = [
             },
             index,
           ) => (
-            <article class={index === 0 ? "sm:col-span-2" : ""}>
-              <CardLink
+            <article class={index === 0 ? "md:col-span-2" : ""}>
+              <BentoTile
                 href={href}
-                class={index === 0 ? "min-h-[280px]" : "min-h-[220px]"}
+                shadow={shadows[index % shadows.length]}
+                class={`h-full gap-4 ${index === 0 ? "min-h-[280px]" : "min-h-[240px]"}`}
               >
-                <div class="flex h-full grow flex-col space-y-2 p-6">
-                  {logo && (
-                    <img
-                      src={logo}
-                      alt={logoAlt ?? `${title} logo`}
-                      class={`${logoClass} self-start rounded-sm object-contain`}
-                      width={logoWidth}
-                      height={logoHeight}
-                    />
-                  )}
-                  <h2 class="flex-none text-2xl leading-tight">{title}</h2>
-                  <p class="text-gray-400">{description}</p>
-                  <div class="flex-1" />
-                </div>
-              </CardLink>
+                {logo && (
+                  <img
+                    src={logo}
+                    alt={logoAlt ?? `${title} logo`}
+                    class={`${logoClass} self-start object-contain`}
+                    width={logoWidth}
+                    height={logoHeight}
+                  />
+                )}
+                <p class="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
+                  {stack.join(" · ")}
+                </p>
+                <h2
+                  class={`font-bold leading-tight ${index === 0 ? "text-3xl md:text-4xl" : "text-2xl"}`}
+                >
+                  {title}
+                </h2>
+                <p class="text-neutral-300">{description}</p>
+              </BentoTile>
             </article>
           ),
         )
       }
     </section>
-  </div>
+  </Container>
 </BaseLayout>

@@ -4,12 +4,27 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx,astro}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx,astro}",
     "./src/layouts/**/*.{js,ts,jsx,tsx,mdx,astro}",
+    // Data files carry class names too (e.g. project logo sizes).
+    "./src/data/**/*.{js,ts}",
   ],
   theme: {
     extend: {
       fontFamily: {
         brand: ["var(--font-space-grotesk)"],
         mono: ["var(--font-jetbrains-mono)"],
+      },
+      // Neon brutalist palette (docs/design-inspiration.md, direction 1).
+      // Accent text on dark surfaces passes WCAG AA; on accent fills use
+      // neutral-950 text, never white.
+      colors: {
+        neon: {
+          bg: "#0a0a0a",
+          surface: "#171717",
+          pink: "#ec4899",
+          emerald: "#6ee7b7",
+          yellow: "#fde047",
+          cyan: "#67e8f9",
+        },
       },
       keyframes: {
         marquee: {

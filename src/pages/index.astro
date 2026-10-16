@@ -1,13 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import SectionHeader from "@/components/SectionHeader.astro";
-import CardLink from "@/components/CardLink.astro";
-import ArticleListItemLink from "@/components/articles/ArticleListItemLink.astro";
+import BentoTile from "@/components/home/BentoTile.astro";
+import ColorDivider from "@/components/ColorDivider.astro";
+import Container from "@/components/Container.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
-import CenteredSection from "@/components/sections/CenteredSection.astro";
-import TwinSections from "@/components/sections/TwinSections.astro";
-import PrimaryButton from "@/components/PrimaryButton.astro";
-import MarqueeRow from "@/components/MarqueeRow.astro";
+import { projects } from "@/data/projects";
 import { getCollection } from "astro:content";
 import { toSlug } from "@/lib/slug";
 
@@ -22,89 +19,144 @@ const tagCounts = allArticles
     },
     {} as Record<string, number>,
   );
-
 const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
-const tagRows = Array.from({ length: 3 }, (_, rowIndex) =>
-  sortedTags.filter((_, tagIndex) => tagIndex % 3 === rowIndex),
-);
 
-const sortedArticles = allArticles
+const recentArticles = [...allArticles]
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 4);
+  .slice(0, 6);
+const [latest, ...moreArticles] = recentArticles;
 
-const [featured, ...sideArticles] = sortedArticles;
+// Topic chips cycle through the accents; text on every fill is near-black.
+const chipFills = [
+  "bg-neon-pink",
+  "bg-neon-emerald",
+  "bg-neon-yellow",
+  "bg-neon-cyan",
+];
+const projectShadows = ["emerald", "yellow", "cyan"] as const;
+const eyebrow = "font-mono text-xs uppercase tracking-[0.2em]";
 ---
 
 <BaseLayout>
-  <div class="relative">
-    <TwinSections>
-      <div slot="section-one">
-        <div class="mx-auto max-w-xl">
-          <h1 class="text-4xl text-black md:text-6xl">Hi, I&apos;m Andrew!</h1>
-          <p class="mt-8 text-xl text-black md:mt-12">
-            I&apos;m a software engineer writing about AWS, Python, and building
-            things on the web. Practical guides, real examples, no fluff.
-          </p>
-          <PrimaryButton
-            href="/articles"
-            className="mt-12"
-            text="Read Articles"
-          />
-        </div>
+  <Container
+    class="grid auto-rows-[minmax(10rem,auto)] grid-cols-1 gap-6 py-14 md:grid-cols-4"
+  >
+    <BentoTile
+      shadow="pink"
+      label="Introduction"
+      class="justify-between md:col-span-2 md:row-span-2"
+    >
+      <div>
+        <p class={`${eyebrow} text-neutral-400`}>
+          Software engineer · Bloomington, IL
+        </p>
+        <h1 class="mt-6 text-5xl font-bold leading-none md:text-7xl">
+          Hi, I&apos;m Andrew!
+        </h1>
+        <p class="mt-6 text-lg text-neutral-300">
+          I&apos;m a software engineer writing about AWS, Python, and building
+          things on the web. Practical guides, real examples, no fluff.
+        </p>
+        <a
+          href="/articles"
+          class="mt-8 inline-block border-2 border-neutral-950 bg-neon-pink px-5 py-2.5 font-bold text-neutral-950 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5"
+          >Read Articles</a
+        >
       </div>
-      <div slot="section-two" class="w-full min-w-0">
-        <div class="group w-full overflow-hidden">
-          <h2 class="mb-6 text-center text-2xl text-black">Browse by Topic</h2>
-          <div class="flex flex-col gap-3">
-            <MarqueeRow tags={tagRows[0]} animation="marquee" />
-            <MarqueeRow tags={tagRows[1]} animation="marquee-reverse" />
-            <MarqueeRow tags={tagRows[2]} animation="marquee-slow" />
-          </div>
-        </div>
-      </div>
-    </TwinSections>
+      <ColorDivider className="mt-10 h-4 w-full border-2 border-neutral-950" />
+    </BentoTile>
 
-    <CenteredSection>
-      <div class="mx-auto w-full max-w-3xl px-8">
-        <SectionHeader title="Recent Articles" tag="h2" />
-        <section class="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          {/* Featured article card */}
-          <article>
-            <CardLink
-              href={`/articles/${toSlug(featured.id)}`}
-              class="h-full min-h-[320px]"
-            >
-              <div class="flex h-full grow flex-col space-y-2 p-6">
-                <h3 class="flex-none text-2xl leading-tight">
-                  {featured.data.title}
-                </h3>
-                <div class="flex-1"></div>
+    {
+      latest && (
+        <BentoTile
+          href={`/articles/${toSlug(latest.id)}`}
+          shadow="cyan"
+          fill="pink"
+          class="justify-between md:col-span-2"
+        >
+          <span class={`${eyebrow} font-semibold`}>
+            Latest article ·{" "}
+            <FormattedDate date={latest.data.date} class="font-mono" />
+          </span>
+          <h2 class="mt-4 text-3xl font-bold leading-tight">
+            {latest.data.title}
+          </h2>
+        </BentoTile>
+      )
+    }
+
+    <BentoTile href="/articles" shadow="pink" fill="yellow">
+      <span class={`${eyebrow} font-semibold`}>Writing</span>
+      <span class="mt-3 text-6xl font-bold">{allArticles.length}</span>
+      <span class="font-mono text-sm">
+        articles · {sortedTags.length} topics
+      </span>
+    </BentoTile>
+
+    <BentoTile href="/projects/blono-dev" shadow="emerald" fill="cyan">
+      <span class={`${eyebrow} font-semibold`}>Community</span>
+      <span class="mt-3 text-2xl font-bold leading-tight">
+        Organizer, Bloomington-Normal Developers
+      </span>
+    </BentoTile>
+
+    <BentoTile shadow="emerald" label="Recent Articles" class="md:col-span-2">
+      <h2 class={`${eyebrow} text-neutral-400`}>Recent Articles</h2>
+      <ul class="mt-4 space-y-4">
+        {
+          moreArticles.map((article) => (
+            <li>
+              <a
+                href={`/articles/${toSlug(article.id)}`}
+                class="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50"
+              >
+                <span class="block text-xl font-bold leading-snug group-hover:underline">
+                  {article.data.title}
+                </span>
                 <FormattedDate
-                  date={featured.data.date}
-                  class="flex-none text-sm text-gray-400"
+                  date={article.data.date}
+                  class="font-mono text-xs text-neutral-400"
                 />
-              </div>
-            </CardLink>
-          </article>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </BentoTile>
 
-          {/* Side article list */}
-          <div class="flex h-full flex-col">
-            <ul class="grow divide-y divide-gray-700">
-              {
-                sideArticles.map((article) => (
-                  <ArticleListItemLink
-                    href={`/articles/${toSlug(article.id)}`}
-                    title={article.data.title}
-                    date={article.data.date}
-                    headingTag="h4"
-                    listItemClass="py-4 first:pt-0"
-                  />
-                ))
-              }
-            </ul>
-          </div>
-        </section>
-      </div>
-    </CenteredSection>
-  </div>
+    <BentoTile shadow="yellow" label="Browse by Topic" class="md:col-span-2">
+      <h2 class={`${eyebrow} text-neutral-400`}>Browse by Topic</h2>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {
+          sortedTags.slice(0, 18).map(([tag, count], index) => (
+            <li>
+              <a
+                href={`/articles?q=${tag}`}
+                class={`inline-block border-2 border-neutral-950 px-3 py-1 font-mono text-sm font-semibold text-neutral-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-50 ${chipFills[index % chipFills.length]}`}
+              >
+                {tag} <span class="opacity-80">{count}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </BentoTile>
+
+    <h2 class="sr-only">Projects</h2>
+    {
+      projects.map((project, index) => (
+        <BentoTile
+          href={project.href}
+          shadow={projectShadows[index % projectShadows.length]}
+          class={index === 0 ? "md:col-span-2" : ""}
+        >
+          <span class={`${eyebrow} text-neutral-400`}>
+            Project · {project.stack.join(" · ")}
+          </span>
+          <h3 class="mt-3 text-2xl font-bold">{project.title}</h3>
+          <p class="mt-2 text-neutral-300">{project.summary}</p>
+        </BentoTile>
+      ))
+    }
+  </Container>
 </BaseLayout>

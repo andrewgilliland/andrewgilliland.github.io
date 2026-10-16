@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { Trash2 } from "lucide-react";
-import ArticleCard, { type Article } from "../ArticleCard";
+import ArticleCard, { type Accent, type Article } from "../ArticleCard";
+
+// Offset-shadow colours cycle through the grid; the first card's cyan matches
+// the home page's latest-article tile.
+const CARD_ACCENTS: Accent[] = ["cyan", "pink", "emerald", "yellow"];
 
 export function filterArticles(
   articles: Article[],
@@ -72,7 +76,7 @@ export default function ArticleSearch({ articles }: { articles: Article[] }) {
 
   return (
     <>
-      <div className="pb-4 pt-2">
+      <div className="pb-10">
         <div className="relative">
           <input
             type="search"
@@ -81,47 +85,52 @@ export default function ArticleSearch({ articles }: { articles: Article[] }) {
             onChange={(e) => setQueryAndUrl(e.target.value)}
             placeholder="Search articles…"
             data-foley-type="thock"
-            className="w-full rounded-lg border border-white/20 bg-black px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-colors focus:border-pink-500 [&::-webkit-search-cancel-button]:appearance-none"
+            className="w-full border-2 border-neutral-50 bg-neon-surface px-4 py-3 pr-12 font-mono text-sm text-neutral-50 placeholder-neutral-400 outline-none transition-shadow focus:shadow-[4px_4px_0_0_theme(colors.neon.pink)] [&::-webkit-search-cancel-button]:appearance-none"
           />
           {(query || selectedTag) && (
             <button
               onClick={clearAll}
               aria-label="Clear search"
-              className="group absolute right-3 top-1/2 -translate-y-1/2"
+              className="group absolute right-3 top-1/2 -translate-y-1/2 p-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-50"
             >
-              <Trash2 className="h-4 w-4 text-gray-500 transition-colors group-hover:text-white" />
+              <Trash2 className="h-4 w-4 text-neutral-400 transition-colors group-hover:text-neutral-50" />
             </button>
           )}
         </div>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => toggleTag(tag)}
-              className={`rounded-full border px-2.5 py-0.5 text-xs transition-all duration-100 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[2px_2px_0_0_rgba(255,255,255,0.35)] ${
-                selectedTag === tag
-                  ? "border-pink-400 text-pink-400"
-                  : "border-white/35 text-gray-400"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
+        <div className="mt-5 flex flex-wrap gap-2.5">
+          {allTags.map((tag) => {
+            const pressed = selectedTag === tag;
+            return (
+              <button
+                key={tag}
+                onClick={() => toggleTag(tag)}
+                aria-pressed={pressed}
+                className={`border-2 px-2.5 py-1 font-mono text-xs font-semibold transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 ${
+                  pressed
+                    ? "border-neutral-950 bg-neon-pink text-neutral-950 shadow-[3px_3px_0_0_theme(colors.neon.cyan)]"
+                    : "border-neutral-600 text-neutral-300 hover:border-neutral-50 hover:shadow-[3px_3px_0_0_theme(colors.neon.pink)]"
+                }`}
+              >
+                {tag}
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {filtered.length > 0 ? (
-        <section className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+        <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((article, index) => (
             <ArticleCard
               key={article.id}
               article={article}
+              accent={CARD_ACCENTS[index % CARD_ACCENTS.length]}
               featured={index === 0 && query.trim() === "" && !selectedTag}
             />
           ))}
         </section>
       ) : (
-        <p className="py-16 text-center font-mono text-sm text-gray-500">
+        <p className="py-16 text-center font-mono text-sm text-neutral-400">
           No articles match &ldquo;{selectedTag || query}&rdquo;
         </p>
       )}

@@ -1,36 +1,40 @@
 ---
 import { Rss } from "lucide-react";
-import Block from "./Block.astro";
 import ColorDivider from "./ColorDivider.astro";
+import Container from "./Container.astro";
 import { socialLinks } from "@/lib/social";
 
 const currentYear = new Date().getFullYear();
+// Accent tiles with near-black icons; matches the home page bento tiles.
+const tile =
+  "flex h-12 w-12 items-center justify-center border-2 border-neutral-950 shadow-[4px_4px_0_0_theme(colors.neutral.50)] transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5";
 ---
 
-<ColorDivider className="h-6 w-full border-b-2 border-t-2 border-white" />
-<footer
-  class="flex flex-col items-center justify-center bg-black px-[10%] py-12 lg:flex-row lg:justify-between"
->
-  <div class="text-white">ⓒ {currentYear} Andrew Gilliland</div>
-  <div class="mt-6 flex items-center gap-10 lg:mt-0">
-    {
-      socialLinks.map(({ Icon, href, bgColor, title }) => (
-        <a
-          href={href}
-          aria-label={title}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Block className={`h-12 w-12 ${bgColor}`}>
-            <Icon className="h-5 w-5 fill-white" />
-          </Block>
-        </a>
-      ))
-    }
-    <a href="/rss.xml" aria-label="RSS Feed">
-      <Block className="h-12 w-12 bg-yellow-500">
-        <Rss className="h-5 w-5 text-white" />
-      </Block>
-    </a>
-  </div>
+<ColorDivider className="h-6 w-full border-b-2 border-t-2 border-neutral-50" />
+<footer class="bg-neon-bg py-12">
+  <Container
+    class="flex flex-col items-center justify-center lg:flex-row lg:justify-between"
+  >
+    <div class="font-mono text-sm text-neutral-300">
+      ⓒ {currentYear} Andrew Gilliland
+    </div>
+    <div class="mt-6 flex items-center gap-10 lg:mt-0">
+      {
+        socialLinks.map(({ Icon, href, bgColor, title }) => (
+          <a
+            href={href}
+            aria-label={title}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`${tile} ${bgColor}`}
+          >
+            <Icon className="h-5 w-5 fill-neutral-950" />
+          </a>
+        ))
+      }
+      <a href="/rss.xml" aria-label="RSS Feed" class={`${tile} bg-neon-yellow`}>
+        <Rss className="h-5 w-5 text-neutral-950" />
+      </a>
+    </div>
+  </Container>
 </footer>

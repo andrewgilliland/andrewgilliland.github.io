@@ -46,6 +46,19 @@ test("article page renders a heading", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 });
 
+test("article page links back to the list and dates the article", async ({
+  page,
+}) => {
+  await page.goto("/articles/intro-to-aws-lambda");
+  await expect(
+    page.getByRole("link", { name: "Back to Articles" }),
+  ).toHaveAttribute("href", "/articles");
+  await expect(page.locator("header time")).toHaveAttribute(
+    "datetime",
+    /^\d{4}-\d{2}-\d{2}T/,
+  );
+});
+
 test("draft article is not publicly accessible", async ({ page }) => {
   const response = await page.goto("/articles/test-draft-fixture");
   expect(response?.status()).toBe(404);
@@ -76,8 +89,10 @@ test("?tag= param pre-selects tag on load", async ({ page }) => {
   await page.goto("/articles?tag=cdk", { waitUntil: "networkidle" });
   const count = await page.locator("article").count();
   expect(count).toBeGreaterThan(0);
-  // The cdk tag button should be visually active (has pink text class)
-  await expect(page.getByRole("button", { name: "cdk" })).toHaveClass(/pink/);
+  await expect(page.getByRole("button", { name: "cdk" })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
   // Input stays empty — tag param doesn't fill the text search
   await expect(page.getByPlaceholder("Search articles…")).toHaveValue("");
 });
@@ -87,5 +102,8 @@ test("?q= and ?tag= params together pre-populate both filters on load", async ({
 }) => {
   await page.goto("/articles?q=lambda&tag=cdk", { waitUntil: "networkidle" });
   await expect(page.getByPlaceholder("Search articles…")).toHaveValue("lambda");
-  await expect(page.getByRole("button", { name: "cdk" })).toHaveClass(/pink/);
+  await expect(page.getByRole("button", { name: "cdk" })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
 });

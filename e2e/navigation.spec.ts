@@ -23,3 +23,23 @@ test("logo link navigates to homepage", async ({ page }) => {
   await page.getByRole("link", { name: "Andrew Gilliland" }).click();
   await expect(page).toHaveURL("/");
 });
+
+test("marks the current section in the main navigation", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/articles");
+  const nav = page.getByRole("navigation", { name: "Main" }).last();
+  await expect(nav.getByRole("link", { name: "Articles" })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+  await expect(nav.getByRole("link", { name: "Home" })).not.toHaveAttribute(
+    "aria-current",
+  );
+
+  await page.goto("/about/resume");
+  await expect(
+    page.getByRole("navigation", { name: "Main" }).last().getByRole("link", {
+      name: "About",
+    }),
+  ).toHaveAttribute("aria-current", "true");
+});
