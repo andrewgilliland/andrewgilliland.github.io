@@ -2,7 +2,6 @@
 import Container from "./Container.astro";
 import type { Page } from "@/types";
 import { navState } from "@/lib/navigation";
-import colors from "tailwindcss/colors";
 
 interface Props {
   pages: Page[];
@@ -11,12 +10,6 @@ interface Props {
 const { pages } = Astro.props;
 const currentPath = Astro.url.pathname;
 const stateFor = (href: string) => navState(href, currentPath);
-
-const pink = colors.pink["300"];
-const emerald = colors.emerald["300"];
-const yellow = colors.yellow["300"];
-const cyan = colors.cyan["300"];
-const gradientStyle = `linear-gradient(to bottom right, ${pink}, ${pink} 30%, ${emerald} 30%, ${emerald} 50%, ${yellow} 50%, ${yellow} 70%, ${cyan} 70%, ${cyan})`;
 ---
 
 <div
@@ -24,12 +17,7 @@ const gradientStyle = `linear-gradient(to bottom right, ${pink}, ${pink} 30%, ${
 >
   <Container class="flex items-center justify-between">
     <a href="/" aria-label="Andrew Gilliland - Home">
-      <span
-        class="header-heading text-2xl font-bold"
-        style={`background-image: ${gradientStyle}`}
-      >
-        Andrew Gilliland
-      </span>
+      <span class="header-heading text-2xl font-bold"> Andrew Gilliland </span>
     </a>
     <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
       <svg

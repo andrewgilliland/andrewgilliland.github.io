@@ -25,7 +25,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Site name: the neon accents in diagonal bands. */
 .header-heading {
+  background-image: linear-gradient(
+    to bottom right,
+    theme("colors.neon.pink"),
+    theme("colors.neon.pink") 30%,
+    theme("colors.neon.emerald") 30%,
+    theme("colors.neon.emerald") 50%,
+    theme("colors.neon.yellow") 50%,
+    theme("colors.neon.yellow") 70%,
+    theme("colors.neon.cyan") 70%,
+    theme("colors.neon.cyan")
+  );
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
