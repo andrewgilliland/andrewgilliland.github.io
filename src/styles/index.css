@@ -301,3 +301,22 @@ html {
     --neo-grow: calc(var(--neo-offset, 8px) * -1);
   }
 }
+
+/* Page transitions: a quick cross-fade between pages (no JavaScript), the
+   header holds still, and an article card's title morphs into the
+   article's heading. Browsers without support navigate as before. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+}
+
+::view-transition-group(*) {
+  animation-duration: 250ms;
+  animation-timing-function: ease-out;
+}
