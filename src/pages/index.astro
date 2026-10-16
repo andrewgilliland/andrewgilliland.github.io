@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import BentoTile from "@/components/home/BentoTile.astro";
 import ColorDivider from "@/components/ColorDivider.astro";
+import Container from "@/components/Container.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 import { projects } from "@/data/projects";
 import { getCollection } from "astro:content";
@@ -37,8 +38,8 @@ const eyebrow = "font-mono text-xs uppercase tracking-[0.2em]";
 ---
 
 <BaseLayout>
-  <div
-    class="mx-auto grid w-full max-w-6xl auto-rows-[minmax(10rem,auto)] grid-cols-1 gap-6 px-6 py-14 md:grid-cols-4 md:px-8"
+  <Container
+    class="grid auto-rows-[minmax(10rem,auto)] grid-cols-1 gap-6 py-14 md:grid-cols-4"
   >
     <BentoTile
       shadow="pink"
@@ -157,5 +158,5 @@ const eyebrow = "font-mono text-xs uppercase tracking-[0.2em]";
         </BentoTile>
       ))
     }
-  </div>
+  </Container>
 </BaseLayout>
