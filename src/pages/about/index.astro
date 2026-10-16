@@ -1,9 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Block from "@/components/Block.astro";
-import SectionHeader from "@/components/SectionHeader.astro";
-import TechCard from "@/components/TechCard.astro";
+import BentoTile from "@/components/home/BentoTile.astro";
+import Container from "@/components/Container.astro";
+import PageHeader from "@/components/PageHeader.astro";
 import gusImg from "@/images/gus-christmas-1.jpeg";
 import hankImg from "@/images/hank-kitchen-1.jpeg";
 import hannahAndrewImg from "@/images/hannah-andrew-1.jpeg";
@@ -27,123 +27,156 @@ const techGroups = [
     items: ["Swift", "UIKit", "SwiftUI", "CoreML", "ARKit", "RealityKit"],
   },
 ];
+const techShadows = ["pink", "emerald", "yellow", "cyan"] as const;
+// Full class names so Tailwind can see them.
+const markers = [
+  "marker:text-neon-pink",
+  "marker:text-neon-emerald",
+  "marker:text-neon-yellow",
+  "marker:text-neon-cyan",
+];
+
+const photo =
+  "relative overflow-hidden border-2 border-neutral-50 aspect-[4/5] md:aspect-auto";
+const photoImg = "h-full w-full object-cover";
+const caption =
+  "absolute bottom-3 left-3 border-2 border-neutral-950 px-2.5 py-1 font-mono text-sm font-semibold text-neutral-950";
 ---
 
 <BaseLayout title="About - Andrew Gilliland">
-  <div class="mx-auto mt-14 min-h-screen w-full max-w-3xl px-8">
-    <SectionHeader title="About" />
-    <div class="mt-10 columns-1 gap-8 lg:columns-2">
-      <div
-        class="mb-8 flex break-inside-avoid items-center rounded-2xl border border-white bg-black px-4 py-10 md:p-10"
-      >
-        <h3 class="text-4xl font-medium text-white md:text-5xl">
+  <Container class="min-h-screen pb-14">
+    <PageHeader title="About" eyebrow="Software engineer · Bloomington, IL" />
+
+    <div
+      class="grid auto-rows-[minmax(10rem,auto)] grid-cols-2 gap-6 md:grid-cols-4"
+    >
+      <BentoTile shadow="cyan" fill="pink" class="col-span-2 justify-center">
+        <h2 class="text-4xl font-bold leading-none md:text-5xl">
           Developer.<br />Builder.<br />Learner.
-        </h3>
-      </div>
-      <div
-        class="mb-8 flex break-inside-avoid items-center justify-center rounded-2xl border border-white bg-black p-8 lg:px-12 lg:py-10"
+        </h2>
+      </BentoTile>
+
+      <figure
+        class={`${photo} shadow-[8px_8px_0_0_theme(colors.neon.yellow)] md:row-span-2`}
       >
-        <div class="relative">
-          <Image
-            class="mx-auto h-auto w-full rounded-full object-cover"
-            src={gusImg}
-            width={1128}
-            height={1410}
-            alt="Gus the Cat"
-          />
-          <div
-            class="absolute -top-4 left-0 rounded-2xl border border-white bg-black px-6 py-4 sm:-left-8 sm:px-8"
-          >
-            <p class="m-0 text-xl font-medium text-white">Gus</p>
-          </div>
-        </div>
-      </div>
-      <div
-        class="mb-8 break-inside-avoid rounded-2xl border border-white bg-black px-6 py-8 md:px-10 md:py-10"
+        <Image
+          class={photoImg}
+          src={gusImg}
+          width={1128}
+          height={1410}
+          alt="Gus the Cat"
+        />
+        <figcaption class={`${caption} bg-neon-yellow`}>Gus</figcaption>
+      </figure>
+
+      <figure
+        class={`${photo} shadow-[8px_8px_0_0_theme(colors.neon.emerald)] md:row-span-2`}
       >
-        <p class="text-base leading-relaxed text-white">
+        <Image
+          class={photoImg}
+          src={hankImg}
+          width={1128}
+          height={1410}
+          alt="Hank the Dog"
+        />
+        <figcaption class={`${caption} bg-neon-emerald`}>Hank</figcaption>
+      </figure>
+
+      <BentoTile shadow="emerald" class="col-span-2 justify-center">
+        <p class="text-lg leading-relaxed text-neutral-200">
           Community-taught software engineer who learned everything the hard
           way, one Stack Overflow rabbit hole at a time. He loves digging into
           new ideas, untangling hard problems, and making things that actually
           ship. When he&apos;s not pushing commits, he&apos;s organizing meetups
           for <a
-            class="text-emerald-400 hover:underline"
+            class="font-semibold text-neon-emerald underline decoration-2 underline-offset-4 hover:text-neon-cyan"
             href="https://www.blono.dev/">Bloomington-Normal Developers</a
           >, because talking about code is almost as fun as writing it.
         </p>
-      </div>
-      <div
-        class="mb-8 flex break-inside-avoid items-center justify-center rounded-2xl border border-white bg-black p-8 lg:px-12 lg:py-10"
-      >
-        <div class="relative">
-          <Image
-            class="mx-auto h-auto w-full rounded-full object-cover"
-            src={hankImg}
-            width={1128}
-            height={1410}
-            alt="Hank the Dog"
-          />
-          <div
-            class="absolute -bottom-2 left-0 rounded-2xl border border-white bg-black px-6 py-4 sm:-left-8 sm:px-6"
-          >
-            <p class="m-0 text-xl font-medium text-white">Hank</p>
-          </div>
-        </div>
-      </div>
-      <div class="mb-8 grid break-inside-avoid grid-cols-2 gap-8">
-        <div
-          class="flex items-center justify-center rounded-2xl border border-white bg-black p-4"
-        >
-          <Image
-            class="h-auto w-full rounded-xl object-cover"
-            src={hannahAndrewImg}
-            width={496}
-            height={620}
-            alt="Hannah and Andrew"
-          />
-        </div>
-        <div
-          class="flex items-center justify-center rounded-2xl border border-white bg-black p-4"
-        >
-          <Image
-            class="h-auto w-full rounded-xl object-cover"
-            src={bernieImg}
-            width={496}
-            height={620}
-            alt="Bernie the Cat"
-          />
-        </div>
-      </div>
-      <div
-        class="mb-8 flex break-inside-avoid items-center rounded-2xl border border-white bg-black px-4 py-10 md:p-10"
-      >
-        <h3 class="text-4xl font-medium text-white md:text-5xl">
+      </BentoTile>
+
+      <figure class={`${photo} shadow-[8px_8px_0_0_theme(colors.neon.pink)]`}>
+        <Image
+          class={photoImg}
+          src={hannahAndrewImg}
+          width={496}
+          height={620}
+          alt="Hannah and Andrew"
+        />
+      </figure>
+
+      <figure class={`${photo} shadow-[8px_8px_0_0_theme(colors.neon.cyan)]`}>
+        <Image
+          class={photoImg}
+          src={bernieImg}
+          width={496}
+          height={620}
+          alt="Bernie the Cat"
+        />
+        <figcaption class={`${caption} bg-neon-cyan`}>Bernie</figcaption>
+      </figure>
+
+      <BentoTile shadow="pink" fill="cyan" class="col-span-2 justify-center">
+        <h2 class="text-4xl font-bold leading-none md:text-5xl">
           Cats, code,<br />and Yacht Rock.
-        </h3>
-      </div>
-      <div
-        class="mb-8 break-inside-avoid rounded-2xl border border-white bg-black px-6 py-8 md:px-10 md:py-10"
+        </h2>
+      </BentoTile>
+
+      <BentoTile
+        shadow="yellow"
+        class="col-span-2 justify-center md:col-span-3"
       >
-        <p class="text-base leading-relaxed text-white">
+        <p class="text-lg leading-relaxed text-neutral-200">
           Away from the keyboard he&apos;s usually grilling something, building
           something out of wood, or pretending his home projects have a
           deadline. Downtime means hanging with his fiancé Hannah, a dog named
           Hank who thinks he&apos;s a person, and two cats, Gus and Bernie, who
           are definitely in charge. Soundtrack: strictly Yacht Rock.
         </p>
-      </div>
-    </div>
+      </BentoTile>
 
-    <div class="mt-8 columns-1 gap-8 lg:columns-2">
+      <BentoTile
+        href="/about/resume"
+        shadow="pink"
+        fill="yellow"
+        class="col-span-2 justify-between md:col-span-1"
+      >
+        <span class="font-mono text-xs uppercase tracking-[0.2em]">
+          Experience
+        </span>
+        <span class="mt-6 flex items-center justify-between gap-3">
+          <span class="text-3xl font-bold">Resume</span>
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </span>
+      </BentoTile>
+
       {
-        techGroups.map((group) => (
-          <TechCard title={group.title} items={group.items} />
+        techGroups.map((group, index) => (
+          <BentoTile
+            shadow={techShadows[index % techShadows.length]}
+            class="col-span-2 lg:col-span-1"
+          >
+            <h2 class="text-xl font-bold">{group.title}</h2>
+            <ul
+              class={`mt-4 list-[square] space-y-1.5 pl-5 text-neutral-300 ${markers[index % markers.length]}`}
+            >
+              {group.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </BentoTile>
         ))
       }
     </div>
-
-    <a href="/about/resume">
-      <Block className="mt-8 h-12 w-24 bg-pink-500"> Resume </Block>
-    </a>
-  </div>
+  </Container>
 </BaseLayout>
