@@ -4,6 +4,8 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx,astro}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx,astro}",
     "./src/layouts/**/*.{js,ts,jsx,tsx,mdx,astro}",
+    // Data files carry class names too (e.g. project logo sizes).
+    "./src/data/**/*.{js,ts}",
   ],
   theme: {
     extend: {
