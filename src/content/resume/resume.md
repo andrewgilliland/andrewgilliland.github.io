@@ -5,7 +5,7 @@ date: "2026-10-15"
 
 ### Professional Summary
 
-Software engineer with about five years of professional experience building full-stack web, mobile, and cloud applications. I design and build multi-tenant platforms on AWS, from infrastructure and CI/CD through Python and TypeScript services and React front ends, and have built augmented reality and machine learning mobile apps for agricultural research and development. I work in a spec-driven, test-first way and use AI coding agents such as Claude Code, with clear review and verification gates, to deliver faster without lowering the bar. I also organize Bloomington-Normal Developers, a local community for software engineers.
+Software engineer who builds full-stack web, mobile, and cloud applications. I design and build multi-tenant platforms on AWS, from infrastructure and CI/CD through Python and TypeScript services and React front ends. I contributed to the launch of Manchester United's official hospitality storefront and built the foundation of the platform behind it, and I have shipped augmented reality and machine learning mobile apps for agricultural research and development. I work in a spec-driven, test-first way and use AI coding agents such as Claude Code, with clear review and verification gates, to deliver faster without lowering the bar. I also organize Bloomington-Normal Developers, a local community for software engineers.
 
 ### Technical Skills
 
