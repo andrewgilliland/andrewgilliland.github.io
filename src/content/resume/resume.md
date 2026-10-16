@@ -22,7 +22,8 @@ Software engineer with about five years of professional experience building full
 
 **Full Stack Engineer** · Elevate · Remote · August 2025 – Present
 
-- Built the foundation of Elevate's multi-tenant Experiences Platform for premium sports and entertainment hospitality, including its Manchester United partnership, from repository structure and AWS architecture through production support.
+- Contributed to the launch of Manchester United's official hospitality storefront ([hospitality.manutd.com](https://hospitality.manutd.com)): ran the production cutover from a prelaunch page to the full server-rendered store using CloudFront Functions and cache invalidation, and hardened the payments API's cross-origin policy with per-environment allowlists in CDK so checkout worked from the live domain.
+- Built the foundation of Elevate's multi-tenant Experiences Platform for premium sports and entertainment hospitality, from repository structure and AWS architecture through production support.
 - Designed AWS infrastructure in CDK (Lambda, API Gateway, Cognito, CloudFront, RDS PostgreSQL) across sandbox, dev, staging, and production, with GitHub Actions pipelines that promote releases from dev to staging to production.
 - Built Python and FastAPI services on Lambda and a React and TypeScript operations app for inventory, package creation, ticket assignment, pricing, and checkout, moving sorting and filtering to the server and consolidating reads to reduce API traffic.
 - Enforced tenant isolation with Cognito account scoping, project-level access checks in the API, and role-based permissions in the UI.
