@@ -16,6 +16,7 @@ module.exports = {
       // neutral-950 text, never white.
       colors: {
         neon: {
+          bg: "#0a0a0a",
           surface: "#171717",
           pink: "#ec4899",
           emerald: "#6ee7b7",
