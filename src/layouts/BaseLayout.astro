@@ -16,6 +16,8 @@ interface Props {
   image?: string;
   type?: "website" | "article";
   publishedTime?: string;
+  /** Reading pages skip the dot-grid background to keep text calm. */
+  plain?: boolean;
 }
 
 const {
@@ -24,6 +26,7 @@ const {
   image = shareImageUrl(shareImageIds.default),
   type = "website",
   publishedTime,
+  plain = false,
 } = Astro.props;
 
 const canonicalURL = Astro.url.href;
@@ -99,7 +102,12 @@ const canonicalURL = Astro.url.href;
       });
     </script>
     <Navbar />
-    <main class="flex min-h-screen flex-col bg-neon-bg pb-10">
+    <main
+      class:list={[
+        "flex min-h-screen flex-col bg-neon-bg pb-10",
+        !plain && "dot-grid",
+      ]}
+    >
       <slot />
     </main>
     <Footer />
