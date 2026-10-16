@@ -2,46 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import CardLink from "@/components/CardLink.astro";
-
-interface Project {
-  title: string;
-  description: string;
-  href: string;
-  logo?: string;
-  logoAlt?: string;
-  logoWidth?: number;
-  logoHeight?: number;
-  logoClass?: string;
-}
-
-const projects: Project[] = [
-  {
-    title: "Manchester United Hospitality",
-    description:
-      "The official Manchester United hospitality storefront, built by Elevate. I worked on the launch, from the production go-live cutover to the payments and catalogue APIs behind checkout.",
-    href: "/projects/manchester-united-hospitality",
-    logo: "/projects/manchester-united-hospitality-logo.webp",
-    // The partnership lockup is wide, so it keeps its aspect ratio.
-    logoAlt: "Manchester United and Elevate logos",
-    logoWidth: 600,
-    logoHeight: 128,
-    logoClass: "h-12 w-auto",
-  },
-  {
-    title: "SmartScout",
-    description:
-      "Precision Planting SmartScout is an app that uses machine vision and augmented reality to automatically assess emergence and plant spacing in a 3D space.",
-    href: "/projects/smartscout",
-    logo: "/projects/smartscout-icon-1.webp",
-  },
-  {
-    title: "blono.dev",
-    description:
-      "blono.dev is a website for Bloomington-Normal Developers, a local developer community in Central Illinois. Built with Next.js and Tailwind CSS.",
-    href: "/projects/blono-dev",
-    logo: "/projects/blono-dev-icon-1.svg",
-  },
-];
+import { projects } from "@/data/projects";
 ---
 
 <BaseLayout title="Projects - Andrew Gilliland">

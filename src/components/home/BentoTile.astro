@@ -1,0 +1,54 @@
+---
+type Accent = "pink" | "emerald" | "yellow" | "cyan";
+
+interface Props {
+  /** Colour of the offset shadow. */
+  shadow: Accent;
+  /** Fills the tile with an accent; text switches to near-black for contrast. */
+  fill?: Accent;
+  /** Renders the tile as a link when set. */
+  href?: string;
+  /** Accessible name when the tile is a section. */
+  label?: string;
+  class?: string;
+}
+
+const { shadow, fill, href, label, class: className = "" } = Astro.props;
+
+// Full class names so Tailwind can see them.
+const shadows: Record<Accent, string> = {
+  pink: "shadow-[8px_8px_0_0_theme(colors.neon.pink)]",
+  emerald: "shadow-[8px_8px_0_0_theme(colors.neon.emerald)]",
+  yellow: "shadow-[8px_8px_0_0_theme(colors.neon.yellow)]",
+  cyan: "shadow-[8px_8px_0_0_theme(colors.neon.cyan)]",
+};
+const fills: Record<Accent, string> = {
+  pink: "bg-neon-pink text-neutral-950",
+  emerald: "bg-neon-emerald text-neutral-950",
+  yellow: "bg-neon-yellow text-neutral-950",
+  cyan: "bg-neon-cyan text-neutral-950",
+};
+
+const classes = [
+  "flex flex-col border-2 border-neutral-50 p-6",
+  fill ? fills[fill] : "bg-neon-surface text-neutral-50",
+  shadows[shadow],
+  href &&
+    "transition-transform motion-safe:hover:-translate-x-1 motion-safe:hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+{
+  href ? (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <section class={classes} aria-label={label}>
+      <slot />
+    </section>
+  )
+}

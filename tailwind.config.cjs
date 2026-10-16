@@ -11,6 +11,18 @@ module.exports = {
         brand: ["var(--font-space-grotesk)"],
         mono: ["var(--font-jetbrains-mono)"],
       },
+      // Neon brutalist palette (docs/design-inspiration.md, direction 1).
+      // Accent text on dark surfaces passes WCAG AA; on accent fills use
+      // neutral-950 text, never white.
+      colors: {
+        neon: {
+          surface: "#171717",
+          pink: "#ec4899",
+          emerald: "#6ee7b7",
+          yellow: "#fde047",
+          cyan: "#67e8f9",
+        },
+      },
       keyframes: {
         marquee: {
           from: { transform: "translateX(0)" },

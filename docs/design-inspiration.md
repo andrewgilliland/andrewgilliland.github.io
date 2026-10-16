@@ -254,6 +254,12 @@ Research for a visual redesign of andrewgilliland.dev. The content stays the sam
 
 ---
 
+## Decision (2026-10-16)
+
+- **Direction:** Direction 1, neon brutalist.
+- **Home page:** the "bento board" layout. It was chosen over a "sticker sheet" layout (big hero, topic marquee, full-width article rows) and a "disciplined split" layout (monochrome, sticky intro beside a dated feed). The prototype of all three variants is kept on the branch `feat/neon-brutalist-home-prototype`; open `/?variant=A|B|C` in development.
+- **Implementation:** `src/pages/index.astro` with `src/components/home/BentoTile.astro` and the `neon` colours in `tailwind.config.cjs`. The rest of the site is restyled separately.
+
 ## Design directions
 
 Contrast ratios below are calculated with the WCAG 2.2 relative-luminance formula [W1] and truncated to two decimals, never rounded up. AA requires **4.5:1** for normal text and **3:1** for large text, meaning 18pt/24px, or 14pt/about 18.5px bold [W1]. UI component boundaries and focus indicators need **3:1** [W2]. All fonts listed are OFL-licensed and published on Fontsource; the npm registry shows version 5.3.0 for each [F2].
