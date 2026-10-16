@@ -367,3 +367,15 @@ html {
   animation-duration: 250ms;
   animation-timing-function: ease-out;
 }
+
+/* A faint dot grid behind the page content; tiles cover it, so it only
+   shows in the gaps. The header and footer stay solid. */
+.dot-grid {
+  background-image: radial-gradient(
+    circle,
+    theme("colors.neutral.800") 1px,
+    transparent 1.5px
+  );
+  background-size: 24px 24px;
+  background-position: center top;
+}

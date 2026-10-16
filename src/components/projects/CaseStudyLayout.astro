@@ -17,7 +17,7 @@ interface Props {
 const { title, description, link, linkLabel, techStack } = Astro.props;
 ---
 
-<BaseLayout title={`${title} - Andrew Gilliland`}>
+<BaseLayout title={`${title} - Andrew Gilliland`} plain>
   <Container class="pb-20 pt-14">
     <div class="mx-auto max-w-prose">
       <BackLink href="/projects" label="Back to Projects" />
