@@ -8,7 +8,7 @@ const { href, label } = Astro.props;
 ---
 
 <a
-  class="inline-flex items-center gap-1.5 border-2 border-neutral-50 px-3 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-neutral-50 transition-transform hover:shadow-[3px_3px_0_0_theme(colors.neon.pink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5"
+  class="neo-shadow neo-press inline-flex items-center gap-1.5 border-2 border-neutral-50 px-3 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-neutral-50 [--neo-color:theme(colors.neon.pink)] [--neo-hover:3px] [--neo-offset:0px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50"
   href={href}
 >
   <svg

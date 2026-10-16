@@ -236,8 +236,9 @@ html {
 
 /* Offset shadows that respond to the pointer. Each element sets
    --neo-offset (default 8px), --neo-color (default white), and optionally
-   --neo-hover (lift on hover, default 4px). Lift is registered so it does
-   not inherit into nested elements. */
+   --neo-hover (lift on hover, default 4px). On hover the shadow grows by
+   the lift, so the element rises while its shadow stays planted. Lift and
+   grow are registered so they do not inherit into nested elements. */
 @property --neo-lift {
   syntax: "<length>";
   inherits: false;
@@ -261,6 +262,13 @@ html {
   transition:
     translate 120ms ease-out,
     box-shadow 120ms ease-out;
+}
+
+/* The shadow grows for everyone; the element only moves when motion is OK. */
+@media (hover: hover) {
+  .neo-press:hover {
+    --neo-grow: var(--neo-hover, 4px);
+  }
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
