@@ -68,7 +68,7 @@ describe("ArticleSearch component", () => {
     });
 
     const awsTag = screen.getByRole("button", { name: "aws" });
-    expect(awsTag.className).toContain("border-pink-400");
+    expect(awsTag.getAttribute("aria-pressed")).toBe("true");
     expect(screen.getByRole("button", { name: "Clear search" })).toBeTruthy();
   });
 
@@ -83,7 +83,7 @@ describe("ArticleSearch component", () => {
     });
 
     const awsTag = screen.getByRole("button", { name: "aws" });
-    expect(awsTag.className).toContain("border-pink-400");
+    expect(awsTag.getAttribute("aria-pressed")).toBe("true");
     expect(window.location.search).toContain("tag=aws");
   });
 
@@ -115,11 +115,11 @@ describe("ArticleSearch component", () => {
 
     fireEvent.click(awsTag);
     expect(window.location.search).toContain("tag=aws");
-    expect(awsTag.className).toContain("border-pink-400");
+    expect(awsTag.getAttribute("aria-pressed")).toBe("true");
 
     fireEvent.click(awsTag);
     expect(window.location.search).not.toContain("tag=aws");
-    expect(awsTag.className).toContain("border-white/35");
+    expect(awsTag.getAttribute("aria-pressed")).toBe("false");
     expect(screen.queryByRole("button", { name: "Clear search" })).toBeNull();
   });
 

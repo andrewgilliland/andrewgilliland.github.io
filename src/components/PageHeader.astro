@@ -1,0 +1,25 @@
+---
+import ColorDivider from "./ColorDivider.astro";
+
+interface Props {
+  title: string;
+  /** Short mono line above the title, e.g. a count or a location. */
+  eyebrow?: string;
+}
+
+const { title, eyebrow } = Astro.props;
+---
+
+<header class="pb-10 pt-14">
+  {
+    eyebrow && (
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
+        {eyebrow}
+      </p>
+    )
+  }
+  <h1 class="mt-4 text-5xl font-bold leading-none text-neutral-50 md:text-7xl">
+    {title}
+  </h1>
+  <ColorDivider className="mt-8 h-4 w-full border-2 border-neutral-50" />
+</header>
