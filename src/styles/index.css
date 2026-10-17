@@ -5,31 +5,75 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Balanced headings and no single-word last lines in running text. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  figcaption,
+  blockquote,
+  dd {
+    text-wrap: pretty;
+  }
+}
+
 :root {
   --font-space-grotesk: "Space Grotesk Variable", sans-serif;
   --font-jetbrains-mono: "JetBrains Mono Variable", monospace;
 }
 
-::-moz-selection {
-  /* Code for Firefox */
-  color: theme("colors.white");
-  background: theme("colors.pink.600");
-}
-
+/* Selected text: near-black on neon pink, like the accent tiles. */
 ::selection {
-  color: theme("colors.white");
-  background: theme("colors.pink.600");
+  color: theme("colors.neutral.950");
+  background: theme("colors.neon.pink");
 }
 
 html {
   scroll-behavior: smooth;
+  /* Pink thumb on the page background; inherited by scrolling panels. */
+  scrollbar-color: theme("colors.neon.pink") theme("colors.neon.bg");
 }
 
+/* Site name: the neon accents in diagonal bands. */
 .header-heading {
+  background-image: linear-gradient(
+    to bottom right,
+    theme("colors.neon.pink"),
+    theme("colors.neon.pink") 30%,
+    theme("colors.neon.emerald") 30%,
+    theme("colors.neon.emerald") 50%,
+    theme("colors.neon.yellow") 50%,
+    theme("colors.neon.yellow") 70%,
+    theme("colors.neon.cyan") 70%,
+    theme("colors.neon.cyan")
+  );
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
   display: inline-block;
+}
+
+/* The striped divider under page headers and above the footer. */
+.color-divider {
+  background-image: linear-gradient(
+    -10deg,
+    theme("colors.neon.pink"),
+    theme("colors.neon.pink") 30%,
+    theme("colors.neon.emerald") 30%,
+    theme("colors.neon.emerald") 50%,
+    theme("colors.neon.yellow") 50%,
+    theme("colors.neon.yellow") 70%,
+    theme("colors.neon.cyan") 70%,
+    theme("colors.neon.cyan")
+  );
 }
 
 .header-heading:hover {
@@ -149,4 +193,189 @@ html {
 
 .prose a:hover {
   color: theme("colors.cyan.500");
+}
+
+/* Neon brutalist prose: articles and the resume. */
+.neon-prose a {
+  color: theme("colors.neutral.50");
+  text-decoration-color: theme("colors.neon.pink");
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.neon-prose a:hover {
+  color: theme("colors.neon.cyan");
+}
+
+.neon-prose pre {
+  border-radius: 0;
+  box-shadow: 6px 6px 0 0 theme("colors.neon.cyan");
+}
+
+/* Code blocks get a yellow language chip in the top-left corner, made
+   from Shiki's data-language. Plain text blocks stay unlabelled. */
+.neon-prose pre {
+  position: relative;
+}
+
+.neon-prose
+  pre[data-language]:where(
+    :not([data-language="plaintext"], [data-language="text"])
+  ) {
+  padding-top: 2.75rem;
+}
+
+.neon-prose
+  pre[data-language]:where(
+    :not([data-language="plaintext"], [data-language="text"])
+  )::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.125rem 0.625rem;
+  background: theme("colors.neon.yellow");
+  color: theme("colors.neutral.950");
+  font-family: var(--font-jetbrains-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* Short aliases share the full name's label. The :where() above keeps the
+   general rule's specificity low enough for these to win. */
+.neon-prose pre[data-language="ts"]::before {
+  content: "typescript";
+}
+
+.neon-prose pre[data-language="js"]::before {
+  content: "javascript";
+}
+
+.neon-prose pre[data-language="sh"]::before,
+.neon-prose pre[data-language="shell"]::before {
+  content: "bash";
+}
+
+.neon-prose :not(pre) > code {
+  background: theme("colors.neon.surface");
+  border: 1px solid theme("colors.neutral.700");
+  border-radius: 0;
+}
+
+.neon-prose blockquote {
+  border-inline-start-color: theme("colors.neon.yellow");
+}
+
+.resume-body li::marker {
+  color: theme("colors.neon.pink");
+}
+
+/* Resume section headings read as accent chips. */
+.resume-body h3 {
+  display: inline-block;
+  margin-top: 3rem;
+  padding: 0.25rem 0.75rem;
+  border: 2px solid theme("colors.neutral.950");
+  background: theme("colors.neon.pink");
+  box-shadow: 4px 4px 0 0 theme("colors.neon.cyan");
+  color: theme("colors.neutral.950");
+  font-family: var(--font-jetbrains-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.resume-body > h3:first-child {
+  margin-top: 0;
+}
+
+/* Role lines ("**Title** · Company · Dates") lead each job. */
+.resume-body p > strong:first-child {
+  color: theme("colors.neon.yellow");
+  font-size: 1.125em;
+}
+
+/* Offset shadows that respond to the pointer. Each element sets
+   --neo-offset (default 8px), --neo-color (default white), and optionally
+   --neo-hover (lift on hover, default 4px). On hover the shadow grows by
+   the lift, so the element rises while its shadow stays planted. Lift and
+   grow are registered so they do not inherit into nested elements. */
+@property --neo-lift {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --neo-grow {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.neo-shadow {
+  box-shadow: calc(var(--neo-offset, 8px) + var(--neo-grow))
+    calc(var(--neo-offset, 8px) + var(--neo-grow)) 0 0
+    var(--neo-color, theme("colors.neutral.50"));
+  translate: calc(var(--neo-lift) * -1) calc(var(--neo-lift) * -1);
+}
+
+.neo-press {
+  transition:
+    translate 120ms ease-out,
+    box-shadow 120ms ease-out;
+}
+
+/* The shadow grows for everyone; the element only moves when motion is OK. */
+@media (hover: hover) {
+  .neo-press:hover {
+    --neo-grow: var(--neo-hover, 4px);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .neo-press:hover {
+    --neo-lift: var(--neo-hover, 4px);
+  }
+}
+
+/* Pressed: the element slides into its shadow. */
+@media (prefers-reduced-motion: no-preference) {
+  .neo-press:active {
+    --neo-lift: calc(var(--neo-offset, 8px) * -1);
+    --neo-grow: calc(var(--neo-offset, 8px) * -1);
+  }
+}
+
+/* Page transitions: a quick cross-fade between pages (no JavaScript), the
+   header holds still, and an article card's title morphs into the
+   article's heading. Browsers without support navigate as before. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+}
+
+::view-transition-group(*) {
+  animation-duration: 250ms;
+  animation-timing-function: ease-out;
+}
+
+/* A faint dot grid behind the page content; tiles cover it, so it only
+   shows in the gaps. The header and footer stay solid. */
+.dot-grid {
+  background-image: radial-gradient(
+    circle,
+    theme("colors.neutral.800") 1px,
+    transparent 1.5px
+  );
+  background-size: 24px 24px;
+  background-position: center top;
 }

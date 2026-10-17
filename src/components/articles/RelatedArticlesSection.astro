@@ -8,23 +8,21 @@ interface Props {
 }
 
 const { articles } = Astro.props as Props;
+const accents = ["cyan", "emerald", "yellow"] as const;
 ---
 
-{
-  articles.length > 0 && (
-    <section class="mt-12 border-t border-white/20 pt-10">
-      <h2 class="mb-6 text-2xl text-white">Related Articles</h2>
-      <ul class="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
-        {articles.map((article) => (
-          <ArticleListItemLink
-            href={`/articles/${toSlug(article.id)}`}
-            title={article.data.title}
-            date={article.data.date}
-            headingTag="h3"
-            listItemClass="rounded-md border border-gray-700 p-4"
-          />
-        ))}
-      </ul>
-    </section>
-  )
-}
+{articles.length > 0 && (
+  <section class="border-t-2 border-neutral-50 pt-10">
+    <h2 class="mb-6 text-2xl font-bold text-neutral-50">Related Articles</h2>
+    <ul class="flex flex-col gap-5">
+      {articles.map((article, index) => (
+        <ArticleListItemLink
+          href={`/articles/${toSlug(article.id)}`}
+          title={article.data.title}
+          date={article.data.date}
+          accent={accents[index % accents.length]}
+        />
+      ))}
+    </ul>
+  </section>
+)}

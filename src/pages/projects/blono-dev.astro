@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import ColorDivider from "@/components/ColorDivider.astro";
+import CaseStudyLayout from "@/components/projects/CaseStudyLayout.astro";
+import CaseStudySection from "@/components/projects/CaseStudySection.astro";
 import blonoDev1 from "@/images/blono-dev-1.png";
 
 const title = "blono.dev";
@@ -20,54 +20,25 @@ const features = [
 const techStack = ["TypeScript", "React", "Next.js", "Tailwind CSS", "Vercel"];
 ---
 
-<BaseLayout title={`${title} - Andrew Gilliland`}>
-  <div class="px-8">
-    <section class="mx-auto mt-20 max-w-[60ch]">
-      <h1 class="stroke-white text-3xl font-bold text-gray-100 md:text-4xl">
-        {title}
-      </h1>
-      <p class="mt-10 text-gray-300">{description}</p>
-      <ColorDivider />
-    </section>
+<CaseStudyLayout
+  title={title}
+  description={description}
+  link={link}
+  linkLabel="Visit blono.dev"
+  techStack={techStack}
+>
+  {images.map((src, index) => (
+    <Image
+      src={src}
+      alt={`blono.dev screenshot ${index + 1}`}
+      width={800}
+      class="mt-12 h-auto w-full border-2 border-neutral-50 shadow-[6px_6px_0_0_theme(colors.neon.yellow)]"
+    />
+  ))}
 
-    <section class="mx-auto mt-10 max-w-[60ch]">
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href={link}
-        class="w-full"
-        aria-label="Visit blono.dev"
-      >
-        {
-          images.map((src, index) => (
-            <Image
-              src={src}
-              alt={`blono.dev ${index + 1}`}
-              width={800}
-              height={300}
-            />
-          ))
-        }
-      </a>
-    </section>
+  <CaseStudySection title="Overview">
+    <p>{overview}</p>
+  </CaseStudySection>
 
-    <section class="mx-auto mt-10 max-w-[60ch]">
-      <h2 class="text-2xl font-bold text-gray-100">Overview</h2>
-      <p class="mt-4 text-gray-300">{overview}</p>
-    </section>
-
-    <section class="mx-auto mt-10 max-w-[60ch]">
-      <h2 class="text-2xl font-bold text-gray-100">Features</h2>
-      <ul class="mt-4 list-disc space-y-2 pl-5 text-gray-300">
-        {features.map((feature) => <li>{feature}</li>)}
-      </ul>
-    </section>
-
-    <section class="mx-auto mt-10 max-w-[60ch] pb-20">
-      <h2 class="text-2xl font-bold text-gray-100">Tech Stack</h2>
-      <ul class="mt-4 list-disc space-y-2 pl-5 text-gray-300">
-        {techStack.map((tech) => <li>{tech}</li>)}
-      </ul>
-    </section>
-  </div>
-</BaseLayout>
+  <CaseStudySection title="Features" items={features} />
+</CaseStudyLayout>

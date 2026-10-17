@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { filterArticles, getUniqueTags } from "./ArticleSearch";
+import { filterArticles, getPopularTags, getUniqueTags } from "./ArticleSearch";
 import type { Article } from "../ArticleCard";
 
 const articles: Article[] = [
@@ -145,5 +145,20 @@ describe("getUniqueTags", () => {
 
   it("returns an empty array for an empty article list", () => {
     expect(getUniqueTags([])).toEqual([]);
+  });
+});
+
+describe("getPopularTags", () => {
+  it("returns the most-used tags, breaking ties alphabetically", () => {
+    // aws is used twice; the rest once, so ties fall back to a-z.
+    expect([...getPopularTags(articles, 3)]).toEqual([
+      "aws",
+      "dynamodb",
+      "react",
+    ]);
+  });
+
+  it("returns every tag when the limit exceeds the tag count", () => {
+    expect(getPopularTags(articles, 50).size).toBe(5);
   });
 });

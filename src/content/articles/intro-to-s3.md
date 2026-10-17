@@ -50,16 +50,16 @@ A few things worth knowing upfront:
 
 ## S3 Concepts Worth Knowing
 
-| Concept | What It Is |
-| --- | --- |
-| **Bucket** | A globally unique namespace for storing objects. Buckets are regional - data stays in the region you create them in unless you enable cross-region replication. |
-| **Object** | A file and its metadata stored in S3. An object is identified by its bucket name + key. |
-| **Key** | The full identifier for an object within a bucket: `data/exports/report-2024.csv`. There are no real directories - the `/` is a naming convention. |
-| **Prefix** | The "folder" portion of a key used to group related objects: `logs/2024/`. Prefix filtering is used in lifecycle rules, event notifications, and IAM policies. |
-| **Storage Class** | S3 Standard for frequently accessed data. S3 Standard-IA (Infrequent Access) for data rarely read but still instantly retrievable. S3 Glacier Instant Retrieval, Glacier Flexible Retrieval, and Glacier Deep Archive for long-term archival at progressively lower cost and higher retrieval latency. |
-| **Versioning** | When enabled, S3 retains all previous versions of every object. Deletions create a "delete marker" rather than removing the object. Useful for recovery from accidental overwrites and audit history. |
-| **Lifecycle Rule** | An automated policy that transitions objects between storage classes or permanently deletes them after a set number of days. Define it once and S3 handles the rest. |
-| **Bucket Policy** | A resource-based IAM policy attached to the bucket. Controls who can access it and under what conditions - other AWS accounts, CloudFront via OAC, anonymous public access, etc. |
+| Concept            | What It Is                                                                                                                                                                                                                                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Bucket**         | A globally unique namespace for storing objects. Buckets are regional - data stays in the region you create them in unless you enable cross-region replication.                                                                                                                                        |
+| **Object**         | A file and its metadata stored in S3. An object is identified by its bucket name + key.                                                                                                                                                                                                                |
+| **Key**            | The full identifier for an object within a bucket: `data/exports/report-2024.csv`. There are no real directories - the `/` is a naming convention.                                                                                                                                                     |
+| **Prefix**         | The "folder" portion of a key used to group related objects: `logs/2024/`. Prefix filtering is used in lifecycle rules, event notifications, and IAM policies.                                                                                                                                         |
+| **Storage Class**  | S3 Standard for frequently accessed data. S3 Standard-IA (Infrequent Access) for data rarely read but still instantly retrievable. S3 Glacier Instant Retrieval, Glacier Flexible Retrieval, and Glacier Deep Archive for long-term archival at progressively lower cost and higher retrieval latency. |
+| **Versioning**     | When enabled, S3 retains all previous versions of every object. Deletions create a "delete marker" rather than removing the object. Useful for recovery from accidental overwrites and audit history.                                                                                                  |
+| **Lifecycle Rule** | An automated policy that transitions objects between storage classes or permanently deletes them after a set number of days. Define it once and S3 handles the rest.                                                                                                                                   |
+| **Bucket Policy**  | A resource-based IAM policy attached to the bucket. Controls who can access it and under what conditions - other AWS accounts, CloudFront via OAC, anonymous public access, etc.                                                                                                                       |
 
 ## What It Works With
 

@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import BackLink from "@/components/BackLink.astro";
+import Container from "@/components/Container.astro";
+import PageHeader from "@/components/PageHeader.astro";
 import { getEntry, render } from "astro:content";
 
 const entry = await getEntry("resume", "resume");
@@ -9,17 +12,14 @@ if (!entry) {
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title="Resume - Andrew Gilliland">
-  <div class="px-8">
-    <section class="mx-auto mb-10 mt-20 max-w-[60ch]">
-      <h1
-        class="stroke-white text-3xl font-bold capitalize text-gray-100 md:text-4xl"
-      >
-        Resume
-      </h1>
-      <article class="prose prose-invert mt-10">
+<BaseLayout title="Resume - Andrew Gilliland" plain>
+  <Container class="min-h-screen pb-14 pt-14">
+    <div class="mx-auto max-w-prose">
+      <BackLink href="/about" label="Back to About" />
+      <PageHeader title="Resume" eyebrow="Experience" />
+      <article class="neon-prose resume-body prose prose-invert">
         <Content />
       </article>
-    </section>
-  </div>
+    </div>
+  </Container>
 </BaseLayout>

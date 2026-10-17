@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import SectionHeader from "@/components/SectionHeader.astro";
+import Container from "@/components/Container.astro";
+import PageHeader from "@/components/PageHeader.astro";
 import ArticleSearch from "@/components/react/ArticleSearch";
 import { getCollection } from "astro:content";
 import { toSlug } from "@/lib/slug";
@@ -17,11 +18,15 @@ const articleData = sorted.map((a) => ({
   date: a.data.date.toISOString(),
   tags: a.data.tags,
 }));
+const topicCount = new Set(articles.flatMap((a) => a.data.tags)).size;
 ---
 
 <BaseLayout title="Articles - Andrew Gilliland">
-  <div class="mx-auto mt-14 min-h-screen w-full max-w-3xl px-8">
-    <SectionHeader title="Articles" />
+  <Container class="min-h-screen pb-14">
+    <PageHeader
+      title="Articles"
+      eyebrow={`Writing · ${articles.length} articles · ${topicCount} topics`}
+    />
     <ArticleSearch articles={articleData} client:load />
-  </div>
+  </Container>
 </BaseLayout>

@@ -1,0 +1,145 @@
+---
+import CaseStudyLayout from "@/components/projects/CaseStudyLayout.astro";
+import CaseStudySection from "@/components/projects/CaseStudySection.astro";
+
+const title = "Manchester United Hospitality";
+const description =
+  "The official Manchester United hospitality storefront, built by Elevate as the club's first Official Hospitality Partner. As a software engineer on the launch, I worked on go-live release engineering and the payments and catalogue APIs behind checkout.";
+const link = "https://hospitality.manutd.com";
+const overview =
+  "hospitality.manutd.com sells official matchday hospitality at Old Trafford across the Premier League, the UEFA Champions League, and the Carabao Cup. The site first ran as a prelaunch holding page on its production domain, then switched to the full server-rendered store on launch day. My work centred on making that switch safe and keeping checkout and the event catalogue reliable through launch.";
+const contributions = [
+  "Ran the go-live cutover on the production domain: the prelaunch page sat behind a CloudFront Function gate, and the switch to the full store used CloudFront cache invalidation instead of a separate URL.",
+  "Hardened the payments API's cross-origin policy, replacing a wildcard with per-environment allowlists defined in AWS CDK, so checkout worked from the live domain and could be tested safely in staging.",
+  "Shaped the public API caching strategy so the storefront serves one consistent event catalogue across every competition.",
+  "Built multi-competition reporting so the club's operations team can manage inventory for the Premier League, Champions League, and Carabao Cup.",
+  "Fixed CI/CD environment dispatch and promoted releases from dev to staging to production, and added consent management to the prelaunch page.",
+  "Supported launch day by investigating checkout errors and analysing production logs.",
+];
+const platform =
+  "The storefront runs on Elevate's Experiences Platform, which I helped build from the ground up: a multi-tenant system designed to serve several clients from one codebase. It spans sandbox, dev, staging, and production environments defined in AWS CDK, Python and FastAPI services on Lambda, a React and TypeScript operations app, and tenant isolation enforced in the identity layer, the API, and the UI. Delivery is spec-first, with ADRs and implementation specs, and every change passes automated quality gates and browser regression tests before it is promoted.";
+const techStack = [
+  "TypeScript",
+  "TanStack Start",
+  "React",
+  "Python",
+  "FastAPI",
+  "AWS Lambda",
+  "Amazon API Gateway",
+  "Amazon CloudFront and CloudFront Functions",
+  "AWS CDK",
+  "PostgreSQL",
+  "GitHub Actions",
+];
+---
+
+<CaseStudyLayout
+  title={title}
+  description={description}
+  link={link}
+  linkLabel="Visit hospitality.manutd.com"
+  techStack={techStack}
+>
+  <CaseStudySection title="Overview">
+    <p>{overview}</p>
+  </CaseStudySection>
+
+  <CaseStudySection title="My Contributions" items={contributions} />
+
+  <CaseStudySection title="The Platform Behind It">
+    <p>{platform}</p>
+    <figure class="mt-6">
+      <div class="border-2 border-neutral-50 bg-neon-surface p-4 shadow-[6px_6px_0_0_theme(colors.neon.cyan)]">
+        <svg
+          viewBox="0 0 560 300"
+          role="img"
+          aria-labelledby="architecture-title architecture-desc"
+          class="w-full text-neutral-200"
+        >
+          <title id="architecture-title">Storefront architecture</title>
+          <desc id="architecture-desc">
+            Visitors reach CloudFront, where a CloudFront Function gated the
+            prelaunch page. CloudFront serves the server-rendered TanStack Start
+            storefront, which calls a cached public API and a payments API on
+            Amazon API Gateway. Both APIs run FastAPI on AWS Lambda backed by
+            PostgreSQL. AWS CDK defines every environment.
+          </desc>
+          <defs>
+            <marker
+              id="arrow"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="7"
+              markerHeight="7"
+              orient="auto-start-reverse"
+            >
+              <path d="M0,0 L10,5 L0,10 z" fill="currentColor"></path>
+            </marker>
+          </defs>
+          <g
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-opacity="0.6"
+          >
+            <rect x="10" y="20" width="120" height="56"></rect>
+            <rect x="170" y="20" width="160" height="56"></rect>
+            <rect x="370" y="20" width="180" height="56"></rect>
+            <rect x="170" y="130" width="160" height="56"></rect>
+            <rect x="370" y="130" width="180" height="56"></rect>
+            <rect x="370" y="234" width="180" height="56"></rect>
+            <path d="M130 48 H168" marker-end="url(#arrow)"></path>
+            <path d="M330 48 H368" marker-end="url(#arrow)"></path>
+            <path d="M460 76 V128" marker-end="url(#arrow)"></path>
+            <path d="M460 76 L250 128" marker-end="url(#arrow)"></path>
+            <path d="M250 186 L460 232" marker-end="url(#arrow)"></path>
+            <path d="M460 186 V232" marker-end="url(#arrow)"></path>
+          </g>
+          <g fill="currentColor" font-size="13" text-anchor="middle">
+            <text x="70" y="45">
+              Visitors
+            </text>
+            <text x="70" y="62" font-size="11" opacity="0.7">
+              browser
+            </text>
+            <text x="250" y="45">
+              CloudFront
+            </text>
+            <text x="250" y="62" font-size="11" opacity="0.7">
+              prelaunch gate function
+            </text>
+            <text x="460" y="45">
+              TanStack Start
+            </text>
+            <text x="460" y="62" font-size="11" opacity="0.7">
+              server-rendered store
+            </text>
+            <text x="250" y="155">
+              Payments API
+            </text>
+            <text x="250" y="172" font-size="11" opacity="0.7">
+              API Gateway, CORS allowlist
+            </text>
+            <text x="460" y="155">
+              Public API
+            </text>
+            <text x="460" y="172" font-size="11" opacity="0.7">
+              API Gateway, cached catalogue
+            </text>
+            <text x="460" y="259">
+              FastAPI on Lambda
+            </text>
+            <text x="460" y="276" font-size="11" opacity="0.7">
+              PostgreSQL
+            </text>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="mt-4 font-mono text-xs text-neutral-400">
+        A simplified view of the storefront's path from the edge to the platform
+        APIs. Every environment is defined in AWS CDK.
+      </figcaption>
+    </figure>
+  </CaseStudySection>
+</CaseStudyLayout>

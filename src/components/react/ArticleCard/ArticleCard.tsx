@@ -5,9 +5,12 @@ import {
   strToSeed,
 } from "../../../lib/deterministicShapes";
 import {
+  DARK_SHAPE_STROKE,
   LIGHT_SHAPE_STROKE,
   SHAPE_FILL_COLORS,
 } from "../../../lib/shapeColors";
+import { articleTitleTransitionName } from "../../../lib/slug";
+import { formatArticleDate } from "../../../lib/date";
 
 export type Article = {
   id: string;
@@ -17,9 +20,18 @@ export type Article = {
   tags: string[];
 };
 
+export type Accent = "pink" | "emerald" | "yellow" | "cyan";
+
+// Full class names so Tailwind can see them.
+const SHADOW_COLORS: Record<Accent, string> = {
+  pink: "[--neo-color:theme(colors.neon.pink)]",
+  emerald: "[--neo-color:theme(colors.neon.emerald)]",
+  yellow: "[--neo-color:theme(colors.neon.yellow)]",
+  cyan: "[--neo-color:theme(colors.neon.cyan)]",
+};
+
 type ShapeType = "circle" | "rect" | "triangle" | "diamond";
 const SHAPES: ShapeType[] = ["circle", "rect", "triangle", "diamond"];
-const SHAPE_STROKE = LIGHT_SHAPE_STROKE;
 
 interface ShapeProps {
   type: ShapeType;
@@ -33,9 +45,10 @@ interface ShapeProps {
 function renderShape(
   { type, cx, cy, size, fill, rotate }: ShapeProps,
   key: number,
+  stroke: string,
   style?: React.CSSProperties,
 ) {
-  const shared = { fill, stroke: SHAPE_STROKE, strokeWidth: 2 };
+  const shared = { fill, stroke, strokeWidth: 2 };
   const t = `rotate(${rotate} ${cx} ${cy})`;
   const r = size * 0.2;
 
@@ -78,7 +91,15 @@ function renderShape(
   );
 }
 
-function CardDecoration({ id, hovered }: { id: string; hovered: boolean }) {
+function CardDecoration({
+  id,
+  hovered,
+  stroke,
+}: {
+  id: string;
+  hovered: boolean;
+  stroke: string;
+}) {
   const rng = seededRng(strToSeed(id));
   const rand = (min: number, max: number) => min + rng() * (max - min);
   const pick = <T,>(arr: T[]): T => arr[Math.floor(rng() * arr.length)];
@@ -144,7 +165,7 @@ function CardDecoration({ id, hovered }: { id: string; hovered: boolean }) {
     >
       {shapes.map((s, i) => {
         const { dx, dy } = offsets[i];
-        return renderShape(s, i, {
+        return renderShape(s, i, stroke, {
           transition: "transform 0.3s ease",
           transform: hovered
             ? `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`
@@ -158,9 +179,12 @@ function CardDecoration({ id, hovered }: { id: string; hovered: boolean }) {
 export default function ArticleCard({
   article,
   featured,
+  accent = "pink",
 }: {
   article: Article;
   featured: boolean;
+  /** Colour of the offset shadow. */
+  accent?: Accent;
 }) {
   const [hovered, setHovered] = useState(false);
 
@@ -168,21 +192,35 @@ export default function ArticleCard({
     <article className={featured ? "sm:col-span-2" : ""}>
       <a
         href={`/articles/${article.id}`}
-        className={`relative grid overflow-hidden rounded-lg border border-white bg-black text-white no-underline transition-all duration-200 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[3px_3px_#fff] ${featured ? "min-h-[280px]" : "min-h-[220px]"}`}
+        className={`neo-shadow neo-press relative grid h-full overflow-hidden border-2 border-neutral-50 no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 ${SHADOW_COLORS[accent]} ${
+          featured
+            ? "min-h-[280px] bg-neon-pink text-neutral-950"
+            : "min-h-[220px] bg-neon-surface text-neutral-50"
+        }`}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <CardDecoration id={article.id} hovered={hovered} />
+        <CardDecoration
+          id={article.id}
+          hovered={hovered}
+          stroke={featured ? DARK_SHAPE_STROKE : LIGHT_SHAPE_STROKE}
+        />
         <div className="flex h-full grow flex-col space-y-2 p-6">
-          <h2 className="flex-none text-2xl leading-tight">{article.title}</h2>
+          <h2
+            className={`flex-none pr-6 font-bold leading-tight ${featured ? "text-3xl md:text-4xl" : "text-2xl"}`}
+            style={{
+              viewTransitionName: articleTitleTransitionName(article.id),
+            }}
+          >
+            {article.title}
+          </h2>
           <div className="flex-1" />
-          <div className="flex-none text-sm text-gray-400">
+          <div
+            className={`flex-none font-mono text-xs uppercase tracking-[0.2em] ${featured ? "text-neutral-900" : "text-neutral-400"}`}
+          >
+            {featured && "Latest · "}
             <time dateTime={article.date}>
-              {new Date(article.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {formatArticleDate(article.date)}
             </time>
           </div>
         </div>

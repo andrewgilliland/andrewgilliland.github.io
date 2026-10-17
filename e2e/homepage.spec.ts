@@ -8,12 +8,44 @@ test("renders hero heading and CTA", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Read Articles" })).toBeVisible();
 });
 
-test("renders Browse by Topic marquee", async ({ page }) => {
+test("renders Browse by Topic with links to filtered articles", async ({
+  page,
+}) => {
   await page.goto("/");
-  await expect(page.getByText("Browse by Topic")).toBeVisible();
+  const topics = page.getByRole("region", { name: "Browse by Topic" });
+  await expect(topics.getByText("Browse by Topic")).toBeVisible();
+  const firstTopic = topics.getByRole("link").first();
+  await expect(firstTopic).toHaveAttribute("href", /^\/articles\?q=/);
 });
 
 test("recent articles section is present", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByText("Recent Articles")).toBeVisible();
+});
+
+test("latest article tile opens the newest article", async ({ page }) => {
+  await page.goto("/");
+  const latest = page.getByRole("link", { name: /latest article/i });
+  await expect(latest).toBeVisible();
+  await latest.click();
+  await expect(page).toHaveURL(/\/articles\/.+/);
+});
+
+test("writing tile shows the article count and links to articles", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const writing = page.getByRole("link", { name: /writing \d+ articles/i });
+  await expect(writing).toHaveAttribute("href", "/articles");
+});
+
+test("project tiles link to their case studies", async ({ page }) => {
+  await page.goto("/");
+  await expect(
+    page.getByRole("link", { name: /manchester united hospitality/i }),
+  ).toHaveAttribute("href", "/projects/manchester-united-hospitality");
+  await expect(page.getByRole("link", { name: /smartscout/i })).toHaveAttribute(
+    "href",
+    "/projects/smartscout",
+  );
 });

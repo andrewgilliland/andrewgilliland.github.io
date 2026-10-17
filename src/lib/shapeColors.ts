@@ -1,10 +1,11 @@
 import colors from "tailwindcss/colors";
+import { NEON } from "./neonPalette";
 
 export const SHAPE_FILL_COLORS = [
-  colors.pink[300],
-  colors.cyan[300],
-  colors.emerald[300],
-  colors.yellow[300],
+  NEON.pink,
+  NEON.cyan,
+  NEON.emerald,
+  NEON.yellow,
 ] as const;
 
 export const DARK_SHAPE_STROKE = colors.black;

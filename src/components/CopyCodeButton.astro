@@ -7,10 +7,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: theme("colors.gray.400");
-    background-color: theme("colors.black");
-    border: 1px solid theme("colors.gray.700");
-    border-radius: 0.375rem;
+    color: theme("colors.neutral.300");
+    background-color: theme("colors.neon.bg");
+    border: 2px solid theme("colors.neutral.50");
+    border-radius: 0;
     cursor: pointer;
     opacity: 0;
     transition:
@@ -21,20 +21,25 @@
       translate 0.15s ease;
   }
 
-  pre:hover .copy-code-btn {
+  pre:hover .copy-code-btn,
+  .copy-code-btn:focus-visible {
     opacity: 1;
   }
 
+  .copy-code-btn:focus-visible {
+    outline: 2px solid theme("colors.neutral.50");
+    outline-offset: 2px;
+  }
+
   .copy-code-btn:hover {
-    color: theme("colors.gray.50");
-    border-color: theme("colors.gray.500");
-    box-shadow: 1px 1px 0 0 theme("colors.white");
-    translate: -1px -1px;
+    color: theme("colors.neutral.50");
+    box-shadow: 3px 3px 0 0 theme("colors.neon.pink");
+    translate: -2px -2px;
   }
 
   .copy-code-btn.copied {
-    color: theme("colors.emerald.400");
-    border-color: theme("colors.emerald.400");
+    color: theme("colors.neon.emerald");
+    border-color: theme("colors.neon.emerald");
     box-shadow: none;
     translate: 0 0;
     opacity: 1;

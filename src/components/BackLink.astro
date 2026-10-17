@@ -1,0 +1,25 @@
+---
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<a
+  class="neo-shadow neo-press inline-flex items-center gap-1.5 border-2 border-neutral-50 px-3 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-neutral-50 [--neo-color:theme(colors.neon.pink)] [--neo-hover:3px] [--neo-offset:0px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50"
+  href={href}
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="16"
+    height="16"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="m6 12 6 5v-4h6v-2h-6V7z"></path>
+  </svg>
+  {label}
+</a>
