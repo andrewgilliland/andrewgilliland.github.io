@@ -192,7 +192,7 @@ export default function ArticleCard({
     <article className={featured ? "sm:col-span-2" : ""}>
       <a
         href={`/articles/${article.id}`}
-        className={`neo-shadow neo-press relative grid h-full overflow-hidden border-2 border-neutral-50 no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 ${SHADOW_COLORS[accent]} ${
+        className={`neo-shadow neo-press rise-in relative grid h-full overflow-hidden border-2 border-neutral-50 no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-50 ${SHADOW_COLORS[accent]} ${
           featured
             ? "min-h-[280px] bg-neon-pink text-neutral-950"
             : "min-h-[220px] bg-neon-surface text-neutral-50"

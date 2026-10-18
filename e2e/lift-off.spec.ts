@@ -25,10 +25,22 @@ test("home tiles lift off their shadows one after another", async ({
 test("tiles settle at rest and still lift on hover", async ({ page }) => {
   await page.goto("/");
   const project = page.locator("main a[href^='/projects/']").first();
+  // Bring it fully into view so the scroll-driven rise has settled too.
+  await project.evaluate((el) =>
+    el.scrollIntoView({ block: "center", behavior: "instant" }),
+  );
   await expect
-    .poll(() => project.evaluate((el) => el.getAnimations().length), {
-      timeout: 5000,
-    })
+    .poll(
+      () =>
+        project.evaluate(
+          (el) =>
+            el
+              .getAnimations()
+              .filter((a) => (a as CSSAnimation).animationName === "lift-in")
+              .filter((a) => a.playState !== "finished").length,
+        ),
+      { timeout: 5000 },
+    )
     .toBe(0);
   expect(
     await project.evaluate((el) => getComputedStyle(el).boxShadow),
@@ -46,24 +58,4 @@ test("tiles do not animate with reduced motion", async ({ page }) => {
     (els) => els.filter((el) => el.getAnimations().length > 0).length,
   );
   expect(running).toBe(0);
-});
-
-test("the entrance plays once per visit", async ({ page }) => {
-  const lifting = () =>
-    tiles(page).evaluateAll(
-      (els) =>
-        els.filter((el) =>
-          el
-            .getAnimations()
-            .some((a) => (a as CSSAnimation).animationName === "lift-in"),
-        ).length,
-    );
-
-  await page.goto("/");
-  expect(await lifting()).toBeGreaterThan(0);
-
-  // Back to the home page in the same tab: no entrance this time.
-  await page.goto("/articles");
-  await page.goto("/");
-  expect(await lifting()).toBe(0);
 });

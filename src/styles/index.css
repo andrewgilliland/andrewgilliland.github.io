@@ -502,14 +502,57 @@ html {
   }
 }
 
-/* Set by the inline script on index.astro after the first home page view. */
-:root[data-lift-in-seen] .lift-in > * {
-  animation: none;
-}
-
 @keyframes lift-in {
   from {
     translate: 8px 8px;
+    box-shadow: none;
+  }
+}
+
+/* Home tiles below the fold rise into place as they scroll in: up 32px
+   while the shadow grows in, tied to scroll position. `backwards` applies
+   only before a tile starts entering; once it is fully in view the rise has
+   no effect, so tiles visible on load keep the lift-in entrance. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .lift-in > * {
+      animation-name: lift-in, rise-in;
+      animation-duration: 450ms, auto;
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1), ease-out;
+      animation-fill-mode: backwards;
+      animation-delay: calc(var(--lift-index, 0) * 60ms), 0s;
+    }
+
+    /* Own selector so minifiers cannot fold the timeline into the
+       animation shorthand, which cannot carry one. */
+    .lift-in.lift-in > * {
+      animation-timeline: auto, view();
+      animation-range: normal, entry;
+    }
+  }
+}
+
+/* The same scroll rise for any single element (e.g. article cards), without
+   the home page entrance. Put the class on the element that has the shadow. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .rise-in {
+      animation-name: rise-in;
+      animation-duration: auto;
+      animation-timing-function: ease-out;
+      animation-fill-mode: backwards;
+    }
+
+    .rise-in.rise-in {
+      animation-timeline: view();
+      animation-range: entry;
+    }
+  }
+}
+
+@keyframes rise-in {
+  from {
+    translate: 0 32px;
     box-shadow: none;
   }
 }
