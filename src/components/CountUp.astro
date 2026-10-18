@@ -1,0 +1,20 @@
+---
+// A number that counts up from 0, in CSS only (see .count-up in index.css).
+// The real value stays in the DOM for screen readers and text extraction;
+// the animated copy is decorative.
+interface Props {
+  value: number;
+  class?: string;
+}
+
+const { value, class: className } = Astro.props;
+---
+
+<span class={className}>
+  <span class="sr-only">{value}</span>
+  <span
+    class="count-up"
+    style={`--count-to: ${value}`}
+    aria-hidden="true"
+  ></span>
+</span>

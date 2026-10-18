@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import BentoTile from "@/components/home/BentoTile.astro";
 import ColorDivider from "@/components/ColorDivider.astro";
 import Container from "@/components/Container.astro";
+import CountUp from "@/components/CountUp.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 import { projects } from "@/data/projects";
 import { getCollection } from "astro:content";
@@ -84,7 +85,7 @@ const eyebrow = "font-mono text-xs uppercase tracking-[0.2em]";
 
     <BentoTile href="/articles" shadow="pink" fill="yellow">
       <span class={`${eyebrow} font-semibold`}>Writing</span>
-      <span class="mt-3 text-6xl font-bold">{allArticles.length}</span>
+      <CountUp value={allArticles.length} class="mt-3 text-6xl font-bold" />
       <span class="font-mono text-sm">
         articles · {sortedTags.length} topics
       </span>
