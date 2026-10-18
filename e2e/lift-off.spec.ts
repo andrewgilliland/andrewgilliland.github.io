@@ -47,3 +47,23 @@ test("tiles do not animate with reduced motion", async ({ page }) => {
   );
   expect(running).toBe(0);
 });
+
+test("the entrance plays once per visit", async ({ page }) => {
+  const lifting = () =>
+    tiles(page).evaluateAll(
+      (els) =>
+        els.filter((el) =>
+          el
+            .getAnimations()
+            .some((a) => (a as CSSAnimation).animationName === "lift-in"),
+        ).length,
+    );
+
+  await page.goto("/");
+  expect(await lifting()).toBeGreaterThan(0);
+
+  // Back to the home page in the same tab: no entrance this time.
+  await page.goto("/articles");
+  await page.goto("/");
+  expect(await lifting()).toBe(0);
+});

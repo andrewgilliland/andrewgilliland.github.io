@@ -502,6 +502,11 @@ html {
   }
 }
 
+/* Set by the inline script on index.astro after the first home page view. */
+:root[data-lift-in-seen] .lift-in > * {
+  animation: none;
+}
+
 @keyframes lift-in {
   from {
     translate: 8px 8px;
