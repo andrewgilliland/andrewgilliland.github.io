@@ -379,3 +379,70 @@ html {
   background-size: 24px 24px;
   background-position: center top;
 }
+
+/* Count-up numbers (CountUp.astro), CSS only. Two integers animate from 0
+   and the lower one is shown: --count-time counts on page load, and
+   --count-view counts as the element scrolls into view. Already-visible
+   numbers count on load; ones below the fold count as they arrive. Either
+   way the number is final once the element is fully in view. */
+@property --count-time {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --count-view {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.count-up {
+  --count-time: var(--count-to);
+  --count-view: var(--count-to);
+  counter-reset: count var(--count-to);
+  font-variant-numeric: tabular-nums;
+}
+
+.count-up::after {
+  content: counter(count);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Everywhere: count on page load. */
+  .count-up {
+    counter-reset: count var(--count-time);
+    animation: count-time 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  /* With scroll-driven animations: also count as it scrolls into view, and
+     show whichever count is lower. The timeline sits on its own (more
+     specific) selector so minifiers cannot fold it into the animation
+     shorthand, which cannot carry a timeline. */
+  @supports (animation-timeline: view()) {
+    .count-up {
+      counter-reset: count min(var(--count-time), var(--count-view));
+      animation-name: count-time, count-view;
+      animation-duration: 1.2s, auto;
+      animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1), linear;
+      animation-fill-mode: both;
+    }
+
+    .count-up.count-up {
+      animation-timeline: auto, view();
+      animation-range: normal, entry;
+    }
+  }
+}
+
+@keyframes count-time {
+  from {
+    --count-time: 0;
+  }
+}
+
+@keyframes count-view {
+  from {
+    --count-view: 0;
+  }
+}
