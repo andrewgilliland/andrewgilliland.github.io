@@ -25,10 +25,22 @@ test("home tiles lift off their shadows one after another", async ({
 test("tiles settle at rest and still lift on hover", async ({ page }) => {
   await page.goto("/");
   const project = page.locator("main a[href^='/projects/']").first();
+  // Bring it fully into view so the scroll-driven rise has settled too.
+  await project.evaluate((el) =>
+    el.scrollIntoView({ block: "center", behavior: "instant" }),
+  );
   await expect
-    .poll(() => project.evaluate((el) => el.getAnimations().length), {
-      timeout: 5000,
-    })
+    .poll(
+      () =>
+        project.evaluate(
+          (el) =>
+            el
+              .getAnimations()
+              .filter((a) => (a as CSSAnimation).animationName === "lift-in")
+              .filter((a) => a.playState !== "finished").length,
+        ),
+      { timeout: 5000 },
+    )
     .toBe(0);
   expect(
     await project.evaluate((el) => getComputedStyle(el).boxShadow),
