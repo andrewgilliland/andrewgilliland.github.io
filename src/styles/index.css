@@ -543,6 +543,24 @@ html {
   }
 }
 
+/* The same scroll rise for any single element (e.g. article cards), without
+   the home page entrance. Put the class on the element that has the shadow. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .rise-in {
+      animation-name: rise-in;
+      animation-duration: auto;
+      animation-timing-function: ease-out;
+      animation-fill-mode: backwards;
+    }
+
+    .rise-in.rise-in {
+      animation-timeline: view();
+      animation-range: entry;
+    }
+  }
+}
+
 @keyframes rise-in {
   from {
     translate: 0 32px;

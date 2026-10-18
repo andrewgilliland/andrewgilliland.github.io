@@ -48,3 +48,25 @@ test.describe("on a phone", () => {
     expect((await style(page, lastProject)).rise).toBe(false);
   });
 });
+
+test.describe("articles page on a phone", () => {
+  test.use({ viewport: { width: 375, height: 812 } });
+
+  test("article cards rise into place as they scroll in", async ({ page }) => {
+    await page.goto("/articles", { waitUntil: "networkidle" });
+    const card = "main article:nth-of-type(6) > a";
+    const before = await style(page, card);
+    expect(before.rise).toBe(true);
+    expect(before.translate).toBe("0px 32px");
+
+    await page
+      .locator(card)
+      .evaluate((el) =>
+        el.scrollIntoView({ block: "center", behavior: "instant" }),
+      );
+    await expect
+      .poll(async () => (await style(page, card)).translate)
+      .toMatch(/^(none|0px)$/);
+    expect((await style(page, card)).boxShadow).toMatch(/8px 8px 0px 0px/);
+  });
+});
