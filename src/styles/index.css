@@ -556,3 +556,27 @@ html {
     box-shadow: none;
   }
 }
+
+/* ShapeDecoration.astro: shapes drift slowly on their own loops and scatter
+   when the parent is hovered or focused, like the article cards. */
+.shape-decoration .shape {
+  transition: transform 0.3s ease;
+}
+
+:hover > .shape-decoration .shape,
+:focus-visible > .shape-decoration .shape {
+  transform: translate(var(--dx), var(--dy));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shape-decoration .shape {
+    animation: shape-float var(--float-duration) ease-in-out var(--float-delay)
+      infinite alternate;
+  }
+}
+
+@keyframes shape-float {
+  to {
+    translate: var(--fx) var(--fy);
+  }
+}
