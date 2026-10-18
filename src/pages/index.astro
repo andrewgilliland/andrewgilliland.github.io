@@ -39,19 +39,6 @@ const eyebrow = "font-mono text-xs uppercase tracking-[0.2em]";
 ---
 
 <BaseLayout>
-  <!-- Play the tile entrance once per visit (per browser tab). Runs before
-       the grid is parsed so a repeat visit never starts the animation. -->
-  <script is:inline>
-    try {
-      if (sessionStorage.getItem("lift-in-seen")) {
-        document.documentElement.dataset.liftInSeen = "";
-      } else {
-        sessionStorage.setItem("lift-in-seen", "1");
-      }
-    } catch {
-      // Storage blocked (e.g. some private modes): the entrance just plays.
-    }
-  </script>
   <Container class="lift-in grid auto-rows-[minmax(10rem,auto)] grid-cols-1 gap-6 py-14 md:grid-cols-4">
     <BentoTile
       shadow="pink"
