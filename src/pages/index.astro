@@ -3,6 +3,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import BentoTile from "@/components/home/BentoTile.astro";
 import ColorDivider from "@/components/ColorDivider.astro";
 import Container from "@/components/Container.astro";
+import CountUp from "@/components/CountUp.astro";
+import ShapeDecoration from "@/components/ShapeDecoration.astro";
+import { DARK_SHAPE_STROKE } from "@/lib/shapeColors";
 import FormattedDate from "@/components/FormattedDate.astro";
 import { projects } from "@/data/projects";
 import { getCollection } from "astro:content";
@@ -38,7 +41,7 @@ const eyebrow = "font-mono text-xs uppercase tracking-[0.2em]";
 ---
 
 <BaseLayout>
-  <Container class="grid auto-rows-[minmax(10rem,auto)] grid-cols-1 gap-6 py-14 md:grid-cols-4">
+  <Container class="lift-in grid auto-rows-[minmax(10rem,auto)] grid-cols-1 gap-6 py-14 md:grid-cols-4">
     <BentoTile
       shadow="pink"
       label="Introduction"
@@ -49,7 +52,7 @@ const eyebrow = "font-mono text-xs uppercase tracking-[0.2em]";
           Software engineer · Bloomington, IL
         </p>
         <h1 class="mt-6 text-5xl font-bold leading-none md:text-7xl">
-          Hi, I&apos;m Andrew!
+          Hi, I&apos;m <span class="spring-hover">Andrew!</span>
         </h1>
         <p class="mt-6 text-lg text-neutral-300">
           I&apos;m a software engineer writing about AWS, Python, and building
@@ -62,7 +65,7 @@ const eyebrow = "font-mono text-xs uppercase tracking-[0.2em]";
           Read Articles
         </a>
       </div>
-      <ColorDivider className="mt-10 h-4 w-full border-2 border-neutral-950" />
+      <ColorDivider className="color-divider--slide mt-10 h-4 w-full border-2 border-neutral-950" />
     </BentoTile>
 
     {latest && (
@@ -70,13 +73,14 @@ const eyebrow = "font-mono text-xs uppercase tracking-[0.2em]";
         href={`/articles/${toSlug(latest.id)}`}
         shadow="cyan"
         fill="pink"
-        class="justify-between md:col-span-2"
+        class="relative justify-between overflow-hidden md:col-span-2"
       >
-        <span class={`${eyebrow} font-semibold`}>
+        <ShapeDecoration id={latest.id} stroke={DARK_SHAPE_STROKE} />
+        <span class={`relative ${eyebrow} font-semibold`}>
           Latest article ·{" "}
           <FormattedDate date={latest.data.date} class="font-mono" />
         </span>
-        <h2 class="mt-4 text-3xl font-bold leading-tight">
+        <h2 class="relative mt-4 pr-24 text-3xl font-bold leading-tight">
           {latest.data.title}
         </h2>
       </BentoTile>
@@ -84,7 +88,7 @@ const eyebrow = "font-mono text-xs uppercase tracking-[0.2em]";
 
     <BentoTile href="/articles" shadow="pink" fill="yellow">
       <span class={`${eyebrow} font-semibold`}>Writing</span>
-      <span class="mt-3 text-6xl font-bold">{allArticles.length}</span>
+      <CountUp value={allArticles.length} class="mt-3 text-6xl font-bold" />
       <span class="font-mono text-sm">
         articles · {sortedTags.length} topics
       </span>

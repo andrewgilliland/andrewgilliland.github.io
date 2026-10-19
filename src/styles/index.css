@@ -42,17 +42,19 @@ html {
   scrollbar-color: theme("colors.neon.pink") theme("colors.neon.bg");
 }
 
-/* Site name: the neon accents in diagonal bands. */
+/* Site name: the neon accents in four equal diagonal bands. A "to bottom
+   right" gradient only shows 25%-75% across the middle of any box, so the
+   stops split that range into quarters. */
 .header-heading {
   background-image: linear-gradient(
     to bottom right,
     theme("colors.neon.pink"),
-    theme("colors.neon.pink") 30%,
-    theme("colors.neon.emerald") 30%,
+    theme("colors.neon.pink") 37.5%,
+    theme("colors.neon.emerald") 37.5%,
     theme("colors.neon.emerald") 50%,
     theme("colors.neon.yellow") 50%,
-    theme("colors.neon.yellow") 70%,
-    theme("colors.neon.cyan") 70%,
+    theme("colors.neon.yellow") 62.5%,
+    theme("colors.neon.cyan") 62.5%,
     theme("colors.neon.cyan")
   );
   color: transparent;
@@ -62,23 +64,83 @@ html {
 }
 
 /* The striped divider under page headers and above the footer. */
+/* The colour stripe under page headings, above the footer, and in the home
+   intro (ColorDivider.astro). The stripes are a repeating gradient at -10deg
+   on an inner layer, sized so the pattern repeats exactly once per divider
+   width (100cqw): four equal bands, and every joint a regular slanted edge.
+   A plain angled gradient would cut the outer bands short. */
 .color-divider {
-  background-image: linear-gradient(
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.color-divider::before {
+  /* One period of the pattern along the gradient line; four equal bands. */
+  --band: calc(100cqw * sin(10deg));
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
     -10deg,
-    theme("colors.neon.pink"),
-    theme("colors.neon.pink") 30%,
-    theme("colors.neon.emerald") 30%,
-    theme("colors.neon.emerald") 50%,
-    theme("colors.neon.yellow") 50%,
-    theme("colors.neon.yellow") 70%,
-    theme("colors.neon.cyan") 70%,
-    theme("colors.neon.cyan")
+    theme("colors.neon.pink") 0,
+    theme("colors.neon.pink") calc(var(--band) * 0.25),
+    theme("colors.neon.emerald") calc(var(--band) * 0.25),
+    theme("colors.neon.emerald") calc(var(--band) * 0.5),
+    theme("colors.neon.yellow") calc(var(--band) * 0.5),
+    theme("colors.neon.yellow") calc(var(--band) * 0.75),
+    theme("colors.neon.cyan") calc(var(--band) * 0.75),
+    theme("colors.neon.cyan") var(--band)
   );
 }
 
-.header-heading:hover {
-  animation: spring-bounce 900ms ease forwards;
-  will-change: transform;
+/* The home intro's stripe slides. It makes one pass on load (3s, under
+   WCAG 2.2.2's 5s limit for motion without a pause control) by sliding the
+   layer one period, and loops while its parent is hovered by moving the
+   endlessly repeating background, so it never runs out; leaving pauses it
+   in place. The two animations use different properties, so neither
+   restarts. */
+.color-divider--slide::before {
+  /* One extra period, for the load pass to slide across. */
+  width: 200%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .color-divider--slide::before {
+    animation:
+      stripe-pass 3s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+      stripe-loop 6s linear infinite paused;
+  }
+
+  :hover > .color-divider--slide::before {
+    animation-play-state: running, running;
+  }
+}
+
+@keyframes stripe-pass {
+  to {
+    translate: -50% 0;
+  }
+}
+
+@keyframes stripe-loop {
+  to {
+    background-position-x: -100cqw;
+  }
+}
+
+/* Spring on hover: the site name in the header, and "Andrew!" on the home
+   page. Skipped with reduced motion. */
+.spring-hover {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .header-heading:hover,
+  .spring-hover:hover {
+    animation: spring-bounce 900ms ease forwards;
+    will-change: transform;
+  }
 }
 
 .stroke-black {
@@ -378,4 +440,205 @@ html {
   );
   background-size: 24px 24px;
   background-position: center top;
+}
+
+/* Count-up numbers (CountUp.astro), CSS only. Two integers animate from 0
+   and the lower one is shown: --count-time counts on page load, and
+   --count-view counts as the element scrolls into view. Already-visible
+   numbers count on load; ones below the fold count as they arrive. Either
+   way the number is final once the element is fully in view. */
+@property --count-time {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --count-view {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.count-up {
+  --count-time: var(--count-to);
+  --count-view: var(--count-to);
+  counter-reset: count var(--count-to);
+  font-variant-numeric: tabular-nums;
+}
+
+.count-up::after {
+  content: counter(count);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Everywhere: count on page load. */
+  .count-up {
+    counter-reset: count var(--count-time);
+    animation: count-time 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  /* With scroll-driven animations: also count as it scrolls into view, and
+     show whichever count is lower. The timeline sits on its own (more
+     specific) selector so minifiers cannot fold it into the animation
+     shorthand, which cannot carry a timeline. */
+  @supports (animation-timeline: view()) {
+    .count-up {
+      counter-reset: count min(var(--count-time), var(--count-view));
+      animation-name: count-time, count-view;
+      animation-duration: 1.2s, auto;
+      animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1), linear;
+      animation-fill-mode: both;
+    }
+
+    .count-up.count-up {
+      animation-timeline: auto, view();
+      animation-range: normal, entry;
+    }
+  }
+}
+
+@keyframes count-time {
+  from {
+    --count-time: 0;
+  }
+}
+
+@keyframes count-view {
+  from {
+    --count-view: 0;
+  }
+}
+
+/* Home page entrance: each tile starts pressed into its shadow and lifts
+   off in turn, with a slight overshoot. Tiles only move (never fade in), so
+   the hero paints immediately. `backwards` holds the pressed state only
+   during the delay; afterwards the hover and press effects apply again. */
+@media (prefers-reduced-motion: no-preference) {
+  .lift-in > * {
+    animation: lift-in 450ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    animation-delay: calc(var(--lift-index, 0) * 60ms);
+  }
+
+  .lift-in > :nth-child(2) {
+    --lift-index: 1;
+  }
+
+  .lift-in > :nth-child(3) {
+    --lift-index: 2;
+  }
+
+  .lift-in > :nth-child(4) {
+    --lift-index: 3;
+  }
+
+  .lift-in > :nth-child(5) {
+    --lift-index: 4;
+  }
+
+  .lift-in > :nth-child(6) {
+    --lift-index: 5;
+  }
+
+  .lift-in > :nth-child(7) {
+    --lift-index: 6;
+  }
+
+  .lift-in > :nth-child(8) {
+    --lift-index: 7;
+  }
+
+  .lift-in > :nth-child(9) {
+    --lift-index: 8;
+  }
+
+  .lift-in > :nth-child(10) {
+    --lift-index: 9;
+  }
+
+  .lift-in > :nth-child(11) {
+    --lift-index: 10;
+  }
+
+  .lift-in > :nth-child(12) {
+    --lift-index: 11;
+  }
+}
+
+@keyframes lift-in {
+  from {
+    translate: 8px 8px;
+    box-shadow: none;
+  }
+}
+
+/* Home tiles below the fold rise into place as they scroll in: up 32px
+   while the shadow grows in, tied to scroll position. `backwards` applies
+   only before a tile starts entering; once it is fully in view the rise has
+   no effect, so tiles visible on load keep the lift-in entrance. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .lift-in > * {
+      animation-name: lift-in, rise-in;
+      animation-duration: 450ms, auto;
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1), ease-out;
+      animation-fill-mode: backwards;
+      animation-delay: calc(var(--lift-index, 0) * 60ms), 0s;
+    }
+
+    /* Own selector so minifiers cannot fold the timeline into the
+       animation shorthand, which cannot carry one. */
+    .lift-in.lift-in > * {
+      animation-timeline: auto, view();
+      animation-range: normal, entry;
+    }
+  }
+}
+
+/* The same scroll rise for any single element (e.g. article cards), without
+   the home page entrance. Put the class on the element that has the shadow. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .rise-in {
+      animation-name: rise-in;
+      animation-duration: auto;
+      animation-timing-function: ease-out;
+      animation-fill-mode: backwards;
+    }
+
+    .rise-in.rise-in {
+      animation-timeline: view();
+      animation-range: entry;
+    }
+  }
+}
+
+@keyframes rise-in {
+  from {
+    translate: 0 32px;
+    box-shadow: none;
+  }
+}
+
+/* ShapeDecoration.astro: shapes drift slowly on their own loops and scatter
+   when the parent is hovered or focused, like the article cards. */
+.shape-decoration .shape {
+  transition: transform 0.3s ease;
+}
+
+:hover > .shape-decoration .shape,
+:focus-visible > .shape-decoration .shape {
+  transform: translate(var(--dx), var(--dy));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shape-decoration .shape {
+    animation: shape-float var(--float-duration) ease-in-out var(--float-delay)
+      infinite alternate;
+  }
+}
+
+@keyframes shape-float {
+  to {
+    translate: var(--fx) var(--fy);
+  }
 }
