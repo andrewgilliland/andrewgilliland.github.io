@@ -1,0 +1,34 @@
+/* Brand surfaces: the site name gradient and the dot grid behind board pages. */
+
+/* Site name: the neon accents in four equal diagonal bands. A "to bottom
+   right" gradient only shows 25%-75% across the middle of any box, so the
+   stops split that range into quarters. */
+.header-heading {
+  background-image: linear-gradient(
+    to bottom right,
+    theme("colors.neon.pink"),
+    theme("colors.neon.pink") 37.5%,
+    theme("colors.neon.emerald") 37.5%,
+    theme("colors.neon.emerald") 50%,
+    theme("colors.neon.yellow") 50%,
+    theme("colors.neon.yellow") 62.5%,
+    theme("colors.neon.cyan") 62.5%,
+    theme("colors.neon.cyan")
+  );
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  display: inline-block;
+}
+
+/* A faint dot grid behind the page content; tiles cover it, so it only
+   shows in the gaps. The header and footer stay solid. */
+.dot-grid {
+  background-image: radial-gradient(
+    circle,
+    theme("colors.neutral.800") 1px,
+    transparent 1.5px
+  );
+  background-size: 24px 24px;
+  background-position: center top;
+}
