@@ -3,7 +3,7 @@ import { DECORATION_SIZE, cardDecoration } from "@/lib/cardDecoration";
 
 // An article's corner shapes (the same ones its card shows), drawn in Astro.
 // They drift slowly and scatter when the parent is hovered, in CSS only (see
-// .shape-decoration in index.css). Place it as the first child of a
+// the <style> below). Place it as the first child of a
 // `relative` element.
 interface Props {
   /** Article id; seeds the shapes. */
@@ -43,3 +43,29 @@ const shapes = cardDecoration(id).map(({ element, fill, offset }, i) => ({
     </g>
   ))}
 </svg>
+
+<style>
+  /* ShapeDecoration.astro: shapes drift slowly on their own loops and scatter
+     when the parent is hovered or focused, like the article cards. */
+  .shape-decoration .shape {
+    transition: transform 0.3s ease;
+  }
+
+  :global(:hover) > .shape-decoration .shape,
+  :global(:focus-visible) > .shape-decoration .shape {
+    transform: translate(var(--dx), var(--dy));
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .shape-decoration .shape {
+      animation: shape-float var(--float-duration) ease-in-out
+        var(--float-delay) infinite alternate;
+    }
+  }
+
+  @keyframes shape-float {
+    to {
+      translate: var(--fx) var(--fy);
+    }
+  }
+</style>

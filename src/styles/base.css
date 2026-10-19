@@ -1,0 +1,38 @@
+/* Global base styles: text wrapping, fonts, selection, and scrollbar. */
+
+/* Balanced headings and no single-word last lines in running text. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  figcaption,
+  blockquote,
+  dd {
+    text-wrap: pretty;
+  }
+}
+
+:root {
+  --font-space-grotesk: "Space Grotesk Variable", sans-serif;
+  --font-jetbrains-mono: "JetBrains Mono Variable", monospace;
+}
+
+/* Selected text: near-black on neon pink, like the accent tiles. */
+::selection {
+  color: theme("colors.neutral.950");
+  background: theme("colors.neon.pink");
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Pink thumb on the page background; inherited by scrolling panels. */
+  scrollbar-color: theme("colors.neon.pink") theme("colors.neon.bg");
+}

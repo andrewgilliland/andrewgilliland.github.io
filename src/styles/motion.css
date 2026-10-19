@@ -1,0 +1,167 @@
+/* Motion shared across pages: hover springs, page transitions, and the
+   home tile entrance and scroll rise. All of it is skipped with reduced
+   motion. */
+
+/* Spring on hover: the site name in the header, and "Andrew!" on the home
+   page. Skipped with reduced motion. */
+.spring-hover {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .header-heading:hover,
+  .spring-hover:hover {
+    animation: spring-bounce 900ms ease forwards;
+    will-change: transform;
+  }
+}
+
+@keyframes spring-bounce {
+  0% {
+    transform: scale3d(0.96, 0.96, 1);
+  }
+  20% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+  40% {
+    transform: scale3d(0.98, 0.98, 1);
+  }
+  60% {
+    transform: scale3d(1.05, 1.05, 1);
+  }
+  80% {
+    transform: scale3d(1.01, 1.01, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Page transitions: a quick cross-fade between pages (no JavaScript), the
+   header holds still, and an article card's title morphs into the
+   article's heading. Browsers without support navigate as before. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+}
+
+::view-transition-group(*) {
+  animation-duration: 250ms;
+  animation-timing-function: ease-out;
+}
+
+/* Home page entrance: each tile starts pressed into its shadow and lifts
+   off in turn, with a slight overshoot. Tiles only move (never fade in), so
+   the hero paints immediately. `backwards` holds the pressed state only
+   during the delay; afterwards the hover and press effects apply again. */
+@media (prefers-reduced-motion: no-preference) {
+  .lift-in > * {
+    animation: lift-in 450ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    animation-delay: calc(var(--lift-index, 0) * 60ms);
+  }
+
+  .lift-in > :nth-child(2) {
+    --lift-index: 1;
+  }
+
+  .lift-in > :nth-child(3) {
+    --lift-index: 2;
+  }
+
+  .lift-in > :nth-child(4) {
+    --lift-index: 3;
+  }
+
+  .lift-in > :nth-child(5) {
+    --lift-index: 4;
+  }
+
+  .lift-in > :nth-child(6) {
+    --lift-index: 5;
+  }
+
+  .lift-in > :nth-child(7) {
+    --lift-index: 6;
+  }
+
+  .lift-in > :nth-child(8) {
+    --lift-index: 7;
+  }
+
+  .lift-in > :nth-child(9) {
+    --lift-index: 8;
+  }
+
+  .lift-in > :nth-child(10) {
+    --lift-index: 9;
+  }
+
+  .lift-in > :nth-child(11) {
+    --lift-index: 10;
+  }
+
+  .lift-in > :nth-child(12) {
+    --lift-index: 11;
+  }
+}
+
+@keyframes lift-in {
+  from {
+    translate: 8px 8px;
+    box-shadow: none;
+  }
+}
+
+/* Home tiles below the fold rise into place as they scroll in: up 32px
+   while the shadow grows in, tied to scroll position. `backwards` applies
+   only before a tile starts entering; once it is fully in view the rise has
+   no effect, so tiles visible on load keep the lift-in entrance. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .lift-in > * {
+      animation-name: lift-in, rise-in;
+      animation-duration: 450ms, auto;
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1), ease-out;
+      animation-fill-mode: backwards;
+      animation-delay: calc(var(--lift-index, 0) * 60ms), 0s;
+    }
+
+    /* Own selector so minifiers cannot fold the timeline into the
+       animation shorthand, which cannot carry one. */
+    .lift-in.lift-in > * {
+      animation-timeline: auto, view();
+      animation-range: normal, entry;
+    }
+  }
+}
+
+/* The same scroll rise for any single element (e.g. article cards), without
+   the home page entrance. Put the class on the element that has the shadow. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .rise-in {
+      animation-name: rise-in;
+      animation-duration: auto;
+      animation-timing-function: ease-out;
+      animation-fill-mode: backwards;
+    }
+
+    .rise-in.rise-in {
+      animation-timeline: view();
+      animation-range: entry;
+    }
+  }
+}
+
+@keyframes rise-in {
+  from {
+    translate: 0 32px;
+    box-shadow: none;
+  }
+}
