@@ -15,6 +15,15 @@ updates:
         patterns:
           - "vitest"
           - "@vitest/*"
+      # react-dom requires the exact same react version, so a lone bump of
+      # either fails to install. Keep the React stack in one PR.
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+          - "@astrojs/react"
 
   - package-ecosystem: "github-actions"
     directory: "/"
