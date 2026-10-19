@@ -77,24 +77,40 @@ html {
   background-image: var(--neon-stripes);
 }
 
-/* A divider whose stripes slide: an inner layer twice as wide holds two
-   copies of the stripes and moves left by one copy, so the loop is
-   seamless. It makes one pass on load (3s, under WCAG 2.2.2's 5s limit for
-   unpausable motion) and loops while its parent is hovered; leaving pauses
-   it in place. Two animations on different properties, so neither restarts. */
+/* A divider whose stripes slide. The stripes are a repeating gradient at
+   the same -10deg angle, sized so the pattern repeats exactly once per
+   divider width (100cqw), so every joint is a regular slanted band edge.
+   It makes one pass on load (3s, under WCAG 2.2.2's 5s limit for motion
+   without a pause control) by sliding the layer one period, and loops while
+   its parent is hovered by moving the endlessly repeating background, so it
+   never runs out; leaving pauses it in place. The two animations use
+   different properties, so neither restarts. */
 .color-divider--slide {
   position: relative;
   overflow: hidden;
+  container-type: inline-size;
   background-image: none;
 }
 
 .color-divider--slide::before {
+  /* One period of the pattern along the gradient line. */
+  --band: calc(100cqw * sin(10deg));
   content: "";
   position: absolute;
   inset: 0;
+  /* One extra period, for the load pass to slide across. */
   width: 200%;
-  background-image: var(--neon-stripes);
-  background-size: 50% 100%;
+  background-image: repeating-linear-gradient(
+    -10deg,
+    theme("colors.neon.pink") 0,
+    theme("colors.neon.pink") calc(var(--band) * 0.3),
+    theme("colors.neon.emerald") calc(var(--band) * 0.3),
+    theme("colors.neon.emerald") calc(var(--band) * 0.5),
+    theme("colors.neon.yellow") calc(var(--band) * 0.5),
+    theme("colors.neon.yellow") calc(var(--band) * 0.7),
+    theme("colors.neon.cyan") calc(var(--band) * 0.7),
+    theme("colors.neon.cyan") var(--band)
+  );
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -117,7 +133,7 @@ html {
 
 @keyframes stripe-loop {
   to {
-    transform: translateX(-50%);
+    background-position-x: -100cqw;
   }
 }
 

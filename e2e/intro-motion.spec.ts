@@ -49,3 +49,40 @@ test("the intro stays still with reduced motion", async ({ page }) => {
     expect(await animation(page, name)).toBeNull();
   }
 });
+
+test("the stripe never runs out of colour while it slides", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.mouse.move(0, 0);
+  // Push both animations to their furthest point: pass done, loop at its end.
+  await page.evaluate(() => {
+    for (const a of document.getAnimations()) {
+      const name = (a as CSSAnimation).animationName;
+      if (name === "stripe-pass") a.finish();
+      if (name === "stripe-loop") {
+        a.pause();
+        a.currentTime = Number(a.effect!.getTiming().duration) - 1;
+      }
+      if (name === "lift-in") a.finish();
+    }
+  });
+  const stripe = page.locator(".color-divider--slide");
+  const box = (await stripe.boundingBox())!;
+  const png = await page.screenshot({
+    clip: {
+      x: box.x + box.width - 12,
+      y: box.y + box.height / 2,
+      width: 4,
+      height: 1,
+    },
+  });
+  // The tile's surface is #171717; any stripe colour is far brighter.
+  const { data } = await (
+    await import("sharp")
+  )
+    .default(png)
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  expect(Math.max(data[0], data[1], data[2])).toBeGreaterThan(100);
+});
