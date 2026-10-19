@@ -23,8 +23,28 @@ const MUTED = "#a3a3a3";
 
 const { width: WIDTH, height: HEIGHT } = SHARE_IMAGE_SIZE;
 
-const stripes = (angle: string) =>
-  `linear-gradient(${angle}, ${NEON.pink}, ${NEON.pink} 30%, ${NEON.emerald} 30%, ${NEON.emerald} 50%, ${NEON.yellow} 50%, ${NEON.yellow} 70%, ${NEON.cyan} 70%, ${NEON.cyan})`;
+const stripes = (angle: string, [a, b, c] = [25, 50, 75]) =>
+  `linear-gradient(${angle}, ${NEON.pink}, ${NEON.pink} ${a}%, ${NEON.emerald} ${a}%, ${NEON.emerald} ${b}%, ${NEON.yellow} ${b}%, ${NEON.yellow} ${c}%, ${NEON.cyan} ${c}%, ${NEON.cyan})`;
+
+// An angled gradient's line runs past a box's corners, so evenly spaced
+// stops leave the outer bands short across the box's middle. These stops
+// give four bands of equal width along a horizontal line through the
+// middle of a width x height box (the site's dividers get the same result
+// from a repeating gradient).
+const equalBandStops = (
+  width: number,
+  height: number,
+  degrees: number,
+): [number, number, number] => {
+  const angle = (degrees * Math.PI) / 180;
+  const across = width * Math.abs(Math.sin(angle));
+  const line = across + height * Math.abs(Math.cos(angle));
+  const start = (line - across) / 2;
+  const stop = (k: number) => ((start + (across * k) / 4) / line) * 100;
+  return [stop(1), stop(2), stop(3)];
+};
+
+const STRIPE_BAR = { width: 320, height: 28, degrees: -10 };
 
 type Node = {
   type: string;
@@ -139,16 +159,25 @@ export async function renderShareCard({
                 fontSize: 36,
                 fontWeight: 700,
                 color: "transparent",
-                backgroundImage: stripes("to bottom right"),
+                // "to bottom right" only shows 25%-75% across the middle of
+                // the text, so split that range into quarters.
+                backgroundImage: stripes("to bottom right", [37.5, 50, 62.5]),
                 backgroundClip: "text",
               },
               "Andrew Gilliland",
             ),
             div({
-              width: 320,
-              height: 28,
+              width: STRIPE_BAR.width,
+              height: STRIPE_BAR.height,
               border: `4px solid ${WHITE}`,
-              backgroundImage: stripes("-10deg"),
+              backgroundImage: stripes(
+                `${STRIPE_BAR.degrees}deg`,
+                equalBandStops(
+                  STRIPE_BAR.width,
+                  STRIPE_BAR.height,
+                  STRIPE_BAR.degrees,
+                ),
+              ),
             }),
           ],
         ),

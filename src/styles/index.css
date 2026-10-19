@@ -42,17 +42,19 @@ html {
   scrollbar-color: theme("colors.neon.pink") theme("colors.neon.bg");
 }
 
-/* Site name: the neon accents in diagonal bands. */
+/* Site name: the neon accents in four equal diagonal bands. A "to bottom
+   right" gradient only shows 25%-75% across the middle of any box, so the
+   stops split that range into quarters. */
 .header-heading {
   background-image: linear-gradient(
     to bottom right,
     theme("colors.neon.pink"),
-    theme("colors.neon.pink") 30%,
-    theme("colors.neon.emerald") 30%,
+    theme("colors.neon.pink") 37.5%,
+    theme("colors.neon.emerald") 37.5%,
     theme("colors.neon.emerald") 50%,
     theme("colors.neon.yellow") 50%,
-    theme("colors.neon.yellow") 70%,
-    theme("colors.neon.cyan") 70%,
+    theme("colors.neon.yellow") 62.5%,
+    theme("colors.neon.cyan") 62.5%,
     theme("colors.neon.cyan")
   );
   color: transparent;
@@ -62,44 +64,23 @@ html {
 }
 
 /* The striped divider under page headers and above the footer. */
+/* The colour stripe under page headings, above the footer, and in the home
+   intro (ColorDivider.astro). The stripes are a repeating gradient at -10deg
+   on an inner layer, sized so the pattern repeats exactly once per divider
+   width (100cqw): four equal bands, and every joint a regular slanted edge.
+   A plain angled gradient would cut the outer bands short. */
 .color-divider {
-  --neon-stripes: linear-gradient(
-    -10deg,
-    theme("colors.neon.pink"),
-    theme("colors.neon.pink") 30%,
-    theme("colors.neon.emerald") 30%,
-    theme("colors.neon.emerald") 50%,
-    theme("colors.neon.yellow") 50%,
-    theme("colors.neon.yellow") 70%,
-    theme("colors.neon.cyan") 70%,
-    theme("colors.neon.cyan")
-  );
-  background-image: var(--neon-stripes);
-}
-
-/* A divider whose stripes slide. The stripes are a repeating gradient at
-   the same -10deg angle, sized so the pattern repeats exactly once per
-   divider width (100cqw), so every joint is a regular slanted band edge.
-   It makes one pass on load (3s, under WCAG 2.2.2's 5s limit for motion
-   without a pause control) by sliding the layer one period, and loops while
-   its parent is hovered by moving the endlessly repeating background, so it
-   never runs out; leaving pauses it in place. The two animations use
-   different properties, so neither restarts. */
-.color-divider--slide {
   position: relative;
   overflow: hidden;
   container-type: inline-size;
-  background-image: none;
 }
 
-.color-divider--slide::before {
+.color-divider::before {
   /* One period of the pattern along the gradient line; four equal bands. */
   --band: calc(100cqw * sin(10deg));
   content: "";
   position: absolute;
   inset: 0;
-  /* One extra period, for the load pass to slide across. */
-  width: 200%;
   background-image: repeating-linear-gradient(
     -10deg,
     theme("colors.neon.pink") 0,
@@ -111,6 +92,17 @@ html {
     theme("colors.neon.cyan") calc(var(--band) * 0.75),
     theme("colors.neon.cyan") var(--band)
   );
+}
+
+/* The home intro's stripe slides. It makes one pass on load (3s, under
+   WCAG 2.2.2's 5s limit for motion without a pause control) by sliding the
+   layer one period, and loops while its parent is hovered by moving the
+   endlessly repeating background, so it never runs out; leaving pauses it
+   in place. The two animations use different properties, so neither
+   restarts. */
+.color-divider--slide::before {
+  /* One extra period, for the load pass to slide across. */
+  width: 200%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
