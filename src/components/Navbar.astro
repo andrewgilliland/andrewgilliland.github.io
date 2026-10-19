@@ -11,7 +11,11 @@ const pages: Page[] = [
 ];
 ---
 
-<header class="relative bg-neon-bg [view-transition-name:site-header]">
+<!-- z-40: the view-transition-name makes the header its own stacking
+     context, so the mobile menu's z-index only counts inside it. Page tiles
+     with translate animations form stacking contexts too and come later in
+     the page, so without this they paint over the open menu. -->
+<header class="relative z-40 bg-neon-bg [view-transition-name:site-header]">
   <MobileNavbar pages={pages} />
   <DesktopNavbar pages={pages} />
 </header>
