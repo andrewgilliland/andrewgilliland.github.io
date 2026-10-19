@@ -63,7 +63,7 @@ html {
 
 /* The striped divider under page headers and above the footer. */
 .color-divider {
-  background-image: linear-gradient(
+  --neon-stripes: linear-gradient(
     -10deg,
     theme("colors.neon.pink"),
     theme("colors.neon.pink") 30%,
@@ -74,11 +74,81 @@ html {
     theme("colors.neon.cyan") 70%,
     theme("colors.neon.cyan")
   );
+  background-image: var(--neon-stripes);
 }
 
-.header-heading:hover {
-  animation: spring-bounce 900ms ease forwards;
-  will-change: transform;
+/* A divider whose stripes slide. The stripes are a repeating gradient at
+   the same -10deg angle, sized so the pattern repeats exactly once per
+   divider width (100cqw), so every joint is a regular slanted band edge.
+   It makes one pass on load (3s, under WCAG 2.2.2's 5s limit for motion
+   without a pause control) by sliding the layer one period, and loops while
+   its parent is hovered by moving the endlessly repeating background, so it
+   never runs out; leaving pauses it in place. The two animations use
+   different properties, so neither restarts. */
+.color-divider--slide {
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+  background-image: none;
+}
+
+.color-divider--slide::before {
+  /* One period of the pattern along the gradient line; four equal bands. */
+  --band: calc(100cqw * sin(10deg));
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* One extra period, for the load pass to slide across. */
+  width: 200%;
+  background-image: repeating-linear-gradient(
+    -10deg,
+    theme("colors.neon.pink") 0,
+    theme("colors.neon.pink") calc(var(--band) * 0.25),
+    theme("colors.neon.emerald") calc(var(--band) * 0.25),
+    theme("colors.neon.emerald") calc(var(--band) * 0.5),
+    theme("colors.neon.yellow") calc(var(--band) * 0.5),
+    theme("colors.neon.yellow") calc(var(--band) * 0.75),
+    theme("colors.neon.cyan") calc(var(--band) * 0.75),
+    theme("colors.neon.cyan") var(--band)
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .color-divider--slide::before {
+    animation:
+      stripe-pass 3s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+      stripe-loop 6s linear infinite paused;
+  }
+
+  :hover > .color-divider--slide::before {
+    animation-play-state: running, running;
+  }
+}
+
+@keyframes stripe-pass {
+  to {
+    translate: -50% 0;
+  }
+}
+
+@keyframes stripe-loop {
+  to {
+    background-position-x: -100cqw;
+  }
+}
+
+/* Spring on hover: the site name in the header, and "Andrew!" on the home
+   page. Skipped with reduced motion. */
+.spring-hover {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .header-heading:hover,
+  .spring-hover:hover {
+    animation: spring-bounce 900ms ease forwards;
+    will-change: transform;
+  }
 }
 
 .stroke-black {
