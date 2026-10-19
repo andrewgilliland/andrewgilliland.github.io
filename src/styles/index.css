@@ -93,7 +93,7 @@ html {
 }
 
 .color-divider--slide::before {
-  /* One period of the pattern along the gradient line. */
+  /* One period of the pattern along the gradient line; four equal bands. */
   --band: calc(100cqw * sin(10deg));
   content: "";
   position: absolute;
@@ -103,12 +103,12 @@ html {
   background-image: repeating-linear-gradient(
     -10deg,
     theme("colors.neon.pink") 0,
-    theme("colors.neon.pink") calc(var(--band) * 0.3),
-    theme("colors.neon.emerald") calc(var(--band) * 0.3),
+    theme("colors.neon.pink") calc(var(--band) * 0.25),
+    theme("colors.neon.emerald") calc(var(--band) * 0.25),
     theme("colors.neon.emerald") calc(var(--band) * 0.5),
     theme("colors.neon.yellow") calc(var(--band) * 0.5),
-    theme("colors.neon.yellow") calc(var(--band) * 0.7),
-    theme("colors.neon.cyan") calc(var(--band) * 0.7),
+    theme("colors.neon.yellow") calc(var(--band) * 0.75),
+    theme("colors.neon.cyan") calc(var(--band) * 0.75),
     theme("colors.neon.cyan") var(--band)
   );
 }
