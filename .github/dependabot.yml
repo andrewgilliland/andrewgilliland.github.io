@@ -8,6 +8,13 @@ updates:
       day: "tuesday"
       time: "09:00"
     open-pull-requests-limit: 10
+    groups:
+      # @vitest/coverage-v8 pins vitest to its exact version, so a lone bump
+      # of either fails to install. Update them in one PR.
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
